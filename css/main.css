@@ -1859,7 +1859,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c85882;
+  background: #ff42ee;
 }
 .feed-link,
 .chat {
@@ -2812,7 +2812,7 @@ hr {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 body {
-  background: url("/images/background.jpg");
+  background: url("http://pw5u1sbg2.bkt.clouddn.com/e80a36c0-bca5-11e9-ac15-bf1c6b5eda4a.png");
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
