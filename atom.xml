@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-08-12T06:38:08.242Z</updated>
+  <updated>2019-08-14T07:30:30.473Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jeromememory.github.io/2019/08/12/%E7%AE%97%E6%B3%95%E9%A2%98.html"/>
     <id>http://jeromememory.github.io/2019/08/12/算法题.html</id>
     <published>2019-08-11T16:08:33.000Z</published>
-    <updated>2019-08-12T06:38:08.242Z</updated>
+    <updated>2019-08-14T07:30:30.473Z</updated>
     
     <summary type="html">
     
@@ -65,40 +65,6 @@
       <category term="hexo" scheme="http://jeromememory.github.io/tags/hexo/"/>
     
       <category term="GitHub Pages" scheme="http://jeromememory.github.io/tags/GitHub-Pages/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第一篇博客</title>
-    <link href="http://jeromememory.github.io/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html"/>
-    <id>http://jeromememory.github.io/2018/11/30/第一篇博客.html</id>
-    <published>2018-11-30T09:30:00.000Z</published>
-    <updated>2019-05-27T22:05:34.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="develop" scheme="http://jeromememory.github.io/categories/develop/"/>
-    
-      <category term="test" scheme="http://jeromememory.github.io/categories/develop/test/"/>
-    
-    
-      <category term="linux" scheme="http://jeromememory.github.io/tags/linux/"/>
-    
-      <category term="os" scheme="http://jeromememory.github.io/tags/os/"/>
-    
-      <category term="java" scheme="http://jeromememory.github.io/tags/java/"/>
-    
-      <category term="python" scheme="http://jeromememory.github.io/tags/python/"/>
     
   </entry>
   
