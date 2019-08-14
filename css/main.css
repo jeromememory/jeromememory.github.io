@@ -1859,7 +1859,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c1c74d;
+  background: #4f16b4;
 }
 .feed-link,
 .chat {
@@ -2817,6 +2817,10 @@ body {
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
+}
+.main-inner {
+  background: #fff;
+  opacity: 0.9;
 }
 .post-body p a {
   color: #1c86ee;
