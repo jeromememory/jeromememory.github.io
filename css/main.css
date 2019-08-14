@@ -1859,7 +1859,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #faff82;
+  background: #2f91ff;
 }
 .feed-link,
 .chat {
@@ -2810,6 +2810,13 @@ hr {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+body {
+  background: url("https://images6.alphacoders.com/613/thumb-350-613932.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
 }
 .post-body p a {
   color: #1c86ee;
