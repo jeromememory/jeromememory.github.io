@@ -1859,7 +1859,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1d7e49;
+  background: #ff747c;
 }
 .feed-link,
 .chat {
@@ -2465,7 +2465,7 @@ hr {
   margin-top: 80px;
 }
 .header {
-  background: #00d6ff none repeat scroll !important;
+  background: #ebf2ea none repeat scroll !important;
 }
 .header-inner {
   padding: 20px 0;
