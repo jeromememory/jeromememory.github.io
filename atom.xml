@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>派 | jerome</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://www.jeromememory.com/"/>
+  <updated>2019-05-27T22:05:34.000Z</updated>
+  <id>https://www.jeromememory.com/</id>
+  
+  <author>
+    <name>丨Jerome丨</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第一篇博客</title>
+    <link href="https://www.jeromememory.com/2018/11/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html"/>
+    <id>https://www.jeromememory.com/2018/11/30/第一篇博客.html</id>
+    <published>2018-11-30T09:30:00.000Z</published>
+    <updated>2019-05-27T22:05:34.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="develop" scheme="https://www.jeromememory.com/categories/develop/"/>
+    
+      <category term="test" scheme="https://www.jeromememory.com/categories/develop/test/"/>
+    
+    
+      <category term="linux" scheme="https://www.jeromememory.com/tags/linux/"/>
+    
+      <category term="os" scheme="https://www.jeromememory.com/tags/os/"/>
+    
+      <category term="java" scheme="https://www.jeromememory.com/tags/java/"/>
+    
+      <category term="python" scheme="https://www.jeromememory.com/tags/python/"/>
+    
+  </entry>
+  
+</feed>

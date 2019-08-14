@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[第一篇博客]]></title>
+    <url>%2F2018%2F11%2F30%2F%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
+    <content type="text"><![CDATA[第一次见面你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。 关于Markdown当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。 祝你好运]]></content>
+      <categories>
+        <category>develop</category>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>os</tag>
+        <tag>java</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+</search>
