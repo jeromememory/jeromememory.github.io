@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[算法题]]></title>
+    <url>%2F2019%2F08%2F12%2F%E7%AE%97%E6%B3%95%E9%A2%98.html</url>
+    <content type="text"><![CDATA[1.二维数组中的查找题目描述在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 解题思路要求时间复杂度 O(M + N)，空间复杂度 O(1)。其中 M 为行数，N 为列数。该二维数组中的一个数，小于它的数一定在其左边，大于它的数一定在其下边。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间，当前元素的查找区间为左下角的所有元素。 My code1234567891011121314151617# -*- coding:utf-8 -*-class Solution: # array 二维列表 def Find(self, target, array): # write code here row = len(array) col = len(array[0]) c = col - 1 r = 0 while(r &lt;= row-1 and c &gt;=0): if(target == array[r][c]): return True elif(target &gt; array[r][c]): r+=1 else: c-=1 return False 2.替换空格题目描述请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 解题思路将字符串复制给一个新的列表，碰到空格则替换，没有则copy原字符串，最后对列表进行join，返回字符串。 易错点 My code12345678910111213141516171819202122# -*- coding:utf-8 -*-class Solution: # s 源字符串 def replaceSpace(self, s): # write code here t = len(s) j = 0 m = list(s) for i in range(0,t): if(s[i] == ' '): m[j] = '%20' j+=1 else: m[j] = s[i] j+=1 pass return ''.join(m)# s = 'I want to sleep'# solution = Solution()# ss = solution.replaceSpace(s)# print(ss) 3.从尾到头打印链表题目描述输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。 解题思路知识点补充python中链表的操作1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768class Node(): '创建节点' def __init__(self,data): self.data = data self.next = None class LinkList(): '创建列表' def __init__(self, node): '初始化列表' self.head = node self.head.next = None self.tail = self.head def add_node(self, node): '添加节点' self.tail.next = node self.tail = self.tail.next def view(self): '查看列表' node = self.head link_str = '' while node is not None: if node.next is not None: link_str += str(node.data) + '--&gt;' else: link_str += str(node.data) node = node.next print ('The Linklist is:' + link_str) def length(self): '列表长度' node = self.head count = 1 while node.next is not None: count += 1 node = node.next print ('The length of linklist are %d' % count) return count def delete_node(self, index): '删除节点' if index+1 &gt; self.length(): raise IndexError('index out of bounds') num = 0 node = self.head while True: if num == index-1: break node = node.next num += 1 tmp_node = node.next node.next = node.next.next return tmp_node.data def find_node(self, index): '查看具体节点' if index+1 &gt; self.length(): raise IndexError('index out of bounds') num = 0 node = self.head while True: if num == index: break node = node.next num += 1 return node.data My code123456789101112131415# -*- coding:utf-8 -*-# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: # 返回从尾部到头部的列表值序列，例如[1,2,3] def printListFromTailToHead(self, listNode): # write code here res=[] while listNode: res.append(listNode.val) listNode=listNode.next return res[::-1] #逆序打印]]></content>
+      <categories>
+        <category>程序猿</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[在macOS上使用GitHub Pages+Hexo搭建个人博客]]></title>
+    <url>%2F2019%2F08%2F08%2F%E5%9C%A8macOS%E4%B8%8A%E4%BD%BF%E7%94%A8GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2.html</url>
+    <content type="text"><![CDATA[一.搭建环境操作系统：macos 10.14.5工具：github Desktop, Node.js, Git框架：Hexo, Github Pages 二.具体步骤1.安装git直接在终端输入git --version判断自己系统是否已有git，如果没有，点击该链接git下载，安装完后进入终端输入git --version检查是否安装成功。 2.安装node.js话不多说，上链接：node.js下载，然后傻瓜式安装就行。安装完之后请记得去控制台看看是否安装成功node --version,然后更新一下npm,输入:npm install -g npm 3.注册账号并创建博客仓库a.首先进入github官网：github,进行相应的注册登录，然后创建仓库，就在左上角那个猫猫旁边 b.戳进去之后,Respository name必须是:您的github账户名.github.io,然后勾选下面的创建readme，创建完成。 c.进入仓库，点击Setting，启用GitHub Pages,此时你输入您的github账户名.github.io,就能看到不是404了，说明此时博客已经建立了，接下来就是利用Hexo框架让你的博客美起来啦！！！！ 4.安装配置Hexoa.首先建立一个文件夹(随便你建在哪)b.在该文件夹内打开终端，输入：1$ npm install hexo-cli -g 接下来你就能看到文件夹内的东西多了起来哈哈哈，如下图所示的文件结构：c.Hexo已经有了，github pages也有了，现在就剩把他们联系起来了，所以这步就是关键咯，打开上图第一个文件：_config.yml,然后在文本的结尾加上下面的一段代码：1234deploy: type: git repository: https://github.com/jeromememory/jeromememory.github.io.git branch: master 其中repository就是你最开始设置的仓库哟，记得替换自己的github用户名。 5.检测是否部署成功首先如果你想在本地预览你的博客，只需要打开终端,首先进入Hexo文件夹内，然后进行 hexo s即可：12$ cd /Users/jerome/Hexo $ hexo s 然后你就会看到在终端提示你在localhost:4000预览你的博客啦！！如果你想在网页上看到你的博客，只需要在终端输入：12$ hexo g$ hexo d 稍等一小会(github pages需要一小段时间才会更新)，你就能在你仓库对应的那个网址(您的github用户名.io.git)看到您的博客了，至此，您的博客应该就已经搭建完成了，当然您肯定会说这也太丑了吧，对，我也觉得，所以接下来请继续看下面的操作吧！！！ 6.Hexo主题配置默认的主题很丑，所以这个时候我们就可以去github这个最大的开源网站找了，我推荐Hexo的next主题，我自己用的就是这个，极简至极，找到别人的主题之后，把他的代码clone下来，放到/Hexo/themes这个文件夹下：然后去开始的_config.yml中定位到theme，将后面的值改为你的主题名，别忘了，改完这些后，打开终端，输入：12$ hexo g$ hexo d 过一小会你就能看到自己的主题发生变化啦！剩下的具体配置，我就偷偷懒放个链接：NexT主题，其他主题的同学，你们也可以自己查一下对应的官网哟，都写的贼详细，好用！ 三、总结至此，个人博客就应该搭建好了，希望对大家有所收获！!(话说第一篇博客果然是狗屁不通啊大家凑合看吧)]]></content>
+      <categories>
+        <category>程序猿</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[第一篇博客]]></title>
     <url>%2F2018%2F11%2F30%2F%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2.html</url>
     <content type="text"><![CDATA[第一次见面你好，同学！欢迎你使用基于hexo搭建的next主题的博客系统。 关于Markdown当你能够正常访问这个页面时，相信你已经知道以后写博客文章是基于Markdown语法的，请熟练使用他。 祝你好运]]></content>
