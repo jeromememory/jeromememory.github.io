@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-08-18T06:46:07.425Z</updated>
+  <updated>2019-08-18T15:45:41.250Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>生活好难啊</title>
+    <link href="http://jeromememory.github.io/2019/08/18/%E7%94%9F%E6%B4%BB%E5%A5%BD%E9%9A%BE%E5%95%8A.html"/>
+    <id>http://jeromememory.github.io/2019/08/18/生活好难啊.html</id>
+    <published>2019-08-18T15:45:41.000Z</published>
+    <updated>2019-08-18T15:45:41.250Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="吐槽" scheme="http://jeromememory.github.io/categories/%E5%90%90%E6%A7%BD/"/>
+    
+    
+      <category term="负情绪" scheme="http://jeromememory.github.io/tags/%E8%B4%9F%E6%83%85%E7%BB%AA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>kafka</title>
     <link href="http://jeromememory.github.io/2019/08/18/kafka.html"/>
     <id>http://jeromememory.github.io/2019/08/18/kafka.html</id>
     <published>2019-08-18T02:52:06.000Z</published>
-    <updated>2019-08-18T06:46:07.425Z</updated>
+    <updated>2019-08-18T15:41:43.427Z</updated>
     
     <summary type="html">
     
