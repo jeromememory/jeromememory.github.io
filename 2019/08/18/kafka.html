@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="初识kafkakafka概念Kafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者在网站中的所有动作流数据,是用于构建实时数据管道和流应用程序。 四个术语 TopicKafka将消息种子(Feed)分门别类，每一类的消息称之为一个主题(Topic)。 Producer发布消息的对象称之为主题生产者(Kafka topic producer)。生产者发布消息时要选定Topic上的分区。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T06:17:47.013Z">
+<meta property="og:updated_time" content="2019-08-18T06:20:44.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka">
 <meta name="twitter:description" content="初识kafkakafka概念Kafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者在网站中的所有动作流数据,是用于构建实时数据管道和流应用程序。 四个术语 TopicKafka将消息种子(Feed)分门别类，每一类的消息称之为一个主题(Topic)。 Producer发布消息的对象称之为主题生产者(Kafka topic producer)。生产者发布消息时要选定Topic上的分区。">
@@ -495,7 +495,7 @@
                 
               
 
-              <time title="创建时间：2019-08-18 10:52:06 / 修改时间：14:17:47" itemprop="dateCreated datePublished" datetime="2019-08-18T10:52:06+08:00">2019-08-18</time>
+              <time title="创建时间：2019-08-18 10:52:06 / 修改时间：14:20:44" itemprop="dateCreated datePublished" datetime="2019-08-18T10:52:06+08:00">2019-08-18</time>
             
 
             
@@ -553,7 +553,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.1k</span>
+                <span title="本文字数">2k</span>
               
 
               
@@ -592,10 +592,7 @@
 <li>Topic<br>Kafka将消息种子(Feed)分门别类，每一类的消息称之为一个主题(Topic)。</li>
 <li>Producer<br>发布消息的对象称之为主题生产者(Kafka topic producer)。生产者发布消息时要选定Topic上的分区。</li>
 <li>Consumer<br>订阅消息并处理发布的消息的种子的对象称之为主题消费者(consumers)。一般消费者模型可以分为两类：队列和发布-订阅式。队列的处理方式就是一条消息只有一个消费者知道并处理，发布-订阅的处理方式则是消息被所有人都知道，所有人都可以来处理该消息，kafka为这两种模型提供了单一抽象模型：消费者组（cosumer group）。每个消费者都有一个组名，当所有人的组名都不一样的时候，这个时候就是发布-订阅模式，因为消息要按照消费者组为单位发出的，这意味着此时每个消费者都会收到消息并可以进行处理；当所有人的消费者组名字都一样时，意味着只会有一个消费者收到消息并可以进行处理，此时就是队列模式了。</li>
-<li>Broker<br>已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器都是一个代理(Broker). 消费者可以订阅一个或多个主题（topic），并从Broker拉数据，从而消费这些已发布的消息。<h3 id="三个关键能力"><a href="#三个关键能力" class="headerlink" title="三个关键能力"></a>三个关键能力</h3></li>
-<li>发布和订阅消息流，在这方面，它类似于一个消息队列或企业消息系统</li>
-<li>以<strong>容错</strong>的方式存储消息（流)</li>
-<li>在消息流发生时处理他们<h3 id="四个核心API"><a href="#四个核心API" class="headerlink" title="四个核心API"></a>四个核心API</h3><ul>
+<li>Broker<br>已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器都是一个代理(Broker). 消费者可以订阅一个或多个主题（topic），并从Broker拉数据，从而消费这些已发布的消息。<h3 id="四个核心API"><a href="#四个核心API" class="headerlink" title="四个核心API"></a>四个核心API</h3><ul>
 <li>应用程序使用 <code>Producer API</code> 发布消息到1个或多个topic（主题）。</li>
 <li>应用程序使用 <code>Consumer API</code> 来订阅一个或多个topic，并处理产生的消息</li>
 <li>应用程序使用 <code>Streams API</code> 充当一个流处理器，从1个或多个topic消费输入流，并生产一个输出流到1个或多个输出topic，有效地将输入流转换到输出流。</li>
@@ -977,7 +974,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初识kafka"><span class="nav-number">1.</span> <span class="nav-text">初识kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka概念"><span class="nav-number">1.1.</span> <span class="nav-text">kafka概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四个术语"><span class="nav-number">1.1.1.</span> <span class="nav-text">四个术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三个关键能力"><span class="nav-number">1.1.2.</span> <span class="nav-text">三个关键能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四个核心API"><span class="nav-number">1.1.3.</span> <span class="nav-text">四个核心API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka安装过程"><span class="nav-number">1.2.</span> <span class="nav-text">kafka安装过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初识kafka"><span class="nav-number">1.</span> <span class="nav-text">初识kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka概念"><span class="nav-number">1.1.</span> <span class="nav-text">kafka概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四个术语"><span class="nav-number">1.1.1.</span> <span class="nav-text">四个术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四个核心API"><span class="nav-number">1.1.2.</span> <span class="nav-text">四个核心API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kafka安装过程"><span class="nav-number">1.2.</span> <span class="nav-text">kafka安装过程</span></a></li></ol></li></ol></div>
             
 
           </div>
