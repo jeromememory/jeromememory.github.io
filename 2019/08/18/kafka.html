@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="初识kafkakafka概念Kafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者在网站中的所有动作流数据,是用于构建实时数据管道和流应用程序。 三个关键能力 发布和订阅消息（流），在这方面，它类似于一个消息队列或企业消息系统。 以容错的方式存储消息（流）。 在消息流发生时处理它们。四个术语 TopicKafka将消息种子(Feed)分门别类，每一类的消息称之为一个主题(Topic)。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-18T05:56:15.461Z">
+<meta property="og:updated_time" content="2019-08-18T05:58:09.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka">
 <meta name="twitter:description" content="初识kafkakafka概念Kafka是一种高吞吐量的分布式发布订阅消息系统，它可以处理消费者在网站中的所有动作流数据,是用于构建实时数据管道和流应用程序。 三个关键能力 发布和订阅消息（流），在这方面，它类似于一个消息队列或企业消息系统。 以容错的方式存储消息（流）。 在消息流发生时处理它们。四个术语 TopicKafka将消息种子(Feed)分门别类，每一类的消息称之为一个主题(Topic)。">
@@ -495,7 +495,7 @@
                 
               
 
-              <time title="创建时间：2019-08-18 10:52:06 / 修改时间：13:56:15" itemprop="dateCreated datePublished" datetime="2019-08-18T10:52:06+08:00">2019-08-18</time>
+              <time title="创建时间：2019-08-18 10:52:06 / 修改时间：13:58:09" itemprop="dateCreated datePublished" datetime="2019-08-18T10:52:06+08:00">2019-08-18</time>
             
 
             
@@ -604,11 +604,10 @@
 <li><code>Connector API</code>允许构建或运行可重复使用的生产者或消费者，将topic连接到现有的应用程序或数据系统。例如，一个关系数据库的连接器可捕获每一个变化。</li>
 </ul>
 <h2 id="kafka安装过程"><a href="#kafka安装过程" class="headerlink" title="kafka安装过程"></a>kafka安装过程</h2><ul>
-<li>kafka的安装<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>kafka</span><br></pre></td></tr></table></figure>
+<li><p>kafka的安装</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>kafka</span><br></pre></td></tr></table></figure>
+<p>  安装会依赖<code>zookeeper</code><br>  注意：安装目录：<code>/usr/local/Cellar/kafka/0.10.2.0</code></p>
 </li>
-</ul>
-<p>安装会依赖<code>zookeeper</code>。<br>注意：安装目录：<code>/usr/local/Cellar/kafka/0.10.2.0</code></p>
-<ul>
 <li>安装的配置文件位置<br><code>/usr/local/etc/kafka/server.properties</code><br><code>/usr/local/etc/kafka/zookeeper.properties</code></li>
 <li><p>启动zookeeper</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zookeeper-server-start <span class="regexp">/usr/</span>local<span class="regexp">/etc/</span>kafka<span class="regexp">/zookeeper.properties &amp;</span></span><br></pre></td></tr></table></figure>
