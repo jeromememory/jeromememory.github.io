@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-08-24T13:09:46.545Z</updated>
+  <updated>2019-08-24T13:13:32.611Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jeromememory.github.io/2019/08/23/Flask-PyJWT-%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8EJson-Web-Token%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83.html"/>
     <id>http://jeromememory.github.io/2019/08/23/Flask-PyJWT-实现基于Json-Web-Token的用户认证授权.html</id>
     <published>2019-08-23T14:39:54.000Z</published>
-    <updated>2019-08-24T13:09:46.545Z</updated>
+    <updated>2019-08-24T13:13:32.611Z</updated>
     
     <summary type="html">
     
@@ -170,9 +170,9 @@
       <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
     
     
-      <category term="NexT" scheme="http://jeromememory.github.io/tags/NexT/"/>
-    
       <category term="hexo" scheme="http://jeromememory.github.io/tags/hexo/"/>
+    
+      <category term="NexT" scheme="http://jeromememory.github.io/tags/NexT/"/>
     
   </entry>
   
