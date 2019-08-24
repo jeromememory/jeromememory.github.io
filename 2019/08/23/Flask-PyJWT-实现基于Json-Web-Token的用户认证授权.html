@@ -149,18 +149,20 @@
 
 
 
-  <meta name="description" content="先容我把项目做完…待续">
+  <meta name="description" content="前言这注定又将是一篇长文，接触到的第一个关于python的框架flask，本文将从最开始的安装flask，到与mysql结合，最后到用pyjwt和flask-jwt和restful写一个带有token的接口。 The first demo123456789from flask import Flaskapp = Flask(__name__)@app.route(&quot;/&quot;)def index():">
 <meta name="keywords" content="flask,PyJWT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flask + PyJWT 实现基于Json Web Token的用户认证授权">
 <meta property="og:url" content="http://jeromememory.github.io/2019/08/23/Flask-PyJWT-实现基于Json-Web-Token的用户认证授权.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="先容我把项目做完…待续">
+<meta property="og:description" content="前言这注定又将是一篇长文，接触到的第一个关于python的框架flask，本文将从最开始的安装flask，到与mysql结合，最后到用pyjwt和flask-jwt和restful写一个带有token的接口。 The first demo123456789from flask import Flaskapp = Flask(__name__)@app.route(&quot;/&quot;)def index():">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-23T14:39:54.025Z">
+<meta property="og:image" content="http://pw5u1sbg2.bkt.clouddn.com/FoIzU2TEFDoBSjyY0YqIzcQz6BQD">
+<meta property="og:updated_time" content="2019-08-24T07:22:53.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask + PyJWT 实现基于Json Web Token的用户认证授权">
-<meta name="twitter:description" content="先容我把项目做完…待续">
+<meta name="twitter:description" content="前言这注定又将是一篇长文，接触到的第一个关于python的框架flask，本文将从最开始的安装flask，到与mysql结合，最后到用pyjwt和flask-jwt和restful写一个带有token的接口。 The first demo123456789from flask import Flaskapp = Flask(__name__)@app.route(&quot;/&quot;)def index():">
+<meta name="twitter:image" content="http://pw5u1sbg2.bkt.clouddn.com/FoIzU2TEFDoBSjyY0YqIzcQz6BQD">
 
 
 
@@ -499,6 +501,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-24 15:22:53" itemprop="dateModified" datetime="2019-08-24T15:22:53+08:00">2019-08-24</time>
+              
+            
           </span>
 
           
@@ -549,7 +567,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">12</span>
+                <span title="本文字数">1.7k</span>
               
 
               
@@ -563,7 +581,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -583,7 +601,26 @@
       
 
       
-        <p>先容我把项目做完…待续</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这注定又将是一篇长文，接触到的第一个关于python的框架flask，本文将从最开始的安装flask，到与mysql结合，最后到用pyjwt和flask-jwt和restful写一个带有token的接口。</p>
+<h1 id="The-first-demo"><a href="#The-first-demo" class="headerlink" title="The first demo"></a>The first demo</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route("/")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一行一行来，from…import…就是导入flask中的Flask模块，不同于直接import，from…import简单来说就是帮我从车里拿瓶水，而import则是把车拿过来，所以二者在使用的时候还是有些区别的，在导入某个.py文件时，使用from…import…可以直接在该文件夹下使用import后的函数名，而如果是import，如果要调用函数必须用类.模块。</li>
+<li>第二行，这行代码里有一个参数<strong>name</strong>，这个参数用到告诉flask你的application的名字，官方有一句话：<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">If you are <span class="keyword">using</span> <span class="keyword">a</span> single module,__name__ is always <span class="keyword">the</span> correct <span class="built_in">value</span>. If you</span><br><span class="line">however are <span class="keyword">using</span> <span class="keyword">a</span> package, <span class="keyword">it</span>’s usually recommended <span class="built_in">to</span> hardcode <span class="keyword">the</span> name <span class="keyword">of</span></span><br><span class="line">your package there.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>意思就是说，如果是单一的应用，用<strong>name</strong>就可以了，如果是一个应用程序包，就hardcode一个名字给这个参数。比如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app = Flask(“myApp”)</span><br></pre></td></tr></table></figure></p>
+<p>由于目前我们的应用都相对简单，所以统一使用<strong>name</strong>作为参数。</p>
+<ul>
+<li>第三行，使用route()修饰器注明通过什么样的url可以访问我们的函数，同时在函数中返回要显示在浏览器中的信息。</li>
+<li>最后调用run()方法，运行flask web应用程序<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中<code>if __name__==&#39;__main__&#39;</code>的意思是，如果此文件是直接运行的才会执行app.run()这个方法，如果是通过import在其它py文件中调用的话是不会执行的。<br>比如我们修改code.py中的hello_world方法，如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@app.route(<span class="string">'/index'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello_world</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">if</span> __name_<span class="number">_</span>==<span class="string">'main'</span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Hello World!'</span></span><br><span class="line">    <span class="symbol">else:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello my name is "</span>+__name_<span class="number">_</span></span><br></pre></td></tr></table></figure></p>
+<p>即当<strong>name</strong>为<strong>main</strong>时还是执行原来的逻辑，返回hello world，如果不是则输出此时的名字。<br>然后我们新建一个sub.py文件然后导入code.py，并且执行hello_world方法:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> code</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CallCodeFun</span><span class="params">()</span>:</span></span><br><span class="line">    result = code.hello_world()</span><br><span class="line">    print(result)</span><br><span class="line"></span><br><span class="line">CallCodeFun()</span><br><span class="line">print(__name__)</span><br></pre></td></tr></table></figure></p>
+<p>此时的<strong>name</strong>是Code而不是<strong>main</strong>,而此时，在sub.py中加一句print(<strong>name</strong>)可以发现sub.py中的<strong>name</strong>变成了<strong>main</strong></p>
+<p><img src="http://pw5u1sbg2.bkt.clouddn.com/FoIzU2TEFDoBSjyY0YqIzcQz6BQD" alt="image.png"></p>
+<p>由此我们可以得出 <strong>name</strong> 如果是 <strong>main</strong> 那么代表他是一个入口文件，直接执行的</p>
+<p>先容我把项目做完…待续<br>1.主要问题就是flask和mysql的连接问题，出现的最棘手的问题首先是sqldb是py2的，py3没有，用pymysql代替，在SQLALCHEMY_DATABASE_URI注意修改<br>2.最终修改方案是自己用一个demo建好了数据库和表(记得保存好demo)，并且把那个网址的三个博文全部看完，同时看完推荐的那个博客，写得极其的好。<br>3.</p>
 
       
     </div>
@@ -745,8 +782,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -922,6 +968,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-first-demo"><span class="nav-number">2.</span> <span class="nav-text">The first demo</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -955,7 +1018,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">31k</span>
+    <span title="站点总字数">33k</span>
   
   
 </div>
