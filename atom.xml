@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-09-24T02:33:12.718Z</updated>
+  <updated>2019-09-25T12:47:48.889Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jeromememory.github.io/2019/09/23/%E7%99%BE%E5%BA%A6%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A266%E5%A4%A9%E5%AD%A6%E4%B9%A0-%E4%BA%89%E5%8F%96%E4%B8%80%E4%B8%AA%E6%9C%88%E5%86%85%E5%AE%8C%E6%88%90%EF%BC%81.html"/>
     <id>http://jeromememory.github.io/2019/09/23/百度前端技术学院66天学习-争取一个月内完成！.html</id>
     <published>2019-09-22T16:51:03.000Z</published>
-    <updated>2019-09-24T02:33:12.718Z</updated>
+    <updated>2019-09-25T12:47:48.889Z</updated>
     
     <summary type="html">
     
@@ -77,7 +77,7 @@
     <link href="http://jeromememory.github.io/2019/09/21/%E4%BD%BF%E7%94%A8Microsoft-Remote-Desktop-for-mac-%E5%92%8C-Spark%E9%82%AE%E7%AE%B1.html"/>
     <id>http://jeromememory.github.io/2019/09/21/使用Microsoft-Remote-Desktop-for-mac-和-Spark邮箱.html</id>
     <published>2019-09-21T01:16:11.000Z</published>
-    <updated>2019-09-21T01:25:15.272Z</updated>
+    <updated>2019-09-25T12:44:42.550Z</updated>
     
     <summary type="html">
     
@@ -278,9 +278,9 @@
       <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
     
     
-      <category term="NexT" scheme="http://jeromememory.github.io/tags/NexT/"/>
-    
       <category term="hexo" scheme="http://jeromememory.github.io/tags/hexo/"/>
+    
+      <category term="NexT" scheme="http://jeromememory.github.io/tags/NexT/"/>
     
   </entry>
   
