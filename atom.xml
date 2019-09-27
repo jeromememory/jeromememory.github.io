@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-09-25T13:16:09.212Z</updated>
+  <updated>2019-09-27T11:51:00.480Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019-9-26</title>
+    <link href="http://jeromememory.github.io/2019/09/26/2019-9-26.html"/>
+    <id>http://jeromememory.github.io/2019/09/26/2019-9-26.html</id>
+    <published>2019-09-26T02:06:59.000Z</published>
+    <updated>2019-09-27T11:51:00.480Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>百度前端技术学院66天学习(争取一个月内完成！)</title>
