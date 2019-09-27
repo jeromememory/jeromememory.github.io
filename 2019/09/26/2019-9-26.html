@@ -150,13 +150,14 @@
 
 
   <meta name="description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
+<meta name="keywords" content="java,springboot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019-9-26">
 <meta property="og:url" content="http://jeromememory.github.io/2019/09/26/2019-9-26.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-27T12:04:24.259Z">
+<meta property="og:updated_time" content="2019-09-27T12:15:52.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019-9-26">
 <meta name="twitter:description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
@@ -511,11 +512,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-27 20:04:24" itemprop="dateModified" datetime="2019-09-27T20:04:24+08:00">2019-09-27</time>
+                <time title="修改时间：2019-09-27 20:15:52" itemprop="dateModified" datetime="2019-09-27T20:15:52+08:00">2019-09-27</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -546,7 +565,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4.9k</span>
+                <span title="本文字数">4.7k</span>
               
 
               
@@ -628,25 +647,17 @@
 <li>可以标注在方法中的参数上；</li>
 <li><p>还可以和@RequestMapping一起标注在方法上；<br>目的都是在RequestMapping之前进行model属性的注入，对RestController好像没用，因为是返回json数据，并不能将model里面的数据直接返回给页面。<br>如果没用@RestController，则@ModelAttribute方法通常被用来填充一些公共需要的属性或数据，比如一个下拉列表所预设的几种状态，或者宠物的几种类型，或者去取得一个HTML表单渲染所需要的命令对象，比如Account等。<br>@ModelAttribute标注方法有两种风格：  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Add one attribute</span></span><br><span class="line"><span class="comment">// The return value of the method is added to the model under the name "account"</span></span><br><span class="line"><span class="comment">// You can customize the name via @ModelAttribute("myAccount")</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Account <span class="title">addAccount</span><span class="params">(@RequestParam String number)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> accountManager.findAccount(number);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add multiple attributes</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">populateModel</span><span class="params">(@RequestParam String number, Model model)</span> </span>&#123;</span><br><span class="line">    model.addAttribute(accountManager.findAccount(number));</span><br><span class="line">    <span class="comment">// add more ...</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>在第一种写法中，方法通过返回值的方式默认地将添加一个属性，在第二种写法中，方法接收一个Model对象，然后可以向其中添加任意数量的属性，可以在根据需要，在两种风格中选择合适的一种。<br><strong>model里的数据会被放入到request中,页面通过request域可以获取到。</strong>    </p>
+</li>
+</ul>
+</li>
+<li><p>@SessionAttributes和@SessionAttribute<br><a href="https://blog.csdn.net/abc997995674/article/details/80462450" target="_blank" rel="noopener">@SessionAttributes注解的使用</a><br>就是将属性放入session域内，然后可以在session域内进行相关的操作。</p>
+<p><strong><a href="https://my.oschina.net/u/2608182/blog/739212" target="_blank" rel="noopener">SpringMVC中@ModelAttribute和@SessionAttributes注解的使用</a></strong></p>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<pre><code>    在第一种写法中，方法通过返回值的方式默认地将添加一个属性；  
-    在第二种写法中，方法接收一个Model对象，然后可以向其中添加任意数量的属性。  
-    可以在根据需要，在两种风格中选择合适的一种。
 
-    **model里的数据会被放入到request中,页面通过request域可以获取到。**    
-
-* @SessionAttributes和@SessionAttribute  
-[@SessionAttributes注解的使用](https://blog.csdn.net/abc997995674/article/details/80462450)
-就是将属性放入session域内，然后可以在session域内进行相关的操作。
-
-
-**[SpringMVC中@ModelAttribute和@SessionAttributes注解的使用](https://my.oschina.net/u/2608182/blog/739212)**
-</code></pre>
       
     </div>
 
@@ -732,6 +743,14 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/springboot/" rel="tag"><i class="fa fa-tag"></i> springboot</a>
+          
+        </div>
       
 
       
@@ -896,7 +915,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
