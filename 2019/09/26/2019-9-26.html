@@ -150,14 +150,14 @@
 
 
   <meta name="description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
-<meta name="keywords" content="java,springboot">
+<meta name="keywords" content="springboot,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019-9-26">
 <meta property="og:url" content="http://jeromememory.github.io/2019/09/26/2019-9-26.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-27T12:15:52.519Z">
+<meta property="og:updated_time" content="2019-10-02T07:55:01.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019-9-26">
 <meta name="twitter:description" content="今日任务 springboot + mongodb,完成mongo在springboot中的搭建，写一个小demo 最主要的是把repository这一层写完，业务逻辑可以放到明天来写  完成过程mongodb的安装macOS下mongodb的安装与启动 Springboot下的相关注解 @DataData注解使用 @Document标注在实体类上，类似于hibernate的entity注解，标明">
@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-27 20:15:52" itemprop="dateModified" datetime="2019-09-27T20:15:52+08:00">2019-09-27</time>
+                <time title="修改时间：2019-10-02 15:55:01" itemprop="dateModified" datetime="2019-10-02T15:55:01+08:00">2019-10-02</time>
               
             
           </span>
@@ -565,7 +565,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4.7k</span>
+                <span title="本文字数">5.1k</span>
               
 
               
@@ -579,7 +579,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">4 分钟</span>
+                <span title="阅读时长">5 分钟</span>
               
             </div>
           
@@ -656,7 +656,13 @@
 </li>
 </ul>
 </li>
+<li><p>@id（好像如果表中数据字段是id，会比较特殊一点，springboot会自动检索传过来的参数是否有id，如果没有会自动添加id）</p>
+</li>
+<li><p>Repository相关注解</p>
+</li>
 </ul>
+<h2 id="Springboot的分页和排序操作"><a href="#Springboot的分页和排序操作" class="headerlink" title="Springboot的分页和排序操作"></a>Springboot的分页和排序操作</h2><p>由于采用的是Mongo数据库，所以先后使用了MongoTemplate()和MongoRepository(),MongoTemplate在写法上比MongoRepository 更复杂一些，但是带来更多的灵活性。对于复杂的查询操作，我们一般使用MongoTemplate，对于一些简单的查询我们会使用MongoRepository 。可以这么理解，MongoRepository 只是作为一种对于简单查询的简便操作，而MongoTemplate才是我们在做一些复杂查询时的首选。</p>
+<h3 id="MongoRepository"><a href="#MongoRepository" class="headerlink" title="MongoRepository"></a>MongoRepository</h3><p>自己还借用了下@Query和@Modifying注解，方便自己摆脱关键字的查询，如果需要进行更新或者删除数据，则需要在@Query之上加上@Modifing。</p>
 
       
     </div>
@@ -746,9 +752,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
-          
             <a href="/tags/springboot/" rel="tag"><i class="fa fa-tag"></i> springboot</a>
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
         </div>
       
@@ -770,6 +776,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/02/10-2-10-7.html" rel="prev" title="10.2----10.7">
+                10.2----10.7 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -845,7 +855,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1028,7 +1038,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#今日任务"><span class="nav-number">1.</span> <span class="nav-text">今日任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完成过程"><span class="nav-number">2.</span> <span class="nav-text">完成过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongodb的安装"><span class="nav-number">2.1.</span> <span class="nav-text">mongodb的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot下的相关注解"><span class="nav-number">2.2.</span> <span class="nav-text">Springboot下的相关注解</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#今日任务"><span class="nav-number">1.</span> <span class="nav-text">今日任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完成过程"><span class="nav-number">2.</span> <span class="nav-text">完成过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mongodb的安装"><span class="nav-number">2.1.</span> <span class="nav-text">mongodb的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot下的相关注解"><span class="nav-number">2.2.</span> <span class="nav-text">Springboot下的相关注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springboot的分页和排序操作"><span class="nav-number">2.3.</span> <span class="nav-text">Springboot的分页和排序操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoRepository"><span class="nav-number">2.3.1.</span> <span class="nav-text">MongoRepository</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1068,7 +1078,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">55k</span>
+    <span title="站点总字数">58k</span>
   
   
 </div>
