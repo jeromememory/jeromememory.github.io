@@ -158,7 +158,9 @@
 <meta property="og:description" content="两数之和题目给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的思路 先排序">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/10/05/Ezan17UidoeKYyv.png">
-<meta property="og:updated_time" content="2019-10-05T12:05:22.612Z">
+<meta property="og:image" content="https://i.loli.net/2019/10/05/V43By8UEdZkgou5.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/10/05/pu8ZvSi2yWIC5Vw.png">
+<meta property="og:updated_time" content="2019-10-06T07:45:33.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode算法题">
 <meta name="twitter:description" content="两数之和题目给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的思路 先排序">
@@ -497,12 +499,24 @@
                 
               
 
-              <time title="创建时间：2019-10-05 16:47:27 / 修改时间：20:05:22" itemprop="dateCreated datePublished" datetime="2019-10-05T16:47:27+08:00">2019-10-05</time>
+              <time title="创建时间：2019-10-05 16:47:27" itemprop="dateCreated datePublished" datetime="2019-10-05T16:47:27+08:00">2019-10-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-06 15:45:33" itemprop="dateModified" datetime="2019-10-06T15:45:33+08:00">2019-10-06</time>
               
             
           </span>
@@ -555,7 +569,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">6k</span>
+                <span title="本文字数">8k</span>
               
 
               
@@ -569,7 +583,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -605,7 +619,7 @@
 <li><p>一维和二维数组<br>一维数组：<code>int[] a = new int[4];</code><br>二维数组：</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一行4个元素，第二行5个元素</span></span><br><span class="line"><span class="keyword">int</span>[][] a = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][];</span><br><span class="line">a[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line">a[<span class="number">1</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Arrays类<br>java.util.Arrays类能够方便的操作数组，提供的所有方法都是静态的：<br><img src="https://i.loli.net/2019/10/05/Ezan17UidoeKYyv.png" alt="WechatIMG103.png"></p>
+<li><p>Arrays类<br>java.util.Arrays类能够方便的操作数组，提供的所有方法都是静态的：<br><img src="https://i.loli.net/2019/10/05/Ezan17UidoeKYyv.png" alt></p>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] nums_copy = Arrays.copyOf(nums,nums.length);</span><br><span class="line">    Arrays.fill(nums,<span class="number">2</span>);</span><br><span class="line">    Integer index = Arrays.binarySearch(nums,target);</span><br><span class="line">    Arrays.equals(nums,nums_copy);</span><br><span class="line">    Arrays.sort(nums);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -635,6 +649,32 @@
 <li>自己只考虑到了全是正数的情况，所以用了排序和跟0判断，如果含有负数的话就做不了了……</li>
 </ul>
 <h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>在遇到数组问题时，可以考虑用map，因为索引和数值就是一个天生的map集合，如果我知道数值，我就可以通过map找到其索引，本题思路就是这样，当已知一个值是我所需要的，直接从map中拿出就行。</p>
+<h2 id="插入知识点"><a href="#插入知识点" class="headerlink" title="插入知识点"></a>插入知识点</h2><p>既然复习到了map，那就给list、set和map来一个全部的复习吧！！！<br>嘿嘿开始吧！！！<br>先来上个链接，主要是看的这个写的：<a href="https://blog.csdn.net/zhangqunshuai/article/details/80660974" target="_blank" rel="noopener">Java集合中List,Set以及Map等集合体系详解(史上最全)</a></p>
+<h3 id="collection"><a href="#collection" class="headerlink" title="collection"></a>collection</h3><p>先上个图：这个图画的好啊哈哈哈哈哈哈哈<br><img src="https://i.loli.net/2019/10/05/V43By8UEdZkgou5.jpg" alt="collection图集.jpeg"><br>不瞎的都看得到，Collection这个接口下有三个接口继承，分别是Set、List、Queue(我他妈好像没怎么用过Queue啊，以后要多用点了)，Set有三个实现类，分别是HashSet、LinkedHashSet、TreeSet，List有三个实现类，分别是ArrayList、Vector(感觉现在是不是用的比较少啊…)、LinkedList，咦这个LinkedList牛逼啊，竟然还是Queue的实现类，不过看别人博客好像是说继承Queue部分的LinkedList是被阉割了的实现类，也就是Queue不能访问到LinkedList的所有方法(管它呢我都没用过…)，还有一个PriorityQueue,看名字就知道是优先级队列啦！<br>(<strong>妈呀看的资料太多，想单独开一篇来总结集合源码和Map源码了…算了先这样写着吧</strong>)  </p>
+<p>####先列个提纲：  </p>
+<ul>
+<li>1.先综述一下collection中三个儿子接口得各个实现类的特点，比如底层实现，优缺点等等；</li>
+<li>2.分别阐述，分述时记得贴上源码分析</li>
+<li>3.面试常问到的点</li>
+</ul>
+<h4 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h4><p><strong>— List 有序,可重复</strong></p>
+<p><strong>ArrayList</strong><br>优点: 底层数据结构是数组，查询快，增删慢。<br>缺点: 线程不安全，效率高<br>特点: 允许null，不同步<br><strong>Vector</strong><br>优点: 底层数据结构是数组，查询快，增删慢。<br>缺点: <strong>线程安全</strong>，效率低<br>tips:所谓的线程安全，是相对的，在vector内部内部内部，其所有方法不会被多线程所访问，单个方法的原子性（注：原子性，程序的原子性即不会被线程调度机制打断），并不能保证复合操作也具有原子性，所以如果是复合操作，同样线程不安全！！如果要保证真正的线程安全，还需要以vector对象为锁，来进行操作，但这样就跟ArrayList没啥区别了…———–&gt;  <a href="https://yuanfentiank789.github.io/2016/11/25/vectorsafe/" target="_blank" rel="noopener">Vector是线程安全吗</a><br>特点：允许null，不同步<br><strong>LinkedList</strong><br>优点: 底层数据结构是双向链表，查询慢，增删快。<br>缺点: 线程不安全，效率高<br>特点：允许null，不同步</p>
+<p><strong>—Set 无序,唯一</strong>  </p>
+<p>HashSet（不同步，允许null）<br>底层数据结构是哈希表(无序,唯一)，其实就是HashMap的实例，只不过值是key，value是一个固定的对象。<br>如何来保证元素唯一性?<br>1.依赖两个方法：hashCode()和equals()  </p>
+<p>LinkedHashSet（不同步，允许null）<br>底层数据结构是双向链表和哈希表。(FIFO插入有序,唯一)，实际上依旧是LinkedHashMap的实例，待会源码分析看看<br>1.由链表保证元素有序<br>2.由哈希表保证元素唯一  </p>
+<p>TreeSet（允许null，不同步）<br>底层数据结构是红黑树。(唯一，有序，这里的有序指的是排序好的，不是说FIFO之类的)，实际上依旧是TreeMap的实例      </p>
+<ol>
+<li>如何保证元素排序的呢?<br>自然排序(重写):1.Student类中实现 Comparable接口  2.重写Comparable接口中的Compareto方法<br>比较器排序:1.单独创建一个比较类，这里以MyComparator为例，并且要让其继承Comparator接口  2.重写Comparator接口中的Compare方法<br>2.如何保证元素唯一性的呢?<br>根据比较的返回值是否是0来决定</li>
+</ol>
+<p><strong>-Queue</strong></p>
+<p>PriorityQueue：优先级队列，按照大小排序好了的队列，并不遵循先进先出，不允许null元素，头部是最小元素，底层采用的数组和堆。  </p>
+<pre><code>* PriorityQueue不是线程安全的。如果多个线程中的任意线程从结构上修改了列表， 则这些线程不应同时访问PriorityQueue 实例，这时请使用线程安全的PriorityBlockingQueue 类。
+* 不允许插入 null 元素。
+* PriorityQueue实现插入方法（offer、poll、remove() 和 add 方法） 的时间复杂度是O(log(n)) ；实现 remove(Object) 和 contains(Object) 方法的时间复杂度是O(n) ；实现检索方法（peek、element 和 size）的时间复杂度是O(1)。所以在遍历时，若不需要删除元素，则以peek的方式遍历每个元素。
+* 方法iterator()中提供的迭代器并不保证以有序的方式遍历PriorityQueue中的元素。
+</code></pre><p>剩余有关Queue队列看—–&gt;  <a href="https://juejin.im/post/5a3763ed51882506a463b740" target="_blank" rel="noopener">Java集合（七） Queue详解</a></p>
+<h4 id="分别阐述"><a href="#分别阐述" class="headerlink" title="分别阐述"></a>分别阐述</h4><p>这个还是另开一篇吧…内容太多了…够写两星期了！！还是不放在这喧宾夺主了!!</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p><img src="https://i.loli.net/2019/10/05/pu8ZvSi2yWIC5Vw.png" alt="map图集.png"></p>
 
       
     </div>
@@ -749,6 +789,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/10/06/集合源码分析之ArrayList.html" rel="prev" title="集合源码分析之ArrayList">
+                集合源码分析之ArrayList <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -823,7 +867,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -899,7 +943,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1010,7 +1066,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#两数之和"><span class="nav-number">1.</span> <span class="nav-text">两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的思路"><span class="nav-number">1.3.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的代码"><span class="nav-number">1.4.</span> <span class="nav-text">我的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确思路"><span class="nav-number">1.5.</span> <span class="nav-text">正确思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确代码"><span class="nav-number">1.6.</span> <span class="nav-text">正确代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及的知识点"><span class="nav-number">1.7.</span> <span class="nav-text">涉及的知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组内容"><span class="nav-number">1.7.1.</span> <span class="nav-text">数组内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识缺陷"><span class="nav-number">1.8.</span> <span class="nav-text">知识缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收获"><span class="nav-number">1.9.</span> <span class="nav-text">收获</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#两数之和"><span class="nav-number">1.</span> <span class="nav-text">两数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的思路"><span class="nav-number">1.3.</span> <span class="nav-text">我的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的代码"><span class="nav-number">1.4.</span> <span class="nav-text">我的代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确思路"><span class="nav-number">1.5.</span> <span class="nav-text">正确思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确代码"><span class="nav-number">1.6.</span> <span class="nav-text">正确代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及的知识点"><span class="nav-number">1.7.</span> <span class="nav-text">涉及的知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组内容"><span class="nav-number">1.7.1.</span> <span class="nav-text">数组内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识缺陷"><span class="nav-number">1.8.</span> <span class="nav-text">知识缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收获"><span class="nav-number">1.9.</span> <span class="nav-text">收获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入知识点"><span class="nav-number">1.10.</span> <span class="nav-text">插入知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#collection"><span class="nav-number">1.10.1.</span> <span class="nav-text">collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#综述"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">综述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分别阐述"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">分别阐述</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">1.10.2.</span> <span class="nav-text">map</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1050,7 +1106,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">64k</span>
+    <span title="站点总字数">69k</span>
   
   
 </div>
