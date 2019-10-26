@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-10-26T11:11:19.237Z</updated>
+  <updated>2019-10-26T17:31:20.291Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jeromememory.github.io/2019/10/26/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F.html"/>
     <id>http://jeromememory.github.io/2019/10/26/十大排序.html</id>
     <published>2019-10-26T15:30:28.000Z</published>
-    <updated>2019-10-26T11:11:19.237Z</updated>
+    <updated>2019-10-26T17:31:20.291Z</updated>
     
     <summary type="html">
     
@@ -40,9 +40,75 @@
     
       <category term="JAVA" scheme="http://jeromememory.github.io/tags/JAVA/"/>
     
+      <category term="排序" scheme="http://jeromememory.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
       <category term="算法" scheme="http://jeromememory.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="排序" scheme="http://jeromememory.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://jeromememory.github.io/2019/10/26/Volatile%E5%85%B3%E9%94%AE%E5%AD%97.html"/>
+    <id>http://jeromememory.github.io/2019/10/26/Volatile关键字.html</id>
+    <published>2019-10-26T11:19:14.058Z</published>
+    <updated>2019-10-26T11:19:14.058Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://jeromememory.github.io/2019/10/26/PriorityQueue.html"/>
+    <id>http://jeromememory.github.io/2019/10/26/PriorityQueue.html</id>
+    <published>2019-10-26T11:18:58.479Z</published>
+    <updated>2019-10-26T11:18:58.479Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://jeromememory.github.io/2019/10/24/darkmode%E6%95%99%E7%A8%8B.html"/>
+    <id>http://jeromememory.github.io/2019/10/24/darkmode教程.html</id>
+    <published>2019-10-24T06:02:36.254Z</published>
+    <updated>2019-10-24T06:08:09.083Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
     
   </entry>
   
@@ -126,9 +192,9 @@
     
       <category term="JAVA" scheme="http://jeromememory.github.io/tags/JAVA/"/>
     
-      <category term="Leetcode" scheme="http://jeromememory.github.io/tags/Leetcode/"/>
-    
       <category term="算法" scheme="http://jeromememory.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="Leetcode" scheme="http://jeromememory.github.io/tags/Leetcode/"/>
     
   </entry>
   
@@ -268,9 +334,9 @@
       <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
     
     
-      <category term="java" scheme="http://jeromememory.github.io/tags/java/"/>
-    
       <category term="springboot" scheme="http://jeromememory.github.io/tags/springboot/"/>
+    
+      <category term="java" scheme="http://jeromememory.github.io/tags/java/"/>
     
   </entry>
   
@@ -296,9 +362,9 @@
       <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
     
     
-      <category term="java" scheme="http://jeromememory.github.io/tags/java/"/>
-    
       <category term="springboot" scheme="http://jeromememory.github.io/tags/springboot/"/>
+    
+      <category term="java" scheme="http://jeromememory.github.io/tags/java/"/>
     
   </entry>
   
@@ -487,86 +553,6 @@
     
     
       <category term="负情绪" scheme="http://jeromememory.github.io/tags/%E8%B4%9F%E6%83%85%E7%BB%AA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kafka</title>
-    <link href="http://jeromememory.github.io/2019/08/18/kafka.html"/>
-    <id>http://jeromememory.github.io/2019/08/18/kafka.html</id>
-    <published>2019-08-18T02:52:06.000Z</published>
-    <updated>2019-08-20T05:41:52.172Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
-    
-    
-      <category term="kafka" scheme="http://jeromememory.github.io/tags/kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python实践winrm，实现远程连接调度Windows服务器</title>
-    <link href="http://jeromememory.github.io/2019/08/17/python%E5%AE%9E%E8%B7%B5winrm%EF%BC%8C%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%B0%83%E5%BA%A6Windows%E6%9C%8D%E5%8A%A1%E5%99%A8.html"/>
-    <id>http://jeromememory.github.io/2019/08/17/python实践winrm，实现远程连接调度Windows服务器.html</id>
-    <published>2019-08-17T02:02:01.000Z</published>
-    <updated>2019-08-21T08:46:14.267Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
-    
-    
-      <category term="winrm" scheme="http://jeromememory.github.io/tags/winrm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于Hexo的NexT主题---从入门到入土</title>
-    <link href="http://jeromememory.github.io/2019/08/15/%E5%9F%BA%E4%BA%8EHexo%E7%9A%84NexT%E4%B8%BB%E9%A2%98-%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F.html"/>
-    <id>http://jeromememory.github.io/2019/08/15/基于Hexo的NexT主题-从入门到入土.html</id>
-    <published>2019-08-15T07:32:42.000Z</published>
-    <updated>2019-08-17T08:46:12.807Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
-    
-    
-      <category term="hexo" scheme="http://jeromememory.github.io/tags/hexo/"/>
-    
-      <category term="NexT" scheme="http://jeromememory.github.io/tags/NexT/"/>
     
   </entry>
   
