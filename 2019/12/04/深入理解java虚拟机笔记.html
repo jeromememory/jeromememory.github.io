@@ -149,14 +149,18 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="jeromememory">
-<meta property="og:url" content="http://jeromememory.github.io/2019/10/26/PriorityQueue.html">
+  <meta name="description" content="第二章 Java内存区域与内存溢出异常OutOfMemoryError异常包括 Java堆溢出、虚拟机栈和本地方法栈溢出、方法区和运行时常量池溢出、本地直接内存溢出。 运行时数据区域包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。 方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量，别名称为Non-Heap。">
+<meta name="keywords" content="JAVA,jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm笔记">
+<meta property="og:url" content="http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记.html">
 <meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="第二章 Java内存区域与内存溢出异常OutOfMemoryError异常包括 Java堆溢出、虚拟机栈和本地方法栈溢出、方法区和运行时常量池溢出、本地直接内存溢出。 运行时数据区域包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。 方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量，别名称为Non-Heap。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-26T11:18:58.479Z">
+<meta property="og:updated_time" content="2019-12-04T14:49:27.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jeromememory">
+<meta name="twitter:title" content="jvm笔记">
+<meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常OutOfMemoryError异常包括 Java堆溢出、虚拟机栈和本地方法栈溢出、方法区和运行时常量池溢出、本地直接内存溢出。 运行时数据区域包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。 方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量，别名称为Non-Heap。">
 
 
 
@@ -166,7 +170,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2019/10/26/PriorityQueue">
+  <link rel="canonical" href="http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记">
 
 
 
@@ -176,7 +180,7 @@
   };
 </script>
 
-  <title> | jeromememory</title>
+  <title>jvm笔记 | jeromememory</title>
   
 
 
@@ -448,7 +452,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/26/PriorityQueue.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -465,7 +469,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">jvm笔记
 
               
             
@@ -491,12 +495,34 @@
                 
               
 
-              <time title="创建时间：2019-10-26 19:18:58" itemprop="dateCreated datePublished" datetime="2019-10-26T19:18:58+08:00">2019-10-26</time>
+              <time title="创建时间：2019-12-04 21:46:58 / 修改时间：22:49:27" itemprop="dateCreated datePublished" datetime="2019-12-04T21:46:58+08:00">2019-12-04</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -527,7 +553,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">0</span>
+                <span title="本文字数">2.4k</span>
               
 
               
@@ -541,7 +567,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -561,7 +587,25 @@
       
 
       
-        
+        <h1 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h1><h2 id="OutOfMemoryError异常"><a href="#OutOfMemoryError异常" class="headerlink" title="OutOfMemoryError异常"></a>OutOfMemoryError异常</h2><p>包括 <strong>Java堆溢出</strong>、<strong>虚拟机栈和本地方法栈溢出</strong>、<strong>方法区和运行时常量池溢出</strong>、<strong>本地直接内存溢出</strong>。</p>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。</p>
+<p>方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的<strong>类信息</strong>、<strong>常量</strong>、<strong>静态变量</strong>，别名称为Non-Heap。</p>
+<p>堆：Java Heap是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，此内存区域的唯一目的是<font color="red">存放对象实例</font>，同时Java堆是垃圾收集管理的主要区域，很多时候也被称为<code>GC堆</code>。</p>
+<p>虚拟机栈：描述的是Java方法执行的内存模型，即每个方法会在执行的同时创建一个栈帧用于存储局部变量表、操作数栈、动态链接、方法出口等信息。经常有人把Java内存分为堆内存和栈内存，这里的栈内存就是指的虚拟机栈。</p>
+<p>本地方法栈：与虚拟机栈发挥的功能基本一致，区别不过是虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为虚拟机使用到的Native方法服务。</p>
+<p>程序计数器：一块较小的内存空间，可以看作是当前线程所执行的字节码的行号指示器。</p>
+<p>运行时常量池：方法区的一部分。常量池（用于存放编译期生成的各种字面量和符号引用）。</p>
+<p>直接内存：并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域。</p>
+<h2 id="Xms-Xmx-PermSize-MaxPermSize-区别"><a href="#Xms-Xmx-PermSize-MaxPermSize-区别" class="headerlink" title="Xms Xmx PermSize MaxPermSize 区别"></a><a href="https://www.cnblogs.com/mingforyou/archive/2012/03/03/2378143.html" target="_blank" rel="noopener">Xms Xmx PermSize MaxPermSize 区别</a></h2><p>1.参数的含义<br><strong>-vmargs -Xms128M -Xmx512M -XX:PermSize=64M -XX:MaxPermSize=128M<br>-vmargs 说明后面是VM的参数，所以后面的其实都是JVM的参数了<br>-Xms128m JVM初始分配的堆内存<br>-Xmx512m JVM最大允许分配的堆内存，按需分配<br>-XX:PermSize=64M JVM初始分配的非堆内存<br>-XX:MaxPermSize=128M JVM最大允许分配的非堆内存，按需分配</strong></p>
+<p>我们首先了解一下JVM内存管理的机制，然后再解释每个参数代表的含义。</p>
+<p><strong>1)堆(Heap)和非堆(Non-heap)内存</strong></p>
+<p> 按照官方的说法：“Java 虚拟机具有一个堆，堆是运行时数据区域，所有类实例和数组的内存均从此处分配。堆是在 Java 虚拟机启动时创建的。”“在JVM中堆之外的内存称为非堆内存(Non-heap memory)”。<br> 可以看出JVM主要管理两种类型的内存：堆和非堆。简单来说堆就是Java代码可及的内存，是留给开发人员使用的；非堆就是JVM留给自己用的，<br> 所以方法区、JVM内部处理或优化所需的内存(如JIT编译后的代码缓存)、每个类结构(如运行时常数池、字段和方法数据)以及方法和构造方法的代码都在非堆内存中。 </p>
+<p><strong>堆内存分配</strong></p>
+<p> JVM初始分配的堆内存由-Xms指定，默认是物理内存的1/64；JVM最大分配的堆内存由-Xmx指定，默认是物理内存的1/4。默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制；<br> 空余堆内存大于70%时，JVM会减少堆直到-Xms的最小限制。因此服务器一般设置-Xms、-Xmx 相等以避免在每次GC 后调整堆的大小。<br> 说明：如果-Xmx 不指定或者指定偏小，应用可能会导致java.lang.OutOfMemory错误，此错误来自JVM，不是Throwable的，无法用try…catch捕捉。 </p>
+<p><strong>非堆内存分配</strong></p>
+<p> JVM使用-XX:PermSize设置非堆内存初始值，默认是物理内存的1/64；由XX:MaxPermSize设置最大非堆内存的大小，默认是物理内存的1/4。（还有一说：MaxPermSize缺省值和-server -client选项相关，<br> -server选项下默认MaxPermSize为64m，-client选项下默认MaxPermSize为32m。这个我没有实验。）<br> 上面错误信息中的PermGen space的全称是Permanent Generation space，是指内存的永久保存区域。还没有弄明白PermGen space是属于非堆内存，还是就是非堆内存，但至少是属于了。<br>XX:MaxPermSize设置过小会导致java.lang.OutOfMemoryError: PermGen space 就是内存益出。<br>说说为什么会内存益出：<br>（1）这一部分内存用于存放Class和Meta的信息，Class在被 Load的时候被放入PermGen space区域，它和存放Instance的Heap区域不同。<br>（2）GC(Garbage Collection)不会在主程序运行期对PermGen space进行清理，所以如果你的APP会LOAD很多CLASS 的话,就很可能出现PermGen space错误。<br> 这种错误常见在web服务器对JSP进行pre compile的时候。  </p>
+<p><strong>补充</strong>：<br>　　如果你的WEB APP下都用了大量的第三方jar，其大小超过了服务器jvm默认的大小，那么就会产生内存益出问题了。<br>解决方法： 设置MaxPermSize大小<br>可以在myelipse里选中相应的服务器比如tomcat5，展开里面的JDK子项页面，来增加服务器启动的JVM参数设置：<br>-Xms128m<br>-Xmx256m<br>-XX:PermSize=128M<br>-XX:MaxNewSize=256m<br>-XX:MaxPermSize=256m<br>或者手动设置MaxPermSize大小,比如tomcat，<br>修改TOMCAT_HOME/bin/catalina.bat，在echo “Using CATALINA_BASE: $CATALINA_BASE”上面加入以下行：<br>JAVA_OPTS=”-server -XX:PermSize=64M -XX:MaxPermSize=128m</p>
+
       
     </div>
 
@@ -628,7 +672,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2019/10/26/PriorityQueue.html">http://jeromememory.github.io/2019/10/26/PriorityQueue.html</a>
+    <a href="http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记.html" title="jvm笔记">http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -648,6 +692,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"><i class="fa fa-tag"></i> JAVA</a>
+          
+            <a href="/tags/jvm/" rel="tag"><i class="fa fa-tag"></i> jvm</a>
+          
+        </div>
+      
 
       
       
@@ -657,8 +709,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/24/darkmode教程.html" rel="next" title>
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/10/27/十大排序.html" rel="next" title="十大内部排序">
+                <i class="fa fa-chevron-left"></i> 十大内部排序
               </a>
             
           </div>
@@ -666,10 +718,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/26/Volatile关键字.html" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,8 +766,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -736,7 +793,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -834,7 +891,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -935,6 +996,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-Java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">第二章 Java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OutOfMemoryError异常"><span class="nav-number">1.1.</span> <span class="nav-text">OutOfMemoryError异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.2.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xms-Xmx-PermSize-MaxPermSize-区别"><span class="nav-number">1.3.</span> <span class="nav-text">Xms Xmx PermSize MaxPermSize 区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -968,7 +1046,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">160k</span>
+    <span title="站点总字数">162k</span>
   
   
 </div>
@@ -1168,7 +1246,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/10/26/PriorityQueue.html'
+    refer: '2019/12/04/深入理解java虚拟机笔记.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2019-10-27T04:30:04.281Z</updated>
+  <updated>2019-12-04T14:49:27.916Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jvm笔记</title>
+    <link href="http://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html"/>
+    <id>http://jeromememory.github.io/2019/12/04/深入理解java虚拟机笔记.html</id>
+    <published>2019-12-04T13:46:58.588Z</published>
+    <updated>2019-12-04T14:49:27.916Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
+    
+    
+      <category term="JAVA" scheme="http://jeromememory.github.io/tags/JAVA/"/>
+    
+      <category term="jvm" scheme="http://jeromememory.github.io/tags/jvm/"/>
+    
+  </entry>
   
   <entry>
     <title>十大内部排序</title>
@@ -47,55 +75,11 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://jeromememory.github.io/2019/10/26/Volatile%E5%85%B3%E9%94%AE%E5%AD%97.html"/>
-    <id>http://jeromememory.github.io/2019/10/26/Volatile关键字.html</id>
-    <published>2019-10-26T11:19:14.058Z</published>
-    <updated>2019-10-26T11:19:14.058Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://jeromememory.github.io/2019/10/26/PriorityQueue.html"/>
-    <id>http://jeromememory.github.io/2019/10/26/PriorityQueue.html</id>
-    <published>2019-10-26T11:18:58.479Z</published>
-    <updated>2019-10-26T11:18:58.479Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
+    <title>darkmode for mac</title>
     <link href="http://jeromememory.github.io/2019/10/24/darkmode%E6%95%99%E7%A8%8B.html"/>
     <id>http://jeromememory.github.io/2019/10/24/darkmode教程.html</id>
     <published>2019-10-24T06:02:36.254Z</published>
-    <updated>2019-12-04T14:35:41.458Z</updated>
+    <updated>2019-12-04T14:50:12.140Z</updated>
     
     <summary type="html">
     
@@ -109,6 +93,10 @@
     
     </summary>
     
+      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
+    
+    
+      <category term="mac" scheme="http://jeromememory.github.io/tags/mac/"/>
     
   </entry>
   
@@ -553,6 +541,32 @@
     
     
       <category term="负情绪" scheme="http://jeromememory.github.io/tags/%E8%B4%9F%E6%83%85%E7%BB%AA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>kafka</title>
+    <link href="http://jeromememory.github.io/2019/08/18/kafka.html"/>
+    <id>http://jeromememory.github.io/2019/08/18/kafka.html</id>
+    <published>2019-08-18T02:52:06.000Z</published>
+    <updated>2019-08-20T05:41:52.172Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="程序猿" scheme="http://jeromememory.github.io/categories/%E7%A8%8B%E5%BA%8F%E7%8C%BF/"/>
+    
+    
+      <category term="kafka" scheme="http://jeromememory.github.io/tags/kafka/"/>
     
   </entry>
   
