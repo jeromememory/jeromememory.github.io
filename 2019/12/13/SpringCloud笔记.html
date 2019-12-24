@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="微服务架构概述单体架构一个归档包(war格式)包含所有功能的应用程序，通常称为单体应用。 存在的问题：  复杂性高 技术债务(不坏不修) 部署频率低 可靠性差 扩展能力受限，不同模块可能需要的配置不一样，有的需要CPU好一点的，有的需要存储大一点的，不能根据业务模块的需要进行伸缩 阻碍技术创新，单体应用往往使用统一的技术平台或者方案解决所有的问题  微服务微服务架构风格：将一个单一应用程序开发为一">
+<meta name="keywords" content="SpringCloud,微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringCloud 微服务笔记">
+<meta property="og:url" content="http://jeromememory.github.io/2019/12/13/SpringCloud笔记.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="微服务架构概述单体架构一个归档包(war格式)包含所有功能的应用程序，通常称为单体应用。 存在的问题：  复杂性高 技术债务(不坏不修) 部署频率低 可靠性差 扩展能力受限，不同模块可能需要的配置不一样，有的需要CPU好一点的，有的需要存储大一点的，不能根据业务模块的需要进行伸缩 阻碍技术创新，单体应用往往使用统一的技术平台或者方案解决所有的问题  微服务微服务架构风格：将一个单一应用程序开发为一">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1g9v5z4gfwsj30kk05amyt.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0u568oa9j30ln03hdfu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga03miu22aj31hg0n40v8.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga03mijsjfj30jn0c70t7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga03r2pplcj31840u048s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga03r32si8j31840u048s.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga043kvchrj30lm0c3js0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0lzf28wkj30tz0dy3yz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6hew9yj318e0tcn6v.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6i0a3ij30hq0im0v2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6ig2suj30hs0bf0v6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0ncvu5p5j30q00chaaq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1ga0ndof8wxj30wq0i6gor.jpg">
+<meta property="og:updated_time" content="2019-12-18T05:59:20.777Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringCloud 微服务笔记">
+<meta name="twitter:description" content="微服务架构概述单体架构一个归档包(war格式)包含所有功能的应用程序，通常称为单体应用。 存在的问题：  复杂性高 技术债务(不坏不修) 部署频率低 可靠性差 扩展能力受限，不同模块可能需要的配置不一样，有的需要CPU好一点的，有的需要存储大一点的，不能根据业务模块的需要进行伸缩 阻碍技术创新，单体应用往往使用统一的技术平台或者方案解决所有的问题  微服务微服务架构风格：将一个单一应用程序开发为一">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1g9v5z4gfwsj30kk05amyt.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2019/12/13/SpringCloud笔记">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SpringCloud 微服务笔记 | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/12/13/SpringCloud笔记.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SpringCloud 微服务笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-13 15:28:54" itemprop="dateCreated datePublished" datetime="2019-12-13T15:28:54+08:00">2019-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-18 13:59:20" itemprop="dateModified" datetime="2019-12-18T13:59:20+08:00">2019-12-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">18k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">17 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="微服务架构概述"><a href="#微服务架构概述" class="headerlink" title="微服务架构概述"></a>微服务架构概述</h1><h2 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h2><p>一个归档包(<strong>war</strong>格式)包含所有功能的应用程序，通常称为单体应用。</p>
+<p>存在的问题：</p>
+<ul>
+<li>复杂性高</li>
+<li>技术债务(不坏不修)</li>
+<li>部署频率低</li>
+<li>可靠性差</li>
+<li>扩展能力受限，不同模块可能需要的配置不一样，有的需要CPU好一点的，有的需要存储大一点的，不能根据业务模块的需要进行伸缩</li>
+<li>阻碍技术创新，单体应用往往使用统一的技术平台或者方案解决所有的问题</li>
+</ul>
+<h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><p>微服务架构风格：将一个单一应用程序开发为一组小型服务的方法，每个服务运行在自己的进程中，服务间通信采用<strong>轻量级通信机制</strong>，可通过全自动部署机制独立部署。这些服务共用一个最小型的集中式的管理，不同服务可以采用不同的语言开发，可以使用不同的数据存储技术。</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>每个微服务可以独立运行在自己的进程中</li>
+<li>每个服务为独立的业务开发</li>
+<li>微服务通过类似于RESTful API等一些轻量级的通信机制进行通信</li>
+<li>全自动的部署机制</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>易于开发和维护</li>
+<li>启动速度快</li>
+<li>局部修改易部署</li>
+<li>技术栈并不受限</li>
+<li>按需伸缩</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>运维要求高，因为会有几十甚至上百个服务协作运行</li>
+<li>分布式固有的复杂性</li>
+<li>接口调整成本高</li>
+<li>重复劳动</li>
+</ul>
+<h3 id="微服务设计原则"><a href="#微服务设计原则" class="headerlink" title="微服务设计原则"></a>微服务设计原则</h3><ul>
+<li><p>单一职责原则(<strong>SOLID</strong>原则之一)<img src="https://tva1.sinaimg.cn/large/006tNbRwly1g9v5z4gfwsj30kk05amyt.jpg" alt="image-20191213161449114"></p>
+</li>
+<li><p>服务自治原则。即每个微服务应具备独立的业务能力、依赖与运行环境。</p>
+</li>
+<li>轻量级通信机制。常用的有REST、AMQP、STOMP、MQTT等。</li>
+<li>微服务粒度。这个比较难以控制，一般通过领域驱动设计(Domain Driven Design，DDD)中的<strong>限定上下文</strong>可作为划分微服务边界、确定微服务粒度。</li>
+</ul>
+<h3 id="微服务架构技术选型"><a href="#微服务架构技术选型" class="headerlink" title="微服务架构技术选型"></a>微服务架构技术选型</h3><p>主流的解决方案是 <font color="red">SpringCloud、Dubbo</font></p>
+<p>具体的框架对比：<a href="https://www.jianshu.com/p/997ad63bd11d" target="_blank" rel="noopener">Dubbo VS SpringCloud</a></p>
+<h1 id="微服务开发框架——Spring-Cloud"><a href="#微服务开发框架——Spring-Cloud" class="headerlink" title="微服务开发框架——Spring Cloud"></a>微服务开发框架——Spring Cloud</h1><h2 id="Spring-Cloud-简介"><a href="#Spring-Cloud-简介" class="headerlink" title="Spring Cloud 简介"></a>Spring Cloud 简介</h2><ul>
+<li><p>并不是云计算解决方案，是在Spring Boot基础上用于<font color="red">快速构建分布式系统的通用模式的工具集</font></p>
+</li>
+<li><p>使用Spring Cloud开发的程序非常适合在Docker或者<strong>PaaS</strong>上部署,所以又叫<strong>云原生应用</strong>，云原生可理解为面向云环境的软件架构</p>
+</li>
+<li><p>云原生架构的方法论和最佳实践：<a href="https://12factor.net/zh_cn/" target="_blank" rel="noopener">12-factor Apps</a></p>
+</li>
+<li><p>Tips： 云服务分为三类，分别是 IaaS(基础设施服务)、PaaS(平台服务)、SaaS(软件服务)</p>
+<p>传送门：<a href="http://www.ruanyifeng.com/blog/2017/07/iaas-paas-saas.html" target="_blank" rel="noopener">IaaS，PaaS，SaaS 的区别</a></p>
+</li>
+</ul>
+<h2 id="Spring-Cloud-和-Spring-Boot-的联系"><a href="#Spring-Cloud-和-Spring-Boot-的联系" class="headerlink" title="Spring Cloud 和 Spring Boot 的联系"></a>Spring Cloud 和 Spring Boot 的联系</h2><p>首先，知乎上对这个有比较好的回答：<a href="https://www.zhihu.com/question/47304987" target="_blank" rel="noopener">Spring Cloud &amp; Spring Boot</a></p>
+<p>总结一下说的比较好的：</p>
+<ul>
+<li>spring Cloud是一个基于Spring Boot实现的云应用开发工具，它为基于JVM的云应用开发中的配置管理、服务发现、断路器、智能路由、微代理、控制总线、全局锁、决策竞选、分布式会话和集群状态管理等操作提供了一种简单的开发方式。</li>
+<li>spring boot 的优点是可以快速启动，快速构建应用程序，而不需要太多的配置文件。</li>
+<li>spring cloud 是分布式开发的解决方案，基于spring boot,在spring boot做较少的配置，便可成为 spring cloud 中的一个微服务。</li>
+<li>最基础的都是spring，然后在这个基础上spring boot做了一些自动配置和实现，然后又在spring boot的基础上加入了分布式负载均衡等功能，这才有了spring cloud。</li>
+<li>Spring cloud是微服务开发套件。springboot=spring+springmvc，springcloud=springboot+ribbon+注册中心+熔断器+…等一系列组件。</li>
+</ul>
+<h2 id="Spring-Cloud-特点"><a href="#Spring-Cloud-特点" class="headerlink" title="Spring Cloud 特点"></a>Spring Cloud 特点</h2><ul>
+<li><font color="red">约定优于配置</font></li>
+<li>隐藏了组件复杂性，并且提供声明式的配置方式</li>
+<li>轻量级的组件，如Eureka、Zuul等</li>
+<li>解耦，灵活</li>
+</ul>
+<h2 id="Spring-Cloud-版本"><a href="#Spring-Cloud-版本" class="headerlink" title="Spring Cloud 版本"></a>Spring Cloud 版本</h2><p>以SRX形式命名版本号，版本号前面会有一个 <strong>release train</strong>。</p>
+<p>从以往的版本有Dalston、Edgware、<strong>Finchley</strong>、Greenwich，正在孵化的有SpringCloud Alibaba。</p>
+<h1 id="Spring-Cloud-实战微服务-Finchley版本"><a href="#Spring-Cloud-实战微服务-Finchley版本" class="headerlink" title="Spring Cloud 实战微服务(Finchley版本)"></a>Spring Cloud 实战微服务(Finchley版本)</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Spring Cloud支持的插件众多，先来看一下Spring Cloud中文网提供的比较优秀的插件：</p>
+<p><a href="https://www.springcloud.cc/" target="_blank" rel="noopener">Spring Cloud集成的相关优质项目推荐</a></p>
+<ul>
+<li><font color="red">Eureka</font>：注册中心，云端服务发现，实现云端中间层服务发现和故障转移</li>
+<li><font color="red">Ribbon</font>：负载均衡，可以有多种负载均衡的策略供选择，可配合<strong>Eureka</strong>和<strong>Hystrix</strong>使用</li>
+<li><font color="red">Hystrix</font>：熔断器，容错管理工具，旨在通过熔断机制控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力</li>
+<li><font color="red">Turbine</font>：Turbine是聚合服务器发送事件流数据的一个工具，用来监控集群下hystrix的metrics情况（可视化）</li>
+<li><font color="red">Feign</font>：声明式、模块化的HTTP客户端，集成了负载均衡</li>
+<li><font color="red">Zuul</font>：云平台上提供动态路由，监控，弹性，安全等边缘服务的框架。Zuul 相当于是设备和 Netflix 流应用的 Web 网站后端所有请求的前门</li>
+<li><font color="red">Config</font>：配置管理工具包，让你可以把配置放到远程服务器，集中化管理集群配置，目前支持本地存储、Git以及Subversion</li>
+<li><font color="red">Bus</font>：事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与Spring Cloud Config联合实现热部署</li>
+<li><font color="red">Sleuth</font>：日志收集工具包，封装了Dapper和log-based追踪以及Zipkin和HTrace操作，为SpringCloud应用实现了一种分布式追踪解决方案</li>
+<li><font color="red">Stream</font>：数据流操作开发包，封装了与Redis,Rabbit、Kafka等发送接收消息</li>
+<li><font color="red">Security</font>：基于spring security的安全工具包，为你的应用程序添加安全控制</li>
+</ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>使用服务提供者与服务消费者来描述微服务之间的<strong>调用关系</strong>。下表解释了服务提供者与服务消费者。</p>
+<p>​                                                                表-服务提供者与服务消费者</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">服务提供者</td>
+<td style="text-align:left">服务的被调用方（即：为其他服务提供服务的服务）</td>
+</tr>
+<tr>
+<td style="text-align:left">服务消费者</td>
+<td style="text-align:left">服务的调用方（即：依赖其他服务的服务）</td>
+</tr>
+</tbody>
+</table>
+<p>以电影售票系统为例。如图，用户向电影微服务发起了一个购票的请求。在进行购票的业务操作前，电影微服务需要调用用户微服务的接口，查询当前用户的余额是多少、是不是符合购票标准等。在这种场景下，用户微服务就是一个服务提供者，电影微服务则是一个服务消费者。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0u568oa9j30ln03hdfu.jpg" alt="图3-1 服务提供者与服务消费者"></p>
+<p>围绕该场景，先来编写一个用户微服务，然后编写一个电影微服务。</p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><font color="red">注册中心，云端服务发现，实现云端中间层服务发现和故障转移</font>
+
+<p><strong>不妨先思考一下，怎样才能让服务消费者总能找到服务提供者呢？或者说，怎样才能让服务消费者感知到服务提供者地址的变化呢？</strong></p>
+<p><strong>TIPS</strong></p>
+<p>目前市面上把服务消费者找到服务提供者的这种机制称为<strong>服务发现，又或者服务注册</strong>。下面来探索服务发现究竟是怎么回事。</p>
+<h3 id="服务发现原理初探"><a href="#服务发现原理初探" class="headerlink" title="服务发现原理初探"></a>服务发现原理初探</h3><p>其实，服务发现机制非常简单，不妨用大家熟悉的MySQL<strong>来类比</strong>——只需一张表（图中的registry表）即可实现服务发现！</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga03miu22aj31hg0n40v8.jpg" alt="图-服务发现-01"></p>
+<p>如图，如果我们能在：</p>
+<ul>
+<li>应用启动时，自动往registry表中插入一条数据，数据包括服务名称、IP、端口等信息。</li>
+<li>应用停止时，自动把自己在registry表中的数据的status设为<code>DOWN</code> 。</li>
+</ul>
+<p>这样，服务消费者不就永远都能找到服务提供者了嘛！当服务消费者想调用服务提供者接口时，只需向数据库发送SQL语句 <code>SELECT * FROM registry where service_name = &#39;user&#39; and status = &#39;UP&#39;</code> 即可找到服务提供者的所有实例！IP、端口啥的都有了，自己拼接一下，再去调用就行了！</p>
+<blockquote>
+<p><strong>TIPS</strong></p>
+<p>看，服务发现机制是不是很简单？<strong>程序猿给图中的”MySQL“的组件起了一个牛叉的名字叫：”注册中心“，也有的书将其称为”服务发现组件“。</strong></p>
+</blockquote>
+<p>但，这毕竟只是一个最简陋的服务发现原理。完整的服务发现要考虑的问题有很多，例如：</p>
+<ul>
+<li>当服务抑或所在主机突然崩溃或者进入某种不正常的情况无法提供服务（例如应用的数据库挂了）时，对应的数据理应标记DOWN，或者索性删除；</li>
+<li>如果每次调用之前，都得向服务发现组件发送类似<code>SELECT * FROM registry where service_name = &#39;user&#39; and status = &#39;UP&#39;</code> 的语句，那么服务发现组件的压力得有多大？更重要的，这与当下流行的去中心化设计的思想相悖；</li>
+<li>服务发现组件即使挂掉，也不应该影响微服务之间的调用。</li>
+</ul>
+<p>那么，一个完善的服务发现组件应该具备哪些能力呢？</p>
+<h3 id="服务发现原理深入"><a href="#服务发现原理深入" class="headerlink" title="服务发现原理深入"></a>服务发现原理深入</h3><p>不妨来看一下使用服务发现组件后的架构图，如图所示。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga03mijsjfj30jn0c70t7.jpg" alt="图-服务发现-02"></p>
+<p>服务提供者、服务消费者、服务发现组件这三者之间的关系大致如下：</p>
+<ul>
+<li>各个<strong>微服务在启动时，将自己的网络地址等信息注册到服务发现组件中</strong>，服务发现组件会存储这些信息；</li>
+<li><strong>服务消费者可从服务发现组件查询服务提供者的网络地址</strong>，并使用该地址调用服务提供者的接口；</li>
+<li>各个微服务与服务发现组件<strong>使用一定机制（例如心跳）通信</strong>。服务发现组件如长时间无法与某微服务实例通信，就会自动注销（即：删除）该实例；</li>
+<li>当微服务网络地址发生变更（例如实例增减或者IP端口发生变化等）时，会<strong>重新注册</strong>到服务发现组件；</li>
+<li><strong>客户端缓存</strong>：各个微服务将需要调用服务的地址缓存在本地，并使用一定机制更新（例如定时任务更新、事件推送更新等）。这样既能降低服务发现组件的压力，同时，即使服务发现组件出问题，也不会影响到服务之间的调用。</li>
+</ul>
+<p>综上，服务发现组件应具备以下功能。</p>
+<ul>
+<li><strong>服务注册表</strong>：服务注册表是服务发现组件的核心（其实就是类似于上面的registry表），它用来记录各个微服务的信息，例如微服务的名称、IP、端口等。服务注册表提供查询API和管理API，查询API用于查询可用的微服务实例，管理API用于服务的注册和注销；</li>
+<li><strong>服务注册与服务发现</strong>：服务注册是指微服务在启动时，将自己的信息注册到服务发现组件上的过程。服务发现是指查询可用微服务列表及其网络地址的机制；</li>
+<li><strong>服务检查</strong>：服务发现组件使用一定机制定时检测已注册的服务，如发现某实例长时间无法访问，就会从服务注册表中移除该实例。</li>
+</ul>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>将微服务的提供者和消费者都注册到Eureka服务器上，由Eureka服务器进行管理</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p><a href="https://juejin.im/post/5df3aec1f265da3398562a2f" target="_blank" rel="noopener">Eureka原理分析</a></p>
+<h3 id="集成方式"><a href="#集成方式" class="headerlink" title="集成方式"></a>集成方式</h3><h4 id="编写Eureka-Server"><a href="#编写Eureka-Server" class="headerlink" title="编写Eureka Server"></a>编写Eureka Server</h4><ul>
+<li><p>加依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">  &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(EurekaApplication.class, args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8761</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line">    <span class="comment"># 是否要注册到其他Eureka Server实例</span></span><br><span class="line"><span class="attr">    register-with-eureka:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 是否要从其他Eureka Server实例获取数据</span></span><br><span class="line"><span class="attr">    fetch-registry:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    service-url:</span> </span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://localhost:8761/eureka/</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>TIPS</strong></p>
+<p>这里，大家可先不去探究<code>registerWithEureka</code> 以及<code>fetchRegistry</code> 究竟是什么鬼，笔者将在下一节为大家揭晓。</p>
+<h4 id="将应用注册到Eureka-Server上"><a href="#将应用注册到Eureka-Server上" class="headerlink" title="将应用注册到Eureka Server上"></a>将应用注册到Eureka Server上</h4><ul>
+<li><p>加依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProviderUserApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(ProviderUserApplication.class, args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：早期的版本（Dalston及更早版本）还需在启动类上添加注解<code>@EnableDiscoveryClient</code> 或<code>@EnableEurekaClient</code> ，从Edgware开始，该注解可省略。</p>
+</li>
+<li><p>添加配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line">    <span class="comment"># 指定注册到eureka server上的服务名称，对于电影微服务，本系列将名称设为microservice-consumer-movie</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">microservice-provider-user</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line">      <span class="comment"># 指定eureka server通信地址，注意/eureka/小尾巴不能少</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://localhost:8761/eureka/</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line">    <span class="comment"># 是否注册IP到eureka server，如不指定或设为false，那就会注册主机名到eureka server</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><ul>
+<li><p>依次启动Eureka Server以及用户微服务、电影微服务；</p>
+</li>
+<li><p>访问<code>http://localhost:8761</code> 可观察到类似如下界面：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga03r2pplcj31840u048s.jpg" alt="Eureka Server-01"></p>
+</li>
+<li><p>将用户微服务停止，可看到Eureka Server首页变成类似如下界面：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga03r32si8j31840u048s.jpg" alt="Eureka Server-02"></p>
+</li>
+</ul>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h3 id="用途-1"><a href="#用途-1" class="headerlink" title="用途"></a>用途</h3><p>一般来说，提到负载均衡，大家一般很容易想到浏览器 -&gt; NGINX -&gt; 反向代理多个Tomcat这样的架构图——业界管这种负载均衡模式叫“服务器端负载均衡”，因为此种模式下，负载均衡算法是<strong>NGINX</strong>提供的，而<strong>NGINX</strong>部署在服务器端。</p>
+<p><a href="https://mp.weixin.qq.com/s/dstavd3hbbhhkCbGzkp21Q" target="_blank" rel="noopener">Nginx扫盲</a></p>
+<p>本节所讲的<strong>Ribbon</strong>则是一个<font color="blue">客户端侧</font>负载均衡组件——通俗地说，就是集成在客户端（服务消费者一侧），并提供负载均衡算法的一个组件。</p>
+<p>Ribbon默认为我们提供了很多的负载均衡算法，例如轮询、随机、响应时间加权等——当然，为Ribbon自定义负载均衡算法也非常容易，只需实现<code>IRule</code> 接口即可。</p>
+<h3 id="内置负载均衡的规则"><a href="#内置负载均衡的规则" class="headerlink" title="内置负载均衡的规则"></a>内置负载均衡的规则</h3><p>负载均衡规则是Ribbon的核心，下面来看一下Ribbon内置的负载均衡规则。</p>
+<ul>
+<li><strong>AvailabilityFilteringRule</strong>：过滤掉一直连接失败的被标记为circuit tripped的后端Server，并过滤掉那些高并发的后端Server或者使用一个AvailabilityPredicate来包含过滤server的逻辑，其实就就是检查status里记录的各个Server的运行状态；</li>
+<li><strong>BestAvailableRule</strong>：选择一个最小的并发请求的Server，逐个考察Server，如果Server被tripped了，则跳过。</li>
+<li><strong>RandomRule</strong>：随机选择一个Server；</li>
+<li><strong>ResponseTimeWeightedRule</strong>：作用同WeightedResponseTimeRule，二者作用一样；</li>
+<li><strong>RetryRule</strong>：对选定的负载均衡策略机上重试机制，在一个配置时间段内当选择Server不成功，则一直尝试使用subRule的方式选择一个可用的server；</li>
+<li><strong>RoundRobinRule</strong>：轮询选择， 轮询index，选择index对应位置的Server；</li>
+<li><strong>WeightedResponseTimeRule</strong>：根据响应时间加权，响应时间越长，权重越小，被选中的可能性越低；</li>
+<li><strong>ZoneAvoidanceRule</strong>：复合判断Server所在区域的性能和Server的可用性选择Server；</li>
+</ul>
+<p><strong>如需自定义负载均衡规则，只需实现<code>IRule</code> 接口或继承<code>AbstractLoadBalancerRule</code> 、<code>PredicateBasedRule即可</code></strong> ，可参考<code>RandomRule</code> 、<code>RoundRobinRule</code> 、<code>ZoneAvoidanceRule</code> 等内置Rule编写自己的负载均衡规则。</p>
+<h3 id="引入Ribbon"><a href="#引入Ribbon" class="headerlink" title="引入Ribbon"></a>引入Ribbon</h3><p>在Spring Cloud中，当Ribbon与Eureka配合使用时，Ribbon可自动从Eureka Server获取服务提供者地址列表，并基于负载均衡算法，选择其中一个服务提供者实例。下图展示了Ribbon与Eureka配合使用时的大致架构。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga043kvchrj30lm0c3js0.jpg" alt="图-Ribbon与Eureka配合"></p>
+<h3 id="集成方式-1"><a href="#集成方式-1" class="headerlink" title="集成方式"></a>集成方式</h3><h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><ul>
+<li><p>复制项目<code>microservice-consumer-movie</code> ，将ArtifactId修改为<code>microservice-consumer-movie-ribbon</code> 。</p>
+</li>
+<li><p>加依赖：由于<code>spring-cloud-starter-netflix-eureka-client</code> 已经包含<code>spring-cloud-starter-netfilx-ribbon</code> ，故而无需额外添加依赖。</p>
+</li>
+<li><p>写代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如代码所示，只需在<code>RestTemplate</code> 上添加<code>LoadBalanced</code> 注解，即可让RestTemplate整合Ribbon！</p>
+</li>
+<li><p>调用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(@PathVariable Long id)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 这里用到了RestTemplate的占位符能力</span></span><br><span class="line">  User user = <span class="keyword">this</span>.restTemplate.getForObject(</span><br><span class="line">    <span class="string">"http://microservice-provider-user/users/&#123;id&#125;"</span>,</span><br><span class="line">    User.class,</span><br><span class="line">    id</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// ...电影微服务的业务...</span></span><br><span class="line">  <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，我们将请求的目标服务改成了<code>http://microservice-provider-user/users/{id}</code> ，也就是<code>http://{目标服务名称}/{目标服务端点}</code> 的形式，<strong>Ribbon会自动在实际调用时，将目标服务名替换为该服务的IP和端口</strong>。</p>
+</li>
+</ul>
+<h4 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h4><ul>
+<li>依次启动<code>microservice-discovery-eureka</code> 、<code>microservice-provider-user</code> 两个实例、<code>microservice-consumer-movie-ribbon</code></li>
+<li>访问<code>http://localhost:8010/movies/users/1</code> 多次，会发现两个user服务实例都会打印日志。</li>
+</ul>
+<h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Feign是Netflix开发的声明式、模板化的HTTP客户端，集成了 <strong>RestTemplate + Eureka + Ribbon + Hystrix</strong></p>
+<h3 id="集成方式-2"><a href="#集成方式-2" class="headerlink" title="集成方式"></a>集成方式</h3><p>下面来将前面的例子用Feign改写，让其达到与Ribbon + RestTemplate相同的效果。</p>
+<ul>
+<li><p>复制项目<code>microservice-consumer-movie</code>，将ArtifactId修改为<code>microservice-consumer-movie-feign</code> ；</p>
+</li>
+<li><p>加依赖：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解：启动类上添加<code>@EnableFeignClients</code> ；</p>
+</li>
+<li><p>编写Feign Client：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"microservice-provider-user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignClient</span> </span>&#123;</span><br><span class="line">  <span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line">  <span class="function">User <span class="title">findById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一个Feign Client就写完啦！其中，<code>@FeignClient</code> 注解中的<code>microservice-provider-user</code>是想要请求服务的名称，<strong>这是用来创建Ribbon Client的（Feign整合了Ribbon）</strong>。在本例中，由于使用了Eureka，所以Ribbon会把<code>microservice-provider-user</code> 解析成Eureka Server中的服务。</p>
+<p>除此之外，还可使用url属性指定请求的URL（URL可以是完整的URL或主机名），例如<code>@FeignClient(name = &quot;abcde&quot;, url = &quot;http://localhost:8000/&quot;)</code> 。此时，<strong>name可以是任意值，但不可省略，否则应用将无法启动！</strong></p>
+</li>
+<li><p>Controller：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/movies"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MovieController</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> UserFeignClient userFeignClient;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(@PathVariable Long id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.userFeignClient.findById(id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只需使用@Autowire注解，即可注入上面编写的Feign Client。</p>
+</li>
+</ul>
+<h3 id="RestTemplate与Feign对比"><a href="#RestTemplate与Feign对比" class="headerlink" title="RestTemplate与Feign对比"></a>RestTemplate与Feign对比</h3><p>相信通过本文的例子，聪明的你对如何使用Feign已经了然于心了。文章的最后，对比一下RestTemplate + Ribbon与Feign。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">角度</th>
+<th style="text-align:left">RestTemplate + Ribbon</th>
+<th style="text-align:left">Feign（自带Ribbon）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">可读性、可维护性</td>
+<td style="text-align:left">欠佳（无法从URL直观了解这个远程调用是干什么的）</td>
+<td style="text-align:left">极佳（能在接口上写注释，方法名称也是可读的，能一眼看出这个远程调用是干什么的）</td>
+</tr>
+<tr>
+<td style="text-align:left">开发体验</td>
+<td style="text-align:left">欠佳（<strong>需要拼凑URL</strong>）</td>
+<td style="text-align:left">极佳（无需拼凑url，自动集合Eureka和Ribbon）</td>
+</tr>
+<tr>
+<td style="text-align:left">风格一致性</td>
+<td style="text-align:left">欠佳（本地API调用和RestTemplate调用的代码风格截然不同）</td>
+<td style="text-align:left">极佳（完全一致，不点开Feign的接口，根本不会察觉这是一个远程调用而非本地API调用）</td>
+</tr>
+<tr>
+<td style="text-align:left">性能</td>
+<td style="text-align:left">较好</td>
+<td style="text-align:left">中等（性能是RestTemplate的50%左右；如果为Feign配置连接池，性能可提升15%左右）</td>
+</tr>
+<tr>
+<td style="text-align:left">灵活性</td>
+<td style="text-align:left">极佳</td>
+<td style="text-align:left">中等（内置功能能满足大多数项目的需求）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><h3 id="容错技术的引入"><a href="#容错技术的引入" class="headerlink" title="容错技术的引入"></a>容错技术的引入</h3><p>至此，我们已实现服务发现、负载均衡，同时，使用Feign也实现了良好的远程调用——我们的代码是可读、可维护的。理论上，我们现在已经能构建一个不错的分布式应用了，但微服务之间是通过网络通信的，网络可能出问题；微服务本身也不可能100%可用。</p>
+<p>如何提升应用的可用性呢？这是我们必须考虑的问题——</p>
+<p><strong>举个例子</strong>：某大型系统中，服务A调用服务B，某个时刻，微服务B突然崩溃了。微服务A中，依然有大量请求在请求B，如果没有任何措施，微服务A很可能很快就会被拖死——因为<strong>在Java中，一次请求往往对应着一个线程</strong>，如果不做任何措施，那意味着微服务A请求B的线程要等Feign Client/RestTemplate超时才会释放（这个时间一般非常长，长达几十秒），于是就会有<strong>大量的线程被阻塞</strong>，而<strong>线程又对应着计算资源</strong>（CPU/内存），于是乎，大量的资源被浪费，并且越积越多，最终服务器终于没有资源给微服务A浪费了，微服务A也挂了。</p>
+<p>因此，在大型应用中，微服务之间的容错必不可少，下面来讨论如何实现微服务的容错。</p>
+<h3 id="容错三板斧"><a href="#容错三板斧" class="headerlink" title="容错三板斧"></a>容错三板斧</h3><ul>
+<li><p>超时机制：一旦超时，就释放资源。由于释放资源速度较快，应用就不会那么容易被拖死。</p>
+</li>
+<li><p>舱壁模式：不把鸡蛋放在一个篮子里。你有你的线程池，我有我的线程池，你的线程池满了和我没关系，你挂了也和我没关系。</p>
+</li>
+<li><p><strong>断路器</strong>：实时监测应用，如果发现在一定时间内失败次数/失败率达到一定阈值，就“跳闸”，断路器打开——此时，请求直接返回，而不去调用原本调用的逻辑。</p>
+<p>跳闸一段时间后（例如15秒），断路器会进入半开状态，这是一个<strong>瞬间态</strong>，此时允许一次请求调用该调的逻辑，如果成功，则断路器关闭，应用正常调用；如果调用依然不成功，断路器继续回到打开状态，过段时间再进入半开状态尝试——通过”跳闸“，应用可以保护自己，而且避免浪费资源；而通过半开的设计，可实现应用的“自我修复“。</p>
+</li>
+</ul>
+<h3 id="断路器状态转换"><a href="#断路器状态转换" class="headerlink" title="断路器状态转换"></a>断路器状态转换</h3><p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0lzf28wkj30tz0dy3yz.jpg" alt="断路器状态转换示意图"></p>
+<h3 id="引入Hystrix"><a href="#引入Hystrix" class="headerlink" title="引入Hystrix"></a>引入Hystrix</h3><p>Hystrix是由Netflix开源的一个延迟和容错库，用于隔离访问远程系统、服务或者第三方库，防止级联失败，从而提升系统的可用性与容错性。Hystrix主要通过以下几点实现延迟和容错。</p>
+<ul>
+<li>包裹请求</li>
+</ul>
+<p>使用HystrixCommand（或HystrixObservableCommand）包裹对依赖的调用逻辑，每个命令在独立线程中执行。这使用到了设计模式中的“ <a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/command.html" target="_blank" rel="noopener">命令模式</a> ”。</p>
+<ul>
+<li>跳闸机制（断路器的应用）</li>
+</ul>
+<p>当某服务的错误率超过一定阈值时，Hystrix可以自动或者手动跳闸，停止请求该服务一段时间。</p>
+<ul>
+<li>资源隔离（舱壁模式的应用）</li>
+</ul>
+<p>Hystrix为每个依赖都维护了一个小型的线程池（或者信号量）。如果该线程池已满，发往该依赖的请求就被立即拒绝，而不是排队等候，从而加速失败判定。</p>
+<ul>
+<li>监控（超时模式的应用）</li>
+</ul>
+<p>Hystrix可以近乎实时地监控运行指标和配置的变化，例如成功、失败、超时、以及被拒绝的请求等。</p>
+<ul>
+<li>回退机制</li>
+</ul>
+<p>当请求失败、超时、被拒绝，或当断路器打开时，执行回退逻辑。回退逻辑可由开发人员自行提供，例如返回一个缺省值。</p>
+<ul>
+<li>自我修复</li>
+</ul>
+<p>断路器打开一段时间后，会自动进入“半开”状态。断路器打开、关闭、半开的逻辑转换，前面我们已经详细探讨过了，不再赘述。</p>
+<h3 id="通用方式使用Hystrix"><a href="#通用方式使用Hystrix" class="headerlink" title="通用方式使用Hystrix"></a>通用方式使用Hystrix</h3><h4 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h4><ul>
+<li><p>加依赖：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解：在启动类上添加<code>@EnableCircuitBreaker</code> 注解。</p>
+</li>
+<li><p>使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(fallbackMethod = <span class="string">"findByIdFallback"</span>)</span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(@PathVariable Long id)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 这里用到了RestTemplate的占位符能力</span></span><br><span class="line">  User user = <span class="keyword">this</span>.restTemplate.getForObject(</span><br><span class="line">    <span class="string">"http://microservice-provider-user/users/&#123;id&#125;"</span>,</span><br><span class="line">    User.class,</span><br><span class="line">    id</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// ...电影微服务的业务...</span></span><br><span class="line">  <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">findByIdFallback</span><span class="params">(Long id)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> User(id, <span class="string">"默认用户"</span>, <span class="string">"默认用户"</span>, <span class="number">0</span>, <span class="keyword">new</span> BigDecimal(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由代码可知，只需使用<code>@HystrixCommand</code> 注解，就可保护该API。这里的”保护“，其实带有<strong>三层含义</strong>——”超时机制“、”仓壁模式“、”断路器“！</p>
+</li>
+</ul>
+<p><strong>TIPS</strong></p>
+<ul>
+<li><p>本例使用了<code>fallbackMethod</code> 属性，指定了一个降级方法，如不指定，<strong>Hystrix会有一个默认的降级方案</strong>，那就是抛异常，哈哈哈。</p>
+</li>
+<li><p><strong>如何知道断路器打开还是关闭呢？</strong>只需访问应用的<code>/actuator/health</code> 端点，即可查看！断路器的状态——当然，你必须添加如下配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management:</span></span><br><span class="line"><span class="attr">  endpoint:</span></span><br><span class="line"><span class="attr">    health:</span></span><br><span class="line"><span class="attr">      show-details:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h4><ul>
+<li><p>启动<code>microservice-discovery-eureka</code></p>
+</li>
+<li><p>启动<code>microservice-provider-user</code></p>
+</li>
+<li><p>启动<code>microservice-consumer-movie-ribbon-hystrix-common</code></p>
+</li>
+<li><p>访问<code>http://localhost:8010/movies/users/1</code> ，能正常返回结果</p>
+</li>
+<li><p>关闭<code>microservice-provider-user</code> ，再次访问<code>http://localhost:8010/movies/users/1</code> ，可返回类似如下结果，说明当服务提供者时，服务消费者进入了<strong>回退方法</strong>。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"id"</span>:<span class="number">1</span>,<span class="attr">"username"</span>:<span class="string">"默认用户"</span>,<span class="attr">"name"</span>:<span class="string">"默认用户"</span>,<span class="attr">"age"</span>:<span class="number">0</span>,<span class="attr">"balance"</span>:<span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问<code>http://localhost:8010/actuator/health</code> ，可获得类似如下结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"status"</span>: <span class="string">"UP"</span>,</span><br><span class="line">	<span class="attr">"details"</span>: &#123;</span><br><span class="line">		<span class="attr">"diskSpace"</span>: ...,</span><br><span class="line">		<span class="attr">"refreshScope"</span>: ...,</span><br><span class="line">		<span class="attr">"discoveryComposite"</span>: ...,</span><br><span class="line">		<span class="attr">"hystrix"</span>: &#123;</span><br><span class="line">			<span class="attr">"status"</span>: <span class="string">"UP"</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由结果不难发现，此时断路器<strong>并未打开！这是为什么呢？</strong> 原因是：此时只请求了一次，没有达到Hystrix的阈值——Hystrix设计来保护高并发应用的，它要求10秒（可用<code>hystrix.command.default.metrics.rollingStats.timeInMilliseconds</code> 自定义）以内API错误次数超过20次（用<code>circuitBreaker.requestVolumeThreshold</code> 自定义），此时才可能触发断路器。</p>
+</li>
+<li><p>持续不断地访问<code>http://localhost:8010/movies/users/1</code> 多次（至少20次）</p>
+</li>
+<li><p>再次访问<code>http://localhost:8010/actuator/health</code> ，可获得类似如下结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"status"</span>: <span class="string">"UP"</span>,</span><br><span class="line">	<span class="attr">"details"</span>: &#123;</span><br><span class="line">		<span class="attr">"diskSpace"</span>: ...,</span><br><span class="line">		<span class="attr">"refreshScope"</span>: ...,</span><br><span class="line">		<span class="attr">"discoveryComposite"</span>: ...,</span><br><span class="line">		<span class="attr">"hystrix"</span>: &#123;</span><br><span class="line">			<span class="attr">"status"</span>: <span class="string">"CIRCUIT_OPEN"</span>,</span><br><span class="line">			<span class="attr">"details"</span>: &#123;</span><br><span class="line">				<span class="attr">"openCircuitBreakers"</span>: [<span class="string">"MovieController::findById"</span>]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由结果可知，此时断路器已经打开，并且列出了是哪个API的断路器被打开了。</p>
+</li>
+</ul>
+<h4 id="获得造成fallback的原因"><a href="#获得造成fallback的原因" class="headerlink" title="获得造成fallback的原因"></a>获得造成fallback的原因</h4><p>在实际项目中，很可能需要获得造成fallback的原因，此时可将代码修改为如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(fallbackMethod = <span class="string">"findByIdFallback"</span>)</span><br><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(@PathVariable Long id)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 这里用到了RestTemplate的占位符能力</span></span><br><span class="line">  User user = <span class="keyword">this</span>.restTemplate.getForObject(</span><br><span class="line">    <span class="string">"http://microservice-provider-user/users/&#123;id&#125;"</span>,</span><br><span class="line">    User.class,</span><br><span class="line">    id</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// ...电影微服务的业务...</span></span><br><span class="line">  <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">findByIdFallback</span><span class="params">(Long id, Throwable throwable)</span> </span>&#123;</span><br><span class="line">  log.error(<span class="string">"进入回退方法"</span>, throwable);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> User(id, <span class="string">"默认用户"</span>, <span class="string">"默认用户"</span>, <span class="number">0</span>, <span class="keyword">new</span> BigDecimal(<span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Feign-整合-Hystrix"><a href="#Feign-整合-Hystrix" class="headerlink" title="Feign 整合 Hystrix"></a>Feign 整合 Hystrix</h3><p>默认Feign是不启用Hystrix的，如果需要启用，只需要在配置文件中配置即可：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line"><span class="attr">  hystrix:</span></span><br><span class="line"><span class="attr">    enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Hystrix-Command-详解"><a href="#Hystrix-Command-详解" class="headerlink" title="Hystrix Command 详解"></a>Hystrix Command 详解</h3><h4 id="监控端点与数据"><a href="#监控端点与数据" class="headerlink" title="监控端点与数据"></a>监控端点与数据</h4><p>应用整合Hystrix，同时应用包含<code>spring-boot-starter-actuator</code> 依赖，就会存在一个<code>/actuator/hystrix.stream</code> 端点，用来监控Hystrix Command。<strong>当被<code>@HystrixCommand</code> 注解了的方法被调用时，就会产生监控信息，并暴露到该端点中</strong>。当然，该端点默认是不会暴露的，需使用如下配置将其暴露。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management:</span></span><br><span class="line"><span class="attr">  endpoints:</span></span><br><span class="line"><span class="attr">    web:</span></span><br><span class="line"><span class="attr">      exposure:</span></span><br><span class="line"><span class="attr">        include:</span> <span class="string">'hystrix.stream'</span></span><br></pre></td></tr></table></figure>
+<p>此时，访问<code>/actuator/hystrix.stream</code> 可返回如下结果：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"type"</span>:<span class="string">"HystrixCommand"</span>,<span class="attr">"name"</span>:<span class="string">"findById"</span>,<span class="attr">"group"</span>:<span class="string">"MovieController"</span>,<span class="attr">"currentTime"</span>:<span class="number">1547905939151</span>,<span class="attr">"isCircuitBreakerOpen"</span>:<span class="literal">false</span>,<span class="attr">"errorPercentage"</span>:<span class="number">0</span>,<span class="attr">"errorCount"</span>:<span class="number">0</span>,<span class="attr">"requestCount"</span>:<span class="number">0</span>,<span class="attr">"rollingCountBadRequests"</span>:<span class="number">0</span>,<span class="attr">"rollingCountCollapsedRequests"</span>:<span class="number">0</span>,<span class="attr">"rollingCountEmit"</span>:<span class="number">0</span>,<span class="attr">"rollingCountExceptionsThrown"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFailure"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFallbackEmit"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFallbackFailure"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFallbackMissing"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFallbackRejection"</span>:<span class="number">0</span>,<span class="attr">"rollingCountFallbackSuccess"</span>:<span class="number">0</span>,<span class="attr">"rollingCountResponsesFromCache"</span>:<span class="number">0</span>,<span class="attr">"rollingCountSemaphoreRejected"</span>:<span class="number">0</span>,<span class="attr">"rollingCountShortCircuited"</span>:<span class="number">0</span>,<span class="attr">"rollingCountSuccess"</span>:<span class="number">0</span>,<span class="attr">"rollingCountThreadPoolRejected"</span>:<span class="number">0</span>,<span class="attr">"rollingCountTimeout"</span>:<span class="number">0</span>,<span class="attr">"currentConcurrentExecutionCount"</span>:<span class="number">0</span>,<span class="attr">"rollingMaxConcurrentExecutionCount"</span>:<span class="number">0</span>,<span class="attr">"latencyExecute_mean"</span>:<span class="number">0</span>,<span class="attr">"latencyExecute"</span>:&#123;<span class="attr">"0"</span>:<span class="number">0</span>,<span class="attr">"25"</span>:<span class="number">0</span>,<span class="attr">"50"</span>:<span class="number">0</span>,<span class="attr">"75"</span>:<span class="number">0</span>,<span class="attr">"90"</span>:<span class="number">0</span>,<span class="attr">"95"</span>:<span class="number">0</span>,<span class="attr">"99"</span>:<span class="number">0</span>,<span class="attr">"99.5"</span>:<span class="number">0</span>,<span class="attr">"100"</span>:<span class="number">0</span>&#125;,<span class="attr">"latencyTotal_mean"</span>:<span class="number">0</span>,<span class="attr">"latencyTotal"</span>:&#123;<span class="attr">"0"</span>:<span class="number">0</span>,<span class="attr">"25"</span>:<span class="number">0</span>,<span class="attr">"50"</span>:<span class="number">0</span>,<span class="attr">"75"</span>:<span class="number">0</span>,<span class="attr">"90"</span>:<span class="number">0</span>,<span class="attr">"95"</span>:<span class="number">0</span>,<span class="attr">"99"</span>:<span class="number">0</span>,<span class="attr">"99.5"</span>:<span class="number">0</span>,<span class="attr">"100"</span>:<span class="number">0</span>&#125;,<span class="attr">"propertyValue_circuitBreakerRequestVolumeThreshold"</span>:<span class="number">20</span>,<span class="attr">"propertyValue_circuitBreakerSleepWindowInMilliseconds"</span>:<span class="number">5000</span>,<span class="attr">"propertyValue_circuitBreakerErrorThresholdPercentage"</span>:<span class="number">50</span>,<span class="attr">"propertyValue_circuitBreakerForceOpen"</span>:<span class="literal">false</span>,<span class="attr">"propertyValue_circuitBreakerForceClosed"</span>:<span class="literal">false</span>,<span class="attr">"propertyValue_circuitBreakerEnabled"</span>:<span class="literal">true</span>,<span class="attr">"propertyValue_executionIsolationStrategy"</span>:<span class="string">"THREAD"</span>,<span class="attr">"propertyValue_executionIsolationThreadTimeoutInMilliseconds"</span>:<span class="number">1000</span>,<span class="attr">"propertyValue_executionTimeoutInMilliseconds"</span>:<span class="number">1000</span>,<span class="attr">"propertyValue_executionIsolationThreadInterruptOnTimeout"</span>:<span class="literal">true</span>,<span class="attr">"propertyValue_executionIsolationThreadPoolKeyOverride"</span>:<span class="literal">null</span>,<span class="attr">"propertyValue_executionIsolationSemaphoreMaxConcurrentRequests"</span>:<span class="number">10</span>,<span class="attr">"propertyValue_fallbackIsolationSemaphoreMaxConcurrentRequests"</span>:<span class="number">10</span>,<span class="attr">"propertyValue_metricsRollingStatisticalWindowInMilliseconds"</span>:<span class="number">10000</span>,<span class="attr">"propertyValue_requestCacheEnabled"</span>:<span class="literal">true</span>,<span class="attr">"propertyValue_requestLogEnabled"</span>:<span class="literal">true</span>,<span class="attr">"reportingHosts"</span>:<span class="number">1</span>,<span class="attr">"threadPool"</span>:<span class="string">"MovieController"</span>&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="对于Feign"><a href="#对于Feign" class="headerlink" title="对于Feign"></a>对于Feign</h4><p>前面讲过Feign默认已经整合了Hystrix，但这个整合其实是“不完整”，因为它默认不带有监控端点，如果你在使用Feign的同时，也想使用监控端点，需按照如下步骤操作：</p>
+<ul>
+<li><p>加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在启动类上添加注解<code>@EnableCircuitBreaker</code></p>
+</li>
+<li><p>在<code>application.yml</code> 中添加如下配置：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">management</span>:</span><br><span class="line">  <span class="attribute">endpoints</span>:</span><br><span class="line">    <span class="attribute">web</span>:</span><br><span class="line">      <span class="attribute">exposure</span>:</span><br><span class="line">        <span class="attribute">include</span>: <span class="string">'hystrix.stream'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="可视化监控数据"><a href="#可视化监控数据" class="headerlink" title="可视化监控数据"></a>可视化监控数据</h3><p>至此，我们已可通过<code>/actuator/hystrix.strem</code> 端点观察Hystrix运行情况，但文字形式的监控数据很不直观。现实项目中一般都需要一个可视化的界面，这样才能迅速了解系统的运行情况。Hystrix提供了一个轮子——Hystrix Dashboard，<strong>它的作用只有一个，那就是将文字形式的监控数据转换成图表展示</strong>。</p>
+<h4 id="编写Hystrix-Dashboard"><a href="#编写Hystrix-Dashboard" class="headerlink" title="编写Hystrix Dashboard"></a>编写Hystrix Dashboard</h4><ul>
+<li><p>加依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解：<code>@EnableHystrixDashboard</code></p>
+</li>
+<li><p>写配置：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 端口随便写，这里只是表明下自己的端口规划而已</span></span><br><span class="line"><span class="symbol">server:</span></span><br><span class="line"><span class="symbol">  port:</span> <span class="number">8030</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>启动后，访问<code>http://localhost:8030/hystrix</code> 即可看到类似如下的界面：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6hew9yj318e0tcn6v.jpg" alt="Hystrix Dashboard首页"></p>
+<p>将上文的<code>/actuator/hystrix.stream</code> 端点的地址贴到图中，并指定Title，然后点击<code>Monitor Stream</code> 按钮，即可看到类似如下的图表：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6i0a3ij30hq0im0v2.jpg" alt="Hystrix Dashboard图表"></p>
+<h4 id="图表解读"><a href="#图表解读" class="headerlink" title="图表解读"></a>图表解读</h4><p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0n6ig2suj30hs0bf0v6.jpg" alt="Hystrix图表解读">Turbine</p>
+<h2 id="Turbine"><a href="#Turbine" class="headerlink" title="Turbine"></a>Turbine</h2><p>上文的Hystrix Dashboard只支持一次监控一个微服务实例，显然是不能满足需求的，所以为了能监控多个微服务，Netflix官方再次发挥造轮子的精神——它们又编写了一个组件，Turbine。</p>
+<p><strong>不过这个项目刚出生就死了，14年发布后就再也没有进行更新维护。</strong></p>
+<h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>Turbine是一个聚合Hystrix监控数据的工具，它可将所有相关/hystrix.stream端点的数据聚合到一个组合的/turbine.stream中，从而让集群的监控更加方便。</p>
+<p>引入Turbine后，架构图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0ncvu5p5j30q00chaaq.jpg" alt="Turbine架构图"></p>
+<h3 id="引入Turbine"><a href="#引入Turbine" class="headerlink" title="引入Turbine"></a>引入Turbine</h3><h4 id="编写Turbine-Server"><a href="#编写Turbine-Server" class="headerlink" title="编写Turbine Server"></a>编写Turbine Server</h4><ul>
+<li><p>加依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-netflix-turbine&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加注解：<code>@EnableTurbine</code></p>
+</li>
+<li><p>写配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8031</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">microservice-hystrix-turbine</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://localhost:8761/eureka/</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">turbine:</span></span><br><span class="line">  <span class="comment"># 要监控的微服务列表，多个用,分隔</span></span><br><span class="line"><span class="attr">  appConfig:</span> <span class="string">microservice-consumer-movie,microservice-consumer-movie-feign</span></span><br><span class="line"><span class="attr">  clusterNameExpression:</span> <span class="string">"'default'"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h4><p>这样，Tubine即可聚合<code>microservice-consumer-movie</code>,<code>microservice-consumer-movie-feign</code>两个服务的<code>/actuator/hystrix.stream</code> 信息，并暴露在<code>http://localhost:8031/turbine.stream</code> ，将该地址贴到Hystrix Dashboard上，即可看到类似如下的图表：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1ga0ndof8wxj30wq0i6gor.jpg" alt="Turbine图表"></p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="http://pw5u1sbg2.bkt.clouddn.com/wechatpay.jpeg" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="http://pw5u1sbg2.bkt.clouddn.com/alipay.jpeg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2019/12/13/SpringCloud笔记.html" title="SpringCloud 微服务笔记">http://jeromememory.github.io/2019/12/13/SpringCloud笔记.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringCloud/" rel="tag"><i class="fa fa-tag"></i> SpringCloud</a>
+          
+            <a href="/tags/微服务/" rel="tag"><i class="fa fa-tag"></i> 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/09/动态规划笔记.html" rel="next" title="动态规划笔记">
+                <i class="fa fa-chevron-left"></i> 动态规划笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/15/SomeSolution.html" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2588481240&auto=1&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务架构概述"><span class="nav-number">1.</span> <span class="nav-text">微服务架构概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单体架构"><span class="nav-number">1.1.</span> <span class="nav-text">单体架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务"><span class="nav-number">1.2.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性"><span class="nav-number">1.2.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.2.2.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.3.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务设计原则"><span class="nav-number">1.2.4.</span> <span class="nav-text">微服务设计原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务架构技术选型"><span class="nav-number">1.2.5.</span> <span class="nav-text">微服务架构技术选型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务开发框架——Spring-Cloud"><span class="nav-number">2.</span> <span class="nav-text">微服务开发框架——Spring Cloud</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-简介"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Cloud 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-和-Spring-Boot-的联系"><span class="nav-number">2.2.</span> <span class="nav-text">Spring Cloud 和 Spring Boot 的联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-特点"><span class="nav-number">2.3.</span> <span class="nav-text">Spring Cloud 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-版本"><span class="nav-number">2.4.</span> <span class="nav-text">Spring Cloud 版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Cloud-实战微服务-Finchley版本"><span class="nav-number">3.</span> <span class="nav-text">Spring Cloud 实战微服务(Finchley版本)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">3.2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka"><span class="nav-number">3.3.</span> <span class="nav-text">Eureka</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务发现原理初探"><span class="nav-number">3.3.1.</span> <span class="nav-text">服务发现原理初探</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务发现原理深入"><span class="nav-number">3.3.2.</span> <span class="nav-text">服务发现原理深入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">3.3.3.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">3.3.4.</span> <span class="nav-text">源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成方式"><span class="nav-number">3.3.5.</span> <span class="nav-text">集成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编写Eureka-Server"><span class="nav-number">3.3.5.1.</span> <span class="nav-text">编写Eureka Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将应用注册到Eureka-Server上"><span class="nav-number">3.3.5.2.</span> <span class="nav-text">将应用注册到Eureka Server上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">3.3.5.3.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">3.4.</span> <span class="nav-text">Ribbon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用途-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置负载均衡的规则"><span class="nav-number">3.4.2.</span> <span class="nav-text">内置负载均衡的规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入Ribbon"><span class="nav-number">3.4.3.</span> <span class="nav-text">引入Ribbon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成方式-1"><span class="nav-number">3.4.4.</span> <span class="nav-text">集成方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码示例"><span class="nav-number">3.4.4.1.</span> <span class="nav-text">代码示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-1"><span class="nav-number">3.4.4.2.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feign"><span class="nav-number">3.5.</span> <span class="nav-text">Feign</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">3.5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成方式-2"><span class="nav-number">3.5.2.</span> <span class="nav-text">集成方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RestTemplate与Feign对比"><span class="nav-number">3.5.3.</span> <span class="nav-text">RestTemplate与Feign对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystrix"><span class="nav-number">3.6.</span> <span class="nav-text">Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容错技术的引入"><span class="nav-number">3.6.1.</span> <span class="nav-text">容错技术的引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容错三板斧"><span class="nav-number">3.6.2.</span> <span class="nav-text">容错三板斧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断路器状态转换"><span class="nav-number">3.6.3.</span> <span class="nav-text">断路器状态转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入Hystrix"><span class="nav-number">3.6.4.</span> <span class="nav-text">引入Hystrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用方式使用Hystrix"><span class="nav-number">3.6.5.</span> <span class="nav-text">通用方式使用Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务降级"><span class="nav-number">3.6.5.1.</span> <span class="nav-text">服务降级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-2"><span class="nav-number">3.6.5.2.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获得造成fallback的原因"><span class="nav-number">3.6.5.3.</span> <span class="nav-text">获得造成fallback的原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feign-整合-Hystrix"><span class="nav-number">3.6.6.</span> <span class="nav-text">Feign 整合 Hystrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hystrix-Command-详解"><span class="nav-number">3.6.7.</span> <span class="nav-text">Hystrix Command 详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监控端点与数据"><span class="nav-number">3.6.7.1.</span> <span class="nav-text">监控端点与数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对于Feign"><span class="nav-number">3.6.7.2.</span> <span class="nav-text">对于Feign</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化监控数据"><span class="nav-number">3.6.8.</span> <span class="nav-text">可视化监控数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编写Hystrix-Dashboard"><span class="nav-number">3.6.8.1.</span> <span class="nav-text">编写Hystrix Dashboard</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图表解读"><span class="nav-number">3.6.8.2.</span> <span class="nav-text">图表解读</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Turbine"><span class="nav-number">3.7.</span> <span class="nav-text">Turbine</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">3.7.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入Turbine"><span class="nav-number">3.7.2.</span> <span class="nav-text">引入Turbine</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编写Turbine-Server"><span class="nav-number">3.7.2.1.</span> <span class="nav-text">编写Turbine Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试-3"><span class="nav-number">3.7.2.2.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zuul"><span class="nav-number">3.8.</span> <span class="nav-text">Zuul</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">191k</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+      
+    
+  
+  <script color="255,0,255" opacity="0.7" zindex="-1" count="50" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+  <script id="ribbon" size="300" alpha="0.1" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/12/13/SpringCloud笔记.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>

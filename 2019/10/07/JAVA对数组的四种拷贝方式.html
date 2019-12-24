@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/10/06/EZ3FUlhpebKcgm4.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/06/HAzMu7UIjKQXSZ2.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/10/06/G5RIcgx2AWfYn3J.jpg">
-<meta property="og:updated_time" content="2019-10-07T04:15:39.563Z">
+<meta property="og:updated_time" content="2019-12-05T13:09:49.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA对数组的四种拷贝方式">
 <meta name="twitter:description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  赋值、浅拷贝、深拷贝在谈及四种数组拷贝方式之前，先来缕缕赋值、浅拷贝、深拷贝三者的关系和区别。 数据类型谈及深拷贝和浅拷贝，首先要弄清数据类型有哪些,数据分为基本数据类型(元数据)和引用数据类型(对象引用)。    基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储">
@@ -500,12 +500,24 @@
                 
               
 
-              <time title="创建时间：2019-10-07 12:15:37 / 修改时间：12:15:39" itemprop="dateCreated datePublished" datetime="2019-10-07T12:15:37+08:00">2019-10-07</time>
+              <time title="创建时间：2019-10-07 12:15:37" itemprop="dateCreated datePublished" datetime="2019-10-07T12:15:37+08:00">2019-10-07</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-05 21:09:49" itemprop="dateModified" datetime="2019-12-05T21:09:49+08:00">2019-12-05</time>
               
             
           </span>
@@ -605,8 +617,8 @@
 <li>引用数据类型的特点：存储的是该对象在<strong>栈中</strong>引用，真实的数据存放在<strong>堆内存</strong>里，引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。</li>
 </ul>
 <h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>　　深拷贝和浅拷贝是只针对<strong>引用类型</strong>的数据而言的，对于<strong>基本数据类型</strong>来说，深拷贝和浅拷贝都是直接进行<strong>值传递</strong>的，与赋值的方式是一样的，三者没有任何区别，区别就在于对于引用数据类型来说，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存,所以如果修改对象的话会互相影响。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。<br>　　总而言之，在数组内都是基本数据类型时，是不会有深拷贝和浅拷贝这样的概念出现的，只有出现了引用类型的数据，才能谈深拷贝和浅拷贝。<br><strong>Tips:</strong><br>　　String不是基本数据类型，但是在深复制的时候并没有进行单独的复制，也就是说违反了深复制，仅仅复制了引用，而String没有实现cloneable接口，也就是说只能复制引用。<br>　　那么在修改克隆之后的对象之后，会不会将原来的值也改变了?<br>　　答案肯定是不会改变，因为String是在内存中不可以被改变的对象，就比如说在for大量循环中不推荐使用+的方式来拼凑字符串一样，每次使用都会新分配一块内存，不在原来上修改，原来的没有指向它的引用，会被回收。所以克隆相当于1个String内存空间有两个引用，当修改其中的一个值的时候，会新分配一块内存用来保存新的值，这个引用指向新的内存空间，原来的String因为还存在指向他的引用，所以不会被回收，这样，虽然是复制的引用，但是修改值的时候，并没有改变被复制对象的值。</p>
-<center><img src="https://i.loli.net/2019/10/06/R4MTga9rnm2pJVz.png" alt="深拷贝和浅拷贝的区别.jpeg"></center><br><center><img src="https://i.loli.net/2019/10/06/EZ3FUlhpebKcgm4.png" alt="赋值、深拷贝、浅拷贝.jpeg"></center>
-
+<p><center><img src="https://i.loli.net/2019/10/06/R4MTga9rnm2pJVz.png" alt="深拷贝和浅拷贝的区别.jpeg"></center></p>
+<p><center><img src="https://i.loli.net/2019/10/06/EZ3FUlhpebKcgm4.png" alt="赋值、深拷贝、浅拷贝.jpeg"></center></p>
 <h1 id="数组拷贝方式之一——for"><a href="#数组拷贝方式之一——for" class="headerlink" title="数组拷贝方式之一——for()"></a>数组拷贝方式之一——for()</h1><p>就是for循环咯！！！</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 1 for 循环拷贝*/</span></span><br><span class="line"><span class="keyword">int</span>[] arr1 = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    arr1[i] = arr0[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>也是浅拷贝咯！</strong></p>
@@ -822,7 +834,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -924,7 +936,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">31</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1075,7 +1091,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">162k</span>
+    <span title="站点总字数">191k</span>
   
   
 </div>
