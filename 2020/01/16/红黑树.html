@@ -173,7 +173,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb0palout5j306v03paa0.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb0pdhxm4jj308b03zweh.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb0pwwi70ij317h0u0h1g.jpg">
-<meta property="og:updated_time" content="2020-01-18T06:58:13.122Z">
+<meta property="og:updated_time" content="2020-01-18T07:06:31.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="红黑树">
 <meta name="twitter:description" content="红黑树特点 每个节点或者是红色的，或者是黑色的； 根节点是黑色的； 每个叶子结点（最后的空节点）是黑色的； 如果一个节点是红色的，那么他的孩子都是黑色的  ；[红色不能连着] 从任意一个节点到叶子节点经过的黑色节点是一样的。  增加操作 图中 C 为当前需要插入的节点，P 为当前插入节点的双亲结点，U 为当前插入节点的叔叔节点，G 为当前插入节点的祖父节点！增加节点就是这四种情况了，我们只需要考虑">
@@ -529,7 +529,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-18 14:58:13" itemprop="dateModified" datetime="2020-01-18T14:58:13+08:00">2020-01-18</time>
+                <time title="修改时间：2020-01-18 15:06:31" itemprop="dateModified" datetime="2020-01-18T15:06:31+08:00">2020-01-18</time>
               
             
           </span>
@@ -564,7 +564,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3k</span>
+                <span title="本文字数">3.1k</span>
               
 
               
@@ -639,7 +639,7 @@
 </ul>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0jvkwr1kj31bo0r478p.jpg" alt="父亲节点P"></p>
 <p>粗略看一下，总共是有9种情况的！在文末会给出我自己总结的这9种分别对应的操作方式，大家可以直接看文末！！！</p>
-<h3 id="一道例题"><a href="#一道例题" class="headerlink" title="一道例题"></a>一道例题</h3><blockquote>
+<h2 id="一道例题"><a href="#一道例题" class="headerlink" title="一道例题"></a>一道例题</h2><blockquote>
 <p>要删除的节点是黑色节点，且儿子为叶子结点</p>
 </blockquote>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0fx7ca0qj30h70clmy6.jpg" alt="image-20200118090707021"></p>
@@ -665,17 +665,18 @@
 </li>
 </ul>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0gvvj155j30sw0dwgnb.jpg" alt="image-20200118094029132"></p>
-<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0gxnztwjj30rx0e6wg6.jpg" alt="image-20200118094212457"></p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0gxnztwjj30rx0e6wg6.jpg" alt="image-20200118094212457">   </p>
 <ul>
 <li><p>Case III：此时第三种情况出现了，P 为红色， S 为黑色，S 的左孩子为黑色叶子结点，S 的右孩子为红色节点</p>
 <ul>
 <li>将 S 的右孩子(红色)、P(红色)、S(黑色)，颜色互换</li>
-<li>然后将 x 现在的父亲进行左旋<br><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0hdnwnh3j30lf0bxjsv.jpg" alt="image-20200118095735009"></li>
+<li>然后将 x 现在的父亲进行左旋</li>
 </ul>
 </li>
 </ul>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0hdnwnh3j30lf0bxjsv.jpg" alt="image-20200118095735009"></p>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0hdyhit5j30qx0du0ud.jpg" alt="image-20200118095751194"></p>
-<h3 id="维基百科部分"><a href="#维基百科部分" class="headerlink" title="维基百科部分"></a>维基百科部分</h3><p><strong>情形1:</strong> N是新的根。在这种情形下，我们就做完了。我们从所有路径去除了一个黑色节点，而新根是黑色的，所以性质都保持着。</p>
+<h2 id="维基百科部分"><a href="#维基百科部分" class="headerlink" title="维基百科部分"></a>维基百科部分</h2><p><strong>情形1:</strong> N是新的根。在这种情形下，我们就做完了。我们从所有路径去除了一个黑色节点，而新根是黑色的，所以性质都保持着。</p>
 <p><strong>注意</strong>：在情形2、5和6下，我们假定N是它父亲的左儿子。如果它是右儿子，则在这些情形下的<em>左</em>和<em>右</em>应当对调。</p>
 <p><strong>情形2：</strong> S是红色。在这种情形下我们在N的父亲上做<a href="https://zh.wikipedia.org/wiki/树旋转" target="_blank" rel="noopener">左旋转</a>，把红色兄弟转换成N的祖父，我们接着对调N的父亲和祖父的颜色。完成这两个操作后，尽管所有路径上黑色节点的数目没有改变，但现在N有了一个黑色的兄弟和一个红色的父亲（它的新兄弟是黑色因为它是红色S的一个儿子），所以我们可以接下去按<strong>情形4</strong>、<strong>情形5</strong>或<strong>情形6</strong>来处理。（注意：这里的图中没有显示出来，N是删除了黑色节点后替换上来的子节点，所以这个过程中由P-&gt;X-&gt;N变成了P-&gt;N，实际上是少了一个黑色节点，也可以理解为Parent(Black)和Silbing(Red)那么他们的孩子黑色节点的数目肯定不等，让他们做新兄弟肯定是不平衡的，还需后面继续处理。这里看英文版本的<a href="https://en.wikipedia.org/wiki/Red–black_tree" target="_blank" rel="noopener">[1]</a>比较的明了）</p>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0paklx8tj308a03sq2r.jpg" alt="情形2示意图"></p>
@@ -687,7 +688,7 @@
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0palout5j306v03paa0.jpg" alt="情形5示意图"></p>
 <p><strong>情形6：</strong> S是黑色，S的右儿子是红色，而N是它父亲的左儿子。在这种情形下我们在N的父亲上做左旋转，这样S成为N的父亲（P）和S的右儿子的父亲。我们接着交换N的父亲和S的颜色，并使S的右儿子为黑色。子树在它的根上的仍是同样的颜色，所以性质3没有被违反。但是，N现在增加了一个黑色祖先：要么N的父亲变成黑色，要么它是黑色而S被增加为一个黑色祖父。所以，通过N的路径都增加了一个黑色节点。此时，如果一个路径不通过N，则有两种可能性：它通过N的新兄弟。那么它以前和现在都必定通过S和N的父亲，而它们只是交换了颜色。所以路径保持了同样数目的黑色节点。它通过N的新叔父，S的右儿子。那么它以前通过S、S的父亲和S的右儿子，但是现在只通过S，它被假定为它以前的父亲的颜色，和S的右儿子，它被从红色改变为黑色。合成效果是这个路径通过了同样数目的黑色节点。在任何情况下，在这些路径上的黑色节点数目都没有改变。所以我们恢复了性质4。在示意图中的白色节点可以是红色或黑色，但是在变换前后都必须指定相同的颜色。</p>
 <p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0pdhxm4jj308b03zweh.jpg" alt="情形6示意图"></p>
-<h3 id="自己总结的操作方式"><a href="#自己总结的操作方式" class="headerlink" title="自己总结的操作方式"></a>自己总结的操作方式</h3><p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0pwwi70ij317h0u0h1g.jpg" alt="红黑树删除复杂版"></p>
+<h2 id="自己总结的操作方式"><a href="#自己总结的操作方式" class="headerlink" title="自己总结的操作方式"></a>自己总结的操作方式</h2><p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0pwwi70ij317h0u0h1g.jpg" alt="红黑树删除复杂版"></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>至此，红黑树告一段落了…学了两天才真正搞明白每一步干嘛的…真是太麻烦了</p>
 <p>建议学红黑树，先熟悉它的5个性质，然后将增加和删除的操作背一下就行…自己可以多上我推荐的那个网站，用我总结的操作方式多操作几遍，就应该没啥大问题了！至于手写红黑树代码…我选择放弃了！</p>
 
@@ -1113,7 +1114,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树特点"><span class="nav-number">1.</span> <span class="nav-text">红黑树特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加操作"><span class="nav-number">2.</span> <span class="nav-text">增加操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除操作"><span class="nav-number">3.</span> <span class="nav-text">删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一道例题"><span class="nav-number">3.0.1.</span> <span class="nav-text">一道例题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维基百科部分"><span class="nav-number">3.0.2.</span> <span class="nav-text">维基百科部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己总结的操作方式"><span class="nav-number">3.0.3.</span> <span class="nav-text">自己总结的操作方式</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树特点"><span class="nav-number">1.</span> <span class="nav-text">红黑树特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#增加操作"><span class="nav-number">2.</span> <span class="nav-text">增加操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除操作"><span class="nav-number">3.</span> <span class="nav-text">删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一道例题"><span class="nav-number">3.1.</span> <span class="nav-text">一道例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#维基百科部分"><span class="nav-number">3.2.</span> <span class="nav-text">维基百科部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己总结的操作方式"><span class="nav-number">3.3.</span> <span class="nav-text">自己总结的操作方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
