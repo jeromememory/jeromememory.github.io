@@ -156,10 +156,12 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="HashMap参考 集合番@HashMap一文通（1.7版） 集合番@HashMap一文通（1.8版）  HashMap源码分析—掘金博主  美团技术讲解HashMap  相关面试问题  问题引导由于知识点太多，我就以自己搜集到的面试常问的有关于HashMap的问题进行解决，然后再进一步深挖！  HashMap的底层数据结构？ HashMap的主要方法？ HashMap 是如何确定元素存储位置的以">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-16T11:30:12.702Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb0r1wg38tj30k00f5q4k.jpg">
+<meta property="og:updated_time" content="2020-01-18T07:36:46.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Map">
 <meta name="twitter:description" content="HashMap参考 集合番@HashMap一文通（1.7版） 集合番@HashMap一文通（1.8版）  HashMap源码分析—掘金博主  美团技术讲解HashMap  相关面试问题  问题引导由于知识点太多，我就以自己搜集到的面试常问的有关于HashMap的问题进行解决，然后再进一步深挖！  HashMap的底层数据结构？ HashMap的主要方法？ HashMap 是如何确定元素存储位置的以">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gb0r1wg38tj30k00f5q4k.jpg">
 
 
 
@@ -511,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-16 19:30:12" itemprop="dateModified" datetime="2020-01-16T19:30:12+08:00">2020-01-16</time>
+                <time title="修改时间：2020-01-18 15:36:46" itemprop="dateModified" datetime="2020-01-18T15:36:46+08:00">2020-01-18</time>
               
             
           </span>
@@ -546,7 +548,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.4k</span>
+                <span title="本文字数">3.3k</span>
               
 
               
@@ -560,7 +562,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -643,7 +645,24 @@
 </li>
 </ul>
 </blockquote>
-<p><strong>JDK 1.8</strong> 版本的HashMap是以 <strong>数组 + 链表 + 红黑树</strong> 实现的，<strong>红黑树</strong> 可能大家接触的不是很多，所以我赶紧学习了一波   <a href="https://jeromememory.github.io/红黑树.md">传送门</a>，</p>
+<p><strong>JDK 1.8</strong> 版本的HashMap是以 <strong>数组 + 链表 + 红黑树</strong> 实现的，<strong>红黑树</strong> 可能大家接触的不是很多，所以我赶紧学习了一波 <a href="[https://jeromememory.github.io/2020/01/16/%E7%BA%A2%E9%BB%91%E6%A0%91.html](https://jeromememory.github.io/2020/01/16/红黑树.html">传送门</a>)，具体的实现如下图所示：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gb0r1wg38tj30k00f5q4k.jpg" alt="img"></p>
+<h2 id="源码中的相关概念"><a href="#源码中的相关概念" class="headerlink" title="源码中的相关概念"></a>源码中的相关概念</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><ol>
+<li><strong>哈希桶（buckets）</strong>：在 HashMap 的注释里使用哈希桶来形象的表示数组中每个地址位置。注意这里并不是数组本身，数组是装哈希桶的，他可以被称为<strong>哈希表</strong>。</li>
+<li><strong>初始容量(initial capacity)</strong> : 这个很容易理解，就是哈希表中哈希桶初始的数量。如果我们没有通过构造方法修改这个容量值默认为<code>DEFAULT_INITIAL_CAPACITY = 1&lt;&lt;4</code> 即16。值得注意的是为了保证 HashMap 添加和查找的高效性，<code>HashMap</code> 的容量总是  2^n 的形式，下文会讲为什么 HashMap 的容量总是 2^n次方。</li>
+<li><strong>加载因子(load factor)</strong>：加载因子是哈希表（散列表）在其容量自动增加之前被允许获得的最大数量的度量。当哈希表中的条目数量超过负载因子和当前容量的乘积时，散列表就会被重新映射（即重建内部数据结构），重新创建的散列表容量大约是之前散列表哈系统桶数量的两倍。默认加载因子（0.75）在时间和空间成本之间提供了良好的折衷。加载因子过大会导致很容易链表过长，<strong>加载因子很小又容易导致频繁的扩容。所以不要轻易试着去改变这个默认值</strong>。</li>
+<li><strong>扩容阈值（threshold）</strong>：其实在说加载因子的时候已经提到了扩容阈值了，<strong>扩容阈值 = 哈希表容量 * 加载因子</strong>。哈希表的键值对总数 = 所有哈希桶中所有链表节点数的加和，扩容阈值比较的是是键值对的个数而不是哈希表的数组中有多少个位置被占了。</li>
+<li><strong>树化阀值(TREEIFY_THRESHOLD)</strong> ：这个参数概念是在 JDK1.8后加入的，它的含义代表一个哈希桶中的节点个数大于该值（默认为8）的时候将会被转为红黑树行存储结构。</li>
+<li><strong>非树化阀值(UNTREEIFY_THRESHOLD)</strong>： 与树化阈值相对应，表示当一个已经转化为数形存储结构的哈希桶中节点数量小于该值（默认为 6）的时候将再次改为单链表的格式存储。导致这种操作的原因可能有删除节点或者扩容。</li>
+<li><strong>最小树化容量(MIN_TREEIFY_CAPACITY)</strong>: 经过上边的介绍我们只知道，当链表的节点数超过8的时候就会转化为树化存储，其实对于转化还有一个要求就是哈希表的数量超过最小树化容量的要求（默认要求是 64）,且为了避免进行扩容、树形化选择的冲突，这个值不能小于 4 * TREEIFY_THRESHOLD);在达到该有求之前优先选择扩容。扩容因为因为容量的变化可能会使单链表的长度改变。</li>
+</ol>
+<p>与这个几个概念对应的在  HashMap 中几个常亮量，由于上边的介绍比较详细了，下边仅列出几个变量的声明：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*默认初始容量*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*最大存储容量*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*默认加载因子*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75</span>f;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*默认树化阈值*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*默认非树化阈值*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*默认最小树化容量*/</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+<p>对应的还有几个全局变量：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 扩容阈值 = 容量 x 加载因子</span></span><br><span class="line"><span class="keyword">int</span> threshold;</span><br><span class="line"></span><br><span class="line"><span class="comment">//存储哈希桶的数组，哈希桶中装的是一个单链表或一颗红黑树，长度一定是 2^n</span></span><br><span class="line"><span class="keyword">transient</span> Node&lt;K,V&gt;[] table;  </span><br><span class="line">  </span><br><span class="line"><span class="comment">// HashMap中存储的键值对的数量注意这里是键值对的个数而不是数组的长度</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> <span class="keyword">size</span>;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//所有键值对的Set集合 区分于 table 可以调用 entrySet(）得到该集合</span></span><br><span class="line"><span class="keyword">transient</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//操作数记录 为了多线程操作时 Fast-fail 机制</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> modCount;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>作者：像一只狗<br>链接：<a href="https://juejin.im/post/5ac83fa35188255c5668afd0" target="_blank" rel="noopener">https://juejin.im/post/5ac83fa35188255c5668afd0</a><br>来源：掘金</p>
+</blockquote>
 
       
     </div>
@@ -1056,7 +1075,7 @@
           
             
           
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2588481240&auto=1&height=90"></iframe>
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2588481240&auto=0&height=90"></iframe>
         </div>
       </div>
 
@@ -1071,7 +1090,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.1.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题引导"><span class="nav-number">1.2.</span> <span class="nav-text">问题引导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.3.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap的特性"><span class="nav-number">1.4.</span> <span class="nav-text">HashMap的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap的存储结构"><span class="nav-number">1.5.</span> <span class="nav-text">HashMap的存储结构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HashMap"><span class="nav-number">1.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.1.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题引导"><span class="nav-number">1.2.</span> <span class="nav-text">问题引导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.3.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap的特性"><span class="nav-number">1.4.</span> <span class="nav-text">HashMap的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap的存储结构"><span class="nav-number">1.5.</span> <span class="nav-text">HashMap的存储结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码中的相关概念"><span class="nav-number">1.6.</span> <span class="nav-text">源码中的相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要参数"><span class="nav-number">1.6.1.</span> <span class="nav-text">重要参数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1111,7 +1130,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">284k</span>
+    <span title="站点总字数">286k</span>
   
   
 </div>
