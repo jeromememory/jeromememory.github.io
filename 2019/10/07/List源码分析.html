@@ -152,14 +152,14 @@
   <meta name="description" content="ArrayList 源码分析（转载）不知道各位朋友，还记得开工前制定的学习目标么？ 有没有一直为了那个目标废寝忘食呢？继 搞懂 Java 内部类 后开始探索总结 Java 集合框架源码的知识，希望能给自己夯实基础，也希望能为自己实现目标更近一步。 ArrayList 源码分析思路ArrayList 是我们 App 开发中常用的 Java 集合类，从学习 Java 开始我们基本上就对它天天相见了，但">
 <meta name="keywords" content="java,ArrayList,源码分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ArrayList源码分析">
-<meta property="og:url" content="http://jeromememory.github.io/2019/10/07/ArrayList源码分析.html">
+<meta property="og:title" content="List源码分析">
+<meta property="og:url" content="http://jeromememory.github.io/2019/10/07/List源码分析.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="ArrayList 源码分析（转载）不知道各位朋友，还记得开工前制定的学习目标么？ 有没有一直为了那个目标废寝忘食呢？继 搞懂 Java 内部类 后开始探索总结 Java 集合框架源码的知识，希望能给自己夯实基础，也希望能为自己实现目标更近一步。 ArrayList 源码分析思路ArrayList 是我们 App 开发中常用的 Java 集合类，从学习 Java 开始我们基本上就对它天天相见了，但">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-15T02:49:35.333Z">
+<meta property="og:updated_time" content="2020-01-28T07:59:14.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArrayList源码分析">
+<meta name="twitter:title" content="List源码分析">
 <meta name="twitter:description" content="ArrayList 源码分析（转载）不知道各位朋友，还记得开工前制定的学习目标么？ 有没有一直为了那个目标废寝忘食呢？继 搞懂 Java 内部类 后开始探索总结 Java 集合框架源码的知识，希望能给自己夯实基础，也希望能为自己实现目标更近一步。 ArrayList 源码分析思路ArrayList 是我们 App 开发中常用的 Java 集合类，从学习 Java 开始我们基本上就对它天天相见了，但">
 
 
@@ -170,7 +170,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2019/10/07/ArrayList源码分析">
+  <link rel="canonical" href="http://jeromememory.github.io/2019/10/07/List源码分析">
 
 
 
@@ -180,7 +180,7 @@
   };
 </script>
 
-  <title>ArrayList源码分析 | jeromememory</title>
+  <title>List源码分析 | jeromememory</title>
   
 
 
@@ -452,7 +452,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/07/ArrayList源码分析.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/07/List源码分析.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -469,7 +469,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ArrayList源码分析
+          <h1 class="post-title" itemprop="name headline">List源码分析
 
               
             
@@ -512,7 +512,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-15 10:49:35" itemprop="dateModified" datetime="2020-01-15T10:49:35+08:00">2020-01-15</time>
+                <time title="修改时间：2020-01-28 15:59:14" itemprop="dateModified" datetime="2020-01-28T15:59:14+08:00">2020-01-28</time>
               
             
           </span>
@@ -784,21 +784,28 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;SubClass&gt; iterator = lists.iterator();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  SubClass next = iterator.next();</span><br><span class="line">  <span class="keyword">int</span> index = next.test;</span><br><span class="line">  <span class="keyword">if</span> (index == <span class="number">3</span>) &#123;</span><br><span class="line">      list2.remove(index);<span class="comment">//操作1： 注意是 list2.remove 操作</span></span><br><span class="line">      <span class="comment">//iterator.remove()；/操作2 注意是 iterator.remove 操作</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//操作1： Exception in thread "main" java.util.ConcurrentModificationException</span></span><br><span class="line"><span class="comment">//操作2：  [SubClass&#123;test=1&#125;, SubClass&#123;test=2&#125;]</span></span><br><span class="line">System.out.println(list2);</span><br></pre></td></tr></table></figure>
 <p>我们对操作1，2分别运行程序，可以看到，操作1很快就抛出了 java.util.ConcurrentModificationException 异常，操作2 则顺利运行出正常结果，如果对 modCount 注意了的话，我们很容易理解，list.remove(index) 操作会修改List 的 modCount，而 iterator.next() 内部每次会检验 expectedModCount != modCount，所以当我们使用 list.remove 下一次再调用 iterator.next() 就会报错了，而iterator.remove为什么是安全的呢？因为其操作内部会在调用 list.remove 后重新将新的 modCount 赋值给 expectedModCount。所以我们直接调用 list.remove 操作是错误的。对于多线程的影响这里不在展开这里推荐有兴趣的朋友看下这个文章 Java ConcurrentModificationException异常原因和解决方法;</p>
 <p>经过了一轮分析我们我们知道了错误产生原因了，但是大家是否能真的分辨出什么操作是错误的呢？我们来看下边这个面试题，这是我在网上无意中看到的一道大众点评的面试题：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  list.add(<span class="string">"sh"</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; list.iterator().hasNext(); i++) &#123;</span><br><span class="line">  list.remove(i);</span><br><span class="line">  System.out.println(<span class="string">"秘密"</span> + list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  list.add(<span class="string">"sh"</span> + i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; list.iterator().hasNext(); i++) &#123;</span><br><span class="line">  <span class="comment">//是在这里会报错，而不是下一行</span></span><br><span class="line">  <span class="comment">// 因为size最后还是5，而每次循环都会new一个迭代器出来，其cursor从0开始，即只要size != 0，循环就不会跳出</span></span><br><span class="line">  <span class="comment">// 最后size == 5，list.remove(5)越界：IndexOutOfBoundsException</span></span><br><span class="line">  list.remove(i);</span><br><span class="line">  System.out.println(<span class="string">"秘密"</span> + list.get(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="一道面试题"><a href="#一道面试题" class="headerlink" title="一道面试题"></a>一道面试题</h3><p>相信大家肯定知道这样操作是会产生错误的，但是最终会抛出角标越界还是ConcurrentModificationException呢？</p>
 <p>其实这里会抛出角标越界异常，为什么呢，因为 for 循环的条件 list.iterator().hasNext()，我们知道 list.iterator() 将会new 一个新的 iterator 对象，而在 new 的过程中我们将 每次 list.remove 后的 modCount 赋值给了新的 iterator 的 expectedModCount，所以不会抛出 ConcurrentModificationException 异常，而 hasNext 内部只判断了 size 是否等于 cursor != size 当我们删除了一半元素以后，size 变成了 5 而新的 list.iterator() 的 cursor 等于 0 ，0!=5 for 循环继续，那么当执行到 list.remove（5）的时候就会抛出角标越界了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>ArrayList 底层是一个动态扩容的数组结构,每次扩容需要增加1.5倍的容量</li>
-<li>ArrayList 扩容底层是通过 Arrays.CopyOf 和 System.arraycopy 来实现的。每次都会产生新的数组，和数组中内容的拷贝，所以会耗费性能，所以在多增删的操作的情况可优先考虑 LinkList 而不是 ArrayList。</li>
-<li>ArrayList 的 toArray 方法重载方法的使用。</li>
-<li>允许存放（不止一个） null 元素，</li>
-<li>允许存放重复数据，存储顺序按照元素的添加顺序</li>
-<li>ArrayList 并不是一个线程安全的集合。如果集合的增删操作需要保证线程的安全性，可以考虑使用 CopyOnWriteArrayList 或者使collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类.</li>
-<li>不正确访问集合元素的时候 ConcurrentModificationException和 java.lang.IndexOutOfBoundsException 异常产生的时机和原理。<pre><code>本文又长篇大论的分析了一波 ArrayList 的源码，对我个人而言这很有意义，在查看源码的过程中，注意到了平时很少有机会接触的知识点。当然这只是集合源码分析的开端，以后还会更细，其他常用集合源码的分析。如果大家感觉我写的还可以， 请留言 + 点赞 + 关注。
+<li><p>ArrayList 底层是一个动态扩容的数组结构,每次扩容需要增加1.5倍的容量</p>
+</li>
+<li><p>ArrayList 扩容底层是通过 Arrays.CopyOf 和 System.arraycopy 来实现的。每次都会产生新的数组，和数组中内容的拷贝，所以会耗费性能，所以在多增删的操作的情况可优先考虑 LinkList 而不是 ArrayList。</p>
+</li>
+<li><p>ArrayList 的 toArray 方法重载方法的使用。</p>
+</li>
+<li><p>允许存放（不止一个） null 元素，</p>
+</li>
+<li><p>允许存放重复数据，存储顺序按照元素的添加顺序</p>
+</li>
+<li><p>ArrayList 并不是一个线程安全的集合。如果集合的增删操作需要保证线程的安全性，可以考虑使用 CopyOnWriteArrayList 或者使collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类.</p>
+</li>
+<li><p>不正确访问集合元素的时候 ConcurrentModificationException和 java.lang.IndexOutOfBoundsException 异常产生的时机和原理。</p>
+<pre><code>本文又长篇大论的分析了一波 ArrayList 的源码，对我个人而言这很有意义，在查看源码的过程中，注意到了平时很少有机会接触的知识点。当然这只是集合源码分析的开端，以后还会更细，其他常用集合源码的分析。如果大家感觉我写的还可以， 请留言 + 点赞 + 关注。
 </code></pre></li>
 </ul>
-<p>** 转载：<a href="https://juejin.im/post/5ab548f75188257ddb0f8fa2#heading-11" target="_blank" rel="noopener">搞懂 Java ArrayList 源码</a></p>
-
+<p>转载：<a href="https://juejin.im/post/5ab548f75188257ddb0f8fa2#heading-11" target="_blank" rel="noopener">搞懂 Java ArrayList 源码</a></p>
+<h1 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h1><h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1>
       
     </div>
 
@@ -865,7 +872,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2019/10/07/ArrayList源码分析.html" title="ArrayList源码分析">http://jeromememory.github.io/2019/10/07/ArrayList源码分析.html</a>
+    <a href="http://jeromememory.github.io/2019/10/07/List源码分析.html" title="List源码分析">http://jeromememory.github.io/2019/10/07/List源码分析.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -992,7 +999,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1122,9 +1129,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1235,7 +1240,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList-源码分析（转载）"><span class="nav-number">1.</span> <span class="nav-text">ArrayList 源码分析（转载）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-源码分析思路"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList 源码分析思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-概述"><span class="nav-number">1.2.</span> <span class="nav-text">ArrayList 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList的基本特点"><span class="nav-number">1.2.1.</span> <span class="nav-text">ArrayList的基本特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList-的继承关系"><span class="nav-number">1.2.2.</span> <span class="nav-text">ArrayList 的继承关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的构造方法"><span class="nav-number">1.3.</span> <span class="nav-text">ArrayList 的构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无参构造方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">无参构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定初始容量的构造方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">指定初始容量的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用另个一个集合-Collection-的构造方法"><span class="nav-number">1.3.3.</span> <span class="nav-text">使用另个一个集合 Collection 的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Collection-toArray-方法"><span class="nav-number">1.3.4.</span> <span class="nav-text">Object[] Collection.toArray() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-copyOf-方法"><span class="nav-number">1.3.5.</span> <span class="nav-text">Arrays.copyOf 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList的添加元素-amp-扩容机制"><span class="nav-number">1.4.</span> <span class="nav-text">ArrayList的添加元素 &amp; 扩容机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在集合末尾添加一个元素的方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">在集合末尾添加一个元素的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩容机制"><span class="nav-number">1.4.2.</span> <span class="nav-text">扩容机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在指定角标位置添加元素的方法"><span class="nav-number">1.4.3.</span> <span class="nav-text">在指定角标位置添加元素的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量添加元素"><span class="nav-number">1.4.4.</span> <span class="nav-text">批量添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在数组指定角标位置添加"><span class="nav-number">1.4.5.</span> <span class="nav-text">在数组指定角标位置添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-删除元素"><span class="nav-number">1.5.</span> <span class="nav-text">ArrayList 删除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根据角标移除元素"><span class="nav-number">1.5.1.</span> <span class="nav-text">根据角标移除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除指定元素"><span class="nav-number">1.5.2.</span> <span class="nav-text">移除指定元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量移除-保留-removeAll-retainAll"><span class="nav-number">1.5.3.</span> <span class="nav-text">批量移除/保留 removeAll/retainAll</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的改查"><span class="nav-number">1.6.</span> <span class="nav-text">ArrayList 的改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改指定角标位置的元素"><span class="nav-number">1.6.1.</span> <span class="nav-text">修改指定角标位置的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询指定角标的元素"><span class="nav-number">1.6.2.</span> <span class="nav-text">查询指定角标的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询指定元素的角标或者集合是否包含某个元素"><span class="nav-number">1.6.3.</span> <span class="nav-text">查询指定元素的角标或者集合是否包含某个元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-集合的-toArry-方法"><span class="nav-number">1.7.</span> <span class="nav-text">ArrayList 集合的 toArry 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的遍历"><span class="nav-number">1.8.</span> <span class="nav-text">ArrayList 的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">1.8.1.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ListIterator-迭代器"><span class="nav-number">1.8.2.</span> <span class="nav-text">ListIterator 迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java8-新增加的遍历方法-forEach"><span class="nav-number">1.8.3.</span> <span class="nav-text">java8 新增加的遍历方法 forEach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误操作导致-ConcurrentModificationException-异常"><span class="nav-number">1.8.4.</span> <span class="nav-text">错误操作导致 ConcurrentModificationException 异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一道面试题"><span class="nav-number">1.8.5.</span> <span class="nav-text">一道面试题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.9.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList-源码分析（转载）"><span class="nav-number">1.</span> <span class="nav-text">ArrayList 源码分析（转载）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-源码分析思路"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList 源码分析思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-概述"><span class="nav-number">1.2.</span> <span class="nav-text">ArrayList 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList的基本特点"><span class="nav-number">1.2.1.</span> <span class="nav-text">ArrayList的基本特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList-的继承关系"><span class="nav-number">1.2.2.</span> <span class="nav-text">ArrayList 的继承关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的构造方法"><span class="nav-number">1.3.</span> <span class="nav-text">ArrayList 的构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无参构造方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">无参构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定初始容量的构造方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">指定初始容量的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用另个一个集合-Collection-的构造方法"><span class="nav-number">1.3.3.</span> <span class="nav-text">使用另个一个集合 Collection 的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Collection-toArray-方法"><span class="nav-number">1.3.4.</span> <span class="nav-text">Object[] Collection.toArray() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-copyOf-方法"><span class="nav-number">1.3.5.</span> <span class="nav-text">Arrays.copyOf 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList的添加元素-amp-扩容机制"><span class="nav-number">1.4.</span> <span class="nav-text">ArrayList的添加元素 &amp; 扩容机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在集合末尾添加一个元素的方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">在集合末尾添加一个元素的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩容机制"><span class="nav-number">1.4.2.</span> <span class="nav-text">扩容机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在指定角标位置添加元素的方法"><span class="nav-number">1.4.3.</span> <span class="nav-text">在指定角标位置添加元素的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量添加元素"><span class="nav-number">1.4.4.</span> <span class="nav-text">批量添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在数组指定角标位置添加"><span class="nav-number">1.4.5.</span> <span class="nav-text">在数组指定角标位置添加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-删除元素"><span class="nav-number">1.5.</span> <span class="nav-text">ArrayList 删除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根据角标移除元素"><span class="nav-number">1.5.1.</span> <span class="nav-text">根据角标移除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移除指定元素"><span class="nav-number">1.5.2.</span> <span class="nav-text">移除指定元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批量移除-保留-removeAll-retainAll"><span class="nav-number">1.5.3.</span> <span class="nav-text">批量移除/保留 removeAll/retainAll</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的改查"><span class="nav-number">1.6.</span> <span class="nav-text">ArrayList 的改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改指定角标位置的元素"><span class="nav-number">1.6.1.</span> <span class="nav-text">修改指定角标位置的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询指定角标的元素"><span class="nav-number">1.6.2.</span> <span class="nav-text">查询指定角标的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询指定元素的角标或者集合是否包含某个元素"><span class="nav-number">1.6.3.</span> <span class="nav-text">查询指定元素的角标或者集合是否包含某个元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-集合的-toArry-方法"><span class="nav-number">1.7.</span> <span class="nav-text">ArrayList 集合的 toArry 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-的遍历"><span class="nav-number">1.8.</span> <span class="nav-text">ArrayList 的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">1.8.1.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ListIterator-迭代器"><span class="nav-number">1.8.2.</span> <span class="nav-text">ListIterator 迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java8-新增加的遍历方法-forEach"><span class="nav-number">1.8.3.</span> <span class="nav-text">java8 新增加的遍历方法 forEach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误操作导致-ConcurrentModificationException-异常"><span class="nav-number">1.8.4.</span> <span class="nav-text">错误操作导致 ConcurrentModificationException 异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一道面试题"><span class="nav-number">1.8.5.</span> <span class="nav-text">一道面试题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.9.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LinkedList"><span class="nav-number">2.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vector"><span class="nav-number">3.</span> <span class="nav-text">Vector</span></a></li></ol></div>
             
 
           </div>
@@ -1275,7 +1280,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">315k</span>
+    <span title="站点总字数">432k</span>
   
   
 </div>
@@ -1475,7 +1480,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/10/07/ArrayList源码分析.html'
+    refer: '2019/10/07/List源码分析.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

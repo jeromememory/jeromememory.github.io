@@ -159,7 +159,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gat2bg7496j30te0a1q3j.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gatlwik3h5j30te0a1t99.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwly1gatvbwhu7aj305k05aa9z.jpg">
-<meta property="og:updated_time" content="2020-01-14T15:18:16.445Z">
+<meta property="og:updated_time" content="2020-01-27T15:51:04.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二叉树专题总结">
 <meta name="twitter:description" content="四种遍历先序、中序、后序遍历，非常简单！接下来我会用一种通用的方式完成这三种遍历哟！ 保证你看完能迅速手写三种遍历的非递归！  先序遍历递归1234567891011121314class Solution &amp;#123;    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) &amp;#123;        List&amp;lt;Inte">
@@ -515,7 +515,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-14 23:18:16" itemprop="dateModified" datetime="2020-01-14T23:18:16+08:00">2020-01-14</time>
+                <time title="修改时间：2020-01-27 23:51:04" itemprop="dateModified" datetime="2020-01-27T23:51:04+08:00">2020-01-27</time>
               
             
           </span>
@@ -625,9 +625,9 @@
 <ul>
 <li>树复制之非递归</li>
 </ul>
-<font color="red">Tip: 在复现非递归时，发现一个问题，就是Queue的实现类ArrayDeque是非线程安全的，所以其不允许存储null元素，因为系统根据某个位置是否为null来判断元素的存在。[ArrayDeque当作为栈使用时，性能比Stack好；当作为队列使用时，性能比LinkedList好。]<br> </font>
+<font color="red">Tip: 在复现非递归时，发现一个问题，就是Queue的实现类ArrayDeque是非线程安全的，但是其不允许存储null元素，这个跟ArrayList、LinkedList、HashMap、TreeMap等非线程安全的集合不同！！！！<strong>因为系统根据某个位置是否为null来判断元素的存在，null插入直接会报空指针异常</strong>。[ArrayDeque当作为栈使用时，性能比Stack好；当作为队列使用时，性能比LinkedList好。]<br> </font>
 
-<p>所以这里使用了Queue的另外一个实现类LinkedList，它是线程安全的哟！可以存储null！！！</p>
+<p>所以这里使用了Queue的另外一个实现类LinkedList，它也是非线程安全的哟，但是可以存储null！！！</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isSymmetricByIteration</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    queue.add(root.left);</span><br><span class="line">    queue.add(root.right);</span><br><span class="line">    <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">        TreeNode tree1 = queue.poll();</span><br><span class="line">        TreeNode tree2 = queue.poll();</span><br><span class="line">        <span class="keyword">if</span>(tree1 == <span class="keyword">null</span> &amp;&amp; tree2 == <span class="keyword">null</span> ) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(tree1 == <span class="keyword">null</span> || tree2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(tree1.val != tree2.val) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        queue.add(tree1.left);</span><br><span class="line">        queue.add(tree2.right);</span><br><span class="line">        queue.add(tree1.right);</span><br><span class="line">        queue.add(tree2.left);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>层序非递归</li>
@@ -1015,8 +1015,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/08/近期准备.html" rel="next" title="近期计划~">
-                <i class="fa fa-chevron-left"></i> 近期计划~
+              <a href="/2020/01/05/复试准备.html" rel="next" title="复试准备">
+                <i class="fa fa-chevron-left"></i> 复试准备
               </a>
             
           </div>
@@ -1103,7 +1103,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1233,9 +1233,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1386,7 +1384,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">315k</span>
+    <span title="站点总字数">432k</span>
   
   
 </div>
