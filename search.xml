@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Set集合源码分析]]></title>
-    <url>%2F2020%2F01%2F30%2FSet%E9%9B%86%E5%90%88%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html</url>
-    <content type="text"><![CDATA[回顾]]></content>
-      <categories>
-        <category>集合</category>
-      </categories>
-      <tags>
-        <tag>集合</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[多线程相关内容]]></title>
     <url>%2F2020%2F01%2F29%2F%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9.html</url>
     <content type="text"><![CDATA[由于今天刚结束集合有关的源码分析… 下一个阶段就是 多线程 &amp; JVM 啦！ 加油！]]></content>
