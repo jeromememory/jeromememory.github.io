@@ -149,17 +149,17 @@
 
 
 
-  <meta name="description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串转成数组，可以有 str.toCharArray()，然后数组转回字符串是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr) String 不能直接变化，但是可以用StringBuilder  123StringBuilder sb = n">
+  <meta name="description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串  ——&amp;gt;  数组，可以有 str.toCharArray()，然后数组   —–&amp;gt;  字符串 是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr)，打印多维数组是 Arrays.deeptoString() String 不能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法题总结">
 <meta property="og:url" content="http://jeromememory.github.io/2020/01/26/部分做题总结.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串转成数组，可以有 str.toCharArray()，然后数组转回字符串是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr) String 不能直接变化，但是可以用StringBuilder  123StringBuilder sb = n">
+<meta property="og:description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串  ——&amp;gt;  数组，可以有 str.toCharArray()，然后数组   —–&amp;gt;  字符串 是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr)，打印多维数组是 Arrays.deeptoString() String 不能">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-26T02:09:33.826Z">
+<meta property="og:updated_time" content="2020-02-05T11:03:39.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法题总结">
-<meta name="twitter:description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串转成数组，可以有 str.toCharArray()，然后数组转回字符串是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr) String 不能直接变化，但是可以用StringBuilder  123StringBuilder sb = n">
+<meta name="twitter:description" content="数组都是arr.length，字符串是str.length()，列表是list.size() 字符串  ——&amp;gt;  数组，可以有 str.toCharArray()，然后数组   —–&amp;gt;  字符串 是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr)，打印多维数组是 Arrays.deeptoString() String 不能">
 
 
 
@@ -494,12 +494,24 @@
                 
               
 
-              <time title="创建时间：2020-01-26 10:05:22 / 修改时间：10:09:33" itemprop="dateCreated datePublished" datetime="2020-01-26T10:05:22+08:00">2020-01-26</time>
+              <time title="创建时间：2020-01-26 10:05:22" itemprop="dateCreated datePublished" datetime="2020-01-26T10:05:22+08:00">2020-01-26</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-05 19:03:39" itemprop="dateModified" datetime="2020-02-05T19:03:39+08:00">2020-02-05</time>
               
             
           </span>
@@ -534,7 +546,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">262</span>
+                <span title="本文字数">2.5k</span>
               
 
               
@@ -548,7 +560,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">2 分钟</span>
               
             </div>
           
@@ -570,10 +582,41 @@
       
         <ul>
 <li>数组都是arr.length，字符串是str.length()，列表是list.size()</li>
-<li>字符串转成数组，可以有 str.toCharArray()，然后数组转回字符串是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr)</li>
+<li>字符串  ——&gt;  数组，可以有 str.toCharArray()，然后数组   —–&gt;  字符串 是 new String(arr)，注意如果想要直接打印数组内容则是 Arrays.toString(arr)，打印多维数组是 Arrays.deeptoString()</li>
 <li>String 不能直接变化，但是可以用StringBuilder</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder sb = <span class="keyword">new</span> StringBuilder(str);</span><br><span class="line">sb.replace(<span class="number">1</span>,<span class="number">2</span>,<span class="string">"aa"</span>);</span><br><span class="line"><span class="keyword">return</span> sb.toString();</span><br></pre></td></tr></table></figure>
+<font color="red">不管是数组转换成集合，还是集合转换成数组，都要注意转换类型的一致性，String[]数组转String类型的集合，当需要使用int，double等集合的时候，需要使用对应的对象<br>  如：数组int[]用Integer[]，double[]用Double[] ,因为List集合是对象的集合，而int、double等不是对象，所以需要用字段的对应对象类</font>
+
+<ul>
+<li>数组直接转成列表 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意这里必须是 Integer对象的数组，否则转不了</span></span><br><span class="line">Integer[] nums = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">ArrayList arr= <span class="keyword">new</span> ArrayList&lt;&gt;(nums.length);</span><br><span class="line">Collections.addAll(arr,nums);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 好像也可以，但是跟上面一样，得是 String、Integer类型的数组</span></span><br><span class="line">Arrays.asList(arr);</span><br></pre></td></tr></table></figure>
+<p>如果是int，需要装箱再转才可以</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">List arr = Arrays.stream(a).boxed().collect(Collectors.toList());</span><br><span class="line">System.out.println(arr);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>列表转数组</li>
+</ul>
+<p>采用集合的toArray()方法直接把List集合转换成数组，这里需要注意，不能这样写： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] array = (String[]) mlist.toArray();</span><br></pre></td></tr></table></figure>
+<p>这样写的话，编译运行时会报类型无法转换java.lang.ClassCastException的错误，这是为何呢，这样写看起来没有问题啊</p>
+<p><font color="blue">因为java中的强制类型转换是针对单个对象才有效果的，而List是多对象的集合，所以将整个List强制转换是不行的</font> 。正确的写法应该是这样的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String[] array = mlist.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;<span class="keyword">int</span>[]&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">res.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>&#125;);</span><br><span class="line">res.add(<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">3</span>,<span class="number">4</span>&#125;);</span><br><span class="line">System.out.println(res);</span><br><span class="line"><span class="keyword">int</span>[][] a = res.toArray(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>][]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">res.add(<span class="number">1</span>);</span><br><span class="line">res.add(<span class="number">2</span>);</span><br><span class="line">System.out.println(res);</span><br><span class="line">Integer[] a = res.toArray(<span class="keyword">new</span> Integer[<span class="number">0</span>]);</span><br><span class="line">System.out.println(Arrays.toString(a));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>哈希表中统计数出现的次数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; numCount = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = numCount.getOrDefault(num, <span class="number">0</span>) + <span class="number">1</span>;</span><br><span class="line">            numCount.put(num, count);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对哈希map中的 value 值升序排列</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Map.Entry&lt;Integer, Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;Map.Entry&lt;Integer, Integer&gt;&gt;(hashMap.entrySet());</span><br><span class="line">Collections.sort(list, (o1, o2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">int</span> compare = (o1.getValue()).compareTo(o2.getValue());</span><br><span class="line">    <span class="keyword">return</span> compare;</span><br><span class="line">&#125;);</span><br><span class="line">Map&lt;Integer, Integer&gt; returnMap = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Integer&gt;();</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : list) &#123;</span><br><span class="line">    returnMap.put(entry.getKey(), entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数字转字符，字符转数字</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数字转字符 方式一</span></span><br><span class="line">String str = <span class="string">"1230"</span>;</span><br><span class="line"><span class="keyword">int</span> d = Integer.parseInt(str); <span class="comment">//静态函数直接通过类名调用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字转字符 方式二</span></span><br><span class="line"><span class="keyword">int</span> d3 = Integer.valueOf(<span class="string">"1230"</span>);</span><br><span class="line">System.out.println(<span class="string">"digit3: "</span> + d3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符转数字</span></span><br><span class="line">String s = String.valueOf(d);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1009,7 +1052,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">434k</span>
+    <span title="站点总字数">536k</span>
   
   
 </div>
