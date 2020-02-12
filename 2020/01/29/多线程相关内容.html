@@ -149,17 +149,19 @@
 
 
 
-  <meta name="description" content="由于今天刚结束集合有关的源码分析… 下一个阶段就是 多线程 &amp;amp; JVM 啦！ 加油！">
+  <meta name="description" content="线程的基本操作及状态转换创建线程的三种方式继承 Thread 类方法一 继承 Thread 类并重写 run 方法 创建线程对象 调用该线程对象的 start() 方法来启动线程  demo 12345678910111213141516class ThreadDemo&amp;#123;    public static void main(String[] args) &amp;#123;        ne">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程相关内容">
 <meta property="og:url" content="http://jeromememory.github.io/2020/01/29/多线程相关内容.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="由于今天刚结束集合有关的源码分析… 下一个阶段就是 多线程 &amp;amp; JVM 啦！ 加油！">
+<meta property="og:description" content="线程的基本操作及状态转换创建线程的三种方式继承 Thread 类方法一 继承 Thread 类并重写 run 方法 创建线程对象 调用该线程对象的 start() 方法来启动线程  demo 12345678910111213141516class ThreadDemo&amp;#123;    public static void main(String[] args) &amp;#123;        ne">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-30T12:43:06.373Z">
+<meta property="og:image" content="http://jeromememory.github.io/Users/yangweijie/Library/Application%20Support/typora-user-images/image-20200206183630930.png">
+<meta property="og:updated_time" content="2020-02-11T11:58:45.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程相关内容">
-<meta name="twitter:description" content="由于今天刚结束集合有关的源码分析… 下一个阶段就是 多线程 &amp;amp; JVM 啦！ 加油！">
+<meta name="twitter:description" content="线程的基本操作及状态转换创建线程的三种方式继承 Thread 类方法一 继承 Thread 类并重写 run 方法 创建线程对象 调用该线程对象的 start() 方法来启动线程  demo 12345678910111213141516class ThreadDemo&amp;#123;    public static void main(String[] args) &amp;#123;        ne">
+<meta name="twitter:image" content="http://jeromememory.github.io/Users/yangweijie/Library/Application%20Support/typora-user-images/image-20200206183630930.png">
 
 
 
@@ -512,7 +514,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-30 20:43:06" itemprop="dateModified" datetime="2020-01-30T20:43:06+08:00">2020-01-30</time>
+                <time title="修改时间：2020-02-11 19:58:45" itemprop="dateModified" datetime="2020-02-11T19:58:45+08:00">2020-02-11</time>
               
             
           </span>
@@ -547,7 +549,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">47</span>
+                <span title="本文字数">8k</span>
               
 
               
@@ -561,7 +563,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -581,9 +583,92 @@
       
 
       
-        <p>由于今天刚结束集合有关的源码分析…</p>
-<p>下一个阶段就是 多线程 &amp; JVM 啦！</p>
-<p>加油！</p>
+        <h1 id="线程的基本操作及状态转换"><a href="#线程的基本操作及状态转换" class="headerlink" title="线程的基本操作及状态转换"></a>线程的基本操作及状态转换</h1><h2 id="创建线程的三种方式"><a href="#创建线程的三种方式" class="headerlink" title="创建线程的三种方式"></a>创建线程的三种方式</h2><h3 id="继承-Thread-类"><a href="#继承-Thread-类" class="headerlink" title="继承 Thread 类"></a>继承 Thread 类</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><ul>
+<li>继承 Thread 类并重写 run 方法</li>
+<li>创建线程对象</li>
+<li>调用该线程对象的 start() 方法来启动线程</li>
+</ul>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">" is running: "</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><ul>
+<li>当然也可以直接实现内部类，然后重写 run() 方法，然后适当的可以用 lamda 表达式</li>
+</ul>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        new ThreadTest().start();</span></span><br><span class="line">        <span class="comment">// 2. 直接继承 Thread 类</span></span><br><span class="line">        Thread threadC = <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"3.1 get resource c"</span>);</span><br><span class="line">                <span class="keyword">super</span>.run();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        threadC.start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h3><h4 id="方法一-1"><a href="#方法一-1" class="headerlink" title="方法一"></a>方法一</h4><ul>
+<li>定义一个类实现 Runnable 接口，并重写该接口的 run() 方法</li>
+<li>创建 Runnable 实现类的对象，作为创建 Thread 对象的 target 参数，<strong><em>此 Thread 对象才是真正的线程对象</em></strong>，这个跟继承 Thread 不一样，第一种方式是直接 Thread 的实现类就是真正的线程对象，而实现 Runnable 接口得对象在这里并不是真正的线程对象。</li>
+<li>调用线程对象的 start() 方法来启动线程</li>
+</ul>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RunnableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        RunnableTest runnableTest = <span class="keyword">new</span> RunnableTest();</span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest, <span class="string">"线程1"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(runnableTest, <span class="string">"线程2"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RunnableTest</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">" is running: "</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法二-1"><a href="#方法二-1" class="headerlink" title="方法二"></a>方法二</h4><ul>
+<li>直接实现匿名内部类就行了，跟方式一中的方法二一样</li>
+</ul>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RunnableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        RunnableTest runnableTest = new RunnableTest();</span></span><br><span class="line"><span class="comment">//        new Thread(runnableTest, "线程1").start();</span></span><br><span class="line"><span class="comment">//        new Thread(runnableTest, "线程2").start();</span></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"这里是实现 Runnable 接口的线程"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现-Callable-接口"><a href="#实现-Callable-接口" class="headerlink" title="实现 Callable 接口"></a>实现 Callable 接口</h3><p>上述两种方式都有一个缺陷就是：在执行完任务之后无法获取执行结果。于是java后面又增加了 Callable 和 Future，通过它们可以在任务执行完毕之后得到任务执行结果。</p>
+<h4 id="Runnable-和-Callable"><a href="#Runnable-和-Callable" class="headerlink" title="Runnable 和 Callable"></a>Runnable 和 Callable</h4><ul>
+<li><p>Runnable 只是一个接口，里面只是声明了一个run方法，可以看到方法的返回值是void，所以线程执行完了没有任何的返回值。</p>
+</li>
+<li><p>Callable 也是一个接口，它里面声明了一个call方法，可以看到它是一个泛型接口，call()函数返回的类型就是传递进来的V类型。线程的执行是异步的，一个线程和另外一个线程的执行是互不干扰的，所以你不可能从别的线程中获得返回值，所以要想获得Callable的返回值就需要用到Future这个接口，Futrue可以监视目标线程调用call的情况，当你<strong><em>调用Future的get()方法以获得结果时，当前线程就开始阻塞，直到call方法结束返回结果。</em></strong></p>
+</li>
+</ul>
+<h4 id="Future"><a href="#Future" class="headerlink" title="Future"></a><strong>Future</strong></h4><p>Future 就是对于具体的 Runnable 或者 Callable 任务的执行结果进行取消、查询是否完成、获取结果。必要时可以通过get方法获取执行结果，该方法会阻塞直到任务返回结果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Future</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">cancel</span><span class="params">(<span class="keyword">boolean</span> mayInterruptIfRunning)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isCancelled</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isDone</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">V <span class="title">get</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line">    <span class="function">V <span class="title">get</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> InterruptedException, ExecutionException, TimeoutException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面我们讲解下这五个方法的作用：</p>
+<p><strong>cancel方法</strong>：用来取消任务，如果取消任务成功则返回true，如果取消任务失败则返回false。参数mayInterruptIfRunning表示是否允许取消正在执行却没有执行完毕的任务，如果设置true，则表示可以取消正在执行过程中的任务。如果任务已经完成，则无论mayInterruptIfRunning为true还是false，此方法肯定返回false，即如果取消已经完成的任务会返回false；如果任务正在执行，若mayInterruptIfRunning设置为true，则返回true，若mayInterruptIfRunning设置为false，则返回false；如果任务还没有执行，则无论mayInterruptIfRunning为true还是false，肯定返回true。</p>
+<p><strong>isCancelled方法</strong>：表示任务是否被取消成功，如果在任务正常完成前被取消成功，则返回 true</p>
+<p><strong>isDone方法</strong>：表示任务是否已经完成，若任务完成，则返回true</p>
+<p><strong>get()方法</strong>：用来获取执行结果，这个方法会产生阻塞，会一直等到任务执行完毕才返回。这里的阻塞需要解释一下，阻塞的是当前调用get方法的线程，直到get方法返回结果才能继续向下执行，如果get方法一直没有返回值，那么当前线程会一直阻塞下去</p>
+<p><strong>get(long timeout, TimeUnit unit)方法</strong>：获取执行结果，如果在指定时间内，还没获取到结果，就直接返回null，这个就避免了一直获取不到结果使得当前线程一直阻塞的情况发生</p>
+<p>也就是说Future提供了三种功能：</p>
+<p>　　<strong>1）判断任务是否完成；</strong></p>
+<p>　　<strong>2）能够中断任务；</strong></p>
+<p>　　<strong>3）能够获取任务执行结果。</strong></p>
+<p>因为Future只是一个接口，所以是<strong>无法直接用来创建对象使用</strong>的，因此就有了下面的 FutureTask。</p>
+<h4 id="FutureTask"><a href="#FutureTask" class="headerlink" title="FutureTask"></a><strong>FutureTask</strong></h4><p>我们先来看一下 FutureTask 的类图：</p>
+<p><img src="/Users/yangweijie/Library/Application Support/typora-user-images/image-20200206183630930.png" alt="image-20200206183630930"></p>
+<p>可以看出 RunnableFuture 继承了 Runnable 接口和 Future 接口，而 FutureTask 实现了 RunnableFuture 接口。所以它既可以作为 Runnable 被线程执行，又可以作为 Future 得到 Callable 的返回值。</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li><strong><em>ExecutorService &amp; Future &amp; Callable</em></strong></li>
+</ul>
+<p>第一种方式是使用继承了<code>ExecutorService</code>的线程池<code>ThreadPoolExecutor</code>中的<code>submit</code>方法，将<code>Callable</code>直接提交创建<code>Future</code>。</p>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// ExecutorService &amp; Callable</span></span><br><span class="line">        ExecutorService service = Executors.newSingleThreadExecutor();</span><br><span class="line">        <span class="comment">// 或者用这个</span></span><br><span class="line"><span class="comment">//        ExecutorService service = Executors.newCachedThreadPool();</span></span><br><span class="line">        Future&lt;String&gt; future = service.submit((Callable) () -&gt; <span class="string">"通过实现Callable接口"</span>);</span><br><span class="line">        System.out.println(future.isDone());</span><br><span class="line">        service.shutdown();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            String result = future.get();</span><br><span class="line">            System.out.println(result);</span><br><span class="line">            System.out.println(future.isDone());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>ExecutorService &amp; futureTask &amp; Callable</em></strong></li>
+</ul>
+<p>第二种方式就是使用 futureTask，具体看 demo 吧</p>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// FutureTask &amp; Callable</span></span><br><span class="line">        CallableTest callableTest = <span class="keyword">new</span> CallableTest();</span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(callableTest);</span><br><span class="line">        <span class="comment">// futureTask 可以采用两种方式运行线程</span></span><br><span class="line">        <span class="comment">// 1. 直接new Thread</span></span><br><span class="line"><span class="comment">//        new Thread(futureTask).start();</span></span><br><span class="line">        <span class="comment">// 2. 将FutureTask 对象放入 executorService 中</span></span><br><span class="line">        ExecutorService service = Executors.newCachedThreadPool();</span><br><span class="line">        service.submit(futureTask);</span><br><span class="line">        service.shutdown();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"子线程的返回值: "</span> + futureTask.get(<span class="number">3</span>, TimeUnit.SECONDS));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | TimeoutException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CallableTest</span> <span class="keyword">implements</span> <span class="title">Callable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">101</span>; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">" is running: "</span> + sum);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>futureTask &amp; Callable</em></strong></li>
+</ul>
+<p>因为 futureTask 实现了 run() 方法，所以可以直接 new Thread 启动。</p>
+<p><strong><em>demo</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CallableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// FutureTask &amp; Callable</span></span><br><span class="line">        CallableTest callableTest = <span class="keyword">new</span> CallableTest();</span><br><span class="line">        FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(callableTest);</span><br><span class="line">        <span class="comment">// futureTask 可以采用两种方式运行线程</span></span><br><span class="line">        <span class="comment">// 1. 直接new Thread</span></span><br><span class="line">        <span class="keyword">new</span> Thread(futureTask).start();</span><br><span class="line">        <span class="comment">// 2. 将FutureTask 对象放入 executorService 中</span></span><br><span class="line"><span class="comment">//        ExecutorService service = Executors.newCachedThreadPool();</span></span><br><span class="line"><span class="comment">//        service.submit(futureTask);</span></span><br><span class="line"><span class="comment">//        service.shutdown();</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"子线程的返回值: "</span> + futureTask.get(<span class="number">3</span>, TimeUnit.SECONDS));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException | TimeoutException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ExecutionException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CallableTest</span> <span class="keyword">implements</span> <span class="title">Callable</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">101</span>; i++) &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">" is running: "</span> + sum);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三种方式的比较"><a href="#三种方式的比较" class="headerlink" title="三种方式的比较"></a>三种方式的比较</h3><p><strong>1.实现Runnable/Callable接口相比继承Thread类的优势</strong></p>
+<p>（1）适合多个线程进行资源共享</p>
+<p>（2）可以避免java中单继承的限制</p>
+<p>（3）增加程序的健壮性，代码和数据独立</p>
+<p>（4）线程池只能放入 Runable 或 Callable 接口实现类，不能直接放入继承 Thread 的类</p>
+<p><strong>2.Callable和Runnable的区别</strong></p>
+<p>​    (1)  Callable 重写的是 call() 方法， Runnable 重写的方法是 run() 方法</p>
+<p>​    (2)  call() 方法执行后可以有返回值，run() 方法没有返回值</p>
+<p>​    (3)  call() 方法可以抛出异常，run() 方法不可以</p>
+<p>​    (4)  运行 Callable 任务可以拿到一个 Future 对象，表示异步计算的结果 。通过 Future 对象可以了解任务执行情况，可取消任务的执行，还可获取执行结果</p>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/88933756" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/88933756</a></p>
+<p><a href="https://juejin.im/post/5ae6cf7a518825670960fcc2" target="_blank" rel="noopener">https://juejin.im/post/5ae6cf7a518825670960fcc2</a></p>
+</blockquote>
+<h1 id="Syncronized"><a href="#Syncronized" class="headerlink" title="Syncronized"></a>Syncronized</h1><blockquote>
+<p><a href="https://juejin.im/post/594a24defe88c2006aa01f1c#comment" target="_blank" rel="noopener">超详细例子讲述 Syncronized</a></p>
+<p><a href="https://blog.csdn.net/pengweid/article/details/85711970" target="_blank" rel="noopener">形象讲述对象锁和类锁区别</a></p>
+</blockquote>
+<h1 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h1><blockquote>
+<p><a href="https://www.bilibili.com/video/av74879168?from=search&amp;seid=17412342529771517829" target="_blank" rel="noopener">volatile可见性原理底层分析（视频）</a></p>
+</blockquote>
 
       
     </div>
@@ -690,6 +775,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/07/零碎知识点.html" rel="prev" title="零碎知识点总结">
+                零碎知识点总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -737,8 +826,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -755,7 +853,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">38</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -982,6 +1080,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的基本操作及状态转换"><span class="nav-number">1.</span> <span class="nav-text">线程的基本操作及状态转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建线程的三种方式"><span class="nav-number">1.1.</span> <span class="nav-text">创建线程的三种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承-Thread-类"><span class="nav-number">1.1.1.</span> <span class="nav-text">继承 Thread 类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现Runnable接口"><span class="nav-number">1.1.2.</span> <span class="nav-text">实现Runnable接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二-1"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-Callable-接口"><span class="nav-number">1.1.3.</span> <span class="nav-text">实现 Callable 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Runnable-和-Callable"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Runnable 和 Callable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Future"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Future</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FutureTask"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">FutureTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种方式的比较"><span class="nav-number">1.1.4.</span> <span class="nav-text">三种方式的比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Syncronized"><span class="nav-number">2.</span> <span class="nav-text">Syncronized</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volatile"><span class="nav-number">3.</span> <span class="nav-text">Volatile</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -1015,7 +1130,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">536k</span>
+    <span title="站点总字数">559k</span>
   
   
 </div>

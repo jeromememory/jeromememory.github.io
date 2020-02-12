@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="dp背包九讲问题 01 背包问题 完全背包问题 多重背包问题 混合背包问题 二维费用的背包问题 分组背包问题 背包问题求方案数 背包问题求方案路径 有依赖的背包问题  01背包问题背景：有 n 件物品，每一件物品 i 对应一个体积 v[i] 和一个价值 w[i]，设有一个背包，体积为 V，在这个背包下能装下的价值的最大值是多少？ 模板 最原始方法：   dp[i][j]定义：表示前 i 个物品，总">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 二刷复习">
+<meta property="og:url" content="http://jeromememory.github.io/2020/02/10/leetcode算法题二刷.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="dp背包九讲问题 01 背包问题 完全背包问题 多重背包问题 混合背包问题 二维费用的背包问题 分组背包问题 背包问题求方案数 背包问题求方案路径 有依赖的背包问题  01背包问题背景：有 n 件物品，每一件物品 i 对应一个体积 v[i] 和一个价值 w[i]，设有一个背包，体积为 V，在这个背包下能装下的价值的最大值是多少？ 模板 最原始方法：   dp[i][j]定义：表示前 i 个物品，总">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-12T13:13:03.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode 二刷复习">
+<meta name="twitter:description" content="dp背包九讲问题 01 背包问题 完全背包问题 多重背包问题 混合背包问题 二维费用的背包问题 分组背包问题 背包问题求方案数 背包问题求方案路径 有依赖的背包问题  01背包问题背景：有 n 件物品，每一件物品 i 对应一个体积 v[i] 和一个价值 w[i]，设有一个背包，体积为 V，在这个背包下能装下的价值的最大值是多少？ 模板 最原始方法：   dp[i][j]定义：表示前 i 个物品，总">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2020/02/10/leetcode算法题二刷">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LeetCode 二刷复习 | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/10/leetcode算法题二刷.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode 二刷复习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-10 10:34:28" itemprop="dateCreated datePublished" datetime="2020-02-10T10:34:28+08:00">2020-02-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-12 21:13:03" itemprop="dateModified" datetime="2020-02-12T21:13:03+08:00">2020-02-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">14k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">12 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="dp"><a href="#dp" class="headerlink" title="dp"></a>dp</h1><h2 id="背包九讲问题"><a href="#背包九讲问题" class="headerlink" title="背包九讲问题"></a>背包九讲问题</h2><ol>
+<li>01 背包问题</li>
+<li>完全背包问题</li>
+<li>多重背包问题</li>
+<li>混合背包问题</li>
+<li>二维费用的背包问题</li>
+<li>分组背包问题</li>
+<li>背包问题求方案数</li>
+<li>背包问题求方案路径</li>
+<li>有依赖的背包问题</li>
+</ol>
+<h3 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h3><p>问题背景：有 n 件物品，每一件物品 i 对应一个体积 v[i] 和一个价值 w[i]，设有一个背包，体积为 V，在这个背包下能装下的价值的最大值是多少？</p>
+<h4 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h4><ol>
+<li>最原始方法：</li>
+</ol>
+<ul>
+<li><p>dp[i][j]定义：表示前 i 个物品，总体积是 j 的情况下，总价值最大是什么？</p>
+</li>
+<li><p>状态转移方程：dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j -v[i]] + w[i])</p>
+</li>
+<li>Max = dp[n][V]</li>
+</ul>
+<ol start="2">
+<li>优化</li>
+</ol>
+<ul>
+<li>dp[i][j] 只跟 <font color="red">上一层的外循环</font> 有关，所以根本没有必要使用二维数组，只需要使用一维数组即可，注意，使用一维数组的时候，<font color="green">内层循环需要从后向前遍历</font>；</li>
+<li>将 dp[0][j] 全部初始化为 0 ，则 dp[i][j] 就代表前 i 个物品，总体积小于等于 j 的最大总价值，故上文的Max = dp[V]，代表总体积小于等于 V 的最大总价值；</li>
+<li>如果要求的总价值的前提是背包容量<font color="red">恰好是 V</font>，则 只需要将初始化的值改为 dp[0][0] = 0 ，dp[0][j] = - INF 即可。</li>
+</ul>
+<ol start="3">
+<li>最终模板</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = V;j &gt;= v[i];j--)&#123;</span><br><span class="line">		dp[j] = Math.max(dp[j],dp[j - v[i]] + w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[V];</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><blockquote>
+<p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">leetcode第416题：分割等和子集</a></p>
+<p><a href="https://leetcode-cn.com/problems/target-sum/solution/python-dfs-xiang-jie-by-jimmy00745/" target="_blank" rel="noopener">leetcode第494题 目标和</a></p>
+</blockquote>
+<ul>
+<li>416 题代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canPartition</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            sum = sum + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum % <span class="number">2</span> != <span class="number">0</span> ) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> target = sum / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[target+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = target;j &gt;= nums[i-<span class="number">1</span>];j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[target]) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                dp[j] = dp[j] || dp[j-nums[i-<span class="number">1</span>]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>494 题代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 正数集合 P，负数集合 T</span></span><br><span class="line">        <span class="comment">// P - T = target， P + T = sum</span></span><br><span class="line">        <span class="comment">// P = (sum + target) / 2</span></span><br><span class="line">        <span class="comment">// 即题目就是找 子集和的方法数</span></span><br><span class="line">        <span class="comment">// 典型的01背包问题求解方案数，只需要把初始化的值改动一下，还要把状态转移方程中的 max ---&gt; sum</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            count = count + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(count &lt; S) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>((S + count) % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> P = (S + count)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[P+<span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>; <span class="comment">// 这里是第一个改动，因为例如二维数组中的dp[1][1] = dp[0][0] + dp[0][1],dp[0][1] = 0</span></span><br><span class="line">        <span class="comment">//此时要使得dp[1][1] = 1,则dp[0][0] = 1,这也符合常理，即0个数能找到和为0的方案为一种</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = P;j &gt;= nums[i-<span class="number">1</span>];j--)&#123;</span><br><span class="line">                dp[j] = dp[j] + dp[j - nums[i-<span class="number">1</span>]];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[P];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h3><font color="red">相比 01 背包问题来说，这里的一件物品可以选不止一次</font>
+
+<p>所以，这里的做法跟 01 背包只有一个不同，01背包的一维数组的方法中的内层循环是从后向前遍历，原因是其在循环第 i 个物品时要用到第 i-1个物品的对应的值，且要用到的值都没有被本次循环更新过，而这里恰恰相反，因为一次物品可以用多次，所以完全背包问题允许在循环第 i 个物品时提前更新要用到的值，具体˙证明可以使用 数学归纳法。</p>
+<h4 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h4><p>f[j] 表示 总体积是 j 的情况下，最大价值是什么</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V+<span class="number">1</span>];</span><br><span class="line"><span class="comment">// 注意内层循环是从前往后</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= n;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = v[i];j &lt;= V;j--)&#123;</span><br><span class="line">		dp[j] = Math.max(dp[j],dp[j - v[i]] + w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[V];</span><br></pre></td></tr></table></figure>
+<h3 id="多重背包问题-I"><a href="#多重背包问题-I" class="headerlink" title="多重背包问题 I"></a>多重背包问题 I</h3><p>相比 完全背包问题 相比，就是每个物品多了一个数量的限制，类似于01背包，只不过那里的物品的数量为1，这里的数量是 s。</p>
+<h4 id="模板-2"><a href="#模板-2" class="headerlink" title="模板"></a>模板</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化，f[i] = 0,i =0...n</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = V;j &gt;= <span class="number">0</span>;j--)&#123;</span><br><span class="line">    <span class="comment">// 和01背包唯一的区别</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k &lt;= s &amp;&amp; j &gt;= k * v[i];k++)&#123;</span><br><span class="line">      dp[j] = Math.max(dp[j],dp[j - v[i]*k] + w[i]*k);</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[V];</span><br></pre></td></tr></table></figure>
+<h3 id="多重背包问题-II"><a href="#多重背包问题-II" class="headerlink" title="多重背包问题 II"></a>多重背包问题 II</h3><p>其实就是对上面这个模板的优化，是对多重背包的二进制优化方法 。最内层循环的意思其实就是把背包的每一次重复都当成一次新的物品，类似于打包的形式，比如第一个物品体积是 v，价值为 w，第二个物品就是 2v，价值为 2w，以此类推，但是这样分解的时间复杂度太高了，可以通过二进制优化方法，为什么呢？因为他们之间是互斥的，每次都会只选出一个来，是后面的分组背包的特殊情况，所以我们只需要找到能表示所有方案的物品就行，无需全部罗列都当成01背包的物品。比如现在的 s 为7，按照上面的方法，我们需要比较0、1、2、3、4、5、6、7这8个方案的最大值，但是其实我们可以用三位数就表示0、1、2、3、4、5、6、7，因为我们只需要从这8个方案中选取一个即可，所以三位数就可以表示所有，然后从中选取自己符合要求的就行，在这里我们可以选择1、2、4，就能表示 0 ~ 7 所有元素，如果 s 为 10，那么我们可以选取 1、2、4、3 ，3是如何来的呢，是 </p>
+<p><strong>10 - （2^ 3 -1）</strong> 得来的，故就将 线性复杂度 变为 log2 复杂度了。</p>
+<h4 id="模板-3"><a href="#模板-3" class="headerlink" title="模板"></a>模板</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = V;j &gt;= <span class="number">0</span>;j--)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k &lt;= s;k = k * <span class="number">2</span>)&#123;</span><br><span class="line">      s = s - k;</span><br><span class="line">      <span class="comment">// 把每个 k 对应的都变成 一种物品</span></span><br><span class="line">      <span class="keyword">if</span>(j &gt;= k * v[i]) dp[j] = Math.max(dp[j],dp[j - k * v[i]] + k * w[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//不等于0，说明有余数</span></span><br><span class="line">    <span class="keyword">if</span>(s != <span class="number">0</span> &amp;&amp; j &gt;= s * v[i]) dp[j] = Math.max(dp[j],dp[j - s * v[i]] + s * w[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多重背包问题-III"><a href="#多重背包问题-III" class="headerlink" title="多重背包问题 III"></a>多重背包问题 III</h3><p>这是对多重背包的再次优化，上文已经将最内层循环从 O(n) 降为了 O(logn)，这里可以运用 单调队列 将最内层循环的 O(n) 降成 O(1)。</p>
+<p>完全背包问题转移图和多重背包一样。不过没有了物品个数限制，所以不是滑动窗口情况，不用单调队列。只保存一个最大值就可以。所以完全背包问题可以直接从前向后遍历，因为其只需要保存一个最大值。所以这里引入了单调队列之后，也维护了相同余数的最大值，故 j 也可以从前向后遍历。</p>
+<blockquote>
+<p>思路：<a href="https://blog.csdn.net/qq_40679299/article/details/81978770" target="_blank" rel="noopener">https://blog.csdn.net/qq_40679299/article/details/81978770</a></p>
+<p>为何引入单调队列分析：<a href="https://www.cnblogs.com/DeepJay/p/12025225.html" target="_blank" rel="noopener">https://www.cnblogs.com/DeepJay/p/12025225.html</a></p>
+<p>代码和思路精简版：<a href="https://www.acwing.com/solution/acwing/content/6500/（主推这个）" target="_blank" rel="noopener">https://www.acwing.com/solution/acwing/content/6500/（主推这个）</a></p>
+</blockquote>
+<h4 id="模板-4"><a href="#模板-4" class="headerlink" title="模板"></a>模板</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="comment">// 表示物品种类</span></span><br><span class="line">        <span class="keyword">int</span> n = scan.nextInt();</span><br><span class="line">        <span class="comment">// 表示 最大的容积</span></span><br><span class="line">        <span class="keyword">int</span> V = scan.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> w = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> s = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span>[] pre = Arrays.copyOf(dp,dp.length);</span><br><span class="line">            <span class="comment">// 遍历所有余数</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; v; j++) &#123;</span><br><span class="line">                <span class="comment">// 每个余数对应一个双端队列，实现单调队列</span></span><br><span class="line">                LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList();</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = j; k &lt;= V; k = k + v) &#123;</span><br><span class="line">                    <span class="comment">// 1. 去除队尾不符合要求的，保证从大到小，如果前面数小则需要依次弹出</span></span><br><span class="line">                    <span class="keyword">while</span> (!queue.isEmpty() &amp;&amp; pre[queue.peekLast()] - (queue.peekLast() - j) / v * w &lt;= pre[k] - (k - j) / v * w) &#123;</span><br><span class="line">                        queue.pollLast();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 2.判断当前队列中队首的值是否有效</span></span><br><span class="line">                    <span class="keyword">if</span> (!queue.isEmpty() &amp;&amp; queue.peek() &lt; k - s * v) &#123;</span><br><span class="line">                        queue.poll();</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 3.添加当前值对应的数组下标</span></span><br><span class="line">                    queue.addLast(k);</span><br><span class="line">                    <span class="comment">// 4.拿到队首最大值</span></span><br><span class="line">                    dp[k] = Math.max(dp[k], pre[queue.peek()] + (k - queue.peek()) / v * w);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(dp[V]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p>LeetCode 第 239 题：滑动窗口最大值</p>
+<p>该题也是同样采用了单调队列的方式，官方题解的解法二 就是采用双端队列实现单调队列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">         <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length &lt; <span class="number">2</span>) <span class="keyword">return</span> nums;</span><br><span class="line">        <span class="comment">// 双向队列 保存当前窗口最大值的数组位置 保证队列中数组位置的数值按从大到小排序</span></span><br><span class="line">        LinkedList&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList();</span><br><span class="line">        <span class="comment">// 结果数组</span></span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length-k+<span class="number">1</span>];</span><br><span class="line">        <span class="comment">// 遍历nums数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            <span class="comment">// 保证从大到小 如果前面数小则需要依次弹出，直至满足要求</span></span><br><span class="line">            <span class="keyword">while</span>(!queue.isEmpty() &amp;&amp; nums[queue.peekLast()] &lt;= nums[i])&#123;</span><br><span class="line">                queue.pollLast();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 11 10 9 8 7 6 5</span></span><br><span class="line">            <span class="comment">// 判断当前队列中队首的值是否有效</span></span><br><span class="line">            <span class="keyword">if</span>(!queue.isEmpty() &amp;&amp; queue.peek() &lt;= i-k)&#123;</span><br><span class="line">                queue.poll();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 添加当前值对应的数组下标</span></span><br><span class="line">            queue.addLast(i);</span><br><span class="line">            <span class="comment">// 当窗口长度第一次达到k后，开始保存当前窗口中最大值</span></span><br><span class="line">            <span class="comment">// 以后每走一步，就会保存一个最大值</span></span><br><span class="line">            <span class="keyword">if</span>(i+<span class="number">1</span> &gt;= k)&#123;</span><br><span class="line">                result[i+<span class="number">1</span>-k] = nums[queue.peek()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>故总结一下，单调队列的模板为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.存入双端队列的是值的索引，第一步是先把队尾不符合要求的全部弹栈</span></span><br><span class="line"><span class="comment">// 2.然后判断队首是不是有不符合要求的，即不在窗口之中</span></span><br><span class="line"><span class="comment">// 3.将该值加入到队列中</span></span><br><span class="line"><span class="comment">// 4.获取到题目需要的东西，比如上文要取每个窗口的最大值，则将每个窗口的最大值存入数组即可</span></span><br></pre></td></tr></table></figure>
+<h3 id="混合背包问题"><a href="#混合背包问题" class="headerlink" title="混合背包问题"></a>混合背包问题</h3><p>混合背包，就是01背包，完全背包，多重背包结合在一起，方法就是分类判断，分类处理即可，非常简单，就不做过多解释了。</p>
+<h3 id="二维费用的背包问题"><a href="#二维费用的背包问题" class="headerlink" title="二维费用的背包问题"></a>二维费用的背包问题</h3><p>其实跟一维费用的背包问题如出一辙，就是多了一层循环，dp 由一维变成了二维，其他的跟一维的都是一样的。</p>
+<h3 id="分组背包问题"><a href="#分组背包问题" class="headerlink" title="分组背包问题"></a>分组背包问题</h3><p>其实，分组背包前面已经讲过了，就是多重背包的一般化，就是因为多重背包的特殊，所以才会有两个优化的方法——-<strong><em>二进制优化 &amp;&amp; 单调队列优化</em></strong>，所以对于分组背包问题，就只能采用 <strong><em>多重背包问题 I</em></strong> 的方法，三层循环。</p>
+<h3 id="背包问题求方案数"><a href="#背包问题求方案数" class="headerlink" title="背包问题求方案数"></a>背包问题求方案数</h3><p>求方案数的关键就在于确定：在每一次循环中，是不是选了该数。求最优方案的方案数是通过判断该体积对应的价值的最大值有没有改变，从而判断是否选了该数，选了的话就把以前的方案数替换或者累加即可；求固定体积的方案数，就是直接dp[j] = dp[j] + dp[j - v[i]]，体积为 j 的就是等于选了和没选的总方案数（这个初始化是关键）。</p>
+<h4 id="求最优方案的方案数"><a href="#求最优方案的方案数" class="headerlink" title="求最优方案的方案数"></a>求最优方案的方案数</h4><p>这里只有一个比较大的改动，那就是添加了一个 cnt 数组来统计方案数。</p>
+<p>这里初始化的时候，有两个方案，一个是，dp[0] = 0，dp[i] = 0; 另外一个是 dp[0] = 0，dp[i] = -INF。</p>
+<font color="red">方法一和方法二区别不大，跟 01背包一样，由于初始化的不同，导致最后的结果，一个直接取容量最大值即可，一个需要遍历，这里还是推荐方案一！</font>
+
+
+
+<h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><ul>
+<li>输入</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总物品数：<span class="number">4</span> </span><br><span class="line">最大容积：<span class="number">5</span></span><br><span class="line">物品体积    价值</span><br><span class="line"><span class="number">1</span> 					<span class="number">2</span></span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">3</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">4</span> 					<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>若初始化的值都为 0</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>模板</p>
+<ul>
+<li>定义两个数组，dp[j] 用来存储背包容积是 j 时的最佳方案的总价值，cnt[j] 用来存储容积为 j 时总价值为最佳的方案数；</li>
+<li>先初始化 dp[0] = 0，dp[j] = -INF，很容易理解，容积为 0，自然价值就为 0 了，而要使得容积为 1、2…且没有数，则自然价值就不存在了，记为 -INF，再初始化所有的 cnt[j] = 1，因为背包里什么都不装对任何容积来说都是一种方案，在没有数的情况下自然就是最好的情况了；</li>
+<li>在每次循环新物品时，先求得装新物品的总价值，然后与不装新物品对比，如果装了新物品的价值更大，那么就需要用 dp[j - v[i]] + w 更新 dp[j]，同时用 cnt[j - v[i]] 来更新 cnt[j]；</li>
+<li>如果总价值相等，那么 cnt[j] = cnt[j] + cnt[j-v[i]]；</li>
+<li>当然如果装了新物品还不如不装呢，那就啥也不用做了。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 表示物品种类</span></span><br><span class="line">        <span class="keyword">int</span> n = scan.nextInt();</span><br><span class="line">        <span class="comment">// 表示 最大的容积</span></span><br><span class="line">        <span class="keyword">int</span> V = scan.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] cnt = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= V; j++) &#123;</span><br><span class="line">            cnt[j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> w = scan.nextInt();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = V; j &gt;= v; j--) &#123;</span><br><span class="line">                <span class="keyword">int</span> value = dp[j - v] + w;</span><br><span class="line">                <span class="keyword">if</span> (value &gt; dp[j]) &#123;</span><br><span class="line">                    dp[j] = value;</span><br><span class="line">                    cnt[j] = cnt[j - v];</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value == dp[j]) &#123;</span><br><span class="line">                    cnt[j] = cnt[j] + cnt[j - v];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(cnt[V]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回看表格(括号内为 cnt 的值)</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总物品数：<span class="number">4</span> </span><br><span class="line">最大容积：<span class="number">5</span></span><br><span class="line">物品体积    价值</span><br><span class="line"><span class="number">1</span> 					<span class="number">2</span></span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">3</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">4</span> 					<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">2(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">6(1)</td>
+<td style="text-align:center">6(1)</td>
+<td style="text-align:center">6(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">6(1)</td>
+<td style="text-align:center">6(2)</td>
+<td style="text-align:center">8(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">2(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">6(1)</td>
+<td style="text-align:center">6(3)</td>
+<td style="text-align:center">8(2)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>再来一个示例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总物品数：<span class="number">4</span> </span><br><span class="line">最大容积：<span class="number">5</span></span><br><span class="line">物品体积    价值</span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">3</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">4</span> 					<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">4(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">8(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">4(3)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">8(3)</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">4(3)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">8(3)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>套用上述模板，实现 LeetCode 494题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nums.length;i++)&#123;</span><br><span class="line">            count = count + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(count &lt; S) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>((S + count) % <span class="number">2</span> != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> V = (S + count)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] cnt = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= V; j++) &#123;</span><br><span class="line">            cnt[j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = V; j &gt;= v; j--) &#123;</span><br><span class="line">                <span class="keyword">int</span> value = dp[j - v] + v;</span><br><span class="line">                <span class="keyword">if</span> (value &gt; dp[j]) &#123;</span><br><span class="line">                    dp[j] = value;</span><br><span class="line">                    cnt[j] = cnt[j - v];</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value == dp[j]) &#123;</span><br><span class="line">                    cnt[j] = cnt[j] + cnt[j - v];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt[V];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a><strong>方法二</strong></h5><ul>
+<li>若初始化的值不都为 0,用上面的示例</li>
+</ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总物品数：<span class="number">4</span> </span><br><span class="line">最大容积：<span class="number">5</span></span><br><span class="line">物品体积    价值</span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">2</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">3</span> 					<span class="number">4</span></span><br><span class="line"><span class="number">4</span> 					<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">-INF(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">-INF(2)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">-INF(1)</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">8(2)</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0(1)</td>
+<td style="text-align:center">-INF(1)</td>
+<td style="text-align:center">4(2)</td>
+<td style="text-align:center">4(1)</td>
+<td style="text-align:center">8(1)</td>
+<td style="text-align:center">8(2)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>模板</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> ma = (<span class="keyword">int</span>) (Math.pow(<span class="number">10</span>,<span class="number">9</span>) + <span class="number">7</span>);</span><br><span class="line">        <span class="comment">// 表示物品种类</span></span><br><span class="line">        <span class="keyword">int</span> n = scan.nextInt();</span><br><span class="line">        <span class="comment">// 表示 最大的容积</span></span><br><span class="line">        <span class="keyword">int</span> V = scan.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] cnt = <span class="keyword">new</span> <span class="keyword">int</span>[V + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= V; j++) &#123;</span><br><span class="line">            cnt[j] = <span class="number">1</span>;</span><br><span class="line">            dp[j] = Integer.MIN_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> w = scan.nextInt();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = V; j &gt;= v; j--) &#123;</span><br><span class="line">                <span class="keyword">int</span> value = dp[j - v] + w;</span><br><span class="line">                <span class="keyword">if</span> (value &gt; dp[j]) &#123;</span><br><span class="line">                    dp[j] = value;</span><br><span class="line">                    cnt[j] = cnt[j - v];</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (value == dp[j]) &#123;</span><br><span class="line">                    cnt[j] = cnt[j] + cnt[j - v];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= V;i++)&#123;</span><br><span class="line">            max = Math.max(dp[i],max);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= V;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[i] == max)&#123;</span><br><span class="line">                count+=cnt[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(count);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<font color="red">思路一模一样…就是头和尾复杂了一下，所以感觉没啥子必要…</font>
+
+<h4 id="求背包装至指定容量的方案数"><a href="#求背包装至指定容量的方案数" class="headerlink" title="求背包装至指定容量的方案数"></a>求背包装至指定容量的方案数</h4><p>这个非常简单了，就是上面的特殊化例子，也就是把 循环到的该数的容量 作为价值，然后计算指定价值的方案数，这是一般化的做法，但是既然谈到特殊化，也就是容量和价值相等，那自然可以采用更简单的方法去处理了。</p>
+<ul>
+<li>初始化 dp[0] = 1，代表 0 容量的背包的方案为1，其他都为0；</li>
+<li>dp[i][j] = dp[i-1][j] + dp[i-1][j-v[i]]，很好理解了，就不做解释了。</li>
+</ul>
+<p>示例就是 LeetCode 494 题。</p>
+<h3 id="背包问题求方案路径"><a href="#背包问题求方案路径" class="headerlink" title="背包问题求方案路径"></a>背包问题求方案路径</h3><p>如果没有要求得到  按字典顺序最小的 方案路径的话，就可以直接按01背包的方法去做(由于要记录方案路径，所以不能使用滚动数组，需要用到每一轮的方案，所以需要改为二维数组)，然后在遍历的时候，判断 f[i][j]是否和 f[i-1][j-v[i]] + w[i] 相等，如果相等说明用到了该个物品，加入方案路径中即可。</p>
+<p>如果要求是得到最小的 方案路径的话，则需要将方案从末尾遍历到开始，得到最佳方案后，再从前向后寻找方案路径。</p>
+<h4 id="模板-5"><a href="#模板-5" class="headerlink" title="模板"></a>模板</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>][V+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = n;i &gt;= <span class="number">1</span>;i--)&#123;</span><br><span class="line">  <span class="comment">//  二维的话内层循环就无所谓是从前往后还是从后往前了</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = V;j &gt;= v[i];j--)&#123;</span><br><span class="line">		dp[i][j] = Math.max(dp[i+<span class="number">1</span>][j],dp[i+<span class="number">1</span>][j - v[i]] + w[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> vol = m;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(f[i][vol] == f[i+<span class="number">1</span>][vol-v[i]] + w[i])&#123;</span><br><span class="line">		<span class="comment">// 将该方案加入</span></span><br><span class="line">		System.out.println(i);</span><br><span class="line">		vol = vol - v[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="有依赖的背包问题（-我暂时没复习！）"><a href="#有依赖的背包问题（-我暂时没复习！）" class="headerlink" title="有依赖的背包问题（ 我暂时没复习！）"></a>有依赖的背包问题（ 我暂时没复习！）</h3><p>这应该是背包问题里面最难的一类了，是用 树形 dp + 分组背包问题 的思路去解决。</p>
+<blockquote>
+<p><a href="https://www.acwing.com/solution/acwing/content/8316/" target="_blank" rel="noopener">https://www.acwing.com/solution/acwing/content/8316/</a></p>
+</blockquote>
+<blockquote>
+<p>更多见视频：<a href="https://www.bilibili.com/video/av33930433/?p=2、https://www.bilibili.com/video/av34467850/?p=2（这个视频是从第" target="_blank" rel="noopener">https://www.bilibili.com/video/av33930433/?p=2、https://www.bilibili.com/video/av34467850/?p=2（这个视频是从第</a> 12 分钟开始讲背包 9 讲后面的 3 讲）</p>
+<p>训练地址：<a href="https://www.acwing.com/problem/content/2/" target="_blank" rel="noopener">https://www.acwing.com/problem/content/2/</a></p>
+<p>更详细的背包九讲问题：已经下载到本地了，崔添翼的 pdf——&gt; 本地文件名字叫  背包问题九讲</p>
+</blockquote>
+<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="http://pw5u1sbg2.bkt.clouddn.com/wechatpay.jpeg" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="http://pw5u1sbg2.bkt.clouddn.com/alipay.jpeg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2020/02/10/leetcode算法题二刷.html" title="LeetCode 二刷复习">http://jeromememory.github.io/2020/02/10/leetcode算法题二刷.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/07/零碎知识点.html" rel="next" title="零碎知识点总结">
+                <i class="fa fa-chevron-left"></i> 零碎知识点总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2588481240&auto=0&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dp"><span class="nav-number">1.</span> <span class="nav-text">dp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背包九讲问题"><span class="nav-number">1.1.</span> <span class="nav-text">背包九讲问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01背包"><span class="nav-number">1.1.1.</span> <span class="nav-text">01背包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全背包"><span class="nav-number">1.1.2.</span> <span class="nav-text">完全背包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重背包问题-I"><span class="nav-number">1.1.3.</span> <span class="nav-text">多重背包问题 I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-2"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重背包问题-II"><span class="nav-number">1.1.4.</span> <span class="nav-text">多重背包问题 II</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-3"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重背包问题-III"><span class="nav-number">1.1.5.</span> <span class="nav-text">多重背包问题 III</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-4"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例题-1"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合背包问题"><span class="nav-number">1.1.6.</span> <span class="nav-text">混合背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维费用的背包问题"><span class="nav-number">1.1.7.</span> <span class="nav-text">二维费用的背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组背包问题"><span class="nav-number">1.1.8.</span> <span class="nav-text">分组背包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题求方案数"><span class="nav-number">1.1.9.</span> <span class="nav-text">背包问题求方案数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求最优方案的方案数"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">求最优方案的方案数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法一"><span class="nav-number">1.1.9.1.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法二"><span class="nav-number">1.1.9.1.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#求背包装至指定容量的方案数"><span class="nav-number">1.1.9.2.</span> <span class="nav-text">求背包装至指定容量的方案数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背包问题求方案路径"><span class="nav-number">1.1.10.</span> <span class="nav-text">背包问题求方案路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模板-5"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有依赖的背包问题（-我暂时没复习！）"><span class="nav-number">1.1.11.</span> <span class="nav-text">有依赖的背包问题（ 我暂时没复习！）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树"><span class="nav-number">2.</span> <span class="nav-text">二叉树</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">559k</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/02/10/leetcode算法题二刷.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
