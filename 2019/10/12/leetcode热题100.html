@@ -153,7 +153,7 @@
 <meta name="keywords" content="JAVA,算法,Leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode学习">
-<meta property="og:url" content="http://jeromememory.github.io/2019/10/12/leetcode算法题.html">
+<meta property="og:url" content="http://jeromememory.github.io/2019/10/12/leetcode热题100.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="第1题：两数之和题目给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的思路">
 <meta property="og:locale" content="zh-CN">
@@ -180,7 +180,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5glpm58j30km06pglu.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5hbtaq0j30ha06p74g.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5hvuybfj30am06pt8q.jpg">
-<meta property="og:updated_time" content="2020-02-10T15:41:59.301Z">
+<meta property="og:updated_time" content="2020-02-16T15:10:58.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习">
 <meta name="twitter:description" content="第1题：两数之和题目给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的思路">
@@ -194,7 +194,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2019/10/12/leetcode算法题">
+  <link rel="canonical" href="http://jeromememory.github.io/2019/10/12/leetcode热题100">
 
 
 
@@ -476,7 +476,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/12/leetcode算法题.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/12/leetcode热题100.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -541,7 +541,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-10 23:41:59" itemprop="dateModified" datetime="2020-02-10T23:41:59+08:00">2020-02-10</time>
+                <time title="修改时间：2020-02-16 23:10:58" itemprop="dateModified" datetime="2020-02-16T23:10:58+08:00">2020-02-16</time>
               
             
           </span>
@@ -594,7 +594,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">183k</span>
+                <span title="本文字数">184k</span>
               
 
               
@@ -782,16 +782,18 @@
 <h1 id="第23题：合并K个排序链表"><a href="#第23题：合并K个排序链表" class="headerlink" title="第23题：合并K个排序链表"></a>第23题：合并K个排序链表</h1><h2 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h2><p>合并 <em>k</em> 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p>
 <h2 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">[</span><br><span class="line">  <span class="number">1</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>,</span><br><span class="line">  <span class="number">1</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>,</span><br><span class="line">  <span class="number">2</span>-&gt;<span class="number">6</span></span><br><span class="line">]</span><br><span class="line">输出: <span class="number">1</span>-&gt;<span class="number">1</span>-&gt;<span class="number">2</span>-&gt;<span class="number">3</span>-&gt;<span class="number">4</span>-&gt;<span class="number">4</span>-&gt;<span class="number">5</span>-&gt;<span class="number">6</span></span><br></pre></td></tr></table></figure>
 <h2 id="我的思路-6"><a href="#我的思路-6" class="headerlink" title="我的思路"></a>我的思路</h2><p>我没做出来，然后看了下讨论区，大概总结出三种思路：</p>
-<pre><code>* 运用优先级队列，将整个链表扔到优先级队列中，然后一个个取出来就可以了，这种思路代码实现比较简单，但是用了人家封装好的东西，总感觉有点投机取巧的感觉...
-* 运用分治归并的思想，K个链表两两进行归并。
-* 强行归并，两个归并完直接放到后者，然后后者再跟后面的排序，这样复杂度很高。
-</code></pre><h2 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (lists == <span class="keyword">null</span> || lists.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> len = lists.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="comment">// 合并前后两个链表，结果放在后一个链表位置上，依次循环下去</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            lists[i + <span class="number">1</span>] = mergeTwoLists(lists[i], lists[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lists[len - <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并两个有序链表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> l1 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> l2</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> listNode</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">            l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line">        l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运用优先级队列，将整个链表扔到优先级队列中，然后一个个取出来就可以了，这种思路代码实现比较简单，但是用了人家封装好的东西，总感觉有点投机取巧的感觉…</li>
+<li>运用分治归并的思想，K个链表两两进行归并。</li>
+<li>强行归并，两个归并完直接放到后者，然后后者再跟后面的排序，这样复杂度很高。</li>
+</ul>
+<h2 id="我的代码"><a href="#我的代码" class="headerlink" title="我的代码"></a>我的代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (lists == <span class="keyword">null</span> || lists.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> len = lists.length;</span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> lists[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        <span class="comment">// 合并前后两个链表，结果放在后一个链表位置上，依次循环下去</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            lists[i + <span class="number">1</span>] = mergeTwoLists(lists[i], lists[i + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lists[len - <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并两个有序链表</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> l1 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> l2</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> listNode</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">            l1.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line">        l2.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">        <span class="keyword">return</span> l2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="正确思路-6"><a href="#正确思路-6" class="headerlink" title="正确思路"></a>正确思路</h2><ul>
 <li><p>第一种，优先级队列，20ms,</p>
 <ul>
 <li><p>复杂度</p>
 <ul>
-<li>时间复杂度： O(N\log k)O(Nlogk) ，其中 \text{k}k 是链表的数目。弹出操作时，比较操作的代价会被优化到 O(logk) 。同时，找到最小值节点的时间开销仅仅为 O(1)。最后的链表中总共有 N 个节点。</li>
+<li>时间复杂度： O(Nlogk) ，其中 k 是链表的数目。弹出操作时，比较操作的代价会被优化到 O(logk) 。同时，找到最小值节点的时间开销仅仅为 O(1)。最后的链表中总共有 N 个节点。</li>
 <li>空间复杂度：O(n) 。创造一个新的链表需要 O(n) 的开销。O(k) 。以上代码采用了重复利用原有节点，所以只要 O(1) 的空间。同时优先队列（通常用堆实现）需要 O(k) 的空间（远比大多数情况的 N要小）。</li>
 <li>过程：</li>
 <li>1.因为链表有序，所以用每个链表的首元素构建初试堆(小顶堆) – 的队列</li>
@@ -803,15 +805,10 @@
 <li><p>第二种，归并分治，典型的<strong>归并分治思想，自底向上</strong>，依次合并(可结合归并排序理解，将每个链表理解成排序的值)。</p>
 <ul>
 <li><p>复杂度分析</p>
-<p>时间复杂度： O(N\log k)O(Nlogk) ，其中 \text{k}k 是链表的数目。</p>
+<p>时间复杂度： O(Nlogk) ，其中 k 是链表的数目。<br>空间复杂度：O(1)，我们可以用 O(1) 的空间实现两个有序链表的合并。</p>
 </li>
 </ul>
 </li>
-</ul>
-<pre><code>空间复杂度：O(1)O(1)
-
-我们可以用 O(1) 的空间实现两个有序链表的合并。
-</code></pre><ul>
 <li><p>第三种，强行做。见我的代码，170ms</p>
 <ul>
 <li>用第一个链依次和后面的所有链进行双链合并，利用021的双顺序链合并，秒杀！但是效率极低，</li>
@@ -836,9 +833,9 @@
 </ul>
 <h1 id="第5题-最长回文子串"><a href="#第5题-最长回文子串" class="headerlink" title="第5题 最长回文子串"></a>第5题 最长回文子串</h1><h2 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。你可以假设 <code>s</code> 的最大长度为 1000。</p>
 <h2 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h2><p><strong>示例 1：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"babad"</span></span><br><span class="line">输出: <span class="string">"bab"</span></span><br><span class="line">注意: <span class="string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"babad"</span></span><br><span class="line">输出: <span class="string">"bab"</span></span><br><span class="line">注意: <span class="string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"cbbd"</span></span><br><span class="line">输出: <span class="string">"bb"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"cbbd"</span></span><br><span class="line">输出: <span class="string">"bb"</span></span><br></pre></td></tr></table></figure>
 <h2 id="我的思路-7"><a href="#我的思路-7" class="headerlink" title="我的思路"></a>我的思路</h2><ul>
 <li>最开始的想法是将源字符串翻转，然后判断翻转后的字符串和源字符串的最长公共子序列，但是貌似有点问题，例如<code>accbbdcca</code>翻转后变为<code>accdbbcca</code>,最长公共子序列为<code>acc</code>，但是最长回文子串为<code>bb</code>。</li>
 <li>但是上面的思路有可取之处，其实遇到回文子串最核心的问题是<strong>从中间开始依次比较左右是否相等</strong>，直到不相等，返回左右相等的子串，当然还有一个问题，就是该回文子串可能是单数，也可能是双数，单数的话，直接比较该数的左右即可，双数则需要先判断最开始两数是否相等。</li>
@@ -1252,6 +1249,8 @@
 <blockquote>
 <p>作者：jyd<br>链接：<a href="https://leetcode-cn.com/problems/sort-list/solution/sort-list-gui-bing-pai-xu-lian-biao-by-jyd/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/sort-list/solution/sort-list-gui-bing-pai-xu-lian-biao-by-jyd/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </blockquote>
+<p>不符合时间复杂度的路过一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">       List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">while</span> (head !=<span class="keyword">null</span>) &#123;</span><br><span class="line">           list.add(head.val);</span><br><span class="line">           head = head.next;</span><br><span class="line">       &#125;</span><br><span class="line">       Collections.sort(list);</span><br><span class="line">       <span class="keyword">return</span> createLinkedList(list);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// list递归转链表</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> ListNode <span class="title">createLinkedList</span><span class="params">(List&lt;Integer&gt; data)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(data.isEmpty()) &#123;	<span class="comment">//如果为空返回null</span></span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       ListNode firstNode = <span class="keyword">new</span> ListNode(data.get(<span class="number">0</span>));	<span class="comment">//每次取第一个元素</span></span><br><span class="line">       firstNode.next = createLinkedList(data.subList(<span class="number">1</span>, data.size()));<span class="comment">//第二个元素从下标为1开始取余下list</span></span><br><span class="line">       <span class="keyword">return</span> firstNode;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h1 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/" target="_blank" rel="noopener">437. 路径总和 III</a></h1><h2 id="题目-20"><a href="#题目-20" class="headerlink" title="题目"></a>题目</h2><p>给定一个二叉树，它的每个结点都存放着一个整数值。</p>
 <p>找出路径和等于给定数值的路径总数。</p>
 <p>路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。</p>
@@ -2137,7 +2136,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2019/10/12/leetcode算法题.html" title="Leetcode学习">http://jeromememory.github.io/2019/10/12/leetcode算法题.html</a>
+    <a href="http://jeromememory.github.io/2019/10/12/leetcode热题100.html" title="Leetcode学习">http://jeromememory.github.io/2019/10/12/leetcode热题100.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -2541,7 +2540,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">559k</span>
+    <span title="站点总字数">583k</span>
   
   
 </div>
@@ -2729,7 +2728,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/10/12/leetcode算法题.html'
+    refer: '2019/10/12/leetcode热题100.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
