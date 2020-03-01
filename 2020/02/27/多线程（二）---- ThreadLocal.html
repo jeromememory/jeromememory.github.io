@@ -149,21 +149,22 @@
 
 
 
-  <meta name="description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到的数据可能不会是最新的。 ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在">
+  <meta name="description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
+<meta name="keywords" content="ThreadLocal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程（二）---- ThreadLocal &amp; CopyOnWriteArrayList">
-<meta property="og:url" content="http://jeromememory.github.io/2020/02/27/多线程（二）---- 并发容器.html">
+<meta property="og:title" content="多线程（二）---- ThreadLocal">
+<meta property="og:url" content="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到的数据可能不会是最新的。 ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在">
+<meta property="og:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg">
-<meta property="og:updated_time" content="2020-02-29T03:10:51.790Z">
+<meta property="og:updated_time" content="2020-02-29T03:55:28.412Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程（二）---- ThreadLocal &amp; CopyOnWriteArrayList">
-<meta name="twitter:description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到的数据可能不会是最新的。 ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在">
+<meta name="twitter:title" content="多线程（二）---- ThreadLocal">
+<meta name="twitter:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
 
 
@@ -174,7 +175,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2020/02/27/多线程（二）---- 并发容器">
+  <link rel="canonical" href="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal">
 
 
 
@@ -184,7 +185,7 @@
   };
 </script>
 
-  <title>多线程（二）---- ThreadLocal & CopyOnWriteArrayList | jeromememory</title>
+  <title>多线程（二）---- ThreadLocal | jeromememory</title>
   
 
 
@@ -456,7 +457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/27/多线程（二）---- 并发容器.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -473,7 +474,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程（二）---- ThreadLocal & CopyOnWriteArrayList
+          <h1 class="post-title" itemprop="name headline">多线程（二）---- ThreadLocal
 
               
             
@@ -517,7 +518,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-29 11:10:51" itemprop="dateModified" datetime="2020-02-29T11:10:51+08:00">2020-02-29</time>
+                <time title="修改时间：2020-02-29 11:55:28" itemprop="dateModified" datetime="2020-02-29T11:55:28+08:00">2020-02-29</time>
               
             
           </span>
@@ -586,9 +587,7 @@
       
 
       
-        <h1 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h1><p>这个我在 <a href="https://jeromememory.github.io/2020/01/15/Map%20&amp;%20Set%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html">Map &amp; Set 源码分析</a> 中已经非常详细的讲过了，这里就直接略过了…</p>
-<h1 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h1><p>吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到的数据可能不会是最新的。</p>
-<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。</p>
+        <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。</p>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg" alt="image-20200228120533419"></p>
 <blockquote>
 <p><a href="http://www.jasongj.com/java/threadlocal/" target="_blank" rel="noopener">主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了</a></p>
@@ -760,6 +759,8 @@
 <p>ThreadLocal保存共享变量的副本，用于特定的使用场景。看源码就知道ThreadLocal类是基于Thread类来实现的，如果直接用继承Thread来实现上面的功能也是可以的，只不过JDK都已经给封装好了，自己能想到的思路估计跟ThreadLocal的实现思路差不多。如果场景适合使用ThreadLocal，为何不直接用呢。</p>
 <font color="red">所以，线程间可通信且可以做到互不影响，我觉得这才是 ThreadLocal 真正存在的意义吧。</font>
 
+
+
 </li>
 </ol>
 <p>Q2：既然 ThreadMap 从属于每个线程，那为何不把 ThreadLocalMap 放到 Thread 类中，反而是成为了 ThreadLocal 的内部类？</p>
@@ -770,13 +771,19 @@
 <p>所以用private static修饰之后，好处就是仅使用有限的ThreadLocal对象以节约创建对象和后续自动回收的开销，坏处是需要我们手动调用remove方法清理使用完的slot，否则会有内存泄漏问题。</p>
 </blockquote>
 <p>Q4：ThreadLocal 的用途？</p>
-<p>A4：其实这个问题我在 Q1 就回答过了，也就是适用于两个地方：</p>
-<pre><code>1. 线程间隔离，线程内通信，解决相同变量在多线程环境下的冲突问题，例如 
-       1. **hibernate中的session使用；**
-       2. **spring中单例bean的多线程访问**。我们知道在一般情况下，只有无状态的`Bean`才可以在多线程环境下共享，在`Spring`中，绝大部分`Bean`都可以声明为`singleton`作用域。就是因为`Spring`对一些`Bean`（如`RequestContextHolder`、`TransactionSynchronizationManager`、`LocaleContextHolder`等）中非线程安全状态采用`ThreadLocal`进行处理，让它们也成为线程安全的状态，有状态的`Bean`就可以在多线程中共享了；
-       3. **以及 spring 如何保证数据库事务在同一个连接下执行的**。DataSourceTransactionManager 是spring的数据源事务管理器， 它会在你调用getConnection()的时候从数据库连接池中获取一个connection， 然后将其与ThreadLocal绑定， 事务完成后解除绑定。这样就保证了事务在同一连接下完成。
-2. 可以用于线程间通信，比如三个线程都用到了 ThreadLocal，只要有一个达到了目标值，我就全部设为初值，这是可以通过 ThreadLocal直接完成的。
-</code></pre><p>Q5：ThreadLocal 和 syncronized 区别？</p>
+<p>A4：</p>
+<ol>
+<li>线程间隔离，线程内通信，解决相同变量在多线程环境下的冲突问题，例如：<ul>
+<li><strong>hibernate中的session使用；</strong><ul>
+<li><strong>spring中单例bean的多线程访问</strong>。我们知道在一般情况下，只有无状态的<code>Bean</code>才可以在多线程环境下共享，在<code>Spring</code>中，绝大部分<code>Bean</code>都可以声明为<code>singleton</code>作用域。就是因为<code>Spring</code>对一些<code>Bean</code>（如<code>RequestContextHolder</code>、<code>TransactionSynchronizationManager</code>、<code>LocaleContextHolder</code>等）中非线程安全状态采用<code>ThreadLocal</code>进行处理，让它们也成为线程安全的状态，有状态的<code>Bean</code>就可以在多线程中共享了；</li>
+<li><strong>以及 spring 如何保证数据库事务在同一个连接下执行的</strong>。DataSourceTransactionManager 是spring的数据源事务管理器， 它会在你调用getConnection()的时候从数据库连接池中获取一个connection， 然后将其与ThreadLocal绑定， 事务完成后解除绑定。这样就保证了事务在同一连接下完成。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可以用于线程间通信，比如三个线程都用到了 ThreadLocal，只要有一个达到了目标值，我就全部设为初值，这是可以通过 ThreadLocal直接完成的。</li>
+</ol>
+<p>Q5：ThreadLocal 和 syncronized 区别？</p>
 <p>A5：<code>ThreadLocal</code>和<code>synchronized</code>关键字都用于处理多线程并发访问变量的问题，只是二者处理问题的角度和思路不同。</p>
 <ol>
 <li><code>ThreadLocal</code>是一个Java类,通过<strong>对当前线程中的局部变量的操作来解决不同线程的变量访问的冲突问题</strong>。所以，<code>ThreadLocal</code>提供了线程安全的共享对象机制，每个线程都拥有其副本。</li>
@@ -850,7 +857,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2020/02/27/多线程（二）---- 并发容器.html" title="多线程（二）---- ThreadLocal & CopyOnWriteArrayList">http://jeromememory.github.io/2020/02/27/多线程（二）---- 并发容器.html</a>
+    <a href="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html" title="多线程（二）---- ThreadLocal">http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -870,6 +877,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ThreadLocal/" rel="tag"><i class="fa fa-tag"></i> ThreadLocal</a>
+          
+        </div>
+      
 
       
       
@@ -888,6 +901,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/29/多线程（三）---- 并发容器.html" rel="prev" title="并发容器">
+                并发容器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -963,7 +980,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -988,7 +1005,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1089,7 +1108,21 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1200,7 +1233,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">1.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CopyOnWriteArrayList"><span class="nav-number">2.</span> <span class="nav-text">CopyOnWriteArrayList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadLocal"><span class="nav-number">3.</span> <span class="nav-text">ThreadLocal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-简介"><span class="nav-number">3.1.</span> <span class="nav-text">ThreadLocal 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-原理"><span class="nav-number">3.2.</span> <span class="nav-text">ThreadLocal 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的想法—-ThreadLocal-维护线程与实例的映射"><span class="nav-number">3.2.1.</span> <span class="nav-text">我的想法—-ThreadLocal 维护线程与实例的映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真正的实现—-Thread-维护ThreadLocal与实例的映射"><span class="nav-number">3.2.2.</span> <span class="nav-text">真正的实现—-Thread 维护ThreadLocal与实例的映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-使用-Demo"><span class="nav-number">3.3.</span> <span class="nav-text">ThreadLocal 使用 Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-源码分析"><span class="nav-number">3.4.</span> <span class="nav-text">ThreadLocal 源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal-部分方法"><span class="nav-number">3.4.1.</span> <span class="nav-text">ThreadLocal 部分方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">set()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">get()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove"><span class="nav-number">3.4.1.3.</span> <span class="nav-text">remove()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap（一）"><span class="nav-number">3.4.2.</span> <span class="nav-text">ThreadLocalMap（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-1"><span class="nav-number">3.4.2.2.</span> <span class="nav-text">set()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getEntry"><span class="nav-number">3.4.2.3.</span> <span class="nav-text">getEntry()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resize"><span class="nav-number">3.4.2.4.</span> <span class="nav-text">resize()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-1"><span class="nav-number">3.4.2.5.</span> <span class="nav-text">remove()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap（二）"><span class="nav-number">3.4.3.</span> <span class="nav-text">ThreadLocalMap（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleanSomeSlots"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">cleanSomeSlots()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expungeStaleEntry"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">expungeStaleEntry()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replaceStaleEntry"><span class="nav-number">3.4.3.3.</span> <span class="nav-text">replaceStaleEntry()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap-与-HashMap-的部分区别"><span class="nav-number">3.4.4.</span> <span class="nav-text">ThreadLocalMap 与 HashMap 的部分区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱引用"><span class="nav-number">3.5.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">3.6.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是内存泄漏"><span class="nav-number">3.6.0.1.</span> <span class="nav-text">什么是内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal-什么时候会发生内存泄漏"><span class="nav-number">3.6.0.2.</span> <span class="nav-text">ThreadLocal 什么时候会发生内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当-ThreadLocal-变量不使用-static-修饰"><span class="nav-number">3.6.0.2.1.</span> <span class="nav-text">当 ThreadLocal 变量不使用 static 修饰</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当-ThreadLocal-变量使用了-static-修饰"><span class="nav-number">3.6.0.2.2.</span> <span class="nav-text">当 ThreadLocal 变量使用了 static 修饰</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.7.</span> <span class="nav-text">问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadLocal"><span class="nav-number">1.</span> <span class="nav-text">ThreadLocal</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-简介"><span class="nav-number">1.1.</span> <span class="nav-text">ThreadLocal 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-原理"><span class="nav-number">1.2.</span> <span class="nav-text">ThreadLocal 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的想法—-ThreadLocal-维护线程与实例的映射"><span class="nav-number">1.2.1.</span> <span class="nav-text">我的想法—-ThreadLocal 维护线程与实例的映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真正的实现—-Thread-维护ThreadLocal与实例的映射"><span class="nav-number">1.2.2.</span> <span class="nav-text">真正的实现—-Thread 维护ThreadLocal与实例的映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-使用-Demo"><span class="nav-number">1.3.</span> <span class="nav-text">ThreadLocal 使用 Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ThreadLocal-源码分析"><span class="nav-number">1.4.</span> <span class="nav-text">ThreadLocal 源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal-部分方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">ThreadLocal 部分方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">set()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">get()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">remove()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap（一）"><span class="nav-number">1.4.2.</span> <span class="nav-text">ThreadLocalMap（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-1"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">set()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getEntry"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">getEntry()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resize"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">resize()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove-1"><span class="nav-number">1.4.2.5.</span> <span class="nav-text">remove()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap（二）"><span class="nav-number">1.4.3.</span> <span class="nav-text">ThreadLocalMap（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cleanSomeSlots"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">cleanSomeSlots()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#expungeStaleEntry"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">expungeStaleEntry()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#replaceStaleEntry"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">replaceStaleEntry()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocalMap-与-HashMap-的部分区别"><span class="nav-number">1.4.4.</span> <span class="nav-text">ThreadLocalMap 与 HashMap 的部分区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱引用"><span class="nav-number">1.5.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄漏"><span class="nav-number">1.6.</span> <span class="nav-text">内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是内存泄漏"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">什么是内存泄漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadLocal-什么时候会发生内存泄漏"><span class="nav-number">1.6.0.2.</span> <span class="nav-text">ThreadLocal 什么时候会发生内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当-ThreadLocal-变量不使用-static-修饰"><span class="nav-number">1.6.0.2.1.</span> <span class="nav-text">当 ThreadLocal 变量不使用 static 修饰</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当-ThreadLocal-变量使用了-static-修饰"><span class="nav-number">1.6.0.2.2.</span> <span class="nav-text">当 ThreadLocal 变量使用了 static 修饰</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.7.</span> <span class="nav-text">问题</span></a></li></ol></div>
             
 
           </div>
@@ -1240,7 +1273,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">666k</span>
+    <span title="站点总字数">726k</span>
   
   
 </div>
@@ -1428,7 +1461,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2020/02/27/多线程（二）---- 并发容器.html'
+    refer: '2020/02/27/多线程（二）---- ThreadLocal.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
