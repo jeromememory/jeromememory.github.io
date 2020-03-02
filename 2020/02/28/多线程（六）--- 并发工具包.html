@@ -149,18 +149,23 @@
 
 
 
-  <meta name="description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList https://juejin.im/post/5aeeae756fb9a07ab11112af  吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到">
-<meta name="keywords" content="并发容器">
+  <meta name="description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
+<meta name="keywords" content="并发工具包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程（三）--- 并发容器">
-<meta property="og:url" content="http://jeromememory.github.io/2020/02/29/多线程（三）---- 并发容器.html">
+<meta property="og:title" content="多线程（六）--- 并发工具包">
+<meta property="og:url" content="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList https://juejin.im/post/5aeeae756fb9a07ab11112af  吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到">
+<meta property="og:description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-02T13:29:15.434Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdo2he4ecj30vs0fatbn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdp7doykcj30u00u4wjf.jpg">
+<meta property="og:updated_time" content="2020-03-02T13:40:37.760Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程（三）--- 并发容器">
-<meta name="twitter:description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList https://juejin.im/post/5aeeae756fb9a07ab11112af  吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到">
+<meta name="twitter:title" content="多线程（六）--- 并发工具包">
+<meta name="twitter:description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg">
 
 
 
@@ -170,7 +175,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2020/02/29/多线程（三）---- 并发容器">
+  <link rel="canonical" href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包">
 
 
 
@@ -180,7 +185,7 @@
   };
 </script>
 
-  <title>多线程（三）--- 并发容器 | jeromememory</title>
+  <title>多线程（六）--- 并发工具包 | jeromememory</title>
   
 
 
@@ -452,7 +457,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/29/多线程（三）---- 并发容器.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -469,7 +474,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程（三）--- 并发容器
+          <h1 class="post-title" itemprop="name headline">多线程（六）--- 并发工具包
 
               
             
@@ -500,7 +505,7 @@
                 
               
 
-              <time title="创建时间：2020-02-29 11:16:31" itemprop="dateCreated datePublished" datetime="2020-02-29T11:16:31+08:00">2020-02-29</time>
+              <time title="创建时间：2020-02-28 23:48:06" itemprop="dateCreated datePublished" datetime="2020-02-28T23:48:06+08:00">2020-02-28</time>
             
 
             
@@ -517,11 +522,29 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-02 21:29:15" itemprop="dateModified" datetime="2020-03-02T21:29:15+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 21:40:37" itemprop="dateModified" datetime="2020-03-02T21:40:37+08:00">2020-03-02</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/多线程/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -552,7 +575,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">602</span>
+                <span title="本文字数">7.1k</span>
               
 
               
@@ -566,7 +589,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -586,19 +609,45 @@
       
 
       
-        <h1 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h1><p>这个我在 <a href="https://jeromememory.github.io/2020/01/15/Map%20&amp;%20Set%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.html">Map &amp; Set 源码分析</a> 中已经非常详细的讲过了，这里就直接略过了…</p>
-<h1 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h1><blockquote>
-<p><a href="https://juejin.im/post/5aeeae756fb9a07ab11112af" target="_blank" rel="noopener">https://juejin.im/post/5aeeae756fb9a07ab11112af</a></p>
-</blockquote>
-<p>吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到的数据可能不会是最新的。</p>
-<h1 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h1><p>阻塞队列（BlockingQueue）被广泛使用在“生产者-消费者”问题中，其原因是 BlockingQueue 提供了可阻塞的插入和移除的方法。<strong>当队列容器已满，生产者线程会被阻塞，直到队列未满；当队列容器为空时，消费者线程会被阻塞，直至队列非空时为止。</strong>其实就是封装了我在 Condition  那一块举的例子。相比于平常的 Queue()，就是在入队出队封装了下 Condition，也就是 put() 和 take() 「入队和出队」。</p>
+        <h1 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch(倒计时器)"></a>CountDownLatch(倒计时器)</h1><p>在多线程协作完成业务功能时，有时候<strong>需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能</strong>，在这种的业务场景下，通常可以使用 </p>
+<ol>
+<li><p>Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。</p>
+</li>
+<li><p>使用线程间消息通信机制也可以完成。</p>
+</li>
+<li><p>使用Executor体系中的 FutureTask,主线程调用其他线程 get() 方法</p>
+</li>
+</ol>
+<p>其实，java 并发工具类中为我们提供了类似“倒计时”这样的工具类，可以十分方便的完成所说的这种业务场景。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg" alt="image-20200229224934309"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">await() <span class="keyword">throws</span> InterruptedException <span class="comment">//调用该方法的线程等到构造方法传入的 N 减到 0 的时候，才能继续往下执行；</span></span><br><span class="line">await(<span class="keyword">long</span> timeout, TimeUnit unit) <span class="comment">//与上面的 await 方法功能一致，只不过这里有了时间限制，调用该方法的线程等到指定的 timeout 时间后，不管 N 是否减至为 0，都会继续往下执行；</span></span><br><span class="line">countDown() <span class="comment">//使 CountDownLatch 初始值 N 减 1；</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> <span class="comment">//获取当前 CountDownLatch 维护的值；</span></span></span><br><span class="line"><span class="function"><span class="title">CountDownLatch</span><span class="params">()</span> <span class="comment">//参数为倒计时数量</span></span></span><br></pre></td></tr></table></figure>
+<p>为了能够理解 CountDownLatch，举一个很通俗的例子，运动员进行跑步比赛时，假设有 6 个运动员参与比赛，裁判员在终点会为这 6 个运动员分别计时，可以想象没当一个运动员到达终点的时候，对于裁判员来说就少了一个计时任务。直到所有运动员都到达终点了，裁判员的任务也才完成。这 6 个运动员可以类比成 6 个线程，当线程调用 CountDownLatch.countDown 方法时就会对计数器的值减一，直到计数器的值为 0 的时候，裁判员（调用 await 方法的线程）才能继续往下执行。</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch startSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//用来表示裁判员需要维护的是6个运动员</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch endSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">6</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" 运动员等待裁判员响哨！！！"</span>);</span><br><span class="line">                    startSignal.await();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"正在全力冲刺"</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"  到达终点"</span>);</span><br><span class="line">                    endSignal.countDown();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"裁判员发号施令啦！！！"</span>);</span><br><span class="line">        startSignal.countDown();</span><br><span class="line">        endSignal.await();</span><br><span class="line">        System.out.println(<span class="string">"所有运动员到达终点，比赛结束！"</span>);</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg" alt="image-20200229225217749"></p>
+<h1 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier(循环栅栏)"></a>CyclicBarrier(循环栅栏)</h1><p>CyclicBarrier 也是一种多线程并发控制的实用工具，和 CountDownLatch 一样具有等待计数的功能，但是相比于 CountDownLatch 功能更加强大。</p>
+<p>循环栅栏，也就是有一个临界点，所有人到了这个临界点，才可以一起继续工作，然后再等下一次所有人都到这个临界点，继续工作…如此循环…</p>
+<h2 id="Demo-1"><a href="#Demo-1" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CyclicBarrierDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//指定必须有6个运动员到达才行</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CyclicBarrier barrier = <span class="keyword">new</span> CyclicBarrier(<span class="number">6</span>, () -&gt; &#123;</span><br><span class="line">        <span class="comment">// 每次到了这个临界点，所有线程都必须停下。</span></span><br><span class="line">        System.out.println(<span class="string">"裁判员发号施令啦！！！"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"运动员准备进场，全场欢呼............"</span>);</span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">6</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            service.execute(() -&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"运动员等待裁判员响哨！！！"</span>);</span><br><span class="line">                    barrier.await();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"运动员出发"</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (BrokenBarrierException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdo2he4ecj30vs0fatbn.jpg" alt="image-20200229230142149"></p>
+<h1 id="CountDownLatch-与-CyclicBarrier-的比较"><a href="#CountDownLatch-与-CyclicBarrier-的比较" class="headerlink" title="CountDownLatch 与 CyclicBarrier 的比较"></a>CountDownLatch 与 CyclicBarrier 的比较</h1><p>CountDownLatch 与 CyclicBarrier 都是用于控制并发的工具类，都可以理解成维护的就是一个计数器，但是这两者还是各有不同侧重点的：</p>
+<ul>
+<li><p>CountDownLatch 一般用于<strong>某个线程 A 等待若干个其他线程执行完任务</strong>之后，它才执行，最重要的是有一个主心骨，主线程是核心，他等所有人干完；而 CyclicBarrier 一般用于<strong>一组线程互相等待至某个状态</strong>，然后这一组线程再同时执行；CountDownLatch 强调一个线程等多个线程完成某件事情。CyclicBarrier 是多个线程互等，等大家都完成，再携手共进。所以两者 await 的地方不一样，前者是对主线程进行 await，而后者则是所有一起工作的进行 await。</p>
+</li>
+<li><p>CountDownLatch 方法比较少，操作比较简单，而 CyclicBarrier 提供的方法更多，比如能够通过 getNumberWaiting()，isBroken()这些方法获取当前多个线程的状态，<strong>并且 CyclicBarrier 的构造方法可以传入 barrierAction</strong>，指定当所有线程都到达时执行的业务功能。</p>
+</li>
+</ul>
+<h1 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore(信号量)"></a>Semaphore(信号量)</h1><p>信号量，看源码就是基于 AQS 实现的，类似于<strong><em>共享锁</em></strong>，只不过这个共享是有限制的共享，它能够控制共享的线程数量。Semaphore 就相当于一个许可证，线程需要先通过 acquire 方法获取该许可证，该线程才能继续往下执行，否则只能在该方法出阻塞等待。当执行完业务功能后，需要通过<code>release()</code>方法将许可证归还，以便其他线程能够获得许可证继续执行。</p>
+<p>Semaphore 可以用于做流量控制，特别是<strong>公共资源有限的应用场景，比如数据库连接</strong>。假如有多个线程读取数据后，需要将数据保存在数据库中，而可用的最大数据库连接只有 10 个，这时候就需要使用 Semaphore 来控制能够并发访问到数据库连接资源的线程个数最多只有 10 个。在限制资源使用的应用场景下，Semaphore 是特别合适的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdp7doykcj30u00u4wjf.jpg" alt="image-20200229234039915"></p>
 <blockquote>
-<p><a href="https://juejin.im/post/5aeebd02518825672f19c546" target="_blank" rel="noopener">https://juejin.im/post/5aeebd02518825672f19c546</a></p>
+<p>这里的队列就是就是很简单的用 ArrayList 进行存储，存储那些等待许可证的线程，没有阻塞然后加入队列然后唤醒这么麻烦…</p>
 </blockquote>
-<h1 id="ArrayBlockingQueue-amp-LinkedBlockingQueue"><a href="#ArrayBlockingQueue-amp-LinkedBlockingQueue" class="headerlink" title="ArrayBlockingQueue &amp; LinkedBlockingQueue"></a>ArrayBlockingQueue &amp; LinkedBlockingQueue</h1><blockquote>
-<p><a href="https://juejin.im/post/5aeebdb26fb9a07aa83ea17e" target="_blank" rel="noopener">https://juejin.im/post/5aeebdb26fb9a07aa83ea17e</a></p>
-</blockquote>
-<p>挺简单的…没啥讲的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//表示老师只有5支笔</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//表示10个学生</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            service.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"  同学获取到笔，填表格"</span>);</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Exchanger-交换器"><a href="#Exchanger-交换器" class="headerlink" title="Exchanger (交换器)"></a>Exchanger (交换器)</h1><p>可以直接在某个临界点，两个线程交换数据，不需要使用 wait/notify 或者是 condition 机制。</p>
+<p>它提供了一个交换的同步点，在这个同步点两个线程能够交换数据。具体交换数据是通过 exchange 方法来实现的，如果一个线程先执行 exchange 方法，那么它会同步等待另一个线程也执行 exchange 方法，这个时候两个线程就都达到了同步点，两个线程就可以交换数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当一个线程执行该方法的时候，会等待另一个线程也执行该方法，因此两个线程就都达到了同步点</span></span><br><span class="line"><span class="comment">//将数据交换给另一个线程，同时返回获取的数据</span></span><br><span class="line"><span class="function">V <span class="title">exchange</span><span class="params">(V x)</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function"><span class="comment">//同上一个方法功能基本一样，只不过这个方法同步等待的时候，增加了超时时间</span></span></span><br><span class="line"><span class="function">V <span class="title">exchange</span><span class="params">(V x, <span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> InterruptedException, TimeoutException</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Exchanger;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExchangerDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exchanger&lt;String&gt; exchanger = <span class="keyword">new</span> Exchanger();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//代表男生和女生</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        service.execute(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//男生对女生说的话</span></span><br><span class="line">                String girl = exchanger.exchange(<span class="string">"我其实暗恋你很久了......"</span>);</span><br><span class="line">                System.out.println(<span class="string">"女孩儿说："</span> + girl);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        service.execute(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">"女生慢慢的从教室你走出来......"</span>);</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                <span class="comment">//男生对女生说的话</span></span><br><span class="line">                String boy = exchanger.exchange(<span class="string">"我也很喜欢你......"</span>);</span><br><span class="line">                System.out.println(<span class="string">"男孩儿说："</span> + boy);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">女生慢慢的从教室你走出来......</span><br><span class="line">男孩儿说：我其实暗恋你很久了......</span><br><span class="line">女孩儿说：我也很喜欢你......</span><br></pre></td></tr></table></figure>
+<p>两句话交换了，这个真的牛逼！</p>
 
       
     </div>
@@ -666,7 +715,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2020/02/29/多线程（三）---- 并发容器.html" title="多线程（三）--- 并发容器">http://jeromememory.github.io/2020/02/29/多线程（三）---- 并发容器.html</a>
+    <a href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html" title="多线程（六）--- 并发工具包">http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -688,7 +737,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/并发容器/" rel="tag"><i class="fa fa-tag"></i> 并发容器</a>
+            <a href="/tags/并发工具包/" rel="tag"><i class="fa fa-tag"></i> 并发工具包</a>
           
         </div>
       
@@ -701,8 +750,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/27/多线程（二）---- ThreadLocal.html" rel="next" title="多线程（二）--- ThreadLocal">
-                <i class="fa fa-chevron-left"></i> 多线程（二）--- ThreadLocal
+              <a href="/2020/02/28/多线程（五）--- FutureTask.html" rel="next" title="多线程（五）--- FutureTask">
+                <i class="fa fa-chevron-left"></i> 多线程（五）--- FutureTask
               </a>
             
           </div>
@@ -711,8 +760,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/29/多线程（四）--- 线程池.html" rel="prev" title="多线程（四）--- 线程池">
-                多线程（四）--- 线程池 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html" rel="prev" title="多线程（七）--- 三种方式实现生产者-消费者">
+                多线程（七）--- 三种方式实现生产者-消费者 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1048,7 +1097,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">1.</span> <span class="nav-text">ConcurrentHashMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CopyOnWriteArrayList"><span class="nav-number">2.</span> <span class="nav-text">CopyOnWriteArrayList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BlockingQueue"><span class="nav-number">3.</span> <span class="nav-text">BlockingQueue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayBlockingQueue-amp-LinkedBlockingQueue"><span class="nav-number">4.</span> <span class="nav-text">ArrayBlockingQueue &amp; LinkedBlockingQueue</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-倒计时器"><span class="nav-number">1.</span> <span class="nav-text">CountDownLatch(倒计时器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">1.2.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CyclicBarrier-循环栅栏"><span class="nav-number">2.</span> <span class="nav-text">CyclicBarrier(循环栅栏)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-1"><span class="nav-number">2.1.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-与-CyclicBarrier-的比较"><span class="nav-number">3.</span> <span class="nav-text">CountDownLatch 与 CyclicBarrier 的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Semaphore-信号量"><span class="nav-number">4.</span> <span class="nav-text">Semaphore(信号量)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exchanger-交换器"><span class="nav-number">5.</span> <span class="nav-text">Exchanger (交换器)</span></a></li></ol></div>
             
 
           </div>
@@ -1276,7 +1325,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2020/02/29/多线程（三）---- 并发容器.html'
+    refer: '2020/02/28/多线程（六）--- 并发工具包.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
