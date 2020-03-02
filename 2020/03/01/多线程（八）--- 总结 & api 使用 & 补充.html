@@ -152,7 +152,7 @@
   <meta name="description" content="学习路径 补充以上基本上涵盖了自己看的多线程的内容，但是呢，还有一些 juc 下的类我没有提及到，但是又比较重要，下面我稍微展开说一下，就不从源码上分析了，因为都是大同小异的，主要还是从跟以前谈到的类的异同点出发，然后讲一下实际用途和使用方式。 StampedLock在多线程（一），我们就提及了 ReentrantLock 和 ReentrantReadWriteLock，他们是在 jdk 1.">
 <meta name="keywords" content="多线程补充篇">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程（八）--- 总结 &amp; 补充">
+<meta property="og:title" content="多线程（八）--- 总结 &amp; 补充 &amp; api 使用">
 <meta property="og:url" content="http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 & api 使用 & 补充.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="学习路径 补充以上基本上涵盖了自己看的多线程的内容，但是呢，还有一些 juc 下的类我没有提及到，但是又比较重要，下面我稍微展开说一下，就不从源码上分析了，因为都是大同小异的，主要还是从跟以前谈到的类的异同点出发，然后讲一下实际用途和使用方式。 StampedLock在多线程（一），我们就提及了 ReentrantLock 和 ReentrantReadWriteLock，他们是在 jdk 1.">
@@ -163,9 +163,9 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcfg250rhvj30i80d6jtj.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcfgh5s2jej30hm0d2gns.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcfghmipthj30hs0d4ac9.jpg">
-<meta property="og:updated_time" content="2020-03-02T13:19:55.261Z">
+<meta property="og:updated_time" content="2020-03-02T13:28:13.035Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程（八）--- 总结 &amp; 补充">
+<meta name="twitter:title" content="多线程（八）--- 总结 &amp; 补充 &amp; api 使用">
 <meta name="twitter:description" content="学习路径 补充以上基本上涵盖了自己看的多线程的内容，但是呢，还有一些 juc 下的类我没有提及到，但是又比较重要，下面我稍微展开说一下，就不从源码上分析了，因为都是大同小异的，主要还是从跟以前谈到的类的异同点出发，然后讲一下实际用途和使用方式。 StampedLock在多线程（一），我们就提及了 ReentrantLock 和 ReentrantReadWriteLock，他们是在 jdk 1.">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcelty1lqdj30u04wqhdv.jpg">
 
@@ -187,7 +187,7 @@
   };
 </script>
 
-  <title>多线程（八）--- 总结 & 补充 | jeromememory</title>
+  <title>多线程（八）--- 总结 & 补充 & api 使用 | jeromememory</title>
   
 
 
@@ -476,7 +476,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程（八）--- 总结 & 补充
+          <h1 class="post-title" itemprop="name headline">多线程（八）--- 总结 & 补充 & api 使用
 
               
             
@@ -524,7 +524,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-02 21:19:55" itemprop="dateModified" datetime="2020-03-02T21:19:55+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 21:28:13" itemprop="dateModified" datetime="2020-03-02T21:28:13+08:00">2020-03-02</time>
               
             
           </span>
@@ -846,7 +846,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 & api 使用 & 补充.html" title="多线程（八）--- 总结 & 补充">http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 & api 使用 & 补充.html</a>
+    <a href="http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 & api 使用 & 补充.html" title="多线程（八）--- 总结 & 补充 & api 使用">http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 & api 使用 & 补充.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -881,8 +881,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html" rel="next" title="三种方式实现生产者-消费者">
-                <i class="fa fa-chevron-left"></i> 三种方式实现生产者-消费者
+              <a href="/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html" rel="next" title="多线程（七）--- 三种方式实现生产者-消费者">
+                <i class="fa fa-chevron-left"></i> 多线程（七）--- 三种方式实现生产者-消费者
               </a>
             
           </div>
