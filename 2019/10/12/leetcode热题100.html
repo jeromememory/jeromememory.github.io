@@ -833,9 +833,9 @@
 </ul>
 <h1 id="第5题-最长回文子串"><a href="#第5题-最长回文子串" class="headerlink" title="第5题 最长回文子串"></a>第5题 最长回文子串</h1><h2 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h2><p>给定一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。你可以假设 <code>s</code> 的最大长度为 1000。</p>
 <h2 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h2><p><strong>示例 1：</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"babad"</span></span><br><span class="line">输出: <span class="string">"bab"</span></span><br><span class="line">注意: <span class="string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"babad"</span></span><br><span class="line">输出: <span class="string">"bab"</span></span><br><span class="line">注意: <span class="string">"aba"</span> 也是一个有效答案。</span><br></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"cbbd"</span></span><br><span class="line">输出: <span class="string">"bb"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="string">"cbbd"</span></span><br><span class="line">输出: <span class="string">"bb"</span></span><br></pre></td></tr></table></figure>
 <h2 id="我的思路-7"><a href="#我的思路-7" class="headerlink" title="我的思路"></a>我的思路</h2><ul>
 <li>最开始的想法是将源字符串翻转，然后判断翻转后的字符串和源字符串的最长公共子序列，但是貌似有点问题，例如<code>accbbdcca</code>翻转后变为<code>accdbbcca</code>,最长公共子序列为<code>acc</code>，但是最长回文子串为<code>bb</code>。</li>
 <li>但是上面的思路有可取之处，其实遇到回文子串最核心的问题是<strong>从中间开始依次比较左右是否相等</strong>，直到不相等，返回左右相等的子串，当然还有一个问题，就是该回文子串可能是单数，也可能是双数，单数的话，直接比较该数的左右即可，双数则需要先判断最开始两数是否相等。</li>
