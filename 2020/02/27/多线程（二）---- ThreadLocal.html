@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg">
-<meta property="og:updated_time" content="2020-03-02T14:29:05.425Z">
+<meta property="og:updated_time" content="2020-03-03T02:11:07.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（二）--- ThreadLocal">
 <meta name="twitter:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
@@ -522,7 +522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-02 22:29:05" itemprop="dateModified" datetime="2020-03-02T22:29:05+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-03 10:11:07" itemprop="dateModified" datetime="2020-03-03T10:11:07+08:00">2020-03-03</time>
               
             
           </span>
@@ -805,7 +805,7 @@
 </li>
 <li>可以用于线程间通信，比如三个线程都用到了 ThreadLocal，只要有一个达到了目标值，我就全部设为初值，这是可以通过 ThreadLocal直接完成的。</li>
 </ol>
-<p>Q5：ThreadLocal 和 syncronized 区别？</p>
+<p>Q5：ThreadLocal 和 Synchronized 区别？</p>
 <p>A5：<code>ThreadLocal</code>和<code>synchronized</code>关键字都用于处理多线程并发访问变量的问题，只是二者处理问题的角度和思路不同。</p>
 <ol>
 <li><code>ThreadLocal</code>是一个Java类,通过<strong>对当前线程中的局部变量的操作来解决不同线程的变量访问的冲突问题</strong>。所以，<code>ThreadLocal</code>提供了线程安全的共享对象机制，每个线程都拥有其副本。</li>
@@ -1002,7 +1002,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1029,7 +1029,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1150,7 +1152,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">51</span>
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1301,7 +1305,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">786k</span>
+    <span title="站点总字数">820k</span>
   
   
 </div>

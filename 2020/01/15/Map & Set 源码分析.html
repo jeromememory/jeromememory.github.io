@@ -170,7 +170,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbcjamrh24j30jv0fm0th.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbcki0eu74j31540pg19r.jpg">
 <meta property="og:image" content="http://jeromememory.github.io/Users/yangweijie/Library/Application%20Support/typora-user-images/image-20200128203130366.png">
-<meta property="og:updated_time" content="2020-02-27T13:24:37.485Z">
+<meta property="og:updated_time" content="2020-03-03T11:44:30.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Map">
 <meta name="twitter:description" content="HashMap参考 集合番@HashMap一文通（1.7版） 集合番@HashMap一文通（1.8版）  HashMap源码分析—掘金博主  美团技术讲解HashMap  相关面试问题  问题引导由于知识点太多，我就以自己搜集到的面试常问的有关于HashMap的问题进行解决，然后再进一步深挖！  HashMap的底层数据结构？ HashMap的主要方法？ HashMap 是如何确定元素存储位置的以">
@@ -527,7 +527,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-27 21:24:37" itemprop="dateModified" datetime="2020-02-27T21:24:37+08:00">2020-02-27</time>
+                <time title="修改时间：2020-03-03 19:44:30" itemprop="dateModified" datetime="2020-03-03T19:44:30+08:00">2020-03-03</time>
               
             
           </span>
@@ -1153,7 +1153,7 @@
 <li>segment 继承了 ReentrantLock 充当锁的角色，为每一个 segment 提供了线程安全的保障；</li>
 <li>segment 维护了哈希散列表的若干个桶，每个桶由 HashEntry 构成的链表。</li>
 </ol>
-<p>而到了 JDK 1.8 的 ConcurrentHashMap 就有了很大的变化，光是代码量就足足增加了很多。1.8 版本舍弃了 segment，并且大量使用了 synchronized，以及 CAS 无锁操作以保证 ConcurrentHashMap 操作的线程安全性。至于为什么不用 ReentrantLock 而是 Synchronzied 呢？实际上，synchronzied 做了很多的优化，包括偏向锁，轻量级锁，重量级锁，可以依次向上升级锁状态，但不能降级，因此，使用 synchronized 相较于 ReentrantLock 的性能会持平甚至在某些情况更优，具体的性能测试可以去网上查阅一些资料。另外，底层数据结构改变为采用数组+链表+红黑树的数据形式。</p>
+<p>而到了 JDK 1.8 的 ConcurrentHashMap 就有了很大的变化，光是代码量就足足增加了很多。<strong>1.8 版本舍弃了 segment，并且大量使用了 synchronized，以及 CAS 无锁操作以保证 ConcurrentHashMap 操作的线程安全性</strong>。至于为什么不用 ReentrantLock 而是 Synchronzied 呢？实际上，synchronzied 做了很多的优化，包括偏向锁，轻量级锁，重量级锁，可以依次向上升级锁状态，但不能降级，因此，使用 synchronized 相较于 ReentrantLock 的性能会持平甚至在某些情况更优，具体的性能测试可以去网上查阅一些资料。另外，底层数据结构改变为采用数组+链表+红黑树的数据形式。</p>
 <blockquote>
 <p>作者: 你听___<br>链接：<a href="https://juejin.im/post/5aeeaba8f265da0b9d781d16" target="_blank" rel="noopener">https://juejin.im/post/5aeeaba8f265da0b9d781d16</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 </blockquote>
@@ -1169,7 +1169,7 @@
 <h3 id="sizeCtl"><a href="#sizeCtl" class="headerlink" title="sizeCtl"></a>sizeCtl</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">volatile</span> <span class="keyword">int</span> sizeCtl;</span><br></pre></td></tr></table></figure>
 <p>控制标识符，用来控制table的初始化和扩容的操作，不同的值有不同的含义：</p>
 <ul>
-<li>当为负数时：-1代表正在初始化（其实也就相当于第一次扩容），-N代表有N-1个线程正在帮忙进行扩容 </li>
+<li>当为负数时：-1代表正在初始化（其实也就相当于第一次扩容），-N代表有N-1个线程正在<strong>帮忙</strong>进行扩容 </li>
 <li>当为0时：代表当时的table还没有被初始化 </li>
 <li>当为正数时：表示初始化或者下一次进行扩容的大小</li>
 </ul>
@@ -1221,7 +1221,7 @@
 <p>2.如果没有初始化就先调用 <strong><em>initTable()</em></strong> 方法来进行初始化过程 </p>
 <p>3.如果没有hash冲突就直接 <strong><em>CAS 插入</em></strong> </p>
 <p>4.如果还在进行扩容操作就先进行扩容 </p>
-<p>5.如果存在hash冲突，就加锁来保证线程安全，这里有两种情况，一种是链表形式就直接遍历到尾端插入，一种是红黑树就按照红黑树结构插入， </p>
+<p>5.如果存在hash冲突，就加锁来保证线程安全，这里有两种情况，一种是链表形式就直接遍历到尾端插入，一种是红黑树就按照红黑树结构插入</p>
 <p>6.最后一个如果该链表的数量大于阈值8，就要先转换成黑红树的结构，break再一次进入循环 </p>
 <p>7.如果添加成功就调用 <strong><em>addCount()</em></strong> 方法统计  size，并且检查是否需要扩容</p>
 <p>接下来针对每一步进行细致的分析，包括内部函数的具体实现！</p>
@@ -1543,7 +1543,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1570,7 +1570,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1691,7 +1693,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">51</span>
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1842,7 +1846,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">786k</span>
+    <span title="站点总字数">820k</span>
   
   
 </div>

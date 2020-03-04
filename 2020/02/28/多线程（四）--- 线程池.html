@@ -178,7 +178,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdjezzgn3j30vu0n23zu.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdjf4ldfej30vu0n0jsk.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdjeyy64qj30vu0n2dh0.jpg">
-<meta property="og:updated_time" content="2020-03-02T13:40:15.805Z">
+<meta property="og:updated_time" content="2020-03-02T14:50:40.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（四）--- 线程池">
 <meta name="twitter:description" content="深入理解Java线程池：ThreadPoolExecutor    ps:不过说实话，写的败笔就是线程状态转换那一块~ 简略介绍线程池   转：http://www.ideabuffer.cn/2017/04/04/深入理解Java线程池：ThreadPoolExecutor/#addWorker方法  线程池（一）：ThreadPoolExecutor线程池介绍在web开发中，服务器需要接受并">
@@ -539,7 +539,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-02 21:40:15" itemprop="dateModified" datetime="2020-03-02T21:40:15+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-02 22:50:40" itemprop="dateModified" datetime="2020-03-02T22:50:40+08:00">2020-03-02</time>
               
             
           </span>
@@ -708,33 +708,23 @@
 </li>
 <li><p><strong>maximumPoolSize</strong>：最大线程数量；</p>
 </li>
-<li><p><strong>workQueue</strong>：等待队列，当任务提交时，如果线程池中的线程数量大于等于corePoolSize的时候，把该任务封装成一个Worker对象放入等待队列；</p>
-</li>
-<li><p>workQueue</p>
-<p>：保存等待执行的任务的阻塞队列，当提交一个新的任务到线程池以后, 线程池会根据当前线程池中正在运行着的线程的数量来决定对该任务的处理方式，主要有以下几种处理方式:</p>
-</li>
-</ul>
+<li><p><strong>workQueue</strong>：等待队列，当任务提交时，如果线程池中的线程数量大于等于corePoolSize的时候，把该任务封装成一个Worker对象放入等待队列，当提交一个新的任务到线程池以后, 线程池会根据当前线程池中正在运行着的线程的数量来决定对该任务的处理方式，也就是 BlockingQueue 的选择，主要有以下几种处理方式:</p>
 <ol>
-<li><p><strong>直接切换</strong>：这种方式常用的队列是SynchronousQueue，但现在还没有研究过该队列，这里暂时还没法介绍；</p>
-</li>
-<li><p><strong>使用无界队列</strong>：一般使用基于链表的阻塞队列LinkedBlockingQueue。如果使用这种方式，那么线程池中能够创建的最大线程数就是corePoolSize，而maximumPoolSize就不会起作用了（后面也会说到）。当线程池中所有的核心线程都是RUNNING状态时，这时一个新的任务提交就会放入等待队列中。</p>
-</li>
-<li><p>使用有界队列</p>
-<p>：一般使用ArrayBlockingQueue。使用该方式可以将线程池的最大线程数量限制为maximumPoolSize，这样能够降低资源的消耗，但同时这种方式也使得线程池对线程的调度变得更困难，因为线程池和队列的容量都是有限的值，所以要想使线程池处理任务的吞吐率达到一个相对合理的范围，又想使线程调度相对简单，并且还要尽可能的降低线程池对资源的消耗，就需要合理的设置这两个数量。</p>
-<ul>
+<li><strong>直接切换</strong>：这种方式常用的队列是SynchronousQueue，但现在还没有研究过该队列，这里暂时还没法介绍；</li>
+<li><strong>使用无界队列</strong>：一般使用基于链表的阻塞队列LinkedBlockingQueue。如果使用这种方式，那么线程池中能够创建的最大线程数就是corePoolSize，而maximumPoolSize就不会起作用了（后面也会说到）。当线程池中所有的核心线程都是RUNNING状态时，这时一个新的任务提交就会放入等待队列中。</li>
+<li><strong>使用有界队列</strong>：一般使用ArrayBlockingQueue。使用该方式可以将线程池的最大线程数量限制为maximumPoolSize，这样能够降低资源的消耗，但同时这种方式也使得线程池对线程的调度变得更困难，因为线程池和队列的容量都是有限的值，所以要想使线程池处理任务的吞吐率达到一个相对合理的范围，又想使线程调度相对简单，并且还要尽可能的降低线程池对资源的消耗，就需要合理的设置这两个数量。<ul>
 <li>如果要想降低系统资源的消耗（包括CPU的使用率，操作系统资源的消耗，上下文环境切换的开销等）, 可以设置较大的队列容量和较小的线程池容量, 但这样也会降低线程处理任务的吞吐量。</li>
 <li>如果提交的任务经常发生阻塞，那么可以考虑通过调用 setMaximumPoolSize() 方法来重新设定线程池的容量。</li>
 <li>如果队列的容量设置的较小，通常需要将线程池的容量设置大一点，这样CPU的使用率会相对的高一些。但如果线程池的容量设置的过大，则在提交的任务数量太多的情况下，并发量会增加，那么线程之间的调度就是一个要考虑的问题，因为这样反而有可能降低处理任务的吞吐量。</li>
 </ul>
 </li>
 </ol>
-<ul>
+</li>
 <li><p><strong>keepAliveTime</strong>：线程池维护线程所允许的空闲时间。当线程池中的线程数量大于corePoolSize的时候，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会等待，直到等待的时间超过了keepAliveTime；</p>
 </li>
 <li><p><strong>threadFactory</strong>：它是ThreadFactory类型的变量，用来创建新线程。默认使用Executors.defaultThreadFactory() 来创建线程。使用默认的ThreadFactory来创建线程时，会使新创建的线程具有相同的NORM_PRIORITY优先级并且是非守护线程，同时也设置了线程的名称。</p>
 </li>
-<li><p>handler</p>
-<p>：它是RejectedExecutionHandler类型的变量，表示线程池的饱和策略。如果阻塞队列满了并且没有空闲的线程，这时如果继续提交任务，就需要采取一种策略处理该任务。线程池提供了4种策略：</p>
+<li><p><strong>handler</strong>：它是RejectedExecutionHandler类型的变量，表示线程池的饱和策略。如果阻塞队列满了并且没有空闲的线程，这时如果继续提交任务，就需要采取一种策略处理该任务。线程池提供了4种策略：</p>
 <ol>
 <li>AbortPolicy：直接抛出异常，这是默认策略；</li>
 <li>CallerRunsPolicy：用调用者所在的线程来执行任务；</li>
@@ -1256,7 +1246,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1283,7 +1273,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1404,7 +1396,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">51</span>
+                      
+                    
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1555,7 +1549,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">786k</span>
+    <span title="站点总字数">820k</span>
   
   
 </div>
