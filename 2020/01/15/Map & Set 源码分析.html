@@ -170,7 +170,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbcjamrh24j30jv0fm0th.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbcki0eu74j31540pg19r.jpg">
 <meta property="og:image" content="http://jeromememory.github.io/Users/yangweijie/Library/Application%20Support/typora-user-images/image-20200128203130366.png">
-<meta property="og:updated_time" content="2020-03-03T11:44:30.463Z">
+<meta property="og:updated_time" content="2020-03-08T12:41:02.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Map">
 <meta name="twitter:description" content="HashMap参考 集合番@HashMap一文通（1.7版） 集合番@HashMap一文通（1.8版）  HashMap源码分析—掘金博主  美团技术讲解HashMap  相关面试问题  问题引导由于知识点太多，我就以自己搜集到的面试常问的有关于HashMap的问题进行解决，然后再进一步深挖！  HashMap的底层数据结构？ HashMap的主要方法？ HashMap 是如何确定元素存储位置的以">
@@ -527,7 +527,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 19:44:30" itemprop="dateModified" datetime="2020-03-03T19:44:30+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-08 20:41:02" itemprop="dateModified" datetime="2020-03-08T20:41:02+08:00">2020-03-08</time>
               
             
           </span>
@@ -746,7 +746,7 @@
 <h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>Map 是没有迭代器的，需要转成 Set 操作</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Map map = <span class="keyword">new</span> HashMap();</span><br><span class="line">Iterator iter = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">　Map.Entry entry = (Map.Entry) iter.next();</span><br><span class="line">　Object key = entry.getKey();</span><br><span class="line">　Object val = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>要强调的是，无论哪种迭代器都是通过遍历 table 表来获取下个节点，来遍历的，遍历过程可以理解为一种深度优先遍历，即优先遍历链表节点（或者红黑树），然后在遍历其他数组位置。</p>
-<h4 id="Fail-Fast"><a href="#Fail-Fast" class="headerlink" title="Fail-Fast"></a>Fail-Fast</h4><p><strong>当使用迭代器的过程中有其他线程修改了map，将引发<code>ConcurrentModificationException</code></strong></p>
+<h4 id="Fail-Fast"><a href="#Fail-Fast" class="headerlink" title="Fail-Fast"></a>Fail-Fast</h4><p><strong>当使用迭代器的过程中有其他线程修改了map，并且不是使用迭代器修改的，将引发<code>ConcurrentModificationException</code></strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改计数 put、remove或clear时mount++ clear时清空</span></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> modCount;</span><br><span class="line">HashIterator() &#123;</span><br><span class="line">    expectedModCount = modCount;</span><br><span class="line">    <span class="keyword">if</span> (size &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    Entry[] t = table;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; t.length &amp;&amp; (next = t[index++]) == <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">final</span> Entry&lt;K,V&gt; <span class="title">nextEntry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//期望变更数量不匹配</span></span><br><span class="line">    <span class="keyword">if</span> (modCount != expectedModCount)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="与HashTable的区别"><a href="#与HashTable的区别" class="headerlink" title="与HashTable的区别"></a>与HashTable的区别</h2><ul>
 <li><p><code>HashMap</code> 是线程不安全的，HashTable是线程安全的。</p>
@@ -1343,7 +1343,7 @@
 <li>在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了修改（增加、删除、修改），则会抛出Concurrent Modification Exception。</li>
 <li>原理：迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果内容发生变化，就会改变modCount的值。每当迭代器使用hashNext()/next()遍历下一个元素之前，都会检测modCount变量是否为expectedmodCount值，是的话就返回遍历；否则抛出异常，终止遍历。</li>
 <li>注意：这里异常的抛出条件是检测到 modCount！=expectedmodCount 这个条件。如果集合发生变化时修改modCount值刚好又设置为了expectedmodCount值，则异常不会抛出。因此，不能依赖于这个异常是否抛出而进行并发操作的编程，这个异常只建议用于检测并发修改的bug。</li>
-<li>场景：java.util包下的集合类都是快速失败的，不能在多线程下发生并发修改（迭代过程中被修改）。</li>
+<li>场景：java.util包下的集合类都是快速失败的，不能在多线程下发生并发修改。</li>
 </ul>
 <p><strong>二：安全失败（fail—safe）</strong></p>
 <ul>
@@ -1357,7 +1357,7 @@
 </li>
 </ul>
 <p><strong>快速失败和安全失败是对迭代器而言的。</strong></p>
-<p>快速失败：当在迭代一个集合的时候，如果有另外一个线程在修改这个集合，就会抛出ConcurrentModification异常，java.util下都是快速失败。 安全失败：在迭代时候会在集合二层做一个拷贝，所以在修改集合上层元素不会影响下层。在java.util.concurrent下都是安全失败。</p>
+<p>快速失败：当在遍历一个集合的时候，如果有另外一个线程在修改这个集合，就会抛出ConcurrentModification异常，java.util下都是快速失败。 安全失败：在遍历时会在集合二层做一个拷贝，所以在修改集合上层元素不会影响下层。在java.util.concurrent下都是安全失败。</p>
 <h2 id="线程安全详解"><a href="#线程安全详解" class="headerlink" title="线程安全详解"></a>线程安全详解</h2><h3 id="参考-4"><a href="#参考-4" class="headerlink" title="参考"></a>参考</h3><p><a href="https://mp.weixin.qq.com/s/WDeewsvWUEBIuabvVVhweA" target="_blank" rel="noopener">线程安全问题</a> </p>
 
       
@@ -1572,7 +1572,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1846,7 +1848,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">820k</span>
+    <span title="站点总字数">872k</span>
   
   
 </div>

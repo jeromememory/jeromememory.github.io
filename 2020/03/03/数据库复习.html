@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qd3au6j30e80593yh.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qbnb66j30g906vmx7.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qckitcj30hb05idfu.jpg">
-<meta property="og:updated_time" content="2020-03-04T15:52:45.939Z">
+<meta property="og:updated_time" content="2020-03-05T03:41:26.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库专题复习">
 <meta name="twitter:description" content="自己部分总结Q：事务的四大特性？   ACID  原子性 Atomicity。事务中所有操作是不可再分割的原子单位，所有操作要么全部执行成功，要么全部执行失败。 一致性 Consistency。事务执行后，数据库状态与其它业务规则保持一致。如转账业务，无论事务执行成功与否，参与转账的两个账号余额之和应该是不变的。 隔离性 Isolation。在并发操作中，不同事务之间应该隔离开来，使每个并发中的事">
@@ -518,7 +518,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-04 23:52:45" itemprop="dateModified" datetime="2020-03-04T23:52:45+08:00">2020-03-04</time>
+                <time title="修改时间：2020-03-05 11:41:26" itemprop="dateModified" datetime="2020-03-05T11:41:26+08:00">2020-03-05</time>
               
             
           </span>
@@ -996,8 +996,10 @@
 <li><p>一是增加了数据库的存储空间</p>
 </li>
 <li><p>二是在插入和修改数据时要花费较多的时间(因为索引也要随之变动)。</p>
-<h4 id="3-索引的优缺点？"><a href="#3-索引的优缺点？" class="headerlink" title="3.索引的优缺点？"></a><strong>3.索引的优缺点？</strong></h4></li>
+</li>
 </ul>
+</blockquote>
+<h4 id="3-索引的优缺点？"><a href="#3-索引的优缺点？" class="headerlink" title="3.索引的优缺点？"></a><strong>3.索引的优缺点？</strong></h4><blockquote>
 <p><strong>创建索引可以大大提高系统的性能（优点）：</strong></p>
 <p>1.通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。</p>
 <p>2.可以大大加快数据的检索速度，这也是创建索引的最主要的原因。</p>
@@ -1030,7 +1032,9 @@
 </blockquote>
 <h4 id="5-什么样的字段适合建索引"><a href="#5-什么样的字段适合建索引" class="headerlink" title="5.什么样的字段适合建索引"></a><strong>5.什么样的字段适合建索引</strong></h4><blockquote>
 <p>唯一、不为空、经常被查询的字段</p>
-<h4 id="6-MySQL-B-Tree索引和Hash索引的区别"><a href="#6-MySQL-B-Tree索引和Hash索引的区别" class="headerlink" title="6.MySQL B+Tree索引和Hash索引的区别?"></a><strong>6.MySQL B+Tree索引和Hash索引的区别?</strong></h4><p><strong>Hash索引和B+树索引的特点：</strong></p>
+</blockquote>
+<h4 id="6-MySQL-B-Tree索引和Hash索引的区别"><a href="#6-MySQL-B-Tree索引和Hash索引的区别" class="headerlink" title="6.MySQL B+Tree索引和Hash索引的区别?"></a><strong>6.MySQL B+Tree索引和Hash索引的区别?</strong></h4><blockquote>
+<p><strong>Hash索引和B+树索引的特点：</strong></p>
 <ul>
 <li>Hash索引结构的特殊性，其检索效率非常高，索引的检索可以一次定位;</li>
 <li>B+树索引需要从根节点到枝节点，最后才能访问到页节点这样多次的IO访问;</li>
@@ -1097,7 +1101,7 @@
 <p><strong>特别注意：</strong></p>
 <blockquote>
 <p>MySQL默认的事务隔离级别为repeatable-read</p>
-<p>MySQL 支持 4 中事务隔离级别.</p>
+<p>MySQL 支持 4 种事务隔离级别.</p>
 <p>事务的隔离级别要得到底层数据库引擎的支持, 而不是应用程序或者框架的支持.</p>
 <p>Oracle 支持的 2 种事务隔离级别：READ_COMMITED , SERIALIZABLE</p>
 <p>SQL规范所规定的标准，不同的数据库具体的实现可能会有些差异</p>
@@ -1550,7 +1554,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1824,7 +1830,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">820k</span>
+    <span title="站点总字数">872k</span>
   
   
 </div>
