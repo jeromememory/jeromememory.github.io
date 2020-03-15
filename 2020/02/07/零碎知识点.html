@@ -157,7 +157,7 @@
 <meta property="og:description" content="静态方法 &amp;amp; 非静态方法的区别 本质区别：静态方法与非静态方法的本质区别：静态方法在程序初始化后会一直贮存在内存中，不会被垃圾回收器回收，非静态方法只在该类初始化后贮存在内存中，当该类调用完毕后会被垃圾回收器收集释放。 调用方式区别：在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gclkc5wcv0j319g0fu0u7.jpg">
-<meta property="og:updated_time" content="2020-03-08T04:23:59.476Z">
+<meta property="og:updated_time" content="2020-03-10T13:09:48.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零碎知识点总结">
 <meta name="twitter:description" content="静态方法 &amp;amp; 非静态方法的区别 本质区别：静态方法与非静态方法的本质区别：静态方法在程序初始化后会一直贮存在内存中，不会被垃圾回收器回收，非静态方法只在该类初始化后贮存在内存中，当该类调用完毕后会被垃圾回收器收集释放。 调用方式区别：在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。">
@@ -514,7 +514,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-08 12:23:59" itemprop="dateModified" datetime="2020-03-08T12:23:59+08:00">2020-03-08</time>
+                <time title="修改时间：2020-03-10 21:09:48" itemprop="dateModified" datetime="2020-03-10T21:09:48+08:00">2020-03-10</time>
               
             
           </span>
@@ -567,7 +567,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">12k</span>
+                <span title="本文字数">13k</span>
               
 
               
@@ -581,7 +581,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">11 分钟</span>
+                <span title="阅读时长">12 分钟</span>
               
             </div>
           
@@ -612,7 +612,7 @@
 <p><a href="https://www.jianshu.com/p/275602182f39" target="_blank" rel="noopener">https://www.jianshu.com/p/275602182f39</a></p>
 <p><a href="https://blog.csdn.net/CringKong/article/details/80274148" target="_blank" rel="noopener">https://blog.csdn.net/CringKong/article/details/80274148</a></p>
 </blockquote>
-<p>简而言之，就是减少了拷贝次数，直接使用 DMA，并且减少了上下文切换的次数，所谓的零拷贝，意思应该是指不需要 CPU 参与拷贝就能完成数据的拷贝过程。</p>
+<p>简而言之，就是减少了拷贝次数，直接使用 DMA（Direct Memory Access，直接内存存取），并且减少了上下文切换的次数，所谓的零拷贝，意思应该是指不需要 CPU 参与拷贝就能完成数据的拷贝过程。</p>
 <p>Tip: kafka之所以这么快，就是用了零拷贝技术</p>
 <ol>
 <li><p>传统的读写(这里假设是将文件中的数据读取到网络上)：</p>
@@ -699,6 +699,47 @@
 <p>　　<strong><em>1）成员内部类的引用方式必须为 外部类名.内部类名；</em></strong></p>
 <p>　　<strong><em>2）构造器中必须有指向外部类对象的引用，并通过这个引用调用super()。这段代码摘自《Java编程思想》</em></strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WithInner</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">         </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>.<span class="title">Inner</span> </span>&#123;</span><br><span class="line">      </span><br><span class="line">    <span class="comment">// InheritInner() 是不能通过编译的，一定要加上形参</span></span><br><span class="line">    InheritInner(WithInner wi) &#123;</span><br><span class="line">        wi.<span class="keyword">super</span>(); <span class="comment">//必须有这句调用</span></span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        WithInner wi = <span class="keyword">new</span> WithInner();</span><br><span class="line">        InheritInner obj = <span class="keyword">new</span> InheritInner(wi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><blockquote>
+<p>反射的基本用法：<a href="https://blog.csdn.net/a745233700/article/details/82893076" target="_blank" rel="noopener">https://blog.csdn.net/a745233700/article/details/82893076</a></p>
+<ol>
+<li>获取类（第三个方法最常用）</li>
+</ol>
+<ul>
+<li><p>// 方法一：通过实例对象获取，不过说实话，都能拿到对象了，还要类对象干嘛..<br>// 不过有种用途，就是比如可以越过泛型检查，添加数据<br>// 比如一个对象是 ArrayList\<string>，可通过反射添加一个 Integer的数<br>// 因为java的泛型是在编译之后擦除的…存在漏洞哈哈哈<br>// 例子见：    <a href="https://blog.csdn.net/sinat_38259539/article/details/71799078" target="_blank" rel="noopener">https://blog.csdn.net/sinat_38259539/article/details/71799078</a></string></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; InnerClassDemo1 innerClassDemo1 = <span class="keyword">new</span> InnerClassDemo1();</span><br><span class="line">&gt; Class innerClass = innerClassDemo1.getClass();</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>方法二：类名.class，这个需要导包…</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Class innerClass = InnerClassDemo1.class;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ul>
+<li>方法三：最常用，使用类名（相对路径）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Class innerClass = Class.forName(<span class="string">"内部类.InnerClassDemo1"</span>);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>获得实例对象</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Class.forname(<span class="string">""</span>).getConstructor(String.class).newinstance() <span class="comment">// 可用于生成有参的对象</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; Class.forname(<span class="string">""</span>).newInstance()	<span class="comment">// 可生成无参的对象</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>拿到实例属性、实例方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 拿到对象的属性</span></span><br><span class="line">&gt; Field field = innerClass.getField(<span class="string">"sex"</span>);</span><br><span class="line">&gt; <span class="comment">// 如果参数是private，可以擦除</span></span><br><span class="line">&gt; <span class="comment">//        field.setAccessible(true);</span></span><br><span class="line">&gt; <span class="keyword">int</span> a = (<span class="keyword">int</span>) field.get(innerClassDemo1);</span><br><span class="line">&gt; <span class="comment">// 拿到方法</span></span><br><span class="line">&gt; Method showAge = innerClass.getMethod(<span class="string">"get_inner_sex"</span>);</span><br><span class="line">&gt; showAge.invoke(innerClassDemo1);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>拿到静态变量或者静态对象</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 拿到类的属性</span></span><br><span class="line">&gt; Field ff = innerClass.getField(<span class="string">"haha"</span>);</span><br><span class="line">&gt; <span class="keyword">int</span> b = (<span class="keyword">int</span>) ff.get(innerClass);</span><br><span class="line">&gt; <span class="comment">// 或者 int b = (int) ff.get(innerClassDemo1);</span></span><br><span class="line">&gt; System.out.println(<span class="string">"b: "</span> + b);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
 <h2 id="动态代理-demo"><a href="#动态代理-demo" class="headerlink" title="动态代理 demo"></a>动态代理 demo</h2><ul>
 <li><p>测试类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 相当于做生意的过程，比如我去医院整容，首先我要确保我有钱(也就是有接口)</span></span><br><span class="line">        Universities person = <span class="keyword">new</span> Universities();</span><br><span class="line">        <span class="comment">// 其次，我得去医院找到相应的医生，也就是把我想代理的对象，即我本人，告知给医生</span></span><br><span class="line">        <span class="comment">// 医生肯定得有能整容的技术，那就是得继承 InvocationHandler</span></span><br><span class="line">        InvocationHandler dynamic_person = <span class="keyword">new</span> Dynamic(person);</span><br><span class="line">        <span class="comment">// 进行交易的过程，一手交钱一手交换，医生拿到钱，会返回一个有钱的处理好的美女，也就是代理完成了</span></span><br><span class="line">        <span class="comment">// 这里必须强调代理返回的是 接口对象，也就是医生只会对有钱人进行代理，没钱的代理就失败了</span></span><br><span class="line">        <span class="comment">// 如果最开始我没钱，我就去找医生了，那在这一步交易的过程就会出错，因为医生只会处理有钱人，并且返回有钱人的代理好的对象</span></span><br><span class="line">        <span class="comment">// 交易的三个参数，也就是本人、钱、还有医生。本人就是实例对象，钱就是前文说的接口，医生就是上面的动态代理对象</span></span><br><span class="line">        <span class="comment">// 有钱人得到代理后的对象，就可以为所欲为了</span></span><br><span class="line">      </span><br><span class="line">        Person pp = (Person) Proxy.newProxyInstance(person.getClass().getClassLoader(),person.getClass().getInterfaces(),dynamic_person);</span><br><span class="line">       <span class="comment">// pp 就是 被代理对象 被 代理对象 代理后的对象</span></span><br><span class="line">        pp.dance();</span><br><span class="line">        System.out.println(<span class="string">"-----------"</span>);</span><br><span class="line">        pp.play();</span><br><span class="line">      </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1077,13 +1118,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1194,7 +1229,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法-amp-非静态方法的区别"><span class="nav-number">1.</span> <span class="nav-text">静态方法 &amp; 非静态方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-number">2.</span> <span class="nav-text">零拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-AOP原理"><span class="nav-number">3.</span> <span class="nav-text">Spring AOP原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-MVC-过程"><span class="nav-number">4.</span> <span class="nav-text">Spring MVC 过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Ioc"><span class="nav-number">5.</span> <span class="nav-text">Spring Ioc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口的区别"><span class="nav-number">6.</span> <span class="nav-text">抽象类和接口的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中public，protected，private以及默认的访问权限作用域"><span class="nav-number">7.</span> <span class="nav-text">Java中public，protected，private以及默认的访问权限作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部类"><span class="nav-number">8.</span> <span class="nav-text">内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类基础"><span class="nav-number">8.1.</span> <span class="nav-text">内部类基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#成员内部类"><span class="nav-number">8.1.1.</span> <span class="nav-text">成员内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部内部类"><span class="nav-number">8.1.2.</span> <span class="nav-text">局部内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名内部类"><span class="nav-number">8.1.3.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态内部类"><span class="nav-number">8.1.4.</span> <span class="nav-text">静态内部类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解内部类"><span class="nav-number">8.2.</span> <span class="nav-text">深入理解内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类的使用场景"><span class="nav-number">8.3.</span> <span class="nav-text">内部类的使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态代理-demo"><span class="nav-number">9.</span> <span class="nav-text">动态代理 demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-和-int-的区别"><span class="nav-number">10.</span> <span class="nav-text">Integer 和 int 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本对比"><span class="nav-number">10.1.</span> <span class="nav-text">基本对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入对比-demo"><span class="nav-number">10.2.</span> <span class="nav-text">深入对比 demo</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法-amp-非静态方法的区别"><span class="nav-number">1.</span> <span class="nav-text">静态方法 &amp; 非静态方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零拷贝"><span class="nav-number">2.</span> <span class="nav-text">零拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-AOP原理"><span class="nav-number">3.</span> <span class="nav-text">Spring AOP原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-MVC-过程"><span class="nav-number">4.</span> <span class="nav-text">Spring MVC 过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Ioc"><span class="nav-number">5.</span> <span class="nav-text">Spring Ioc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口的区别"><span class="nav-number">6.</span> <span class="nav-text">抽象类和接口的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中public，protected，private以及默认的访问权限作用域"><span class="nav-number">7.</span> <span class="nav-text">Java中public，protected，private以及默认的访问权限作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部类"><span class="nav-number">8.</span> <span class="nav-text">内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类基础"><span class="nav-number">8.1.</span> <span class="nav-text">内部类基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#成员内部类"><span class="nav-number">8.1.1.</span> <span class="nav-text">成员内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部内部类"><span class="nav-number">8.1.2.</span> <span class="nav-text">局部内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名内部类"><span class="nav-number">8.1.3.</span> <span class="nav-text">匿名内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态内部类"><span class="nav-number">8.1.4.</span> <span class="nav-text">静态内部类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入理解内部类"><span class="nav-number">8.2.</span> <span class="nav-text">深入理解内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部类的使用场景"><span class="nav-number">8.3.</span> <span class="nav-text">内部类的使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反射机制"><span class="nav-number">9.</span> <span class="nav-text">反射机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态代理-demo"><span class="nav-number">10.</span> <span class="nav-text">动态代理 demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer-和-int-的区别"><span class="nav-number">11.</span> <span class="nav-text">Integer 和 int 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本对比"><span class="nav-number">11.1.</span> <span class="nav-text">基本对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入对比-demo"><span class="nav-number">11.2.</span> <span class="nav-text">深入对比 demo</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1234,7 +1269,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">872k</span>
+    <span title="站点总字数">863k</span>
   
   
 </div>

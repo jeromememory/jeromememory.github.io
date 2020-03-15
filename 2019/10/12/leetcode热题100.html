@@ -180,7 +180,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5glpm58j30km06pglu.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5hbtaq0j30ha06p74g.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/006tNbRwgy1gbi5hvuybfj30am06pt8q.jpg">
-<meta property="og:updated_time" content="2020-02-16T15:10:58.553Z">
+<meta property="og:updated_time" content="2020-03-12T12:08:56.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode学习">
 <meta name="twitter:description" content="第1题：两数之和题目给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的思路">
@@ -541,7 +541,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-16 23:10:58" itemprop="dateModified" datetime="2020-02-16T23:10:58+08:00">2020-02-16</time>
+                <time title="修改时间：2020-03-12 20:08:56" itemprop="dateModified" datetime="2020-03-12T20:08:56+08:00">2020-03-12</time>
               
             
           </span>
@@ -1358,11 +1358,11 @@
 <p>三个指针，分别是 left、cur、right。left指向数组最左侧，right指向数组最右侧，cur代表当前正在遍历的数组元素，当 cur 遍历的元素是 0 时，将 cur 指向的元素 与 p0 指向的元素交换，然后 cur++，p0++。当 cur 遍历的元素是 1 时，cur++。当 cur 遍历的元素是 2 时，将 cur 指向的元素与 p2 指向的元素交换，然后 p2–，cur不动！！！直到 cur &gt; p2 ,循环结束（即全部扫描完毕）。</p>
 <p>对于以上，有一个难点！</p>
 <ul>
-<li><font color="red">为何 cur 在于 p0 交换时需要 p0++，cur++；而在 cur 与 p2 交换时，却只需要 p2++？</font>
+<li><font color="red">为何 cur 在与 p0 交换时需要 p0++，cur++；而在 cur 与 p2 交换时，却只需要 p2–？</font>
 
 </li>
 </ul>
-<p>对于上面这个问题，有两种解释思路：1.cur 与 p0 交换需要自加，是因为其左边已经扫描过了，交换过来的值也是之前就扫描过了的，而右边不是， p2 交换过来的值 cur 并没有扫描过；2.当 cur 与 p0 不是一个指向同一个索引值时，那 cur 指向的索引值如果发生交换，那交换过来的一定是 1（原因是只有当遍历过的节点有1，p0 和 cur 才不会同步），而 如果索引是 1 刚好也就不用有任何操作，所以可以直接继续向右扫描，当 cur 和 p0 指向的是同一个索引，那交换就等于没交换，故也是直接可以向右扫描，右边的就不行。</p>
+<p>对于上面这个问题，有两种解释思路：1.cur 与 p0 交换需要自加，是因为其左边已经扫描过了，交换过来的值也是之前就扫描过了的，而右边不是， p2 d交换过来的值 cur 并没有扫描过；2.当 cur 与 p0 不是一个指向同一个索引值时，那 cur 指向的索引值如果发生交换，那交换过来的一定是 1（原因是只有当遍历过的节点有1，p0 和 cur 才不会同步），而 如果索引是 1 刚好也就不用有任何操作，所以可以直接继续向右扫描，当 cur 和 p0 指向的是同一个索引，那交换就等于没交换，故也是直接可以向右扫描，右边的就不行。</p>
 <h2 id="代码-14"><a href="#代码-14" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (cur &lt;= right) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[cur] == <span class="number">0</span>) &#123;</span><br><span class="line">                swap(nums, left, cur);</span><br><span class="line">                left++;</span><br><span class="line">                cur++;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[cur] == <span class="number">2</span>) &#123;</span><br><span class="line">                swap(nums, right, cur);</span><br><span class="line">                right--;</span><br><span class="line">            &#125; <span class="keyword">else</span> cur++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[a];</span><br><span class="line">        nums[a] = nums[b];</span><br><span class="line">        nums[b] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="78-子集"><a href="#78-子集" class="headerlink" title="78. 子集"></a><a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">78. 子集</a></h1><h2 id="题目-28"><a href="#题目-28" class="headerlink" title="题目"></a>题目</h2><p>给定一组<strong>不含重复元素</strong>的整数数组 <em>nums</em>，返回该数组所有可能的子集（幂集）。</p>
 <p><strong>说明：</strong>解集不能包含重复的子集。</p>
@@ -2411,13 +2411,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2568,7 +2562,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">872k</span>
+    <span title="站点总字数">863k</span>
   
   
 </div>

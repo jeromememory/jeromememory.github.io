@@ -149,23 +149,21 @@
 
 
 
-  <meta name="description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  赋值、浅拷贝、深拷贝在谈及四种数组拷贝方式之前，先来缕缕赋值、浅拷贝、深拷贝三者的关系和区别。 数据类型谈及深拷贝和浅拷贝，首先要弄清数据类型有哪些,数据分为基本数据类型(元数据)和引用数据类型(对象引用)。    基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储">
+  <meta name="description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  数组拷贝方式之一——for()就是for循环咯！！！ 12345/** 1 for 循环拷贝*/int[] arr1 = new int[len];for (int i = 0; i &amp;lt; len; i++) &amp;#123;    arr1[i] = arr0[i];&amp;#125; 也是浅拷贝咯">
 <meta name="keywords" content="数组,Array,JAVA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVA对数组的四种拷贝方式">
 <meta property="og:url" content="http://jeromememory.github.io/2019/10/07/JAVA对数组的四种拷贝方式.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  赋值、浅拷贝、深拷贝在谈及四种数组拷贝方式之前，先来缕缕赋值、浅拷贝、深拷贝三者的关系和区别。 数据类型谈及深拷贝和浅拷贝，首先要弄清数据类型有哪些,数据分为基本数据类型(元数据)和引用数据类型(对象引用)。    基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储">
+<meta property="og:description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  数组拷贝方式之一——for()就是for循环咯！！！ 12345/** 1 for 循环拷贝*/int[] arr1 = new int[len];for (int i = 0; i &amp;lt; len; i++) &amp;#123;    arr1[i] = arr0[i];&amp;#125; 也是浅拷贝咯">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://i.loli.net/2019/10/06/R4MTga9rnm2pJVz.png">
-<meta property="og:image" content="https://i.loli.net/2019/10/06/EZ3FUlhpebKcgm4.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/06/HAzMu7UIjKQXSZ2.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/10/06/G5RIcgx2AWfYn3J.jpg">
-<meta property="og:updated_time" content="2019-12-05T13:09:49.038Z">
+<meta property="og:updated_time" content="2020-03-09T15:45:02.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA对数组的四种拷贝方式">
-<meta name="twitter:description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  赋值、浅拷贝、深拷贝在谈及四种数组拷贝方式之前，先来缕缕赋值、浅拷贝、深拷贝三者的关系和区别。 数据类型谈及深拷贝和浅拷贝，首先要弄清数据类型有哪些,数据分为基本数据类型(元数据)和引用数据类型(对象引用)。    基本数据类型的特点：直接存储在栈(stack)中的数据 引用数据类型的特点：存储">
-<meta name="twitter:image" content="https://i.loli.net/2019/10/06/R4MTga9rnm2pJVz.png">
+<meta name="twitter:description" content="数组拷贝的四种方式 for clone System.arraycopy arrays.copyof  数组拷贝方式之一——for()就是for循环咯！！！ 12345/** 1 for 循环拷贝*/int[] arr1 = new int[len];for (int i = 0; i &amp;lt; len; i++) &amp;#123;    arr1[i] = arr0[i];&amp;#125; 也是浅拷贝咯">
+<meta name="twitter:image" content="https://i.loli.net/2019/10/06/HAzMu7UIjKQXSZ2.jpg">
 
 
 
@@ -518,7 +516,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-05 21:09:49" itemprop="dateModified" datetime="2019-12-05T21:09:49+08:00">2019-12-05</time>
+                <time title="修改时间：2020-03-09 23:45:02" itemprop="dateModified" datetime="2020-03-09T23:45:02+08:00">2020-03-09</time>
               
             
           </span>
@@ -571,7 +569,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2.4k</span>
+                <span title="本文字数">1.7k</span>
               
 
               
@@ -611,19 +609,10 @@
 <li>System.arraycopy</li>
 <li>arrays.copyof</li>
 </ul>
-<h1 id="赋值、浅拷贝、深拷贝"><a href="#赋值、浅拷贝、深拷贝" class="headerlink" title="赋值、浅拷贝、深拷贝"></a>赋值、浅拷贝、深拷贝</h1><p>在谈及四种数组拷贝方式之前，先来缕缕赋值、浅拷贝、深拷贝三者的关系和区别。</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>谈及深拷贝和浅拷贝，首先要弄清数据类型有哪些,数据分为<strong>基本数据类型</strong>(元数据)和<strong>引用数据类型</strong>(对象引用)。  </p>
-<ul>
-<li>基本数据类型的特点：直接存储在栈(stack)中的数据</li>
-<li>引用数据类型的特点：存储的是该对象在<strong>栈中</strong>引用，真实的数据存放在<strong>堆内存</strong>里，引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。</li>
-</ul>
-<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p>　　深拷贝和浅拷贝是只针对<strong>引用类型</strong>的数据而言的，对于<strong>基本数据类型</strong>来说，深拷贝和浅拷贝都是直接进行<strong>值传递</strong>的，与赋值的方式是一样的，三者没有任何区别，区别就在于对于引用数据类型来说，浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存,所以如果修改对象的话会互相影响。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。<br>　　总而言之，在数组内都是基本数据类型时，是不会有深拷贝和浅拷贝这样的概念出现的，只有出现了引用类型的数据，才能谈深拷贝和浅拷贝。<br><strong>Tips:</strong><br>　　String不是基本数据类型，但是在深复制的时候并没有进行单独的复制，也就是说违反了深复制，仅仅复制了引用，而String没有实现cloneable接口，也就是说只能复制引用。<br>　　那么在修改克隆之后的对象之后，会不会将原来的值也改变了?<br>　　答案肯定是不会改变，因为String是在内存中不可以被改变的对象，就比如说在for大量循环中不推荐使用+的方式来拼凑字符串一样，每次使用都会新分配一块内存，不在原来上修改，原来的没有指向它的引用，会被回收。所以克隆相当于1个String内存空间有两个引用，当修改其中的一个值的时候，会新分配一块内存用来保存新的值，这个引用指向新的内存空间，原来的String因为还存在指向他的引用，所以不会被回收，这样，虽然是复制的引用，但是修改值的时候，并没有改变被复制对象的值。</p>
-<p><center><img src="https://i.loli.net/2019/10/06/R4MTga9rnm2pJVz.png" alt="深拷贝和浅拷贝的区别.jpeg"></center></p>
-<p><center><img src="https://i.loli.net/2019/10/06/EZ3FUlhpebKcgm4.png" alt="赋值、深拷贝、浅拷贝.jpeg"></center></p>
-<h1 id="数组拷贝方式之一——for"><a href="#数组拷贝方式之一——for" class="headerlink" title="数组拷贝方式之一——for()"></a>数组拷贝方式之一——for()</h1><p>就是for循环咯！！！</p>
+<h2 id="数组拷贝方式之一——for"><a href="#数组拷贝方式之一——for" class="headerlink" title="数组拷贝方式之一——for()"></a>数组拷贝方式之一——for()</h2><p>就是for循环咯！！！</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 1 for 循环拷贝*/</span></span><br><span class="line"><span class="keyword">int</span>[] arr1 = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    arr1[i] = arr0[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>也是浅拷贝咯！</strong></p>
-<h1 id="数组拷贝方式之二——clone"><a href="#数组拷贝方式之二——clone" class="headerlink" title="数组拷贝方式之二——clone()"></a>数组拷贝方式之二——clone()</h1><p>（主要参考）<a href="https://segmentfault.com/a/1190000010648514" target="_blank" rel="noopener">细说 Java 的深拷贝和浅拷贝</a><br>　　在 Java 中，所有的 Class 都继承自 Object ，而在 Object 上，存在一个 clone() 方法，它被声明为了 protected ，所以我们可以在其子类中，使用它。而无论是浅拷贝还是深拷贝，都需要实现 clone() 方法，来完成操作。<br>　　首先需要说明的是，clone()是<strong>浅拷贝</strong>的方式！！！其次，我们应该如何实现深拷贝呢，有两种方法：  </p>
+<h2 id="数组拷贝方式之二——clone"><a href="#数组拷贝方式之二——clone" class="headerlink" title="数组拷贝方式之二——clone()"></a>数组拷贝方式之二——clone()</h2><p>（主要参考）<a href="https://segmentfault.com/a/1190000010648514" target="_blank" rel="noopener">细说 Java 的深拷贝和浅拷贝</a><br>　　在 Java 中，所有的 Class 都继承自 Object ，而在 Object 上，存在一个 clone() 方法，它被声明为了 protected ，所以我们可以在其子类中，使用它。而无论是浅拷贝还是深拷贝，都需要实现 clone() 方法，来完成操作。<br>　　首先需要说明的是，clone()是<strong>浅拷贝</strong>的方式！！！其次，我们应该如何实现深拷贝呢，有两种方法：  </p>
 <ul>
 <li><p>用多层浅拷贝达到深拷贝的目的，要知道，浅拷贝和深拷贝的区别就是在处理对象引用时，浅拷贝不会创造新的对象，而深拷贝会，但是如果一个对象的属性变成了基本类型数据，那么浅拷贝同样会创造新的对象，所以说，多层浅拷贝就能达到深拷贝的目的，例如：<br><img src="https://i.loli.net/2019/10/06/HAzMu7UIjKQXSZ2.jpg" alt="clone深拷贝的demo.jpg"><br><img src="https://i.loli.net/2019/10/06/G5RIcgx2AWfYn3J.jpg" alt="clone的demo_test.jpg"><br>在对fatherClass和childClass进行两级浅拷贝之后，fatherB就有浅拷贝变成了深拷贝，因为此时基本数据类型和Child对象都是指向不同的地址的，也就是二者都是不同的对象，所以就是达到了深拷贝的目的了。</p>
 </li>
@@ -638,9 +627,13 @@
 </li>
 </ul>
 <p>最后，推一个序列化实现深拷贝的例子：<a href="https://www.cnblogs.com/Jtianlin/p/4605477.html" target="_blank" rel="noopener">序列化的方式使得其变为深拷贝</a></p>
-<h1 id="数组拷贝方式之三——System-arraycopy"><a href="#数组拷贝方式之三——System-arraycopy" class="headerlink" title="数组拷贝方式之三——System.arraycopy()"></a>数组拷贝方式之三——System.arraycopy()</h1><p>native方法，依旧是一个浅拷贝——–&gt; <a href="https://segmentfault.com/a/1190000009922279" target="_blank" rel="noopener">详细传送门</a></p>
-<h1 id="数组拷贝方式之四——arrays-copyof"><a href="#数组拷贝方式之四——arrays-copyof" class="headerlink" title="数组拷贝方式之四——arrays.copyof()"></a>数组拷贝方式之四——arrays.copyof()</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T,U&gt; T[] copyOf(U[] original, <span class="keyword">int</span> newLength, Class&lt;? extends T[]&gt; newType) &#123;</span><br><span class="line">   <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="comment">//根据class的类型是否是 Object[] 来决定是 new 还是反射去构造一个泛型数组</span></span><br><span class="line">   T[] copy = ((Object)newType == (Object)Object[].class)</span><br><span class="line">       ? (T[]) <span class="keyword">new</span> Object[newLength]</span><br><span class="line">       : (T[]) Array.newInstance(newType.getComponentType(), newLength);</span><br><span class="line">       <span class="comment">//使用 native 方法批量赋值元素至新数组中。</span></span><br><span class="line">   System.arraycopy(original, <span class="number">0</span>, copy, <span class="number">0</span>,</span><br><span class="line">                    Math.min(original.length, newLength));</span><br><span class="line">   <span class="keyword">return</span> copy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组拷贝方式之三——System-arraycopy"><a href="#数组拷贝方式之三——System-arraycopy" class="headerlink" title="数组拷贝方式之三——System.arraycopy()"></a>数组拷贝方式之三——System.arraycopy()</h2><p>native方法，依旧是一个浅拷贝——–&gt; <a href="https://segmentfault.com/a/1190000009922279" target="_blank" rel="noopener">详细传送门</a></p>
+<h2 id="数组拷贝方式之四——arrays-copyof"><a href="#数组拷贝方式之四——arrays-copyof" class="headerlink" title="数组拷贝方式之四——arrays.copyof()"></a>数组拷贝方式之四——arrays.copyof()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T,U&gt; T[] copyOf(U[] original, <span class="keyword">int</span> newLength, Class&lt;? extends T[]&gt; newType) &#123;</span><br><span class="line">   <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="comment">//根据class的类型是否是 Object[] 来决定是 new 还是反射去构造一个泛型数组</span></span><br><span class="line">   T[] copy = ((Object)newType == (Object)Object[].class)</span><br><span class="line">       ? (T[]) <span class="keyword">new</span> Object[newLength]</span><br><span class="line">       : (T[]) Array.newInstance(newType.getComponentType(), newLength);</span><br><span class="line">       <span class="comment">//使用 native 方法批量赋值元素至新数组中。</span></span><br><span class="line">   System.arraycopy(original, <span class="number">0</span>, copy, <span class="number">0</span>,</span><br><span class="line">                    Math.min(original.length, newLength));</span><br><span class="line">   <span class="keyword">return</span> copy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>你看看，底层也在用System.arraycopy()这个native方法，所以就不再赘述了，这个在<strong>ArrayList源码分析</strong>中也有涉及哦！！！！</p>
+<blockquote>
+<p>深浅拷贝的区别：</p>
+<p><a href="https://blog.csdn.net/baiye_xing/article/details/71788741?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">https://blog.csdn.net/baiye_xing/article/details/71788741?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
+</blockquote>
 
       
     </div>
@@ -983,13 +976,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1100,7 +1087,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝的四种方式"><span class="nav-number">1.</span> <span class="nav-text">数组拷贝的四种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#赋值、浅拷贝、深拷贝"><span class="nav-number">2.</span> <span class="nav-text">赋值、浅拷贝、深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">2.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝和浅拷贝"><span class="nav-number">2.2.</span> <span class="nav-text">深拷贝和浅拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝方式之一——for"><span class="nav-number">3.</span> <span class="nav-text">数组拷贝方式之一——for()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝方式之二——clone"><span class="nav-number">4.</span> <span class="nav-text">数组拷贝方式之二——clone()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝方式之三——System-arraycopy"><span class="nav-number">5.</span> <span class="nav-text">数组拷贝方式之三——System.arraycopy()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝方式之四——arrays-copyof"><span class="nav-number">6.</span> <span class="nav-text">数组拷贝方式之四——arrays.copyof()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组拷贝的四种方式"><span class="nav-number">1.</span> <span class="nav-text">数组拷贝的四种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组拷贝方式之一——for"><span class="nav-number">1.1.</span> <span class="nav-text">数组拷贝方式之一——for()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组拷贝方式之二——clone"><span class="nav-number">1.2.</span> <span class="nav-text">数组拷贝方式之二——clone()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组拷贝方式之三——System-arraycopy"><span class="nav-number">1.3.</span> <span class="nav-text">数组拷贝方式之三——System.arraycopy()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组拷贝方式之四——arrays-copyof"><span class="nav-number">1.4.</span> <span class="nav-text">数组拷贝方式之四——arrays.copyof()</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1140,7 +1127,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">872k</span>
+    <span title="站点总字数">863k</span>
   
   
 </div>

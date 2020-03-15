@@ -149,23 +149,20 @@
 
 
 
-  <meta name="description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
-<meta name="keywords" content="并发工具包">
+  <meta name="description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="多线程（六）--- 并发工具包">
-<meta property="og:url" content="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html">
+<meta property="og:title" content="mysql 复习">
+<meta property="og:url" content="http://jeromememory.github.io/2020/03/13/Mysql 再度出发.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
+<meta property="og:description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdo2he4ecj30vs0fatbn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdp7doykcj30u00u4wjf.jpg">
-<meta property="og:updated_time" content="2020-03-02T13:40:37.760Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg">
+<meta property="og:updated_time" content="2020-03-13T14:02:51.338Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="多线程（六）--- 并发工具包">
-<meta name="twitter:description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg">
+<meta name="twitter:title" content="mysql 复习">
+<meta name="twitter:description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg">
 
 
 
@@ -175,7 +172,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包">
+  <link rel="canonical" href="http://jeromememory.github.io/2020/03/13/Mysql 再度出发">
 
 
 
@@ -185,7 +182,7 @@
   };
 </script>
 
-  <title>多线程（六）--- 并发工具包 | jeromememory</title>
+  <title>mysql 复习 | jeromememory</title>
   
 
 
@@ -457,7 +454,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/03/13/Mysql 再度出发.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -474,7 +471,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">多线程（六）--- 并发工具包
+          <h1 class="post-title" itemprop="name headline">mysql 复习
 
               
             
@@ -482,10 +479,6 @@
         
 
         <div class="post-meta">
-          
-            <i class="fa fa-thumb-tack"></i>
-            <font color="7D26CD">置顶</font>
-            <span class="post-meta-divider">|</span>
           
           <span class="post-time">
 
@@ -505,46 +498,16 @@
                 
               
 
-              <time title="创建时间：2020-02-28 23:48:06" itemprop="dateCreated datePublished" datetime="2020-02-28T23:48:06+08:00">2020-02-28</time>
+              <time title="创建时间：2020-03-13 16:29:59 / 修改时间：22:02:51" itemprop="dateCreated datePublished" datetime="2020-03-13T16:29:59+08:00">2020-03-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-02 21:40:37" itemprop="dateModified" datetime="2020-03-02T21:40:37+08:00">2020-03-02</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/多线程/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -575,7 +538,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">7.1k</span>
+                <span title="本文字数">8.3k</span>
               
 
               
@@ -589,7 +552,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -609,45 +572,182 @@
       
 
       
-        <h1 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch(倒计时器)"></a>CountDownLatch(倒计时器)</h1><p>在多线程协作完成业务功能时，有时候<strong>需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能</strong>，在这种的业务场景下，通常可以使用 </p>
+        <blockquote>
+<p>目录：/MySQL实战45讲 [161.8M]<br>    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]<br>    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]<br>    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]<br>    ┣━━04讲深入浅出索引（上）.html [59.9K]<br>    ┣━━05讲深入浅出索引（下）.html [63.2K]<br>    ┣━━06讲全局锁和表锁：给表加个字段怎么有这么多阻碍.html [63.9K]<br>    ┣━━07讲行锁功过：怎么减少行锁对性能的影响.html [60.9K]<br>    ┣━━08讲事务到底是隔离的还是不隔离的.html [69K]<br>    ┣━━09讲普通索引和唯一索引，应该怎么选择.html [70K]<br>    ┣━━10讲MySQL为什么有时候会选错索引.html [67.1K]<br>    ┣━━11讲怎么给字符串字段加索引.html [54.6K]<br>    ┣━━12讲为什么我的MySQL会“抖”一下.html [62K]<br>    ┣━━13讲为什么表数据删掉一半，表文件大小不变.html [60.2K]<br>    ┣━━14讲count这么慢，我该怎么办.html [64.2K]<br>    ┣━━15讲答疑文章（一）：日志和索引相关问题.html [73.4K]<br>    ┣━━16讲“orderby”是怎么工作的.html [74.3K]<br>    ┣━━17讲如何正确地显示随机消息.html [63.5K]<br>    ┣━━18讲为什么这些SQL语句逻辑相同，性能却差异巨大.html [62.1K]<br>    ┣━━19讲为什么我只查一行的语句，也执行这么慢.html [59.6K]<br>    ┣━━20讲幻读是什么，幻读有什么问题.html [67.2K]<br>    ┣━━21讲为什么我只改一行的语句，锁这么多.html [68.7K]<br>    ┣━━22讲MySQL有哪些“饮鸩止渴”提高性能的方法.html [75.2K]<br>    ┣━━23讲MySQL是怎么保证数据不丢的.html [65.4K]<br>    ┣━━24讲MySQL是怎么保证主备一致的.html [66.4K]<br>    ┣━━25讲MySQL是怎么保证高可用的.html [68.4K]<br>    ┣━━26讲备库为什么会延迟好几个小时.html [67.5K]<br>    ┣━━27讲主库出问题了，从库怎么办.html [63.3K]<br>    ┣━━28讲读写分离有哪些坑.html [67.1K]<br>    ┣━━29讲如何判断一个数据库是不是出问题了.html [49.4K]<br>    ┣━━30讲答疑文章（二）：用动态的观点看加锁.html [38.9K]<br>    ┣━━31讲误删数据后除了跑路，还能怎么办.html [65.1K]<br>    ┣━━32讲为什么还有kill不掉的语句.html [59.4K]<br>    ┣━━33讲我查这么多数据，会不会把数据库内存打爆.html [61.1K]<br>    ┣━━34讲到底可不可以使用join.html [37.2K]<br>    ┣━━35讲join语句怎么优化.html [67.4K]<br>    ┣━━36讲为什么临时表可以重名.html [55.3K]<br>    ┣━━37讲什么时候会使用内部临时表.html [57.2K]<br>    ┣━━38讲都说InnoDB好，那还要不要使用Memory引擎.html [52.1K]<br>    ┣━━39讲自增主键为什么不是连续的.html [50.6K]<br>    ┣━━40讲insert语句的锁为什么这么多.html [53.8K]<br>    ┣━━41讲怎么最快地复制一张表.html [34K]<br>    ┣━━42讲grant之后要跟着flushprivileges吗.html [51.4K]<br>    ┣━━43讲要不要使用分区表.html [51.2K]<br>    ┣━━44讲答疑文章（三）：说一说这些好问题.html [53.1K]<br>    ┣━━开篇词讲这一次，让我们一起来搞懂MySQL.html [40.6K]<br>    ┗━━直播回顾讲林晓斌：我的MySQL心路历程.html [51.7K]</p>
+</blockquote>
+<h2 id="1-一条语句的执行过程"><a href="#1-一条语句的执行过程" class="headerlink" title="1. 一条语句的执行过程"></a>1. 一条语句的执行过程</h2><p>以查询语句为例，一条查询语句要经过以下几个步骤：</p>
 <ol>
-<li><p>Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。</p>
+<li>连接器。首先会在 Server 端验证连接的正确性，判断用户名密码是否正确，进行连接管理；</li>
+<li>查询缓存。这个在 Mysql 8.0 之后就没有了，因为缓存命中率一向很低，只要修改了表就会导致缓存的失效；</li>
+<li>分析器。主要进行词法语法的分析，判断语句是否符合规范，语句中的表以及字段在表中是否正确；</li>
+<li>优化器。对查询语句进行优化，主要是索引的选择；</li>
+<li>执行器。这一步才真正开始打开表来操作，需要首先验证是否可以有操作表的权限，然后调用InnoDb 等存储引擎的读写接口来完成语句的操作，最后返回结果；</li>
+<li>存储引擎。主要负责存储数据以及提供数据读写的接口。</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg" alt="image-20200313164342777"></p>
+<h2 id="2-讲日志系统：一条-SQL-更新语句的执行"><a href="#2-讲日志系统：一条-SQL-更新语句的执行" class="headerlink" title="2. 讲日志系统：一条 SQL 更新语句的执行"></a>2. 讲日志系统：一条 SQL 更新语句的执行</h2><p>「MySQL里经常说到的WAL技术，WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘」</p>
+<p>InnoDB中特有的日志 redo-log：</p>
+<ul>
+<li>在 InnoDB 中可以保证即使数据库发生了重启，之前提交的记录并不会丢失，这个能力称为 “crash-safe”；</li>
+<li>是物理日志，记录的是“这个数据页上做了什么改变”，与存储引擎的作用相符，主要是处理存储方面的功能；</li>
+<li>是循环写的，空间固定会用完的。用完了就把之前的擦除，然后继续写，用两个指针来控制。</li>
+</ul>
+<p>Server 层独有的日志 binlog：</p>
+<ul>
+<li>是 Server 层实现的，所有引擎都可以使用；</li>
+<li>作用是用于归档，记录的是“做了什么逻辑操作”，重点在执行逻辑上，不在存储，因为 Server 就是负责 Mysql 功能方面；</li>
+<li>是可以追加写的，写完一页换一页，不会擦除以前的。</li>
+</ul>
+<blockquote>
+<p>mysql&gt; update T set c=c+1 where ID=2;</p>
+</blockquote>
+<p>上述的 update 语句执行顺序大体和 1 中一样，具体的执行器的流程如下：</p>
+<ol>
+<li>执行器先找引擎，获取 ID = 2 这一行，ID 是主键，引擎会直接用索引树定位到这一行的数据，如果这一行的数据在内存中，那直接返回就好了，如果不在，则需要去磁盘中读取并加载到内存中，然后返回给执行器；</li>
+<li>执行器拿到了这一行的数据，将 c 自加一，然后调用引擎去写入数据；</li>
+<li>引擎会先将这个数据加载到内存中，并且去写 redo-log，此时注意，redo-log 并未提交，而是处于 prepare 状态，然后告知执行器执行完成了，随时可以提交事务；</li>
+<li>执行器收到了存储引擎的消息后，就开始写入 bin-log，并把 bin-log写入磁盘；</li>
+<li>执行器写入完毕后，调用引擎的提交事务接口，引擎把刚刚写入的 redo-log 改成 commit 状态，提交事务。</li>
+</ol>
+<p>上述值得注意的是， redo-log 是 两阶段提交，也就是 先 prepare 再 commit。之所以这么做的原因是<strong>为了让两份日志之间的逻辑一致。</strong></p>
+<p>要注意，现阶段的数据恢复还是靠着 binlog + 整库备份去完成的，按理说 redo-log 也能完成而且速度肯定要比 bin-log 快得多，但是由于 redo-log 是会擦除的，不具备bin-log 的归档功能，所以现阶段还是没办法。</p>
+<blockquote>
+<p>思考题：定期全量备份的周期“取决于系统重要性，有的是一天一备，有的是一周一备”。那么在什么场景下，一天一备会比一周一备更有优势呢？或者说，它影响了这个数据库系统的哪个指标？</p>
+</blockquote>
+<blockquote>
+<p>一天一备：好处是“最长恢复时间”更短。在一天一备的模式里，最坏情况下需要应用一天的binlog。比如，你每天0点做一次全量备份，而要恢复出一个到昨天晚上23点的备份。但是坏处也是显而易见的，就是你需要大量的存储。</p>
+<p>一周一备最坏情况就要应用一周的binlog了。这个恢复时间长，但是明显存储的消耗就小得多了。</p>
+</blockquote>
+<h2 id="3-事务隔离"><a href="#3-事务隔离" class="headerlink" title="3. 事务隔离"></a>3. 事务隔离</h2><p>事务的四大特性：</p>
+<ol>
+<li>原子性。要么不做，要么全做；</li>
+<li>一致性。在处理事务的过程中，保证数据库状态和其他业务规则保持一致，比如转账，前后两者的账湖总额不变；</li>
+<li>隔离性。不同事务之间互不影响；</li>
+<li>持久性。事务提交之后需要持久化到数据库中去，即使崩溃，也能恢复。</li>
+</ol>
+<p>事务的隔离级别：</p>
+<ol>
+<li>读未提交。别人还没提交的东西，就能读取到，会产生幻读、不可重复读、脏读的问题；「一个事务还没提交时，它做的变更就能被别的事务看到。」</li>
+<li>读提交。别人提交的东西，就能读取到。会产生幻读、不可重复读；「一个事务提交之后，它做的变更才会被其他事务看到。」</li>
+<li>可重复读。在事务执行期间，别人就算提交了东西并改动了，当前事务看不到，不会去读最新的，还是可能会产生幻读的情况；「一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。」</li>
+<li>序列化。加锁，牛逼。「顾名思义是对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。」</li>
+</ol>
+<p>其中，最难理解的就是可重复读的隔离级别是如何实现的，这也是mysql的默认隔离级别：</p>
+<p><strong>就是使用的回滚技术，在MySQL中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg" alt="image-20200313180011653"></p>
+<p>如图所示，这也是 数据库的多版本并发控制的基础，采用回滚机制。当然了，回滚日志不能一直保留，所以在必要的时候删除，删除的时间点就是当没有事务再需要用到这些回滚日志时，回滚日志会被删除。<strong>所以我们最好不要使用长事务，这样会导致回滚的数据很多很多。</strong>除了对回滚段的影响，长事务还占用锁资源，也可能拖垮整个库。</p>
+<blockquote>
+<p>如何避免长事务对业务的影响？</p>
+<p>这个问题，我们可以从应用开发端和数据库端来看。</p>
+<p><strong>首先，从应用开发端来看：</strong></p>
+<ol>
+<li>确认是否使用了set autocommit=0。这个确认工作可以在测试环境中开展，把MySQL的general_log开起来，然后随便跑一个业务逻辑，通过general_log的日志来确认。一般框架如果会设置这个值，也就会提供参数来控制行为，你的目标就是把它改成1。</li>
+<li>确认是否有不必要的只读事务。有些框架会习惯不管什么语句先用begin/commit框起来。我见过有些是业务并没有这个需要，但是也把好几个select语句放到了事务中。这种只读事务可以去掉。</li>
+<li>业务连接数据库的时候，根据业务本身的预估，通过SET MAX_EXECUTION_TIME命令，来控制每个语句执行的最长时间，避免单个语句意外执行太长时间。（为什么会意外？在后续的文章中会提到这类案例）</li>
+</ol>
+<p><strong>其次，从数据库端来看：</strong></p>
+<ol>
+<li>监控 information_schema.Innodb_trx表，设置长事务阈值，超过就报警/或者kill；</li>
+<li>Percona的pt-kill这个工具不错，推荐使用；</li>
+<li>在业务功能测试阶段要求输出所有的general_log，分析日志行为提前发现问题；</li>
+<li>如果使用的是MySQL 5.6或者更新版本，把innodb_undo_tablespaces设置成2（或更大的值）。如果真的出现大事务导致回滚段过大，这样设置后清理起来更方便。</li>
+</ol>
+</blockquote>
+<h2 id="4-深入浅出索引（上）"><a href="#4-深入浅出索引（上）" class="headerlink" title="4. 深入浅出索引（上）"></a>4. 深入浅出索引（上）</h2><p>为何不使用 哈希表、数组、B 树、二叉搜索树，而采用了 B+？</p>
+<blockquote>
+<ol>
+<li><p>为何不用哈希表？</p>
+<p>哈希表进行等值查询的确很快，O(1) 的时间复杂度，但是其进行范围查询就必须遍历全表，并且如果相同的值太多，就容易导致哈希冲突，性能进一步下降。</p>
 </li>
-<li><p>使用线程间消息通信机制也可以完成。</p>
+<li><p>为何不用数组？</p>
+<p>数组的确可以很快的进行等值查询和范围查询，但是其更新很麻烦，如果中间需要删除，那就要移动后面所有数据，所以只适用于静态存储引擎。</p>
 </li>
-<li><p>使用Executor体系中的 FutureTask,主线程调用其他线程 get() 方法</p>
+<li><p>为何不用 B 树？</p>
+<p>B 树最大的问题就是非叶子节点有一个 Data 域，我们知道数据库的性能主要取决于磁盘 I/O 的次数，mysql 采用了磁盘预读的机制，也就是每一个树的节点都申请一页的存储空间，这样方便读写，就是因为 B 树存储了 Data 域，相比之下肯定就只能存更少的指针域了，这样就会导致整个树的高度拉高，磁盘 I/O 次数增加，二叉搜索树同样如此，树高过高导致磁盘 I/O 次数增加。</p>
+</li>
+<li><p>为何用 B+ 树？</p>
+<ol>
+<li>我觉得第一点就是因为其树低，每个非叶子节点只存储了指针域和主键（这里说的是聚集索引）；</li>
+<li>叶子节点有链表，方便范围查询；</li>
+<li>查询效率很稳定。</li>
+</ol>
 </li>
 </ol>
-<p>其实，java 并发工具类中为我们提供了类似“倒计时”这样的工具类，可以十分方便的完成所说的这种业务场景。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg" alt="image-20200229224934309"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">await() <span class="keyword">throws</span> InterruptedException <span class="comment">//调用该方法的线程等到构造方法传入的 N 减到 0 的时候，才能继续往下执行；</span></span><br><span class="line">await(<span class="keyword">long</span> timeout, TimeUnit unit) <span class="comment">//与上面的 await 方法功能一致，只不过这里有了时间限制，调用该方法的线程等到指定的 timeout 时间后，不管 N 是否减至为 0，都会继续往下执行；</span></span><br><span class="line">countDown() <span class="comment">//使 CountDownLatch 初始值 N 减 1；</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> <span class="comment">//获取当前 CountDownLatch 维护的值；</span></span></span><br><span class="line"><span class="function"><span class="title">CountDownLatch</span><span class="params">()</span> <span class="comment">//参数为倒计时数量</span></span></span><br></pre></td></tr></table></figure>
-<p>为了能够理解 CountDownLatch，举一个很通俗的例子，运动员进行跑步比赛时，假设有 6 个运动员参与比赛，裁判员在终点会为这 6 个运动员分别计时，可以想象没当一个运动员到达终点的时候，对于裁判员来说就少了一个计时任务。直到所有运动员都到达终点了，裁判员的任务也才完成。这 6 个运动员可以类比成 6 个线程，当线程调用 CountDownLatch.countDown 方法时就会对计数器的值减一，直到计数器的值为 0 的时候，裁判员（调用 await 方法的线程）才能继续往下执行。</p>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch startSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//用来表示裁判员需要维护的是6个运动员</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch endSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">6</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" 运动员等待裁判员响哨！！！"</span>);</span><br><span class="line">                    startSignal.await();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"正在全力冲刺"</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"  到达终点"</span>);</span><br><span class="line">                    endSignal.countDown();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"裁判员发号施令啦！！！"</span>);</span><br><span class="line">        startSignal.countDown();</span><br><span class="line">        endSignal.await();</span><br><span class="line">        System.out.println(<span class="string">"所有运动员到达终点，比赛结束！"</span>);</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg" alt="image-20200229225217749"></p>
-<h1 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier(循环栅栏)"></a>CyclicBarrier(循环栅栏)</h1><p>CyclicBarrier 也是一种多线程并发控制的实用工具，和 CountDownLatch 一样具有等待计数的功能，但是相比于 CountDownLatch 功能更加强大。</p>
-<p>循环栅栏，也就是有一个临界点，所有人到了这个临界点，才可以一起继续工作，然后再等下一次所有人都到这个临界点，继续工作…如此循环…</p>
-<h2 id="Demo-1"><a href="#Demo-1" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CyclicBarrierDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//指定必须有6个运动员到达才行</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CyclicBarrier barrier = <span class="keyword">new</span> CyclicBarrier(<span class="number">6</span>, () -&gt; &#123;</span><br><span class="line">        <span class="comment">// 每次到了这个临界点，所有线程都必须停下。</span></span><br><span class="line">        System.out.println(<span class="string">"裁判员发号施令啦！！！"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"运动员准备进场，全场欢呼............"</span>);</span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">6</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            service.execute(() -&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"运动员等待裁判员响哨！！！"</span>);</span><br><span class="line">                    barrier.await();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"运动员出发"</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (BrokenBarrierException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdo2he4ecj30vs0fatbn.jpg" alt="image-20200229230142149"></p>
-<h1 id="CountDownLatch-与-CyclicBarrier-的比较"><a href="#CountDownLatch-与-CyclicBarrier-的比较" class="headerlink" title="CountDownLatch 与 CyclicBarrier 的比较"></a>CountDownLatch 与 CyclicBarrier 的比较</h1><p>CountDownLatch 与 CyclicBarrier 都是用于控制并发的工具类，都可以理解成维护的就是一个计数器，但是这两者还是各有不同侧重点的：</p>
-<ul>
-<li><p>CountDownLatch 一般用于<strong>某个线程 A 等待若干个其他线程执行完任务</strong>之后，它才执行，最重要的是有一个主心骨，主线程是核心，他等所有人干完；而 CyclicBarrier 一般用于<strong>一组线程互相等待至某个状态</strong>，然后这一组线程再同时执行；CountDownLatch 强调一个线程等多个线程完成某件事情。CyclicBarrier 是多个线程互等，等大家都完成，再携手共进。所以两者 await 的地方不一样，前者是对主线程进行 await，而后者则是所有一起工作的进行 await。</p>
+</blockquote>
+<blockquote>
+<p>为何最好使用自增主键？</p>
+<p>因为这样就可以减少维护索引有序性带来的开销，如果不采用自增主键，那么在插入的时候可能会在中间，造成一个页分裂的过程，开销很大，会导致存储的碎片化。</p>
+</blockquote>
+<h2 id="5-深入浅出索引（下）"><a href="#5-深入浅出索引（下）" class="headerlink" title="5. 深入浅出索引（下）"></a>5. 深入浅出索引（下）</h2><ol>
+<li><p>什么叫回表？</p>
+<p>普通索引在找到主键后，回到主键索引树搜索的过程，称为回表。</p>
 </li>
-<li><p>CountDownLatch 方法比较少，操作比较简单，而 CyclicBarrier 提供的方法更多，比如能够通过 getNumberWaiting()，isBroken()这些方法获取当前多个线程的状态，<strong>并且 CyclicBarrier 的构造方法可以传入 barrierAction</strong>，指定当所有线程都到达时执行的业务功能。</p>
+<li><p>如何减少回表的次数呢？</p>
+<ol>
+<li><p>覆盖索引。<strong>覆盖索引可以减少树的搜索次数，显著提升查询性能，所以使用覆盖索引是一个常用的性能优化手段。</strong><font color="red">其实就是联合索引，然后符合覆盖的要求就称之为覆盖索引，就是多个字段拼成一个索引，然后对应主键的映射。</font></p>
+</li>
+<li><p>最左前缀规则。只要满足最左前缀，就可以利用索引来加速检索。这个最左前缀可以是联合索引的最左N个字段，也可以是字符串索引的最左M个字符。</p>
+<p>基于上面对最左前缀索引的说明，我们来讨论一个问题：<strong>在建立联合索引的时候，如何安排索引内的字段顺序。</strong></p>
+<p>这里我们的评估标准是，索引的复用能力。因为可以支持最左前缀，所以当已经有了(a,b)这个联合索引后，一般就不需要单独在a上建立索引了。因此，<strong>第一原则是，如果通过调整顺序，可以少维护一个索引，那么这个顺序往往就是需要优先考虑采用的。</strong>那如果既有联合索引，又有基于 a、b 各自的索引呢？那就考虑<strong>空间问题</strong>了，如果 a 的字段明显比 b 的长，则一页下可以容纳更多的 b，那肯定就创建一个（a,b)的联合索引和一个(b)的单字段索引。</p>
+</li>
+<li><p>索引下推。在MySQL 5.6之前，只能从ID3开始一个个回表。到主键索引上找出数据行，再对比字段值。</p>
+<p>而MySQL 5.6 引入的索引下推优化（index condition pushdown)， <strong>可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数。</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="6-全局锁和表级锁"><a href="#6-全局锁和表级锁" class="headerlink" title="6. 全局锁和表级锁"></a>6. 全局锁和表级锁</h2><p>根据加锁范围：MySQL里面的锁可以分为：全局锁、表级锁、行级锁</p>
+<p>一、全局锁：<br>对整个数据库实例加锁。<br>MySQL提供加全局读锁的方法：Flush tables with read lock(FTWRL)</p>
+<p>FTWRL的启动时间点：</p>
+<ul>
+<li>FTWRL 前有读写的话 ,FTWRL 都会等待 读写执行完毕后才执行；</li>
+<li>FTWRL 执行的时候要刷脏页的数据到磁盘,因为要保持数据的一致性 ，理解的执行FTWRL时候是 所有事务 都提交完毕的时候。</li>
+</ul>
+<p>这个命令可以使整个库处于只读状态。<strong>使用该命令之后，数据更新语句、数据定义语句和更新类事务的提交语句等操作都会被阻塞。</strong><br>使用场景：<strong>全库逻辑备份</strong>。<br>风险：<br>1.如果在主库备份，在备份期间不能更新，业务停摆<br>2.如果在从库备份，备份期间不能执行主库同步的binlog，导致主从延迟<br><strong>官方自带的逻辑备份工具mysqldump，当mysqldump使用参数–single-transaction的时候，会启动一个事务，确保拿到一致性视图。而由于MVCC的支持，这个过程中数据是可以正常更新的。</strong></p>
+<p>一致性读是好，但是前提是引擎要<strong>支持这个隔离级别</strong>。<br>如果要全库只读，为什么不使用set global readonly=true的方式？<br>1.在有些系统中，readonly的值会被用来做其他逻辑，比如判断主备库。所以修改global变量的方式影响太大。<br>2.在异常处理机制上有差异。如果执行FTWRL命令之后由于客户端发生异常断开，那么MySQL会自动释放这个全局锁，整个库回到可以正常更新的状态。而将整个库设置为readonly之后，如果客户端发生异常，则数据库就会一直保持readonly状态，这样会导致整个库长时间处于不可写状态，风险较高。<br>二、表级锁<br>MySQL里面表级锁有两种，一种是表锁，一种是元数据锁(meta data lock,MDL)<br>表锁的语法是:lock tables … read/write<br><strong>可以用unlock tables主动释放锁，也可以在客户端断开的时候自动释放</strong>。lock tables语法除了会限制别的线程的读写外，也限定了本线程接下来的操作对象。<br>对于InnoDB这种支持行锁的引擎，一般不使用lock tables命令来控制并发，毕竟锁住整个表的影响面还是太大。<br>MDL：不需要显式使用，在访问一个表的时候会被自动加上。<strong>Server 层面实现的！！！！</strong><br>MDL的作用：保证读写的正确性。<br>在对一个表做增删改查（DML）操作的时候，加MDL读锁；当要对表做结构变更（DDL）操作的时候，加MDL写锁。<br>读锁之间不互斥。因为有隔离级别在，mvcc，所以读锁之间无需复制即可，读写锁之间，写锁之间是互斥的，用来保证变更表结构操作的安全性。<br>MDL 会<strong>直到事务提交</strong>才会释放，在做表结构变更的时候，一定要小心不要导致锁住线上查询和更新。所以小心在给小表做 DDL 时把这个库搞崩。</p>
+<h2 id="7-讲行锁功过：怎么减少行锁对性能的影响"><a href="#7-讲行锁功过：怎么减少行锁对性能的影响" class="headerlink" title="7. 讲行锁功过：怎么减少行锁对性能的影响"></a>7. 讲行锁功过：怎么减少行锁对性能的影响</h2><p>行锁是在存储引擎级别实现的，并不是像全局锁和表级锁一样在 Server 端实现。</p>
+<font color="red">InnoDB 支持行锁，不支持列锁，并且 innodb 行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。因为不走索引，所以必须遍历整个表，那么就会读取一行，锁一行，又因为是两阶段锁，只有更新成功，事务提交之后才会释放锁。</font>
+
+<p>MyISAM 最小的锁粒度是表，并且由于表锁的存在，同时刻只能是单个线程对表进行操作，这很大程度上限制了并发度，所以这也是 InnoDB 取代 MyISAM 的重要原因吧。</p>
+<blockquote>
+<ol>
+<li><strong>两阶段锁的概念是什么? 对事务使用有什么帮助?</strong></li>
+</ol>
+<p>两阶段锁是指行锁是在需要的时候加锁，但是并不是在不用了之后就释放锁，而是等到事务提交才释放锁，这一点跟 MDL （元数据锁）很像；</p>
+<p>对事务的帮助就是：一定要将并发度高、时间较长的操作的行放到事务提交前，防止过多的线程等待锁。</p>
+<ol start="2">
+<li><strong>死锁的概念是什么? 举例说明出现死锁的情况。</strong></li>
+</ol>
+<p>两个或多个线程在互相等待对方释放资源的过程称为死锁状态，出现死锁的情况一般都是嵌套锁（跟多线程中嵌套同步代码块一样）。</p>
+<p>所以我的建议是在加锁的时候一般都做到顺序加锁，这样就能防止锁互相嵌套问题。</p>
+<ol start="3">
+<li><strong>死锁的处理策略有哪两种?</strong></li>
+</ol>
+<p>在数据库中，死锁的处理策略有：</p>
+<ul>
+<li>有个超时机制，这个超时时间可以通过参数innodb_lock_wait_timeout来设置。时间到了自动释放锁，并且回滚当前事务，这个默认是 50s，时间太长，一般不考虑；</li>
+<li>发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务，让其他事务得以继续执行。将参数innodb_deadlock_detect设置为on，表示开启这个逻辑。这个默认是开启的，但是吧，这个很消耗资源。</li>
+</ul>
+<ol start="4">
+<li><strong>有哪些思路可以解决热点更新导致的并发问题?</strong></li>
+</ol>
+<p>热点更新导致的并发问题，症结就在于死锁检测非常的消耗资源，所以可以有以下解决措施：</p>
+<ul>
+<li>尽量避免死锁，比如上文说的加锁按顺序，然后直接将死锁检测关闭，但是这样容易造成业务有损，一般死锁检测虽然浪费资源但是是业务无损的，所以关闭可能不是特别可取；</li>
+<li>控制并发度，对应相同行的更新，在进入引擎之前排队。这样在InnoDB内部就不会有大量的死锁检测工作了；</li>
+<li>将热点细分，比如购买电影票，把影院的账户总额拆成10条记录来存储，其10条记录的和等于影院账户余额，这样能尽量减少死锁的情况。</li>
+</ul>
+<ol start="5">
+<li><strong>什么时候会进行死锁检测？一旦触发死锁检测是检测所有事务吗？</strong></li>
+</ol>
+<ul>
+<li><p>如果他要加锁访问的行上有锁，他才要检测。</p>
+</li>
+<li><p>不是每次死锁检测都都要扫所有事务。比如某个时刻，事务等待状态是这样的：</p>
+<p>B在等A，<br>D在等C，<br>现在来了一个E，发现E需要等D，那么E就判断跟D、C是否会形成死锁，这个检测不用管B和A</p>
 </li>
 </ul>
-<h1 id="Semaphore-信号量"><a href="#Semaphore-信号量" class="headerlink" title="Semaphore(信号量)"></a>Semaphore(信号量)</h1><p>信号量，看源码就是基于 AQS 实现的，类似于<strong><em>共享锁</em></strong>，只不过这个共享是有限制的共享，它能够控制共享的线程数量。Semaphore 就相当于一个许可证，线程需要先通过 acquire 方法获取该许可证，该线程才能继续往下执行，否则只能在该方法出阻塞等待。当执行完业务功能后，需要通过<code>release()</code>方法将许可证归还，以便其他线程能够获得许可证继续执行。</p>
-<p>Semaphore 可以用于做流量控制，特别是<strong>公共资源有限的应用场景，比如数据库连接</strong>。假如有多个线程读取数据后，需要将数据保存在数据库中，而可用的最大数据库连接只有 10 个，这时候就需要使用 Semaphore 来控制能够并发访问到数据库连接资源的线程个数最多只有 10 个。在限制资源使用的应用场景下，Semaphore 是特别合适的。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdp7doykcj30u00u4wjf.jpg" alt="image-20200229234039915"></p>
-<blockquote>
-<p>这里的队列就是就是很简单的用 ArrayList 进行存储，存储那些等待许可证的线程，没有阻塞然后加入队列然后唤醒这么麻烦…</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//表示老师只有5支笔</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//表示10个学生</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            service.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"  同学获取到笔，填表格"</span>);</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Exchanger-交换器"><a href="#Exchanger-交换器" class="headerlink" title="Exchanger (交换器)"></a>Exchanger (交换器)</h1><p>可以直接在某个临界点，两个线程交换数据，不需要使用 wait/notify 或者是 condition 机制。</p>
-<p>它提供了一个交换的同步点，在这个同步点两个线程能够交换数据。具体交换数据是通过 exchange 方法来实现的，如果一个线程先执行 exchange 方法，那么它会同步等待另一个线程也执行 exchange 方法，这个时候两个线程就都达到了同步点，两个线程就可以交换数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当一个线程执行该方法的时候，会等待另一个线程也执行该方法，因此两个线程就都达到了同步点</span></span><br><span class="line"><span class="comment">//将数据交换给另一个线程，同时返回获取的数据</span></span><br><span class="line"><span class="function">V <span class="title">exchange</span><span class="params">(V x)</span> <span class="keyword">throws</span> InterruptedException</span></span><br><span class="line"><span class="function"><span class="comment">//同上一个方法功能基本一样，只不过这个方法同步等待的时候，增加了超时时间</span></span></span><br><span class="line"><span class="function">V <span class="title">exchange</span><span class="params">(V x, <span class="keyword">long</span> timeout, TimeUnit unit)</span></span></span><br><span class="line"><span class="function"><span class="keyword">throws</span> InterruptedException, TimeoutException</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Exchanger;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExchangerDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Exchanger&lt;String&gt; exchanger = <span class="keyword">new</span> Exchanger();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//代表男生和女生</span></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        service.execute(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//男生对女生说的话</span></span><br><span class="line">                String girl = exchanger.exchange(<span class="string">"我其实暗恋你很久了......"</span>);</span><br><span class="line">                System.out.println(<span class="string">"女孩儿说："</span> + girl);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        service.execute(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">"女生慢慢的从教室你走出来......"</span>);</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">                <span class="comment">//男生对女生说的话</span></span><br><span class="line">                String boy = exchanger.exchange(<span class="string">"我也很喜欢你......"</span>);</span><br><span class="line">                System.out.println(<span class="string">"男孩儿说："</span> + boy);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">女生慢慢的从教室你走出来......</span><br><span class="line">男孩儿说：我其实暗恋你很久了......</span><br><span class="line">女孩儿说：我也很喜欢你......</span><br></pre></td></tr></table></figure>
-<p>两句话交换了，这个真的牛逼！</p>
 
       
     </div>
@@ -715,7 +815,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html" title="多线程（六）--- 并发工具包">http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html</a>
+    <a href="http://jeromememory.github.io/2020/03/13/Mysql 再度出发.html" title="mysql 复习">http://jeromememory.github.io/2020/03/13/Mysql 再度出发.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -735,12 +835,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/并发工具包/" rel="tag"><i class="fa fa-tag"></i> 并发工具包</a>
-          
-        </div>
-      
 
       
       
@@ -750,8 +844,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/28/多线程（五）--- FutureTask.html" rel="next" title="多线程（五）--- FutureTask">
-                <i class="fa fa-chevron-left"></i> 多线程（五）--- FutureTask
+              <a href="/2020/03/03/数据库复习.html" rel="next" title="数据库专题复习">
+                <i class="fa fa-chevron-left"></i> 数据库专题复习
               </a>
             
           </div>
@@ -760,8 +854,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html" rel="prev" title="多线程（七）--- 三种方式实现生产者-消费者">
-                多线程（七）--- 三种方式实现生产者-消费者 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/15/NIO.html" rel="prev" title="NIO">
+                NIO <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1097,7 +1191,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-倒计时器"><span class="nav-number">1.</span> <span class="nav-text">CountDownLatch(倒计时器)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">1.1.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">1.2.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CyclicBarrier-循环栅栏"><span class="nav-number">2.</span> <span class="nav-text">CyclicBarrier(循环栅栏)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-1"><span class="nav-number">2.1.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CountDownLatch-与-CyclicBarrier-的比较"><span class="nav-number">3.</span> <span class="nav-text">CountDownLatch 与 CyclicBarrier 的比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Semaphore-信号量"><span class="nav-number">4.</span> <span class="nav-text">Semaphore(信号量)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Exchanger-交换器"><span class="nav-number">5.</span> <span class="nav-text">Exchanger (交换器)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一条语句的执行过程"><span class="nav-number">1.</span> <span class="nav-text">1. 一条语句的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲日志系统：一条-SQL-更新语句的执行"><span class="nav-number">2.</span> <span class="nav-text">2. 讲日志系统：一条 SQL 更新语句的执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">3. 事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-深入浅出索引（上）"><span class="nav-number">4.</span> <span class="nav-text">4. 深入浅出索引（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-深入浅出索引（下）"><span class="nav-number">5.</span> <span class="nav-text">5. 深入浅出索引（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-全局锁和表级锁"><span class="nav-number">6.</span> <span class="nav-text">6. 全局锁和表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-讲行锁功过：怎么减少行锁对性能的影响"><span class="nav-number">7.</span> <span class="nav-text">7. 讲行锁功过：怎么减少行锁对性能的影响</span></a></li></ol></div>
             
 
           </div>
@@ -1325,7 +1419,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2020/02/28/多线程（六）--- 并发工具包.html'
+    refer: '2020/03/13/Mysql 再度出发.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
