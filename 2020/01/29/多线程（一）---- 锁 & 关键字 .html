@@ -179,7 +179,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gcay22q2q8j31j10u049v.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gcay3t9fagj31dm0pvdgz.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0082zybpgy1gcb31m9dtlj315a0u0n5k.jpg">
-<meta property="og:updated_time" content="2020-03-03T11:20:33.751Z">
+<meta property="og:updated_time" content="2020-03-17T04:32:32.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（一）--- 锁 &amp; 关键字">
 <meta name="twitter:description" content="线程的基本操作及状态转换创建线程的三种方式继承 Thread 类方法一 继承 Thread 类并重写 run 方法 创建线程对象 调用该线程对象的 start() 方法来启动线程  demo 12345678910111213141516class ThreadDemo&amp;#123;    public static void main(String[] args) &amp;#123;        ne">
@@ -540,7 +540,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 19:20:33" itemprop="dateModified" datetime="2020-03-03T19:20:33+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-17 12:32:32" itemprop="dateModified" datetime="2020-03-17T12:32:32+08:00">2020-03-17</time>
               
             
           </span>
@@ -653,9 +653,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RunnableDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        RunnableTest runnableTest = new RunnableTest();</span></span><br><span class="line"><span class="comment">//        new Thread(runnableTest, "线程1").start();</span></span><br><span class="line"><span class="comment">//        new Thread(runnableTest, "线程2").start();</span></span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"这里是实现 Runnable 接口的线程"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="实现-Callable-接口"><a href="#实现-Callable-接口" class="headerlink" title="实现 Callable 接口"></a>实现 Callable 接口</h3><p>上述两种方式都有一个缺陷就是：在执行完任务之后无法获取执行结果。于是java后面又增加了 Callable 和 Future，通过它们可以在任务执行完毕之后得到任务执行结果。</p>
 <h4 id="Runnable-和-Callable"><a href="#Runnable-和-Callable" class="headerlink" title="Runnable 和 Callable"></a>Runnable 和 Callable</h4><ul>
-<li><p>Runnable 只是一个接口，里面只是声明了一个run方法，可以看到方法的返回值是void，所以线程执行完了没有任何的返回值。</p>
-</li>
-<li><p>Callable 也是一个接口，它里面声明了一个call方法，可以看到它是一个泛型接口，call()函数返回的类型就是传递进来的V类型。线程的执行是异步的，一个线程和另外一个线程的执行是互不干扰的，所以你不可能从别的线程中获得返回值，所以要想获得Callable的返回值就需要用到Future这个接口，Futrue可以监视目标线程调用call的情况，当你<strong><em>调用Future的get()方法以获得结果时，当前线程就开始阻塞，直到call方法结束返回结果。</em></strong></p>
+<li>Runnable 只是一个接口，里面只是声明了一个run方法，可以看到方法的返回值是void，所以线程执行完了没有任何的返回值。</li>
+<li>Callable 也是一个接口，它里面声明了一个call方法，可以看到它是一个泛型接口，call()函数返回的类型就是传递进来的V类型。线程的执行是异步的，一个线程和另外一个线程的执行是互不干扰的，所以你不可能从别的线程中获得返回值，所以要想获得Callable的返回值就需要用到Future这个接口，Futrue可以监视目标线程调用call的情况，当你<strong><em>调用Future的get()方法以获得结果时，当前线程就开始阻塞，直到call方法结束返回结果。</em></strong></li>
+<li>总而言之，就是三点：<ul>
+<li>Runnable 调用 run方法，Callable 调用 call 方法；</li>
+<li>Runnable不能有返回值，但是 Callable可以返回一个Future对象；</li>
+<li>Runnable不可以抛出异常，但是 Callable 可以抛出异常。</li>
+</ul>
 </li>
 </ul>
 <h4 id="Future"><a href="#Future" class="headerlink" title="Future"></a><strong>Future</strong></h4><p>Future 就是对于具体的 Runnable 或者 Callable 任务的执行结果进行取消、查询是否完成、获取结果。必要时可以通过get方法获取执行结果，该方法会阻塞直到任务返回结果。</p>
@@ -1420,7 +1424,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1451,7 +1455,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1568,7 +1576,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1719,7 +1729,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">863k</span>
+    <span title="站点总字数">910k</span>
   
   
 </div>

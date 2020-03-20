@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qd3au6j30e80593yh.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qbnb66j30g906vmx7.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gci6qckitcj30hb05idfu.jpg">
-<meta property="og:updated_time" content="2020-03-05T03:41:26.172Z">
+<meta property="og:updated_time" content="2020-03-20T00:58:32.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库专题复习">
 <meta name="twitter:description" content="自己部分总结Q：事务的四大特性？   ACID  原子性 Atomicity。事务中所有操作是不可再分割的原子单位，所有操作要么全部执行成功，要么全部执行失败。 一致性 Consistency。事务执行后，数据库状态与其它业务规则保持一致。如转账业务，无论事务执行成功与否，参与转账的两个账号余额之和应该是不变的。 隔离性 Isolation。在并发操作中，不同事务之间应该隔离开来，使每个并发中的事">
@@ -518,7 +518,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-05 11:41:26" itemprop="dateModified" datetime="2020-03-05T11:41:26+08:00">2020-03-05</time>
+                <time title="修改时间：2020-03-20 08:58:32" itemprop="dateModified" datetime="2020-03-20T08:58:32+08:00">2020-03-20</time>
               
             
           </span>
@@ -894,7 +894,6 @@
 <p>很多公司都只是考察是否知道其概念，但是也有很多公司需要不仅仅知道概念，还需要动手写sql,一般都是简单的连接查询，具体关于连接查询的sql练习，参见以下链接：</p>
 <p><a href="https://www.nowcoder.com/ta/sql" target="_blank" rel="noopener">牛客网数据库SQL实战</a></p>
 <p><a href="https://leetcode-cn.com/problemset/database/" target="_blank" rel="noopener">leetcode中文网站数据库练习</a></p>
-<p><a href="http://www.baidu.com/" target="_blank" rel="noopener">我的另一篇文章，常用sql练习50题</a></p>
 </blockquote>
 <h4 id="14-varchar和char的使用场景"><a href="#14-varchar和char的使用场景" class="headerlink" title="14.varchar和char的使用场景?"></a><strong>14.varchar和char的使用场景?</strong></h4><blockquote>
 <p><strong>1.</strong>char的长度是不可变的，而varchar的长度是可变的。</p>
@@ -1226,11 +1225,11 @@
 </ul>
 </blockquote>
 <h2 id="六、数据库锁"><a href="#六、数据库锁" class="headerlink" title="六、数据库锁"></a>六、数据库锁</h2><h4 id="1-mysql都有什么锁，死锁判定原理和具体场景，死锁怎么解决"><a href="#1-mysql都有什么锁，死锁判定原理和具体场景，死锁怎么解决" class="headerlink" title="1.mysql都有什么锁，死锁判定原理和具体场景，死锁怎么解决?"></a><strong>1.mysql都有什么锁，死锁判定原理和具体场景，死锁怎么解决?</strong></h4><blockquote>
-<p><strong>MySQL有三种锁的级别：</strong>页级、表级、行级。</p>
+<p><strong>MySQL有三种锁的级别：</strong>全局锁、表级级、行级锁。</p>
 <ul>
-<li><strong>表级锁：</strong>开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高,并发度最低。</li>
-<li><strong>行级锁：</strong>开销大，加锁慢；会出现死锁；锁定粒度最小，发生锁冲突的概率最低,并发度也最高。</li>
-<li><strong>页面锁：</strong>开销和加锁时间界于表锁和行锁之间；会出现死锁；锁定粒度界于表锁和行锁之间，并发度一般<br><strong>什么情况下会造成死锁?</strong></li>
+<li><strong>全局锁</strong>：对整个数据库实例加锁。提供加全局读锁的方法：Flush tables with read lock(FTWRL)，这个命令可以使整个库处于只读状态。<strong>使用该命令之后，数据更新语句、数据定义语句和更新类事务的提交语句等操作都会被阻塞。</strong>使用场景是<strong>全库逻辑备份</strong>。<br>MySQL提供加全局读锁的方法：Flush tables with read lock(FTWRL)</li>
+<li><strong>表级锁</strong>：MySQL里面表级锁有两种，一种是表锁，一种是元数据锁(meta data lock,MDL)，锁住整个表，其中 MDL 不需要显式使用，在访问一个表的时候会被自动加上。<strong>Server 层面实现的！！！！</strong></li>
+<li><strong>行级锁：存储引擎级别实现的，具体可以看自己写的另外一篇文章 《Mysql 再度出发》。</strong></li>
 </ul>
 <p><strong>什么是死锁？</strong></p>
 <p><strong>死锁:</strong> 是指两个或两个以上的进程在执行过程中。因争夺资源而造成的一种互相等待的现象,若无外力作用,它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁,这些永远在互相等竺的进程称为死锁进程。</p>
@@ -1529,7 +1528,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1560,7 +1559,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1677,7 +1680,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1828,7 +1833,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">863k</span>
+    <span title="站点总字数">910k</span>
   
   
 </div>

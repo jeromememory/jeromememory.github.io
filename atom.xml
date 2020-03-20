@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2020-03-15T15:09:23.902Z</updated>
+  <updated>2020-03-20T00:59:29.614Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从双亲委派模型到 jdbc</title>
+    <link href="http://jeromememory.github.io/2020/03/19/%E4%BB%8E%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B%E5%88%B0%20jdbc.html"/>
+    <id>http://jeromememory.github.io/2020/03/19/从双亲委派模型到 jdbc.html</id>
+    <published>2020-03-19T03:44:13.334Z</published>
+    <updated>2020-03-20T00:59:29.614Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="jvm" scheme="http://jeromememory.github.io/categories/jvm/"/>
+    
+      <category term="jdbc" scheme="http://jeromememory.github.io/categories/jvm/jdbc/"/>
+    
+    
+      <category term="双亲委派模型" scheme="http://jeromememory.github.io/tags/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>NIO</title>
@@ -65,7 +93,7 @@
     <link href="http://jeromememory.github.io/2020/03/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0.html"/>
     <id>http://jeromememory.github.io/2020/03/03/数据库复习.html</id>
     <published>2020-03-03T14:57:41.028Z</published>
-    <updated>2020-03-05T03:41:26.172Z</updated>
+    <updated>2020-03-20T00:58:32.053Z</updated>
     
     <summary type="html">
     
@@ -143,7 +171,7 @@
     <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89---%20%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8C%85.html"/>
     <id>http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html</id>
     <published>2020-02-28T15:48:06.000Z</published>
-    <updated>2020-03-02T13:40:37.760Z</updated>
+    <updated>2020-03-17T06:56:58.479Z</updated>
     
     <summary type="html">
     
@@ -169,7 +197,7 @@
     <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89---%20FutureTask.html"/>
     <id>http://jeromememory.github.io/2020/02/28/多线程（五）--- FutureTask.html</id>
     <published>2020-02-28T11:48:06.000Z</published>
-    <updated>2020-03-02T13:39:24.914Z</updated>
+    <updated>2020-03-17T06:50:35.454Z</updated>
     
     <summary type="html">
     
@@ -195,7 +223,7 @@
     <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89---%20%E7%BA%BF%E7%A8%8B%E6%B1%A0.html"/>
     <id>http://jeromememory.github.io/2020/02/28/多线程（四）--- 线程池.html</id>
     <published>2020-02-28T01:40:06.000Z</published>
-    <updated>2020-03-02T14:50:40.316Z</updated>
+    <updated>2020-03-17T07:23:07.162Z</updated>
     
     <summary type="html">
     
@@ -317,7 +345,7 @@
     <link href="http://jeromememory.github.io/2020/02/07/%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9.html"/>
     <id>http://jeromememory.github.io/2020/02/07/零碎知识点.html</id>
     <published>2020-02-07T08:39:18.945Z</published>
-    <updated>2020-03-10T13:09:48.423Z</updated>
+    <updated>2020-03-17T03:11:38.076Z</updated>
     
     <summary type="html">
     
@@ -341,7 +369,7 @@
     <link href="http://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&amp;%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html"/>
     <id>http://jeromememory.github.io/2020/01/29/多线程（一）---- 锁 &amp; 关键字 .html</id>
     <published>2020-01-29T07:38:18.596Z</published>
-    <updated>2020-03-03T11:20:33.751Z</updated>
+    <updated>2020-03-17T04:32:32.375Z</updated>
     
     <summary type="html">
     
@@ -437,7 +465,7 @@
     <link href="http://jeromememory.github.io/2020/01/10/%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%93%E9%A2%98%E9%83%A8%E5%88%86.html"/>
     <id>http://jeromememory.github.io/2020/01/10/二叉树专题部分.html</id>
     <published>2020-01-10T01:53:49.731Z</published>
-    <updated>2020-02-21T14:09:35.959Z</updated>
+    <updated>2020-03-16T08:08:16.812Z</updated>
     
     <summary type="html">
     
@@ -473,34 +501,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>递归总结(转)</title>
-    <link href="http://jeromememory.github.io/2020/01/04/%E9%80%92%E5%BD%92%E8%AF%A6%E8%A7%A3.html"/>
-    <id>http://jeromememory.github.io/2020/01/04/递归详解.html</id>
-    <published>2020-01-04T10:20:04.765Z</published>
-    <updated>2020-01-04T10:44:27.733Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="recrusion" scheme="http://jeromememory.github.io/tags/recrusion/"/>
-    
-      <category term="Java" scheme="http://jeromememory.github.io/tags/Java/"/>
-    
-      <category term="算法" scheme="http://jeromememory.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

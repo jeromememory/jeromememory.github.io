@@ -149,18 +149,18 @@
 
 
 
-  <meta name="description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   经有一个查询好友的接口，设计一个微信朋友圈，可以实现发表朋友圈，添加评论，查看评论等功能。主要是设计数据结构  操作系统计算机网络 TCP三次握手四次挥手，四次挥手过程中服务端的哪几种状态，哪几种包  算法 算法题：无序数列中求第k大的数(维护最小堆，然后依次遍历，与堆顶比较 写一个选择排序或者插入排序 写一个生产者消费者  「Get!!!」">
+  <meta name="description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支">
 <meta name="keywords" content="面经">
 <meta property="og:type" content="article">
 <meta property="og:title" content="历年面经总结">
 <meta property="og:url" content="http://jeromememory.github.io/2019/12/27/历年面经总结.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   经有一个查询好友的接口，设计一个微信朋友圈，可以实现发表朋友圈，添加评论，查看评论等功能。主要是设计数据结构  操作系统计算机网络 TCP三次握手四次挥手，四次挥手过程中服务端的哪几种状态，哪几种包  算法 算法题：无序数列中求第k大的数(维护最小堆，然后依次遍历，与堆顶比较 写一个选择排序或者插入排序 写一个生产者消费者  「Get!!!」">
+<meta property="og:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-11T16:38:06.015Z">
+<meta property="og:updated_time" content="2020-03-17T03:05:33.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="历年面经总结">
-<meta name="twitter:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   经有一个查询好友的接口，设计一个微信朋友圈，可以实现发表朋友圈，添加评论，查看评论等功能。主要是设计数据结构  操作系统计算机网络 TCP三次握手四次挥手，四次挥手过程中服务端的哪几种状态，哪几种包  算法 算法题：无序数列中求第k大的数(维护最小堆，然后依次遍历，与堆顶比较 写一个选择排序或者插入排序 写一个生产者消费者  「Get!!!」">
+<meta name="twitter:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支">
 
 
 
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-12 00:38:06" itemprop="dateModified" datetime="2020-03-12T00:38:06+08:00">2020-03-12</time>
+                <time title="修改时间：2020-03-17 11:05:33" itemprop="dateModified" datetime="2020-03-17T11:05:33+08:00">2020-03-17</time>
               
             
           </span>
@@ -548,7 +548,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">13k</span>
+                <span title="本文字数">17k</span>
               
 
               
@@ -562,7 +562,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">12 分钟</span>
+                <span title="阅读时长">15 分钟</span>
               
             </div>
           
@@ -585,12 +585,19 @@
         <h1 id="快手篇"><a href="#快手篇" class="headerlink" title="快手篇"></a>快手篇</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
 <li>说说B+树和B树的区别，优缺点等？</li>
 </ul>
+<blockquote>
+<p>B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支持范围查询，并且由于他的非叶子节点是不存储 Date域的，我们知道，每一个节点都是采用的磁盘预读，也就是说一个节点占用一页的数据，这样的话B+ 在一页中可以存储更多的指针域，这样就大大降低了树的高度，这样磁盘读写的次数就下降了，非常好。</p>
+</blockquote>
 <ul>
 <li>经有一个查询好友的接口，设计一个微信朋友圈，可以实现发表朋友圈，添加评论，查看评论等功能。主要是设计数据结构</li>
 </ul>
 <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><ul>
 <li>TCP三次握手四次挥手，四次挥手过程中服务端的哪几种状态，哪几种包</li>
 </ul>
+<blockquote>
+<p>三次握手：客户端发一个 syn 服务器端发一个 syn ack 然后客户端发一个ack</p>
+<p>四次挥手：客户端发一个 fin 服务器端发送一个 ack 然后发送一个 fin 然后客户端再发送一个ack</p>
+</blockquote>
 <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
 <li>算法题：无序数列中求第k大的数(维护最小堆，然后依次遍历，与堆顶比较</li>
 <li>写一个选择排序或者插入排序</li>
@@ -623,8 +630,8 @@
 <font color="red">「Get!!!」</font>
 
 <blockquote>
-<p>扰动函数，高16位和低16位相与，32位都参与运算，这样hash更均匀</p>
-<p>至于如何计算所在的数组位置，直接 hash ^ tab.length 异或</p>
+<p>扰动函数，高16位和低16位相异或，32位都参与运算，这样hash更均匀</p>
+<p>至于如何计算所在的数组位置，直接 hash ^ tab.length 相与</p>
 </blockquote>
 <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><ul>
 <li><p>Q：多线程JUC包下的一些常见的类，比如CountDownLatch、Semaphore等   </p>
@@ -728,11 +735,17 @@
 <h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
 <li>你了解哪些收集器？CMS和G1。详细谈谈G1的优点？什么时候进行Full GC呢？</li>
 </ul>
+<blockquote>
+<p>Serial Serial Old  ParNew Parllelscatw。。。 parallelOld CMS G1 </p>
+<p>G1优点：</p>
+<p>不区分新生代和老年代，是连续的空间，然后是一个一个rezone进行管理，有一个优先级的排序，就是会把这个rezone垃圾最多的先回收，然后是采用的标记整理解决内存的碎片问题，兼顾了 CMS 低延迟的一个特性和 Parallel Scavenge 高吞吐率的特性。</p>
+<p>老年代区域满了不就 Full GC 了吗…</p>
+</blockquote>
 <h2 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h2><h2 id="spring全家桶"><a href="#spring全家桶" class="headerlink" title="spring全家桶"></a>spring全家桶</h2><ul>
-<li><p>Spring中涉及的一些设计模式</p>
-</li>
-<li><p>聊聊Spring，主要IOC等等</p>
-</li>
+<li>Spring中涉及的一些设计模式</li>
+</ul>
+<ul>
+<li>聊聊Spring，主要IOC等等</li>
 </ul>
 <h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><ul>
 <li>MySQL创建索引的原则，好处</li>
@@ -757,6 +770,23 @@
 <h1 id="字节篇"><a href="#字节篇" class="headerlink" title="字节篇"></a>字节篇</h1><h2 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h2><h2 id="操作系统-1"><a href="#操作系统-1" class="headerlink" title="操作系统"></a>操作系统</h2><ul>
 <li>用户态如何切换到内核态</li>
 <li>进程间通信的方式，哪种最快</li>
+</ul>
+<blockquote>
+<p>进程间通信（IPC，InterProcess Communication）是指在不同进程之间传播或交换信息。</p>
+<p>IPC的方式通常有管道（包括无名管道和命名管道）、消息队列、信号量、共享存储、Socket、Streams等。其中 Socket和Streams支持不同主机上的两个进程IPC。</p>
+<p>1.进程与线程</p>
+<p>进程：具有独立功能的程序关于某个数据集合上的一次运行活动。<br>线程：进程的一个实体。<br>比喻：一列火车是一个进程，火车的每一节车厢是线程。</p>
+<p>2.进程与线程的联系</p>
+<p>①一个线程只能属于一个进程，一个进程可以有多个线程；<br>②系统资源分配给进程，同一进程的所有线程共享该进程的所有资源；<br>③真正在处理机上运行的是线程；<br>④不同进程的线程间利用消息通信的方式实现同步。</p>
+<p>3.进程与线程的区别</p>
+<p>①调度：线程是系统调度和分配的基本单位，进程是作为拥有系统资源的基本单位；<br>②并发性：进程之间可以并发执行，同一进程的多个线程时间亦可以并发执行；<br>③拥有资源：进程是拥有资源的独立单位，线程不拥有资源，但可以访问隶属于进程的资源；<br>④系统开销：创建和撤销进程的开销更大；进程拥有独立的地址空间，一个进程的崩溃不会影响其他进程；线程拥有自己的堆栈和局部变量，没有独立的地址空间，因此进程里的一个线程崩溃会导致其他线程均崩溃。</p>
+<p>4.进程间通信方式</p>
+<p>进程间通信方式有很多，网上一说有十几种。面试的时候说上以下几种差不多：<br>①管道：半双工的通信方式，数据只能单向流动，且只能在有亲缘关系（父子进程或兄弟进程）的进程间使用；<br>②命名管道：FIFO，半双工的通信方式，但允许在无亲缘关系的进程间通信；<br>③消息队列：消息的链表，存放在内核中，并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点；<br>④信号量：是一个计数器，用于控制多个进程间对共享资源的访问；<br>⑤共享内存：映射一段能被其他进程访问的内存，这段内存由一个进程创建，但多个进程都可以访问；「最快，可以联系到零拷贝把  mmap」<br>⑥套接字</p>
+<p>5.线程间通信方式</p>
+<p>多个线程在处理同一个资源，并且任务不同时，需要线程通信来帮助解决线程之间对同一个变量的使用或操作。就是多个线程在操作同一份数据时， 避免对同一共享变量的争夺。<br>①锁机制：包括互斥锁、条件变量、读写锁</p>
+<p>互斥锁提供了以排他方式防止数据结构被并发修改的方法。<br>读写锁允许多个线程同时读共享数据，而对写操作是互斥的。<br>条件变量可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。<br>②信号量机制(Semaphore)：包括无名线程信号量和命名线程信号量<br>③信号机制(Signal)：类似进程间的信号处理<br>线程间的通信目的主要是用于线程同步，所以线程没有像进程通信中的用于数据交换的通信机制。<br>————————————————<br>版权声明：本文为CSDN博主「冯Jungle」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/sinat_21107433/article/details/82809946" target="_blank" rel="noopener">https://blog.csdn.net/sinat_21107433/article/details/82809946</a></p>
+</blockquote>
+<ul>
 <li>信号量怎么实现对共享资源的访问</li>
 </ul>
 <font color="red">「Get!!!」</font>
@@ -767,43 +797,66 @@
 <ul>
 <li>select和epoll</li>
 </ul>
+<blockquote>
+<p>在Linux Socket服务器短编程时，为了处理大量客户的连接请求，需要使用非阻塞I/O和复用，select、poll和epoll是Linux API提供的I/O复用方式，自从Linux 2.6中加入了epoll之后，在高性能服务器领域得到广泛的应用，现在比较出名的nginx就是使用epoll来实现I/O复用支持高并发，目前在高并发的场景下，nginx越来越收到欢迎。</p>
+<p>(1)select==&gt;时间复杂度O(n)</p>
+<p>它仅仅知道了，有I/O事件发生了，却并不知道是哪那几个流（可能有一个，多个，甚至全部），我们只能无差别轮询所有流，找出能读出数据，或者写入数据的流，对他们进行操作。所以<strong>select具有O(n)的无差别轮询复杂度</strong>，同时处理的流越多，无差别轮询时间就越长。</p>
+<p>(2)poll==&gt;时间复杂度O(n)</p>
+<p>poll本质上和select没有区别，它将用户传入的数组拷贝到内核空间，然后查询每个fd对应的设备状态， <strong>但是它没有最大连接数的限制</strong>，原因是它是基于链表来存储的.</p>
+<p>(3)epoll==&gt;时间复杂度O(1)</p>
+<p><strong>epoll可以理解为event poll</strong>，不同于忙轮询和无差别轮询，epoll会把哪个流发生了怎样的I/O事件通知我们。所以我们说epoll实际上是<strong>事件驱动（每个事件关联上fd）</strong>的，此时我们对这些流的操作都是有意义的。<strong>（复杂度降低到了O(1)）</strong></p>
+<p>select，poll，epoll都是IO多路复用的机制。I/O多路复用就通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。<strong>但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的</strong>，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。 </p>
+</blockquote>
 <h2 id="计算机网络-1"><a href="#计算机网络-1" class="headerlink" title="计算机网络"></a>计算机网络</h2><ul>
 <li>TCP的流量控制和拥塞控制</li>
+</ul>
+<blockquote>
+<p>一、流量控制</p>
+<p>1.什么是流量控制</p>
+<p>Sender won’t overflow receiver’s buffer by transmitting too much, too fast. （防止发送方发的太快，耗尽接收方的资源，从而使接收方来不及处理）<br>2.流量控制的一些知识点</p>
+<p>（1）接收端抑制发送端的依据：接收端缓冲区的大小<br>（2）流量控制的目标是接收端，是怕接收端来不及处理<br>（3）流量控制的机制是丢包<br>3.怎么样实现流量控制？</p>
+<p>使用滑动窗口<br>滑动窗口<br>1.滑动窗口是什么？<br>滑动窗口是类似于一个窗口一样的东西，是用来告诉发送端可以发送数据的大小或者说是窗口标记了接收端缓冲区的大小，这样就可以实现<br>ps：窗口指的是一次批量的发送多少数据<br>2.为什么会出现滑动窗口？</p>
+<p>在确认应答策略中，对每一个发送的数据段，都要给一个ACK确认应答，收到ACK后再发送下一个数据段，这样做有一个比较大的缺点，就是性能比较差，尤其是数据往返的时间长的时候<br>使用滑动窗口，就可以一次发送多条数据，从而就提高了性能<br>3.滑动窗口的一些知识点</p>
+<p>（1）接收端将自己可以接收的缓冲区大小放入TCP首部中的“窗口大小”字段，通过ACK来通知发送端<br>（2）窗口大小字段越大，说明网络的吞吐率越高<br>（3）窗口大小指的是无需等待确认应答而可以继续发送数据的最大值，即就是说不需要接收端的应答，可以一次连续的发送数据<br>（4）操作系统内核为了维护滑动窗口，需要开辟发送缓冲区，来记录当前还有那些数据没有应答，只有确认应答过的数据，才能从缓冲区删掉<br>ps：发送缓冲区如果太大，就会有空间开销</p>
+<p>二、拥塞控制</p>
+<p>慢开始( slow-start )、拥塞避免( congestion avoidance )、快重传( fast retransmit )和快恢复( fast recovery )。</p>
+<p>「乘法减少，加法增加」</p>
+<p>三、流量控制和拥塞控制的区别<br>1.相同点</p>
+<p>（1）现象都是丢包；<br>（2）实现机制都是让发送方发的慢一点，发的少一点<br>2.不同点</p>
+<p>（1）丢包位置不同<br>流量控制丢包位置是在接收端上<br>拥塞控制丢包位置是在路由器上<br>（2）作用的对象不同<br>流量控制的对象是接收方，怕发送方发的太快，使得接收方来不及处理<br>拥塞控制的对象是网络，怕发送发发的太快，造成网络拥塞，使得网络来不及处理<br>3.联系<br>拥塞控制<br>     拥塞控制通常表示的是一个全局性的过程，它会涉及到网络中所有的主机、<br>     所有的路由器和降低网络传输性能的所有因素<br>流量控制<br>     流量控制发生在发送端和接收端之间，只是点到点之间的控制</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「dangzhangjing97」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/dangzhangjing97/article/details/81008836" target="_blank" rel="noopener">https://blog.csdn.net/dangzhangjing97/article/details/81008836</a></p>
+</blockquote>
+<ul>
 <li>不同子网可以通过ARP获取mac地址吗</li>
 <li>浏览器中输入网址到获得页面的全过程</li>
-<li><p>输入 <a href="http://www.baidu.xn--com,-yj5fs80afjwtvd/" target="_blank" rel="noopener">www.baidu.com，怎么变成</a> <a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com</a> 的，怎么确定用HTTP还是HTTPS</p>
-</li>
-<li><p>三次握手</p>
-</li>
-<li><p>握手时产生的序列号干什么用的</p>
-</li>
-<li><p>讲一下接收窗口</p>
-</li>
-<li><p>TCP和UDP的本质区别</p>
-</li>
-<li><p>什么时候选择TCP/UDP</p>
-</li>
-<li><p>HTTPS的连接过程</p>
-</li>
-<li><p>7层模型和4层模型，每一层有哪些常见协议？</p>
-</li>
-<li><p>路由器/交换机是哪一层</p>
-</li>
-<li><p>网络层用来干嘛？传输层用来干嘛？</p>
-</li>
-<li><p>HTTP可以使用UDP吗</p>
-</li>
-<li><p>HTTPS怎么确认收到的包就是服务器发来的</p>
-</li>
-<li><p>确定发送窗口的大小，如何最大利用带宽，假设延迟100ms，发送端10Mb/s，接收端100Mb/s</p>
-</li>
+<li>输入 <a href="http://www.baidu.xn--com,-yj5fs80afjwtvd/" target="_blank" rel="noopener">www.baidu.com，怎么变成</a> <a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com</a> 的，怎么确定用HTTP还是HTTPS</li>
+<li>三次握手</li>
+<li>握手时产生的序列号干什么用的</li>
+<li>讲一下接收窗口</li>
+<li>TCP和UDP的本质区别</li>
+<li>什么时候选择TCP/UDP</li>
+<li>HTTPS的连接过程</li>
+<li>7层模型和4层模型，每一层有哪些常见协议？</li>
+<li>路由器/交换机是哪一层</li>
+<li>网络层用来干嘛？传输层用来干嘛？</li>
+<li>HTTP可以使用UDP吗</li>
+<li>HTTPS怎么确认收到的包就是服务器发来的</li>
+<li>确定发送窗口的大小，如何最大利用带宽，假设延迟100ms，发送端10Mb/s，接收端100Mb/s</li>
 <li>网络五层模型，每一层分别有哪些协议</li>
 <li>ICMP，TCP，IP，HTTP分别是哪一层，为什么网络模型要分层，每一层之间怎么传递</li>
 <li>http头里的gzip</li>
 <li>反向***说一下</li>
 <li>三次握手，为什么要三次，每一次分别确认了什么</li>
 <li>TCP协议的三次握手和四次挥手过程？</li>
+<li>Tcp怎么保证可靠的</li>
 </ul>
+<blockquote>
+<ul>
+<li>确认重传机制；</li>
+<li>流量控制，滑动窗口协议</li>
+<li>拥塞控制：慢启动、拥塞避免、快重传、快恢复</li>
+</ul>
+</blockquote>
 <h2 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h2><ul>
 <li>求x的y次方，想出比直接for循环更好的方案</li>
 <li>求绝对众数</li>
@@ -1265,7 +1318,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1296,7 +1349,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1413,7 +1470,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1564,7 +1623,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">863k</span>
+    <span title="站点总字数">910k</span>
   
   
 </div>

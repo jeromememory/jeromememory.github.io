@@ -178,7 +178,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcmldpbr9gj311a0h6454.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcms4wlbchj31980qan4d.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcmx1m1x0uj31780gk40b.jpg">
-<meta property="og:updated_time" content="2020-03-09T11:25:46.848Z">
+<meta property="og:updated_time" content="2020-03-20T01:00:44.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm笔记">
 <meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常1. 运行时数据区域包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。 方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量，别名称为Non-Heap。 堆：Java Heap是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，此内存区域的唯一">
@@ -539,7 +539,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-09 19:25:46" itemprop="dateModified" datetime="2020-03-09T19:25:46+08:00">2020-03-09</time>
+                <time title="修改时间：2020-03-20 09:00:44" itemprop="dateModified" datetime="2020-03-20T09:00:44+08:00">2020-03-20</time>
               
             
           </span>
@@ -911,7 +911,7 @@
 <p>类索引、 父类索引和接口索引集合都按顺序排列在访问标志之后，类索引和父类索引用两个u2类型的索引值表示，它们各自指向一个类型为CONSTANT_Class_info的类描述符常量，通过CONSTANT_Class_info类型的常量中的索引值可以找到定义在CONSTANT_Utf8_info类型的常量中的全限定名字符串。</p>
 <p>对于接口索引集合，入口的第一项——u2类型的数据为接口计数器（interfaces_count），表示索引表的容量。 如果该类没有实现任何接口，则该计数器值为0，后面接口的索引表不再占用任何字节。</p>
 <h4 id="6-字段表集合"><a href="#6-字段表集合" class="headerlink" title="6. 字段表集合"></a>6. 字段表集合</h4><p>字段表（field_info）用于描述<strong>接口或者类中声明的变量</strong>。其实也就是类的静态变量或者是实例成员变量。 字段（field）包括类级变量以及实例级变量，但不包括在方法内部声明的局部变量。 我们可以想一想在Java中描述一个字段可以包含什么信息？可以包括的信息有：字段的作用域（public、 private、 protected修饰符）、 是实例变量还是类变量（static修饰符）、 可变性（final）、 并发可见性（volatile修饰符，是否强制从主内存读写）、 可否被序列化（transient修饰符）、 字段数据类型（基本类型、 对象、 数组）、 字段名称。 上述这些信息中，各个修饰符都是布尔值，要么有某个修饰符，要么没有，很适合使用标志位来表示。 而字段叫什么名字、 字段被定义为什么数据类型，这些都是无法固定的，只能引用常量池中的常量来描述。</p>
-<h4 id="7-方法表集合"><a href="#7-方法表集合" class="headerlink" title="7. 方法表集合"></a>7. 方法表集合</h4><p>和字段表基本一样，仅在访问标志和属性表集合的可选项有些区别。就是看方法有没有被 syncronized、abstract、final等修饰。</p>
+<h4 id="7-方法表集合"><a href="#7-方法表集合" class="headerlink" title="7. 方法表集合"></a>7. 方法表集合</h4><p>和字段表基本一样，仅在访问标志和属性表集合的可选项有些区别。就是看方法有没有被 synchronized、abstract、final等修饰。</p>
 <h4 id="8-属性表集合"><a href="#8-属性表集合" class="headerlink" title="8. 属性表集合"></a>8. 属性表集合</h4><p>属性表集合中包含了大量的数据信息，上面的所有类型都有十分严格顺序，长度，大小。而属性表中就没有那么严格了，我们编写的最多的Code就存放在属性表集合中的CODE表中，一共有21项比如还包含：Exception表等等。具体的每一个项都是有意义的，有点多简单的介绍一下主要的：</p>
 <p>1、Code 属性</p>
 <p>Java方法体里面的代码经过Javac编译之后，最终变为字节码指令存储在Code属性内，Code属性出现在方法表的属性集合中，但在接口或抽象类中就不存在Code属性。</p>
@@ -1351,7 +1351,19 @@
 <li>final 实现可见性的原因是被 final 修饰好的字段在构造器中一旦被初始化完成，其他线程就能看见 final 字段的值，并且无法修改，所以就能保证可见性了。</li>
 </ul>
 <p>有序性：如果在本线程观察，所有的操作都是有序的；如果在一个线程中观察另外一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行的语义”，后半句是指“指令重排序”和“工作内存与主内存同步延迟”现象，Java 提供了 volatile 和 synchronized 两个关键字保证线程的有序性。volatile 关键字本身就包含了禁止指令重排序的语义，而 synchronized 则是由“一个变量在同一时刻只允许一条线程对其进行加锁操作”这条规则获得的。</p>
-<h3 id="2-6-先行发生（happens-before）原则"><a href="#2-6-先行发生（happens-before）原则" class="headerlink" title="2.6 先行发生（happens-before）原则"></a>2.6 先行发生（happens-before）原则</h3><p>happens-before 原则非常重要，它是判断是否存在竞争，线程是否安全的主要依据。指令重排序的前提是要遵守 happens-before 原则，具体可以见多线程（一）这篇文章…</p>
+<h3 id="2-6-先行发生（happens-before）原则"><a href="#2-6-先行发生（happens-before）原则" class="headerlink" title="2.6 先行发生（happens-before）原则"></a>2.6 先行发生（happens-before）原则</h3><p>happens-before 原则非常重要，它是判断是否存在竞争，线程是否安全的主要依据。指令重排序的前提是要遵守 happens-before 原则。</p>
+<p>先行发生是 JMM 中定义的两项操作之间的偏序关系，如果说 A 先行发生于 B，其实就是说在操作 B 之前，操作 A 产生的影响能够被操作 B 观察到。「Tip：时间上的先后顺序和先行发生原则没有太大的关系，所以在衡量安全问题的时候需要以 happens-before 原则为准」</p>
+<p>天然的 happens-before原则有：</p>
+<ol>
+<li>程序次序规则，一个线程内的代码自上而下运行；</li>
+<li>管程锁定规则，unlock必须在lock之后，当然肯定操作的是同一个同步对象；</li>
+<li>volatile变量规则，对一个 volatile 变量的写操作总是先行发生于后面对这个变量的读操作；</li>
+<li>线程启动规则，任何线程的运作都必须在 start 之后；</li>
+<li>线程终止规则，任何线程的结束都必须在该线程任何操作之后；</li>
+<li>线程中断规则，interrupt() 调用之后才会有中断时间的发生；</li>
+<li>对象终结规则，构造函数先于 finalize() 发生；</li>
+<li>传递性， A 先于 B，B 先于 C，则 A 先于 C。</li>
+</ol>
 <h2 id="3-Java-与线程"><a href="#3-Java-与线程" class="headerlink" title="3. Java 与线程"></a>3. Java 与线程</h2><h3 id="3-1-线程的实现"><a href="#3-1-线程的实现" class="headerlink" title="3.1 线程的实现"></a>3.1 线程的实现</h3><p>实现线程主要有三种方式：</p>
 <ol>
 <li>使用内核线程实现；</li>
@@ -1374,7 +1386,7 @@
 <li>LockSupport.park()、LockSupport.parkNanos()、LockSupport.parkUntil()</li>
 </ul>
 </li>
-<li>阻塞（Blocked）：与等待状态的区别是，“阻塞状态”在等待获取到一个排它锁，这个时间将在另外一个线程放弃这个锁的时候方式，而“等待状态”则是在等待一段时间，或者唤醒动作的发生。在 syncronized 的时候，线程进入同步区域，就会进入阻塞状态；</li>
+<li>阻塞（Blocked）：与等待状态的区别是，“阻塞状态”在等待获取到一个排它锁，这个时间将在另外一个线程放弃这个锁的时候方式，而“等待状态”则是在等待一段时间，或者唤醒动作的发生。在 synchronized 的时候，线程进入同步区域，就会进入阻塞状态；</li>
 <li>结束（Terminated）：已终止线程的线程状态，线程已经结束执行。</li>
 </ol>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcms4wlbchj31980qan4d.jpg" alt="image-20200308201230299"></p>
@@ -1525,8 +1537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/24/darkmode教程.html" rel="next" title="darkmode for mac">
-                <i class="fa fa-chevron-left"></i> darkmode for mac
+              <a href="/2019/10/27/十大排序.html" rel="next" title="十大内部排序">
+                <i class="fa fa-chevron-left"></i> 十大内部排序
               </a>
             
           </div>
@@ -1613,7 +1625,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1644,7 +1656,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1761,7 +1777,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1912,7 +1930,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">863k</span>
+    <span title="站点总字数">910k</span>
   
   
 </div>

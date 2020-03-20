@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdo2he4ecj30vs0fatbn.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcdp7doykcj30u00u4wjf.jpg">
-<meta property="og:updated_time" content="2020-03-02T13:40:37.760Z">
+<meta property="og:updated_time" content="2020-03-17T06:56:58.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（六）--- 并发工具包">
 <meta name="twitter:description" content="CountDownLatch(倒计时器)在多线程协作完成业务功能时，有时候需要等待其他多个线程完成任务之后，主线程才能继续往下执行业务功能，在这种的业务场景下，通常可以使用   Thread 类的 join 方法，让主线程等待被 join 的线程执行完之后，主线程才能继续往下执行。  使用线程间消息通信机制也可以完成。  使用Executor体系中的 FutureTask,主线程调用其他线程 ge">
@@ -522,7 +522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-02 21:40:37" itemprop="dateModified" datetime="2020-03-02T21:40:37+08:00">2020-03-02</time>
+                <time title="修改时间：2020-03-17 14:56:58" itemprop="dateModified" datetime="2020-03-17T14:56:58+08:00">2020-03-17</time>
               
             
           </span>
@@ -621,7 +621,7 @@
 <p>其实，java 并发工具类中为我们提供了类似“倒计时”这样的工具类，可以十分方便的完成所说的这种业务场景。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnpux2e4j30ug09imyh.jpg" alt="image-20200229224934309"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">await() <span class="keyword">throws</span> InterruptedException <span class="comment">//调用该方法的线程等到构造方法传入的 N 减到 0 的时候，才能继续往下执行；</span></span><br><span class="line">await(<span class="keyword">long</span> timeout, TimeUnit unit) <span class="comment">//与上面的 await 方法功能一致，只不过这里有了时间限制，调用该方法的线程等到指定的 timeout 时间后，不管 N 是否减至为 0，都会继续往下执行；</span></span><br><span class="line">countDown() <span class="comment">//使 CountDownLatch 初始值 N 减 1；</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">getCount</span><span class="params">()</span> <span class="comment">//获取当前 CountDownLatch 维护的值；</span></span></span><br><span class="line"><span class="function"><span class="title">CountDownLatch</span><span class="params">()</span> <span class="comment">//参数为倒计时数量</span></span></span><br></pre></td></tr></table></figure>
-<p>为了能够理解 CountDownLatch，举一个很通俗的例子，运动员进行跑步比赛时，假设有 6 个运动员参与比赛，裁判员在终点会为这 6 个运动员分别计时，可以想象没当一个运动员到达终点的时候，对于裁判员来说就少了一个计时任务。直到所有运动员都到达终点了，裁判员的任务也才完成。这 6 个运动员可以类比成 6 个线程，当线程调用 CountDownLatch.countDown 方法时就会对计数器的值减一，直到计数器的值为 0 的时候，裁判员（调用 await 方法的线程）才能继续往下执行。</p>
+<p>为了能够理解 CountDownLatch，举一个很通俗的例子，运动员进行跑步比赛时，假设有 6 个运动员参与比赛，裁判员在终点会为这 6 个运动员分别计时，可以想象每当一个运动员到达终点的时候，对于裁判员来说就少了一个计时任务。直到所有运动员都到达终点了，裁判员的任务也才完成。这 6 个运动员可以类比成 6 个线程，当线程调用 CountDownLatch.countDown 方法时就会对计数器的值减一，直到计数器的值为 0 的时候，裁判员（调用 await 方法的线程）才能继续往下执行。</p>
 <h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程.并发工具包;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch startSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//用来表示裁判员需要维护的是6个运动员</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch endSignal = <span class="keyword">new</span> CountDownLatch(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">6</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">" 运动员等待裁判员响哨！！！"</span>);</span><br><span class="line">                    startSignal.await();</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"正在全力冲刺"</span>);</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + <span class="string">"  到达终点"</span>);</span><br><span class="line">                    endSignal.countDown();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">        System.out.println(<span class="string">"裁判员发号施令啦！！！"</span>);</span><br><span class="line">        startSignal.countDown();</span><br><span class="line">        endSignal.await();</span><br><span class="line">        System.out.println(<span class="string">"所有运动员到达终点，比赛结束！"</span>);</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdnsp6oh2j30im0mwgpc.jpg" alt="image-20200229225217749"></p>
 <h1 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier(循环栅栏)"></a>CyclicBarrier(循环栅栏)</h1><p>CyclicBarrier 也是一种多线程并发控制的实用工具，和 CountDownLatch 一样具有等待计数的功能，但是相比于 CountDownLatch 功能更加强大。</p>
@@ -838,7 +838,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -869,7 +869,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -986,7 +990,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">49</span>
+                      
+                    
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1137,7 +1143,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">863k</span>
+    <span title="站点总字数">910k</span>
   
   
 </div>
