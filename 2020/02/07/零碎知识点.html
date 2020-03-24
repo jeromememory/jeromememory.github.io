@@ -157,7 +157,7 @@
 <meta property="og:description" content="静态方法 &amp;amp; 非静态方法的区别 本质区别：静态方法与非静态方法的本质区别：静态方法在程序初始化后会一直贮存在内存中，不会被垃圾回收器回收，非静态方法只在该类初始化后贮存在内存中，当该类调用完毕后会被垃圾回收器收集释放。 调用方式区别：在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gclkc5wcv0j319g0fu0u7.jpg">
-<meta property="og:updated_time" content="2020-03-17T03:11:38.076Z">
+<meta property="og:updated_time" content="2020-03-23T14:01:00.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零碎知识点总结">
 <meta name="twitter:description" content="静态方法 &amp;amp; 非静态方法的区别 本质区别：静态方法与非静态方法的本质区别：静态方法在程序初始化后会一直贮存在内存中，不会被垃圾回收器回收，非静态方法只在该类初始化后贮存在内存中，当该类调用完毕后会被垃圾回收器收集释放。 调用方式区别：在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，调用静态方法可以无需创建对象。">
@@ -514,7 +514,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-17 11:11:38" itemprop="dateModified" datetime="2020-03-17T11:11:38+08:00">2020-03-17</time>
+                <time title="修改时间：2020-03-23 22:01:00" itemprop="dateModified" datetime="2020-03-23T22:01:00+08:00">2020-03-23</time>
               
             
           </span>
@@ -567,7 +567,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">16k</span>
+                <span title="本文字数">17k</span>
               
 
               
@@ -581,7 +581,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">15 分钟</span>
+                <span title="阅读时长">16 分钟</span>
               
             </div>
           
@@ -850,7 +850,7 @@
 <ol>
 <li><p>zookeeper 的心跳机制</p>
 </li>
-<li><p>ISR机制，每个leader会关注fellow的同步状况，如果不能及时的更新leader的写操作，延时太久，leader就会将其移除</p>
+<li><p>ISR机制，每个leader会关注follow的同步状况，如果不能及时的更新leader的写操作，延时太久，leader就会将其移除</p>
 </li>
 </ol>
 </blockquote>
@@ -861,7 +861,7 @@
 <ul>
 <li>At most once - 消息传递过程中有可能丢失，丢失的消息也不会重新传递，其实就是保证消息不会重复发送或者重复消费</li>
 <li>At least once - 消息在传递的过程中不可能会丢失，丢失的消息会重新传递，其实就是保证消息不会丢失，但是消息有可能重复发送或者重新被消费 「默认」</li>
-<li>Exactly once - 这个是大多数场景需要的语义，其实就是保证消息不会丢失，也不会重复被消费，消息只传递一次 「」</li>
+<li>Exactly once - 这个是大多数场景需要的语义，其实就是保证消息不会丢失，也不会重复被消费，消息只传递一次 </li>
 </ul>
 <p>在 Producer 端实现 At least once：</p>
 <p>在0.11.0.0版本，Kafka的Producer开始支持了幂等发送消息了，其实说白了，就是重复发送一条消息不会导致broker server中存储两条一样的消息了。这样的话Kafka在消息的发送的语义就可以达到Exactly once了</p>
@@ -890,6 +890,20 @@
 <p>当然不是，如果你的Partition只有一个副本，也就是一个Leader，任何Follower都没有，你认为acks=all有用吗？</p>
 <p>当然没用了，因为ISR里就一个Leader，他接收完消息后宕机，也会导致数据丢失。</p>
 <p>所以说，这个acks=all，必须跟ISR列表里至少有2个以上的副本配合使用，起码是有一个Leader和一个Follower才可以。</p>
+</blockquote>
+<ol start="12">
+<li>最后总结一下 kafka 如何保证生产者和消费者不丢消息，如何保证生产者和消费者不生产和消费重复消息，如何保证消息有序？</li>
+</ol>
+<blockquote>
+<ol>
+<li><p>先回答第一个问题。保证生产者和消费者不丢消息，首先由于 kafka 的默认的消息传递语义是 at least once，就是确保生产者消息不丢，确保的手段就是 ack  = all 机制，加上设置尽量多的 broker，达到高可用，这样可以使得就算 leader 挂了，还有其他的 follower 能够顶上去。确保消费者不丢消息，需要我们程序员自己去确保，因为 kafka 并没有提供这样的消息语义，因为它是允许丢消息的，当消费者消息丢了之后，我们无需去改动消费的offset，这样就不会去导致消费不到消息，我们通过这种手动控制 offset 的方式也同样能够确保不会去重复消费，因为我们在客户端已经做了一个事务的原子操作，绑定了更改 offset 和消费消息这两件事。</p>
+</li>
+<li><p>第二个问题，如何保证生产者不重复生产同样的消息， kafka 的机制是每个Producer都有一个 id，然后每一条消息都有一个 id，只要服务器收到了，就会记录下该id，然后就算重复发送了也会幂等，所以就解决了该问题，至于消费者如何解决消费重复问题，我在上面已经讲过了，手动控制 offset 就不会重复消费了。</p>
+</li>
+<li><p>第三个问题，如何保证有序，<strong>Apache Kafka</strong>官方保证了partition内部的数据有效性（追加写、offset读）；为了提高Topic的并发吞吐能力，可以提高Topic的partition数，并通过设置partition的replica来保证数据高可靠；</p>
+<p>但是在多个Partition时，不能保证Topic级别的数据有序性。</p>
+</li>
+</ol>
 </blockquote>
 <h2 id="为何使用-MongoDB"><a href="#为何使用-MongoDB" class="headerlink" title="为何使用 MongoDB"></a>为何使用 MongoDB</h2><ul>
 <li>需求总是变化，no-sql数据库改动小</li>
@@ -1388,7 +1402,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">944k</span>
+    <span title="站点总字数">959k</span>
   
   
 </div>

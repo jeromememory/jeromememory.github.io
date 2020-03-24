@@ -158,7 +158,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg">
-<meta property="og:updated_time" content="2020-03-13T14:02:51.338Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3zqmcq70j30vq0kh76q.jpg">
+<meta property="og:updated_time" content="2020-03-24T04:51:16.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 复习">
 <meta name="twitter:description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
@@ -498,12 +499,24 @@
                 
               
 
-              <time title="创建时间：2020-03-13 16:29:59 / 修改时间：22:02:51" itemprop="dateCreated datePublished" datetime="2020-03-13T16:29:59+08:00">2020-03-13</time>
+              <time title="创建时间：2020-03-13 16:29:59" itemprop="dateCreated datePublished" datetime="2020-03-13T16:29:59+08:00">2020-03-13</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-24 12:51:16" itemprop="dateModified" datetime="2020-03-24T12:51:16+08:00">2020-03-24</time>
               
             
           </span>
@@ -538,7 +551,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">8.3k</span>
+                <span title="本文字数">13k</span>
               
 
               
@@ -552,7 +565,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">8 分钟</span>
+                <span title="阅读时长">12 分钟</span>
               
             </div>
           
@@ -581,21 +594,21 @@
 <li>查询缓存。这个在 Mysql 8.0 之后就没有了，因为缓存命中率一向很低，只要修改了表就会导致缓存的失效；</li>
 <li>分析器。主要进行词法语法的分析，判断语句是否符合规范，语句中的表以及字段在表中是否正确；</li>
 <li>优化器。对查询语句进行优化，主要是索引的选择；</li>
-<li>执行器。这一步才真正开始打开表来操作，需要首先验证是否可以有操作表的权限，然后调用InnoDb 等存储引擎的读写接口来完成语句的操作，最后返回结果；</li>
+<li>执行器。这一步才<strong>真正开始打开表来操作</strong>，需要首先验证是否可以有操作表的权限，然后调用InnoDB 等存储引擎的读写接口来完成语句的操作，最后返回结果；</li>
 <li>存储引擎。主要负责存储数据以及提供数据读写的接口。</li>
 </ol>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg" alt="image-20200313164342777"></p>
 <h2 id="2-讲日志系统：一条-SQL-更新语句的执行"><a href="#2-讲日志系统：一条-SQL-更新语句的执行" class="headerlink" title="2. 讲日志系统：一条 SQL 更新语句的执行"></a>2. 讲日志系统：一条 SQL 更新语句的执行</h2><p>「MySQL里经常说到的WAL技术，WAL的全称是Write-Ahead Logging，它的关键点就是先写日志，再写磁盘」</p>
 <p>InnoDB中特有的日志 redo-log：</p>
 <ul>
-<li>在 InnoDB 中可以保证即使数据库发生了重启，之前提交的记录并不会丢失，这个能力称为 “crash-safe”；</li>
+<li>在 InnoDB 中可以保证即使数据库发生了重启，之前提交的记录并不会丢失，这个能力称为 “crash-safe”「提供崩溃恢复功能」；</li>
 <li>是物理日志，记录的是“这个数据页上做了什么改变”，与存储引擎的作用相符，主要是处理存储方面的功能；</li>
 <li>是循环写的，空间固定会用完的。用完了就把之前的擦除，然后继续写，用两个指针来控制。</li>
 </ul>
 <p>Server 层独有的日志 binlog：</p>
 <ul>
 <li>是 Server 层实现的，所有引擎都可以使用；</li>
-<li>作用是用于归档，记录的是“做了什么逻辑操作”，重点在执行逻辑上，不在存储，因为 Server 就是负责 Mysql 功能方面；</li>
+<li>作用是用于<strong>归档</strong>，记录的是“<strong>做了什么逻辑操作</strong>”，<strong>重点在执行逻辑上，不在存储</strong>，因为 Server 就是负责 Mysql 功能方面；</li>
 <li>是可以追加写的，写完一页换一页，不会擦除以前的。</li>
 </ul>
 <blockquote>
@@ -633,7 +646,7 @@
 <li>序列化。加锁，牛逼。「顾名思义是对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。」</li>
 </ol>
 <p>其中，最难理解的就是可重复读的隔离级别是如何实现的，这也是mysql的默认隔离级别：</p>
-<p><strong>就是使用的回滚技术，在MySQL中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</strong></p>
+<p><strong>就是使用的回滚技术，在MySQL中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</strong>「由undo log完成的」</p>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg" alt="image-20200313180011653"></p>
 <p>如图所示，这也是 数据库的多版本并发控制的基础，采用回滚机制。当然了，回滚日志不能一直保留，所以在必要的时候删除，删除的时间点就是当没有事务再需要用到这些回滚日志时，回滚日志会被删除。<strong>所以我们最好不要使用长事务，这样会导致回滚的数据很多很多。</strong>除了对回滚段的影响，长事务还占用锁资源，也可能拖垮整个库。</p>
 <blockquote>
@@ -705,8 +718,36 @@
 </ul>
 <p>这个命令可以使整个库处于只读状态。<strong>使用该命令之后，数据更新语句、数据定义语句和更新类事务的提交语句等操作都会被阻塞。</strong><br>使用场景：<strong>全库逻辑备份</strong>。<br>风险：<br>1.如果在主库备份，在备份期间不能更新，业务停摆<br>2.如果在从库备份，备份期间不能执行主库同步的binlog，导致主从延迟<br><strong>官方自带的逻辑备份工具mysqldump，当mysqldump使用参数–single-transaction的时候，会启动一个事务，确保拿到一致性视图。而由于MVCC的支持，这个过程中数据是可以正常更新的。</strong></p>
 <p>一致性读是好，但是前提是引擎要<strong>支持这个隔离级别</strong>。<br>如果要全库只读，为什么不使用set global readonly=true的方式？<br>1.在有些系统中，readonly的值会被用来做其他逻辑，比如判断主备库。所以修改global变量的方式影响太大。<br>2.在异常处理机制上有差异。如果执行FTWRL命令之后由于客户端发生异常断开，那么MySQL会自动释放这个全局锁，整个库回到可以正常更新的状态。而将整个库设置为readonly之后，如果客户端发生异常，则数据库就会一直保持readonly状态，这样会导致整个库长时间处于不可写状态，风险较高。<br>二、表级锁<br>MySQL里面表级锁有两种，一种是表锁，一种是元数据锁(meta data lock,MDL)<br>表锁的语法是:lock tables … read/write<br><strong>可以用unlock tables主动释放锁，也可以在客户端断开的时候自动释放</strong>。lock tables语法除了会限制别的线程的读写外，也限定了本线程接下来的操作对象。<br>对于InnoDB这种支持行锁的引擎，一般不使用lock tables命令来控制并发，毕竟锁住整个表的影响面还是太大。<br>MDL：不需要显式使用，在访问一个表的时候会被自动加上。<strong>Server 层面实现的！！！！</strong><br>MDL的作用：保证读写的正确性。<br>在对一个表做增删改查（DML）操作的时候，加MDL读锁；当要对表做结构变更（DDL）操作的时候，加MDL写锁。<br>读锁之间不互斥。因为有隔离级别在，mvcc，所以读锁之间无需复制即可，读写锁之间，写锁之间是互斥的，用来保证变更表结构操作的安全性。<br>MDL 会<strong>直到事务提交</strong>才会释放，在做表结构变更的时候，一定要小心不要导致锁住线上查询和更新。所以小心在给小表做 DDL 时把这个库搞崩。</p>
-<h2 id="7-讲行锁功过：怎么减少行锁对性能的影响"><a href="#7-讲行锁功过：怎么减少行锁对性能的影响" class="headerlink" title="7. 讲行锁功过：怎么减少行锁对性能的影响"></a>7. 讲行锁功过：怎么减少行锁对性能的影响</h2><p>行锁是在存储引擎级别实现的，并不是像全局锁和表级锁一样在 Server 端实现。</p>
-<font color="red">InnoDB 支持行锁，不支持列锁，并且 innodb 行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。因为不走索引，所以必须遍历整个表，那么就会读取一行，锁一行，又因为是两阶段锁，只有更新成功，事务提交之后才会释放锁。</font>
+<blockquote>
+<p>数据库四种语言：</p>
+<ol>
+<li>DDL （Data Definition Language）：数据定义语言，无需提交就可以执行的，主要有 CREATE、ALTER、DROP等等；</li>
+<li>DML（Data Manipulation Language）：数据操作语言，这个也是需要提交事务的哦，INSERT、UPDATE、DELETE、TRUNCATE、SELECT、以及 LOCK TABLE、CALL、EXPLAIN PLAN</li>
+<li>DCL（Data Control Language）：数据控制语言，包括 GRANT、REVOKE</li>
+<li>TCL（Transaction Control Language）：事务控制语言，包括 ROLLBACK、COMMIT、SAVEPOINT、SET TRANSACTION。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>今日思考题：备份一般都会在备库上执行，你在用–single-transaction方法做逻辑备份的过程中，如果主库上的一个小表做了一个DDL，比如给一个表上加了一列。这时候，从备库上会看到什么现象呢？</p>
+<p>假设这个DDL是针对表t1的， 这里我把备份过程中几个关键的语句列出来：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;Q1:SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ<span class="comment">;</span></span><br><span class="line">&gt;Q2:START TRANSACTION  WITH CONSISTENT SNAPSHOT；</span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;Q3:SAVEPOINT <span class="built_in">sp</span><span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 1 */</span></span><br><span class="line">&gt;Q4:<span class="keyword">show </span>create table `<span class="built_in">t1</span>`<span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 2 */</span></span><br><span class="line">&gt;Q5:SELECT * FROM `<span class="built_in">t1</span>`<span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 3 */</span></span><br><span class="line">&gt;Q6:ROLLBACK TO SAVEPOINT <span class="built_in">sp</span><span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 4 */</span></span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>在备份开始的时候，为了确保RR（可重复读）隔离级别，再设置一次RR隔离级别(Q1);</p>
+<p>启动事务，这里用 WITH CONSISTENT SNAPSHOT确保这个语句执行完就可以得到一个一致性视图（Q2)；</p>
+<p>设置一个保存点，这个很重要（Q3）；</p>
+<p>show create 是为了拿到表结构(Q4)，然后正式导数据 （Q5），回滚到SAVEPOINT sp，在这里的作用是释放 t1的MDL锁 （Q6。当然这部分属于“超纲”，上文正文里面都没提到。</p>
+<p>DDL从主库传过来的时间按照效果不同，我打了四个时刻。题目设定为小表，我们假定到达后，如果开始执行，则很快能够执行完成。</p>
+<p>参考答案如下：</p>
+<ol>
+<li>如果在Q4语句执行之前到达，现象：没有影响，备份拿到的是DDL后的表结构。</li>
+<li>如果在“时刻 2”到达，则表结构被改过，Q5执行的时候，报 Table definition has changed, please retry transaction，现象：mysqldump终止；</li>
+<li>如果在“时刻2”和“时刻3”之间到达，mysqldump占着t1的MDL读锁，binlog被阻塞，现象：主从延迟，直到Q6执行完成。</li>
+<li>从“时刻4”开始，mysqldump释放了MDL读锁，现象：没有影响，备份拿到的是DDL前的表结构。</li>
+</ol>
+</blockquote>
+<h2 id="7-讲行锁功过：怎么减少行锁对性能的影响"><a href="#7-讲行锁功过：怎么减少行锁对性能的影响" class="headerlink" title="7. 讲行锁功过：怎么减少行锁对性能的影响"></a>7. 讲行锁功过：怎么减少行锁对性能的影响</h2><p>行锁是在<strong>存储引擎级别</strong>实现的，并不是像全局锁和表级锁一样在 Server 端实现。</p>
+<font color="red">InnoDB 支持行锁，不支持列锁，并且 innodb 行级锁是通过<strong>锁索引</strong>记录实现的，如果更新的列没建索引是会锁住整个表的。因为不走索引，所以必须遍历整个表，那么就会读取一行，锁一行，又因为是两阶段锁，只有更新成功，事务提交之后才会释放锁。</font>
 
 <p>MyISAM 最小的锁粒度是表，并且由于表锁的存在，同时刻只能是单个线程对表进行操作，这很大程度上限制了并发度，所以这也是 InnoDB 取代 MyISAM 的重要原因吧。</p>
 <blockquote>
@@ -747,6 +788,89 @@
 <p>B在等A，<br>D在等C，<br>现在来了一个E，发现E需要等D，那么E就判断跟D、C是否会形成死锁，这个检测不用管B和A</p>
 </li>
 </ul>
+</blockquote>
+<p>今日面试题：</p>
+<p>如果你要删除一个表里面的前10000行数据，有以下三种方法可以做到：</p>
+<ul>
+<li>第一种，直接执行delete from T limit 10000;</li>
+<li>第二种，在一个连接中循环执行20次 delete from T limit 500;</li>
+<li>第三种，在20个连接中同时执行delete from T limit 500。</li>
+</ul>
+<p>你会选择哪一种方法呢？为什么呢？</p>
+<blockquote>
+<p>在一个连接中循环执行20次 delete from T limit 500。</p>
+<p>确实是这样的，第二种方式是相对较好的。</p>
+<p>第一种方式（即：直接执行delete from T limit 10000）里面，单个语句占用时间长，锁的时间也比较长；而且大事务还会导致主从延迟。</p>
+<p>第三种方式（即：在20个连接中同时执行delete from T limit 500），会人为造成锁冲突。</p>
+</blockquote>
+<p>确实是这样的，第二种方式是相对较好的。</p>
+<p>第一种方式（即：直接执行delete from T limit 10000）里面，单个语句占用时间长，锁的时间也比较长；而且大事务还会导致主从延迟。</p>
+<p>第三种方式（即：在20个连接中同时执行delete from T limit 500），会人为造成锁冲突。</p>
+<h2 id="8-事务到底是隔离还是不隔离的"><a href="#8-事务到底是隔离还是不隔离的" class="headerlink" title="8. 事务到底是隔离还是不隔离的"></a>8. 事务到底是隔离还是不隔离的</h2><p>这章知识点很多，难度比较大！</p>
+<ol>
+<li>先回顾一下什么是 MVCC，如何实现的？</li>
+</ol>
+<blockquote>
+<p>MVCC，多版本并发控制，在查询记录的时候，不同时刻启动的事务会有不同的read-view。如图中看到的，在视图A、B、C里面，这一个记录的值分别是1、2、4，同一条记录在系统中可以存在多个版本。「存储在undo log 日志中」</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3zqmcq70j30vq0kh76q.jpg" alt="img"></p>
+</blockquote>
+<ol start="2">
+<li>什么是 read-view？</li>
+</ol>
+<blockquote>
+<p>一致性视图，全称是 consistent read-view，这里稍微补充一下，在 mysql中有两种视图：</p>
+<ul>
+<li>一个是view。它是一个用查询语句定义的虚拟表，在调用的时候执行查询语句并生成结果。创建视图的语法是create view … ，而它的查询方法与表一样。</li>
+<li>另一个是InnoDB在实现MVCC时用到的一致性读视图，即consistent read view，用于支持RC（Read Committed，读提交）和RR（Repeatable Read，可重复读）隔离级别的实现。</li>
+</ul>
+<p>在查询的时候，我们是需要用到 read-view的，但是在 update 的时候，是必须只能读当前最新值哦！！！「这里的最新值肯定是已经提交的事务去做的，如果未提交的事务去操作这个值，那肯定是加了行锁中的独占锁啦，所以你在 update 的话必须等其他事务释放锁。」</p>
+<p>说了这么多，回到问题，read-view其实就是一个数组，每个事务或者语句都有的一个数组，只不过这个数组有点特殊。 <strong>InnoDB为每个事务构造了一个数组，用来保存这个事务启动瞬间，当前正在“活跃”的所有事务ID。“活跃”指的就是，启动了但还没提交。</strong></p>
+<p><strong>数组里面事务ID的最小值记为低水位，当前系统里面已经创建过的事务ID的最大值加1记为高水位。</strong></p>
+<p><strong>这个视图数组和高水位，就组成了当前事务的一致性视图（read-view）。</strong></p>
+</blockquote>
+<ol start="3">
+<li>查询的时候，是如何用到 read-view 的？</li>
+</ol>
+<blockquote>
+<p>InnoDB的行数据有多个版本，每个数据版本有自己的row trx_id，每个事务或者语句有自己的一致性视图。普通查询语句是一致性读，一致性读会<strong>根据row trx_id和一致性视图（read-view）确定数据版本的可见性</strong>。</p>
+<ul>
+<li>对于可重复读，查询只承认在事务启动前就已经提交完成的数据；「因为对于可重复读的隔离级别，一致性视图是在事务开始的时候进行全库快照生成的」</li>
+<li>对于读提交，查询只承认在语句启动前就已经提交完成的数据；「因为对于读提交的隔离级别来说，一致性视图是在每一次执行语句的时候生成的，跟事务没有关系」</li>
+</ul>
+<p>总结上述两种情况，就是只有视图生成前事务提交了的数据我能看到，其他的我都看不到。</p>
+<p><strong>而当前读，总是读取已经提交完成的最新版本。</strong>「第 2 个问题已经讲了这个了」</p>
+</blockquote>
+<ol start="4">
+<li>上面一直强调的，当前读，什么时候会出现当前读的情况？</li>
+</ol>
+<blockquote>
+<p>首先我们要明确，当前读，必须要读的是该行的最新版本，此时的视图快照已经失效了，而且你要想读该行的最新版本，就必须去加锁！！！！「意思很明确，就是 当前读 == 给该行加锁」</p>
+<p>所以，什么时候会出现行的当前读呢？那就是给该行加锁『悲观锁』了，那问题就转化成了什么时候会给行加锁呢？</p>
+<p>那这个问题就非常简单了，有以下几种情况会使得当前行加上悲观锁：</p>
+<ul>
+<li>SELECT … FROM … LOCK IN SHARE MODE，select 的时候强行加上共享锁，如果不加其实就是默认的快照读；</li>
+<li>SELECT … FROM … FOR UPDATE，select 的时候强行加上独占锁；</li>
+<li>UPDATE … WHERE … ，独占锁；</li>
+<li>DELETE FROM … WHERE … ，独占锁；</li>
+<li><code>INSERT</code> 语句将在插入的记录上加一把排他锁「独占锁」。</li>
+</ul>
+<p>好吧，其实也就是 select 啥都不加会导致不给行锁加悲观锁，其他的都会加的，意味着都是要去读当前值，意味着这个 rc 级别的隔离就无效了，不过话说回来，人家 rc 本身就是 可重复读 的隔离级别，本身就是用于 数据修改了我不去读 。</p>
+<blockquote>
+<p><a href="http://www.fordba.com/locks-set-by-different-sql-statements-in-innodb.html" target="_blank" rel="noopener">http://www.fordba.com/locks-set-by-different-sql-statements-in-innodb.html</a> 这篇文章对 sql 语句加锁分析的我觉得是我看到的最好的了，受益匪浅！</p>
+</blockquote>
+</blockquote>
+<ol start="5">
+<li>第 4 个问题中提到的“lock in shared mode” “for update”是什么锁？</li>
+</ol>
+<blockquote>
+<p>这个很简单啦，就是 mysql 中的悲观锁中的共享锁和独占锁。</p>
+</blockquote>
+<ol start="6">
+<li>既然谈到锁了，那你再回顾一下现在接触到的所有锁吧，也可以自己拓展一下！</li>
+</ol>
+<blockquote>
+<p>其实，上面讲到的锁都是可以跟 lock 体系对应上的，比如说上文的乐观锁悲观锁，对应的就是 lock 体系的乐观锁悲观锁，乐观锁就是底层是 CAS，CAS 中有三个值：当前内存值、预读的值、想修改的值，如果当前值和预读值一样，我就默认没被修改过，直接修改成想修改的值，当然这样会造成一个问题：ABA 问题，在 mysql 中最主要的方法是加一个 version 字段，用 version 字段去判断是否被修改过，在 lock 体系中，最主要的方法是加一个 stamp，类似于时间戳这样的东西，在 StampedLock 里面有去用到。当然了，CAS 还会有另外两个问题：一个是自旋会造成cpu资源的浪费，一个是只能保证单个变量的原子性「你如果想保证多个的话就直接写到一个对象中就完事了」。</p>
+<p>回到正题，上面讲完乐观锁，现在讲讲悲观锁吧，mysql 中的独占锁和共享锁和 AQS 中的完全一致，这两思想也完全一样，至于 mysql 中内部如何实现的我不太清楚，因为貌似是用 c 写的，看的兴趣不大， AQS 的底层源码是有看过的，AQS 就是用的模板方法的设计思想嘛，对外我们想要去实现读写锁的话只需要继承几个方法就可以了，比如独占锁 ReentrantLock 只需要继承 tryacquired()、tryRealease()、isHeldExclusive()…「说不定会让我手动去实现一个，这个我得注意一下，提前写一个，刚才写的过程中，又发现了 transient 这个关键词，真的牛皮，这个博客讲的真的好：<a href="https://juejin.im/post/5dda467051882572f8249f11#heading-10」。。。。懒得讲了。。。" target="_blank" rel="noopener">https://juejin.im/post/5dda467051882572f8249f11#heading-10」。。。。懒得讲了。。。</a></p>
 </blockquote>
 
       
@@ -1199,7 +1323,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一条语句的执行过程"><span class="nav-number">1.</span> <span class="nav-text">1. 一条语句的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲日志系统：一条-SQL-更新语句的执行"><span class="nav-number">2.</span> <span class="nav-text">2. 讲日志系统：一条 SQL 更新语句的执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">3. 事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-深入浅出索引（上）"><span class="nav-number">4.</span> <span class="nav-text">4. 深入浅出索引（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-深入浅出索引（下）"><span class="nav-number">5.</span> <span class="nav-text">5. 深入浅出索引（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-全局锁和表级锁"><span class="nav-number">6.</span> <span class="nav-text">6. 全局锁和表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-讲行锁功过：怎么减少行锁对性能的影响"><span class="nav-number">7.</span> <span class="nav-text">7. 讲行锁功过：怎么减少行锁对性能的影响</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一条语句的执行过程"><span class="nav-number">1.</span> <span class="nav-text">1. 一条语句的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲日志系统：一条-SQL-更新语句的执行"><span class="nav-number">2.</span> <span class="nav-text">2. 讲日志系统：一条 SQL 更新语句的执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">3. 事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-深入浅出索引（上）"><span class="nav-number">4.</span> <span class="nav-text">4. 深入浅出索引（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-深入浅出索引（下）"><span class="nav-number">5.</span> <span class="nav-text">5. 深入浅出索引（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-全局锁和表级锁"><span class="nav-number">6.</span> <span class="nav-text">6. 全局锁和表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-讲行锁功过：怎么减少行锁对性能的影响"><span class="nav-number">7.</span> <span class="nav-text">7. 讲行锁功过：怎么减少行锁对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-事务到底是隔离还是不隔离的"><span class="nav-number">8.</span> <span class="nav-text">8. 事务到底是隔离还是不隔离的</span></a></li></ol></div>
             
 
           </div>
@@ -1239,7 +1363,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">944k</span>
+    <span title="站点总字数">959k</span>
   
   
 </div>
