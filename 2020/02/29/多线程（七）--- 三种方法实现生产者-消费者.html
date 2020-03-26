@@ -149,13 +149,13 @@
 
 
 
-  <meta name="description" content="作者：你听___链接：https://juejin.im/post/5aeec675f265da0b7c072c56来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是">
+  <meta name="description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
 <meta name="keywords" content="生产者-消费者模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（七）--- 三种方式实现生产者-消费者">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="作者：你听___链接：https://juejin.im/post/5aeec675f265da0b7c072c56来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是">
+<meta property="og:description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqs8ch2sj31680u0n6q.jpg">
@@ -165,10 +165,10 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg">
-<meta property="og:updated_time" content="2020-03-03T09:15:26.321Z">
+<meta property="og:updated_time" content="2020-03-26T09:28:48.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（七）--- 三种方式实现生产者-消费者">
-<meta name="twitter:description" content="作者：你听___链接：https://juejin.im/post/5aeec675f265da0b7c072c56来源：掘金著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。  生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是">
+<meta name="twitter:description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
 
 
@@ -526,7 +526,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 17:15:26" itemprop="dateModified" datetime="2020-03-03T17:15:26+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-26 17:28:48" itemprop="dateModified" datetime="2020-03-26T17:28:48+08:00">2020-03-26</time>
               
             
           </span>
@@ -613,10 +613,7 @@
       
 
       
-        <blockquote>
-<p>作者：你听___<br>链接：<a href="https://juejin.im/post/5aeec675f265da0b7c072c56" target="_blank" rel="noopener">https://juejin.im/post/5aeec675f265da0b7c072c56</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数据，就不再需要关心生产者的行为。但是，这个共享数据区域中应该具备这样的线程间并发协作的功能：</p>
+        <p>生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数据，就不再需要关心生产者的行为。但是，这个共享数据区域中应该具备这样的线程间并发协作的功能：</p>
 <ol>
 <li>如果共享数据区已满的话，阻塞生产者继续生产数据放置入内；</li>
 <li>如果共享数据区为空的话，阻塞消费者继续消费数据；</li>

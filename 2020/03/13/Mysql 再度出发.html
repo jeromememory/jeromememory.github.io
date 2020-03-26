@@ -158,8 +158,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcse78tgjhj313p0u0e3n.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd5yzidy0sj31fz0u07ln.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3zqmcq70j30vq0kh76q.jpg">
-<meta property="og:updated_time" content="2020-03-24T04:51:16.565Z">
+<meta property="og:updated_time" content="2020-03-25T02:36:41.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 复习">
 <meta name="twitter:description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
@@ -516,7 +517,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 12:51:16" itemprop="dateModified" datetime="2020-03-24T12:51:16+08:00">2020-03-24</time>
+                <time title="修改时间：2020-03-25 10:36:41" itemprop="dateModified" datetime="2020-03-25T10:36:41+08:00">2020-03-25</time>
               
             
           </span>
@@ -757,11 +758,23 @@
 <p>两阶段锁是指行锁是在需要的时候加锁，但是并不是在不用了之后就释放锁，而是等到事务提交才释放锁，这一点跟 MDL （元数据锁）很像；</p>
 <p>对事务的帮助就是：一定要将并发度高、时间较长的操作的行放到事务提交前，防止过多的线程等待锁。</p>
 <ol start="2">
+<li><strong>为什么要使用两阶段锁协议，为何不在事务启动时就加锁，又为什么不在语句执行完就解锁呢？</strong></li>
+</ol>
+<p>首先回答一下为什么不在事务启动时就加锁，我觉得原因有两个：</p>
+<ol>
+<li>减小锁的粒度和加锁时长，提高并发度。</li>
+<li>事务启动的时候，并没有明确说明需要修改什么行，此时如果要锁定行必须锁定整个表才行。</li>
+</ol>
+<p>再回答一下为什么不在语句执行完就解锁。</p>
+<p>因为这样事务如果回滚的话，就会有问题了。例如下面这种情况：</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd5yzidy0sj31fz0u07ln.jpg" alt="image-20200325103514167"></p>
+<p>如果事务 A 回滚，那肯定无法回滚了，因为已经有多个事务修改了这个值，并且人家已经提交了，无法回滚。</p>
+<ol start="3">
 <li><strong>死锁的概念是什么? 举例说明出现死锁的情况。</strong></li>
 </ol>
 <p>两个或多个线程在互相等待对方释放资源的过程称为死锁状态，出现死锁的情况一般都是嵌套锁（跟多线程中嵌套同步代码块一样）。</p>
 <p>所以我的建议是在加锁的时候一般都做到顺序加锁，这样就能防止锁互相嵌套问题。</p>
-<ol start="3">
+<ol start="4">
 <li><strong>死锁的处理策略有哪两种?</strong></li>
 </ol>
 <p>在数据库中，死锁的处理策略有：</p>
@@ -769,7 +782,7 @@
 <li>有个超时机制，这个超时时间可以通过参数innodb_lock_wait_timeout来设置。时间到了自动释放锁，并且回滚当前事务，这个默认是 50s，时间太长，一般不考虑；</li>
 <li>发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务，让其他事务得以继续执行。将参数innodb_deadlock_detect设置为on，表示开启这个逻辑。这个默认是开启的，但是吧，这个很消耗资源。</li>
 </ul>
-<ol start="4">
+<ol start="5">
 <li><strong>有哪些思路可以解决热点更新导致的并发问题?</strong></li>
 </ol>
 <p>热点更新导致的并发问题，症结就在于死锁检测非常的消耗资源，所以可以有以下解决措施：</p>
@@ -778,7 +791,7 @@
 <li>控制并发度，对应相同行的更新，在进入引擎之前排队。这样在InnoDB内部就不会有大量的死锁检测工作了；</li>
 <li>将热点细分，比如购买电影票，把影院的账户总额拆成10条记录来存储，其10条记录的和等于影院账户余额，这样能尽量减少死锁的情况。</li>
 </ul>
-<ol start="5">
+<ol start="6">
 <li><strong>什么时候会进行死锁检测？一旦触发死锁检测是检测所有事务吗？</strong></li>
 </ol>
 <ul>

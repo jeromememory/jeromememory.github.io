@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-17T03:05:33.216Z">
+<meta property="og:updated_time" content="2020-03-25T16:19:06.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="历年面经总结">
 <meta name="twitter:description" content="快手篇数据结构 说说B+树和B树的区别，优缺点等？   B 树每个节点都有存储 Date域，并且 B 树的叶子节点并没有用链表连接，但是 B+ 树每个非叶子节点只有索引值和指针域，并不存储 Date域，并且其叶子节点存储 Date 用链表连接，B树的话比平衡二叉树「是一棵空树或它的左右两个子树的高度差的绝对值不超过1』而言，增加和删除节点改动很少，效率高，B+是为了数据库而生的，其链表可以更好的支">
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-17 11:05:33" itemprop="dateModified" datetime="2020-03-17T11:05:33+08:00">2020-03-17</time>
+                <time title="修改时间：2020-03-26 00:19:06" itemprop="dateModified" datetime="2020-03-26T00:19:06+08:00">2020-03-26</time>
               
             
           </span>
@@ -685,7 +685,7 @@
 </ul>
 <blockquote>
 <p>四大线程池</p>
-<p>newFixedThreadPool是一个典型且优秀的线程池，它具有线程池的高效率和节省创建线程时所耗的开销的优点。但是在线程池空闲时，即线程池中没有可运行任务时，它不会释放工作线程，还会占用一定的系统资源。但是注意其只有核心线程池，在线程池中没有额外的线程。使用的是 LinkedBlockingQueue。但是一般都要指定线程数，虽然LinkedBlockingQueue默认是一个无界阻塞队列。</p>
+<p>newFixedThreadPool是一个典型且优秀的线程池，它具有线程池的高效率和节省创建线程时所耗的开销的优点。但是在线程池空闲时，即线程池中没有可运行任务时，它不会释放工作线程，还会占用一定的系统资源。但是注意其只有核心线程池，在线程池中没有额外的线程。使用的是 LinkedBlockingQueue。</p>
 <p>newCachedThreadPool的特点就是在线程池空闲时，即线程池中没有可运行任务时，它会释放工作线程，从而释放工作线程所占用的资源。但是当出现新任务时，又要创建新的工作线程，这会带来一定的系统开销。并且在使用CachedThreadPool时，一定要注意控制任务的数量，否则大量线程同时运行，可能会造成系统瘫痪。使用的是 SynchronousQueue。因为他是无界的，线程数没有限制。核心线程数是 Integer.MAX_VALUE。</p>
 <p>newScheduledThreadPool是周期线程池。支持定时及周期性任务执行。</p>
 <p>newSingleThreadPool是一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。当然如果当前线程死了，会新建一个重新执行任务。</p>
