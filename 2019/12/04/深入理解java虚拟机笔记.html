@@ -178,7 +178,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcmldpbr9gj311a0h6454.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcms4wlbchj31980qan4d.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcmx1m1x0uj31780gk40b.jpg">
-<meta property="og:updated_time" content="2020-03-24T15:07:08.147Z">
+<meta property="og:updated_time" content="2020-03-30T07:48:58.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm笔记">
 <meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常1. 运行时数据区域包括 方法区、堆（前两者都是共享的）、虚拟机栈、本地方法栈、程序计数器（三者是线程私有）。 方法区：与Java堆一样，是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量，别名称为Non-Heap。 堆：Java Heap是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，此内存区域的唯一">
@@ -539,7 +539,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 23:07:08" itemprop="dateModified" datetime="2020-03-24T23:07:08+08:00">2020-03-24</time>
+                <time title="修改时间：2020-03-30 15:48:58" itemprop="dateModified" datetime="2020-03-30T15:48:58+08:00">2020-03-30</time>
               
             
           </span>
@@ -640,7 +640,7 @@
 <h2 id="2-OutOfMemoryError异常"><a href="#2-OutOfMemoryError异常" class="headerlink" title="2. OutOfMemoryError异常"></a>2. OutOfMemoryError异常</h2><p>包括 <strong>Java堆溢出</strong>、<strong>虚拟机栈和本地方法栈溢出</strong>、<strong>方法区和运行时常量池溢出</strong>、<strong>本机直接内存溢出</strong>。</p>
 <ul>
 <li>堆溢出，主要就是不停的 new 对象即可；「-Xms」</li>
-<li>栈溢出，主要是定义大量的本地变量，然后递归，使得爆栈，这样会有 StackOverflowError，如果想要有 OOM，最好的方法就是不停的创建线程，因为系统分配给栈的内存是有限的，比如一般总的是 2G，然后减去堆和方法区的容量，就是栈的容量了，如果不断地 new线程的话，那么总有一个线程会内存不够，此时就能够弹出 OOM 了；「」</li>
+<li>栈溢出，主要是定义大量的本地变量，然后递归，使得爆栈，这样会有 StackOverflowError，如果想要有 OOM，最好的方法就是不停的创建线程，因为系统分配给栈的内存是有限的，比如一般总的是 2G，然后减去堆和方法区的容量，就是栈的容量了，如果不断地 new 线程的话，那么总有一个线程会内存不够，此时就能够弹出 OOM 了；「」</li>
 <li>方法区中的运行时常量池的溢出，一般也就是使用 String.inter() 方法，这个方法是一旦池中没有需要的常量，就定义一个放到池中去，否则就拿出这个常量的地址，我不断的定义常量放入常量池，那么就很容易 OOM；「PermGen Space」</li>
 <li>方法区溢出，最基本的思路就是运行时产生大量的类去填满方法区直到溢出，这里借助的是 <font color="red">GGLib 直接操作字节码生成大量的动态类</font>。「这个地方我不太会…」「-XX:PermSize」</li>
 <li>本机直接内存溢出「-XX:MaxDirectMemorySize」</li>
@@ -745,7 +745,7 @@
 <p>Serial收集器是新生代单线程收集器，优点是简单高效，是最基本、发展历史最悠久的收集器。它在进行垃圾收集时，必须暂停其他所有的工作线程，直到它收集完成。但依然是虚拟机运行在Client模式下默认新生代收集器，对于运行在Client模式下的虚拟机来说是一个很好的选择。</p>
 </li>
 <li><p><strong>ParNew收集器-复制算法</strong></p>
-<p>也是<strong>新生代并行收集器</strong>，其实就是Serial收集器的多线程版本。主义只能做到并行，不能并发。除了使用多线程进行垃圾收集之外，其余行为包括Serial收集器可用的所有控制参数、收集算法、Stop The Worl、对象分配规则、回收策略等都与Serial 收集器完全一样。</p>
+<p>也是<strong>新生代并行收集器</strong>，其实就是Serial收集器的多线程版本。主义只能做到并行，不能并发。除了使用多线程进行垃圾收集之外，其余行为包括Serial收集器可用的所有控制参数、收集算法、Stop The World、对象分配规则、回收策略等都与Serial 收集器完全一样。</p>
 <blockquote>
 <p>并行：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态；</p>
 <p>并发：用户线程和多垃圾收集线程同时执行（但不一定是并行的，可能是交替执行）</p>
@@ -1932,7 +1932,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">961k</span>
+    <span title="站点总字数">962k</span>
   
   
 </div>

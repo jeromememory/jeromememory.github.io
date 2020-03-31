@@ -160,7 +160,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcsgeroonlj311z0u0du3.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd5yzidy0sj31fz0u07ln.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3zqmcq70j30vq0kh76q.jpg">
-<meta property="og:updated_time" content="2020-03-25T02:36:41.174Z">
+<meta property="og:updated_time" content="2020-03-28T14:50:28.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 复习">
 <meta name="twitter:description" content="目录：/MySQL实战45讲 [161.8M]    ┣━━01讲基础架构：一条SQL查询语句是如何执行的.html [54.2K]    ┣━━02讲日志系统：一条SQL更新语句是如何执行的.html [65K]    ┣━━03讲事务隔离：为什么你改了我还看不见.html [56.8K]    ┣━━04讲深入浅出索引（上）.html [59.9K]    ┣━━05讲深入浅出索引（下）.h">
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-25 10:36:41" itemprop="dateModified" datetime="2020-03-25T10:36:41+08:00">2020-03-25</time>
+                <time title="修改时间：2020-03-28 22:50:28" itemprop="dateModified" datetime="2020-03-28T22:50:28+08:00">2020-03-28</time>
               
             
           </span>
@@ -885,7 +885,7 @@
 <p>其实，上面讲到的锁都是可以跟 lock 体系对应上的，比如说上文的乐观锁悲观锁，对应的就是 lock 体系的乐观锁悲观锁，乐观锁就是底层是 CAS，CAS 中有三个值：当前内存值、预读的值、想修改的值，如果当前值和预读值一样，我就默认没被修改过，直接修改成想修改的值，当然这样会造成一个问题：ABA 问题，在 mysql 中最主要的方法是加一个 version 字段，用 version 字段去判断是否被修改过，在 lock 体系中，最主要的方法是加一个 stamp，类似于时间戳这样的东西，在 StampedLock 里面有去用到。当然了，CAS 还会有另外两个问题：一个是自旋会造成cpu资源的浪费，一个是只能保证单个变量的原子性「你如果想保证多个的话就直接写到一个对象中就完事了」。</p>
 <p>回到正题，上面讲完乐观锁，现在讲讲悲观锁吧，mysql 中的独占锁和共享锁和 AQS 中的完全一致，这两思想也完全一样，至于 mysql 中内部如何实现的我不太清楚，因为貌似是用 c 写的，看的兴趣不大， AQS 的底层源码是有看过的，AQS 就是用的模板方法的设计思想嘛，对外我们想要去实现读写锁的话只需要继承几个方法就可以了，比如独占锁 ReentrantLock 只需要继承 tryacquired()、tryRealease()、isHeldExclusive()…「说不定会让我手动去实现一个，这个我得注意一下，提前写一个，刚才写的过程中，又发现了 transient 这个关键词，真的牛皮，这个博客讲的真的好：<a href="https://juejin.im/post/5dda467051882572f8249f11#heading-10」。。。。懒得讲了。。。" target="_blank" rel="noopener">https://juejin.im/post/5dda467051882572f8249f11#heading-10」。。。。懒得讲了。。。</a></p>
 </blockquote>
-
+<h2 id="9-普通索引和唯一索引，应该如何选择"><a href="#9-普通索引和唯一索引，应该如何选择" class="headerlink" title="9. 普通索引和唯一索引，应该如何选择"></a>9. 普通索引和唯一索引，应该如何选择</h2>
       
     </div>
 
@@ -1336,7 +1336,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一条语句的执行过程"><span class="nav-number">1.</span> <span class="nav-text">1. 一条语句的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲日志系统：一条-SQL-更新语句的执行"><span class="nav-number">2.</span> <span class="nav-text">2. 讲日志系统：一条 SQL 更新语句的执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">3. 事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-深入浅出索引（上）"><span class="nav-number">4.</span> <span class="nav-text">4. 深入浅出索引（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-深入浅出索引（下）"><span class="nav-number">5.</span> <span class="nav-text">5. 深入浅出索引（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-全局锁和表级锁"><span class="nav-number">6.</span> <span class="nav-text">6. 全局锁和表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-讲行锁功过：怎么减少行锁对性能的影响"><span class="nav-number">7.</span> <span class="nav-text">7. 讲行锁功过：怎么减少行锁对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-事务到底是隔离还是不隔离的"><span class="nav-number">8.</span> <span class="nav-text">8. 事务到底是隔离还是不隔离的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一条语句的执行过程"><span class="nav-number">1.</span> <span class="nav-text">1. 一条语句的执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-讲日志系统：一条-SQL-更新语句的执行"><span class="nav-number">2.</span> <span class="nav-text">2. 讲日志系统：一条 SQL 更新语句的执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-事务隔离"><span class="nav-number">3.</span> <span class="nav-text">3. 事务隔离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-深入浅出索引（上）"><span class="nav-number">4.</span> <span class="nav-text">4. 深入浅出索引（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-深入浅出索引（下）"><span class="nav-number">5.</span> <span class="nav-text">5. 深入浅出索引（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-全局锁和表级锁"><span class="nav-number">6.</span> <span class="nav-text">6. 全局锁和表级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-讲行锁功过：怎么减少行锁对性能的影响"><span class="nav-number">7.</span> <span class="nav-text">7. 讲行锁功过：怎么减少行锁对性能的影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-事务到底是隔离还是不隔离的"><span class="nav-number">8.</span> <span class="nav-text">8. 事务到底是隔离还是不隔离的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-普通索引和唯一索引，应该如何选择"><span class="nav-number">9.</span> <span class="nav-text">9. 普通索引和唯一索引，应该如何选择</span></a></li></ol></div>
             
 
           </div>
@@ -1376,7 +1376,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">961k</span>
+    <span title="站点总字数">962k</span>
   
   
 </div>
