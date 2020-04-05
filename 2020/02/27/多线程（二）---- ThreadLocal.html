@@ -161,7 +161,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg">
-<meta property="og:updated_time" content="2020-03-03T02:11:07.986Z">
+<meta property="og:updated_time" content="2020-03-31T11:25:32.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（二）--- ThreadLocal">
 <meta name="twitter:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
@@ -522,7 +522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 10:11:07" itemprop="dateModified" datetime="2020-03-03T10:11:07+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-31 19:25:32" itemprop="dateModified" datetime="2020-03-31T19:25:32+08:00">2020-03-31</time>
               
             
           </span>
@@ -666,7 +666,7 @@
 <h4 id="remove"><a href="#remove" class="headerlink" title="remove()"></a>remove()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ThreadLocalMap m = getMap(Thread.currentThread());</span><br><span class="line">    <span class="keyword">if</span> (m != <span class="keyword">null</span>)</span><br><span class="line">        m.remove(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>懒得解释了…还是调用的 ThreadLocalMap 中的 remove() 函数。</p>
 <h3 id="ThreadLocalMap（一）"><a href="#ThreadLocalMap（一）" class="headerlink" title="ThreadLocalMap（一）"></a>ThreadLocalMap（一）</h3><p>前面的方法已经铺垫很久了，所有的方法基本都是基于这个类实现的。ThreadLocal 700多行源代码，有500多行都是内部类 ThreadLocalMap。</p>
-<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p>必须要说明的是，这里的 map 不同于我们之前介绍的 HashMap、TreeMap等，这里的 map 底层采用的就是只有数组，没有用到红黑树和链表，因为这里解决冲突的方法并不是链地址法，而是开放地址法中的线性探测。所以这里数组的基本单元是 Entry。</p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p>必须要说明的是，这里的 map 不同于我们之前介绍的 HashMap、TreeMap等，这里的 map 底层采用的就是只有数组，没有用到红黑树和链表，因为这里解决冲突的方法并不是链地址法，而是开放地址法中的<strong>线性探测</strong>。所以这里数组的基本单元是 Entry。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Tip: 这里有一个比较特殊的类 WeakReference，也就是弱引用，我们后面会详细介绍这个，因为这个跟内存泄漏有很大的关系。</p>
@@ -1309,7 +1309,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">962k</span>
+    <span title="站点总字数">975k</span>
   
   
 </div>

@@ -174,7 +174,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd21kesoq2j30fa07e74s.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd21nuua6rj31900duwhy.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd32j19kzaj30zi0kojvx.jpg">
-<meta property="og:updated_time" content="2020-03-26T07:37:32.461Z">
+<meta property="og:updated_time" content="2020-04-01T13:48:20.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零拷贝及其周边">
 <meta name="twitter:description" content="引子说实话，零拷贝这块我一直很乱，看了很久，也看了很多很多篇文章，在自己写的其他文章里也或多或少提及了相关的内容，但是一直都没有成一个体系，所以我还是想再单独写这样一篇文章，希望自己能在写的过程中梳理出真正的脉络。「话说最近天天面试都没时间进行输出了…不管了…面试不重要…知识体系才是自己的东西！」 零拷贝的实现方式其实还是很好理解的，难点就在于在其基础之上的实现，例如本文要讲的 NIO 以及 Ka">
@@ -531,7 +531,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-26 15:37:32" itemprop="dateModified" datetime="2020-03-26T15:37:32+08:00">2020-03-26</time>
+                <time title="修改时间：2020-04-01 21:48:20" itemprop="dateModified" datetime="2020-04-01T21:48:20+08:00">2020-04-01</time>
               
             
           </span>
@@ -916,7 +916,7 @@
 </ul>
 <p><strong>这种分区分段+索引的设计，不仅提升了数据读取的效率，同时也提高了数据操作的并行度。</strong></p>
 <h2 id="批量读写"><a href="#批量读写" class="headerlink" title="批量读写"></a>批量读写</h2><p> Kafka数据读写也是批量的而不是单条的。</p>
-<p>  除了利用底层的技术外，Kafka还在应用程序层面提供了一些手段来提升性能。最明显的就是使用批次。在向Kafka写入数据时，<strong>可以启用批次写入</strong>，这样可以避免在网络上频繁传输单个消息带来的延迟和带宽开销。假设网络带宽为10MB/S，一次性传输10MB的消息比传输1KB的消息10000万次显然要快得多。</p>
+<p>除了利用底层的技术外，Kafka还在应用程序层面提供了一些手段来提升性能。最明显的就是使用批次。在向Kafka写入数据时，<strong>可以启用批次写入</strong>，这样可以避免在网络上频繁传输单个消息带来的延迟和带宽开销。假设网络带宽为10MB/S，一次性传输10MB的消息比传输1KB的消息10000万次显然要快得多。</p>
 <h2 id="批量压缩"><a href="#批量压缩" class="headerlink" title="批量压缩"></a>批量压缩</h2><p>在很多情况下，系统的瓶颈不是CPU或磁盘，而是网络IO，对于需要在广域网上的数据中心之间发送消息的数据流水线尤其如此。进行数据压缩会消耗少量的CPU资源,不过对于kafka而言,<strong>网络IO更应该需要考虑</strong>，支持多种压缩，我自己有在项目中使用 gzip，的确是有加速，并且消费端无需自己解压，自动解压。</p>
 <h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>kafka快的原因：「从流程上说」</p>
 <p>Producer 发送消息时进行<strong>批量的发送</strong>并且<strong>批量压缩</strong>，减轻 网络 I/O 压力，然后是使用了 <strong>NIO 中的 网络I/O 模型</strong>，采用 I/O 复用机制，用 Selector 去轮询是否准备好了发送的数据，避免的其他线程的无效等待，等到数据传送到服务器时，会<strong>首先用索引去找到对应的segment</strong>，索引 文件采用了 <strong>mmap +  write</strong> 减少 cpu 拷贝次数加快访问速度，找到对应的 segment 之后，会将数据发送到 <strong>Page Cache</strong>，Page Cache 会在合适的时候进行刷盘，刷盘是<strong>顺序读写磁盘</strong>，所以刷盘也很快，然后消费者要消费时，利用 <strong>sendfile 的零拷贝技术</strong>直接从 Page Cache 发送到 SocketChannel，无需进行多余的拷贝和上下文切换，直接在内核态中完成，自此，数据发送给客户端。</p>
@@ -1519,7 +1519,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">962k</span>
+    <span title="站点总字数">975k</span>
   
   
 </div>
