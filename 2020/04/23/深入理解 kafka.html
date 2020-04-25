@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+<meta name="keywords" content="kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解 kafka">
+<meta property="og:url" content="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-25T11:44:45.508Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解 kafka">
+<meta name="twitter:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>深入理解 kafka | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解 kafka
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-23 11:09:05" itemprop="dateCreated datePublished" datetime="2020-04-23T11:09:05+08:00">2020-04-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-25 19:44:45" itemprop="dateModified" datetime="2020-04-25T19:44:45+08:00">2020-04-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">27k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">24 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目最近 kafka 又崩了… </p>
+<p>心态炸了…</p>
+<p>总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了…</p>
+<h1 id="第一章-初识-kafka"><a href="#第一章-初识-kafka" class="headerlink" title="第一章 初识 kafka"></a>第一章 初识 kafka</h1><p>Kafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个<strong><em>分布式流式处理平台</em></strong>，它以<strong>高吞吐、可持久化、可水平扩展、支持流数据处理</strong>等多种特性而被广泛使用。</p>
+<p>Kafka主要扮演三大角色：</p>
+<ol>
+<li>消息系统。提供传统的消息中间件的功能：系统解耦、冗余存储、流量削峰、异步通信等，同时还提供了消息的顺序性保障以及回溯消费的功能。</li>
+<li>存储系统。Kafka有多副本机制，所以可以用来当数据存储系统使用。</li>
+<li>流式处理平台。<font color="red">为每个流行的流式处理框架提供了可靠的数据来源，还提供了一个完整的流式处理类库。</font></li>
+</ol>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><ol>
+<li>Producer。生产者，负责创建消息发送到 broker 中。</li>
+<li>Consumer。从 broker 中接收消息。</li>
+<li>Zookeeper。负责集群元数据的管理、控制器的选举等等。</li>
+<li>Broker。负责将收到的消息存储到磁盘中，可以是一个集群。</li>
+</ol>
+<h3 id="重要的概念"><a href="#重要的概念" class="headerlink" title="重要的概念"></a>重要的概念</h3><h4 id="Topic-和-Partition"><a href="#Topic-和-Partition" class="headerlink" title="Topic 和 Partition"></a>Topic 和 Partition</h4><p>Kafka中的消息以 topic 为单位进行归类，生产者负责将消息发送到特定的主题，而消费者负责订阅主题并进行消费。</p>
+<p>topic 仅仅是一个逻辑上的概念，实际的实现还是分区，一个主题可以有多个分区，每个分区都可以分散到不同 broker 中，分区在存储层面可以看作是一个可追加的 log 文件，而 offset 是消息在分区中的唯一标识，Kafka 通过它来保证分区内的消息的顺序性，所以 Kafka 仅保证分区有序，不保证主题有序。</p>
+<h4 id="多副本机制"><a href="#多副本机制" class="headerlink" title="多副本机制"></a>多副本机制</h4><p>Kafka 为分区引入了多副本机制，保证高可用。在这里和 Mysql 一样，同样是一主多从，所以关键就是主从同步的问题，同时还会涉及到主备切换、主从延迟等通用问题。</p>
+<p>分区中所有副本统称为 AR(Assigned Replicas)，AR = ISR(In-Sync Replicas) + OSR(Out-of-Sync Replicas)，当 leader副本发生故障时，只有在 ISR 中的 副本才有资格被选取为新的 leader。</p>
+<p>在读取 offset 的过程中，也引入了 HW(高水位) 和 LEO(Log End Offset)的概念，在 Mysql 中实现 mvcc 中，也同样采用了 高水位的概念，不过在那里是在事务的视图中出现的。这里的 HW 和 LEO 同样让我想到了 NIO 中的 buffer 也是拥有同样的概念的。</p>
+<font color="red">Kafka 的复制机制既不是完全的同步复制，也不是单纯的异步复制。这里我们可以类比事务处理。同步意味着所有都完成才提交事务「即要求所有 follower 副本全部复制完才可以进行读取消息」，而异步则意味着只要leader读入成功则直接提交事务「Mysql 是异步复制」。前者影响效率，后者则存在不可靠性，因为一旦leader宕机而follower没有同步完成，数据就会出现问题。所以这里采用折中的方案，每同步完一个消息，就进行一次事务提交「即每全部同步完一条消息就提交一次事务」。</font>
+
+<h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>博主使用的 macOS 系统，所以接下来对在 macOS 下如何安装运行 kafka 做一个详细的叙述。</p>
+<h3 id="JDK-的安装和配置"><a href="#JDK-的安装和配置" class="headerlink" title="JDK 的安装和配置"></a>JDK 的安装和配置</h3><p>Kafka是建立在 jvm 之上的，所以需要先安装 jvm，这个很简单啦…</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/194531d106ae" target="_blank" rel="noopener">https://www.jianshu.com/p/194531d106ae</a></p>
+</blockquote>
+<ol>
+<li>下载</li>
+<li>配环境</li>
+<li>查看配置是否成功</li>
+</ol>
+<p>这里我不详细叙述，直接看该网址就行，下面的我会详细叙述。</p>
+<h3 id="Zookeeper-的安装和配置"><a href="#Zookeeper-的安装和配置" class="headerlink" title="Zookeeper 的安装和配置"></a>Zookeeper 的安装和配置</h3><p>首先再简单介绍一下 Zookeeper，其实 kafka 现在已经内置了 Zookeeper，这里我们就暂时不使用内置的 zk 了，因为内置的只能是单机版，但是在生产环境中 zk 一般都是集群，所以这里我们再单独进行 zk 的安装和配置。</p>
+<p>ZooKeeper是一个开源的分布式协调服务，是Google Chubby的一个开源实现。分布式应用程序可以基于ZooKeeper实现诸如<strong>数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、Master选举、配置维护</strong>等功能。在ZooKeeper中共有3个角色：leader、follower和observer，同一时刻 ZooKeeper集群中只会有一个leader，其他的都是follower和observer。observer不参与投票，默认情况下 ZooKeeper 中只有 leader 和 follower 两个角色。</p>
+<h4 id="下载-Zookeeper"><a href="#下载-Zookeeper" class="headerlink" title="下载 Zookeeper"></a>下载 Zookeeper</h4><blockquote>
+<p>brew install zookeeper</p>
+</blockquote>
+<p>这里需要注意的是，下载之后，Zookeeper 中的 <strong>bin 目录和配置文件不在一块</strong>。</p>
+<p>bin 目录的位置：”/usr/local/Cellar/zookeeper/3.4.14”</p>
+<p>配置文件的位置：”/usr/local/etc/zookeeper”</p>
+<h4 id="配环境"><a href="#配环境" class="headerlink" title="配环境"></a>配环境</h4><ol>
+<li><blockquote>
+<p>命令：open -e .bash_profile</p>
+</blockquote>
+</li>
+</ol>
+<ol start="2">
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">MONGODB_HOME=/usr/local/mongodb</span><br><span class="line"></span><br><span class="line">KAFKA_HOME=/usr/local/Cellar/kafka/2.4.0</span><br><span class="line"></span><br><span class="line">ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper/3.4.14</span><br><span class="line"></span><br><span class="line">PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:$ZOOKEEPER_HOME/bin:$KAFKA_HOME/bin:$MONGODB_HOME/bin:$&#123;PATH&#125;:"</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">export PATH="/Users/yangweijie/anaconda3/bin:$PATH"</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home</span><br><span class="line">export CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH:</span><br></pre></td></tr></table></figure>
+</li>
+<li><blockquote>
+<p>命令：source .bash_profile</p>
+<p>让配置文件生效</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="修改-Zookeeper-配置文件"><a href="#修改-Zookeeper-配置文件" class="headerlink" title="修改 Zookeeper 配置文件"></a>修改 Zookeeper 配置文件</h4><ol>
+<li><p>进入到 /usr/local/etc/zookeeper，然后将 zoo_sample.cfg 文件修改为 zoo.cfg</p>
+<blockquote>
+<p>cd /usr/local/etc/zookeeper<br>cp zoo_sample.cfg zoo.cfg</p>
+</blockquote>
+</li>
+<li><p>修改 zoo.cfg 配置文件，主要是创建数据目录和日志目录，因为默认是没有的，我们需要自己创建</p>
+<blockquote>
+<p>open -e zoo.cfg<br>mkdir -p tmp/data<br>mkdir -p tmp/log</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"># zoo.cfg 文件内容</span><br><span class="line"># The number of milliseconds of each tick</span><br><span class="line"># zookeeper 服务器心跳时间，单位为 ms</span><br><span class="line">tickTime=<span class="number">2000</span></span><br><span class="line"></span><br><span class="line"># The number of ticks that the initial </span><br><span class="line"># synchronization phase can take</span><br><span class="line"># 投票选举新leader的初始化时间</span><br><span class="line">initLimit=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"># The number of ticks that can pass between </span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line"># leader与follower 心跳检测最大容忍时间，响应时间超过 syncLimit * tickTime，lead# er就认为 follower 死掉了，从服务器中删除 follower</span><br><span class="line">syncLimit=<span class="number">5</span></span><br><span class="line"></span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just </span><br><span class="line"># example sakes.</span><br><span class="line"># 数据目录</span><br><span class="line">dataDir=/usr/local/etc/zookeeper/tmp/data</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line"># 对外服务端口</span><br><span class="line">clientPort=<span class="number">2181</span></span><br><span class="line"></span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line"></span><br><span class="line"># 日志目录</span><br><span class="line">dataLogDir=/usr/local/etc/zookeeper/tmp/log</span><br><span class="line"></span><br><span class="line"># </span><br><span class="line"># Be sure to read the maintenance section of the </span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount=3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to "0" to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval=1</span><br></pre></td></tr></table></figure>
+<p><strong>dataDir：”/usr/local/etc/zookeeper/tmp/data”</strong></p>
+<p><strong>Log: “/usr/local/etc/zookeeper/tmp/log”</strong></p>
+<h4 id="启动-Zookeeper"><a href="#启动-Zookeeper" class="headerlink" title="启动 Zookeeper"></a>启动 Zookeeper</h4><p>启动 zookeeper：</p>
+<blockquote>
+<p>zkServer start</p>
+</blockquote>
+<p>查看 zookeeper 状态：</p>
+<blockquote>
+<p>zkServer status</p>
+</blockquote>
+<p>这个其实看不出来 Zookeeper 是否真的运行起来了，我在下面的问题模块也有讲到，如果想看 Zookeeper 是否真的运行起来了，<strong>可以查看 “/usr/local/etc/zookeeper/tmp/data/zookeeper_server.pid” 是否存在，当 zk stop时该文件就会消失。</strong></p>
+<h3 id="Kafka-的安装和配置"><a href="#Kafka-的安装和配置" class="headerlink" title="Kafka 的安装和配置"></a>Kafka 的安装和配置</h3><h4 id="下载-kafka"><a href="#下载-kafka" class="headerlink" title="下载 kafka"></a>下载 kafka</h4><blockquote>
+<p>brew install kafka</p>
+</blockquote>
+<p>同样的，bin 和 配置文件位置不在一起。</p>
+<p>bin 目录的位置：”/usr/local/Cellar/kafka/2.4.0”</p>
+<p>配置文件的位置：”/usr/local/etc/kafka”</p>
+<h4 id="配环境-1"><a href="#配环境-1" class="headerlink" title="配环境"></a>配环境</h4><p>见上面的 bash_profile</p>
+<h4 id="修改-Kafka-配置文件"><a href="#修改-Kafka-配置文件" class="headerlink" title="修改 Kafka 配置文件"></a>修改 Kafka 配置文件</h4><p>将 /usr/local/etc/kafka/server.properties 进行相应的修改，主要是对日志文件的地址进行修改，然后修改完之后自己创建好相应的目录。</p>
+<p>这里我的 kafka 的 log 是  <code>/usr/local/etc/kafka/tmp/log</code>。</p>
+<h4 id="启动-Kafka"><a href="#启动-Kafka" class="headerlink" title="启动 Kafka"></a>启动 Kafka</h4><ol>
+<li><p>启动 kafka</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-server-start /usr/local/etc/kafka/server.properties</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用指令：</p>
+</li>
+</ol>
+<p>创建 topic：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure>
+<p>查看 topic :</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure>
+<p>发送消息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-producer --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
+<p>消费消息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning</span><br></pre></td></tr></table></figure>
+<p>查看 java 有关的进程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br></pre></td></tr></table></figure>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>系统是 macOS，kafka 版本为 2.4.0，zookeeper 版本为3.4.14，在安装启动遇到这样一个问题：</p>
+<p>用 “kafka-server-stop /usr/local/etc/kafka/server.properties” 无法杀死 kafka 进程…</p>
+<p>使用完这个命令之后 用命令 “jps -l” 可以看到，原先的Kafka.kafka 对应的进程的确没了，但是莫名其妙又起了一个进程来运行 kafka，这是啥情况… 为啥会杀不死。</p>
+<p>「<strong>从后文可以知道，jps 实际上无法准备的确认 kafka服务 是否正常启动。</strong>」</p>
+<h4 id="尝试解决方案"><a href="#尝试解决方案" class="headerlink" title="尝试解决方案"></a><strong>尝试解决方案</strong></h4><ol>
+<li>重写kafka-server-stop.sh 脚本</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PIDS=$(ps -ef  |grep java|grep kafka | grep -v grep | awk '&#123;print $2&#125;')</span><br><span class="line"></span><br><span class="line">for PID in $PIDS</span><br><span class="line">do </span><br><span class="line"> kill -9 $PID</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">echo -e "Stop Finished!\n"</span><br></pre></td></tr></table></figure>
+<p>原 kafka-server-stop.sh 内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SIGNAL=$&#123;SIGNAL:-TERM&#125;</span><br><span class="line">PIDS=$(ps ax | grep -i 'kafka\.Kafka' | grep java | grep -v grep | awk '&#123;print $1&#125;')</span><br><span class="line"></span><br><span class="line">if [ -z "$PIDS" ]; then</span><br><span class="line">  echo "No kafka server to stop"</span><br><span class="line">  exit 1</span><br><span class="line">else</span><br><span class="line">  kill -s $SIGNAL $PIDS</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<font color="red">结果：无效。。。。</font>
+
+
+
+<ol start="2">
+<li><blockquote>
+<p>参考： <a href="https://blog.csdn.net/dengjili/article/details/95041267" target="_blank" rel="noopener">https://blog.csdn.net/dengjili/article/details/95041267</a></p>
+<p>依旧是修改 kafka-server-stop.sh 的内容</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PIDS=$(ps ax | grep -i ‘kafka.Kafka’ | grep java | grep -v grep | awk ‘&#123;print $1&#125;’)</span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PIDS=$(jps -lm | grep -i 'kafka.Kafka' | awk '&#123;print $1&#125;')</span><br></pre></td></tr></table></figure>
+<font color="red">结果：依旧失败。。。。。心态炸了</font>
+
+
+
+<ol start="3">
+<li><p>在解决第三个问题的时候发现，发现<strong>并不能仅仅通过 jps 去看 kafka 是否停止运行</strong>，因为其非常的不准确，其实 kafka 可能已经停止了，<strong>也就是说，”kafka-server-stop /usr/local/etc/kafka/server.properties” 其实已经杀死 kafka 服务进程，只是我们不知道而已。。。。</strong></p>
+<p>我们可以通过生产消息：<code>kafka-console-producer --broker-list localhost:9092 --topic test</code>来判断 kafka 是否是正常启动的。</p>
+</li>
+</ol>
+<font color="red">结果：已解决！！！</font>
+
+
+
+<h3 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h3><h4 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h4><p>使用命令 “zkServer stop” 无法停止 zookeeper，报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: /usr/local/etc/zookeeper/zoo.cfg</span><br><span class="line">Stopping zookeeper ... no zookeeper to stop (could not find file /usr/local/etc/zookeeper/tmp/data/zookeeper_server.pid)</span><br></pre></td></tr></table></figure>
+<h4 id="尝试解决方案-1"><a href="#尝试解决方案-1" class="headerlink" title="尝试解决方案"></a>尝试解决方案</h4><p>原来是因为我根本没有把 Zookeeper 起来，使用 zkServer status并不能显示 zk 是否真的起来了…</p>
+<p>在我再次启动 zk 时，的确在 “/usr/local/etc/zookeeper/tmp/data 下 出现了 zookeeper_server.pid” 这个文件。</p>
+<p>所以说，想看 zk 到底是否真的起来了，可以查看 “/usr/local/etc/zookeeper/tmp/data/zookeeper_server.pid” 是否存在，当 zk stop时该文件就会消失。</p>
+<font color="red">结果：该问题解决！！！</font>
+
+
+
+<h3 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h3><h4 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h4><p>在我一直无法关闭 kafka 之后，我进行了电脑重启，重启之后，使用 “jps -l” 的确没有再出现 “kafka.Kafka”，说明这时 kafka 的确停止了，但是新的问题又出现了…</p>
+<p>在使用 <code>kafka-server-start /usr/local/etc/kafka/server.properties</code> 命令之后，再也无法启动 kafka 了… 我太难了…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">[2020-04-24 23:16:58,980] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)</span><br><span class="line">[2020-04-24 23:16:59,391] INFO Registered signal handlers for TERM, INT, HUP (org.apache.kafka.common.utils.LoggingSignalHandler)</span><br><span class="line">[2020-04-24 23:16:59,392] INFO starting (kafka.server.KafkaServer)</span><br><span class="line">[2020-04-24 23:16:59,392] INFO Connecting to zookeeper on localhost:2181 (kafka.server.KafkaServer)</span><br><span class="line">[2020-04-24 23:16:59,406] INFO [ZooKeeperClient Kafka server] Initializing a new session to localhost:2181. (kafka.zookeeper.ZooKeeperClient)</span><br><span class="line">[2020-04-24 23:16:59,410] INFO Client environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,410] INFO Client environment:host.name=localhost (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,411] INFO Client environment:java.version=1.8.0_222 (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,411] INFO Client environment:java.vendor=AdoptOpenJDK (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,411] INFO Client environment:java.home=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,411] INFO Client environment:java.class.path=/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/activation-1.1.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/aopalliance-repackaged-2.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/argparse4j-0.7.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/audience-annotations-0.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/commons-cli-1.4.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/commons-lang3-3.8.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-api-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-basic-auth-extension-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-file-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-json-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-mirror-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-mirror-client-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-runtime-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/connect-transforms-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/guava-20.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/hk2-api-2.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/hk2-locator-2.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/hk2-utils-2.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-annotations-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-core-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-databind-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-dataformat-csv-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-datatype-jdk8-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-jaxrs-base-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-jaxrs-json-provider-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-module-jaxb-annotations-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-module-paranamer-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jackson-module-scala_2.12-2.10.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jakarta.activation-api-1.2.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jakarta.annotation-api-1.3.4.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jakarta.inject-2.5.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jakarta.ws.rs-api-2.1.5.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jakarta.xml.bind-api-2.3.2.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/javassist-3.22.0-CR2.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/javax.servlet-api-3.1.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/javax.ws.rs-api-2.1.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jaxb-api-2.3.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-client-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-common-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-container-servlet-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-container-servlet-core-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-hk2-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-media-jaxb-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jersey-server-2.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-client-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-continuation-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-http-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-io-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-security-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-server-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-servlet-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-servlets-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jetty-util-9.4.20.v20190813.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/jopt-simple-5.0.4.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-clients-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-log4j-appender-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-streams-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-streams-examples-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-streams-scala_2.12-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-streams-test-utils-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka-tools-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka_2.12-2.4.0-sources.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/kafka_2.12-2.4.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/log4j-1.2.17.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/lz4-java-1.6.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/maven-artifact-3.6.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/metrics-core-2.2.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-buffer-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-codec-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-common-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-handler-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-resolver-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-transport-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-transport-native-epoll-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/netty-transport-native-unix-common-4.1.42.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/osgi-resource-locator-1.0.1.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/paranamer-2.8.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/plexus-utils-3.2.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/reflections-0.9.11.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/rocksdbjni-5.18.3.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/scala-collection-compat_2.12-2.1.2.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/scala-java8-compat_2.12-0.9.0.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/scala-library-2.12.10.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/scala-logging_2.12-3.9.2.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/scala-reflect-2.12.10.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/slf4j-api-1.7.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/slf4j-log4j12-1.7.28.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/snappy-java-1.1.7.3.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/validation-api-2.0.1.Final.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/zookeeper-3.5.6.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/zookeeper-jute-3.5.6.jar:/usr/local/Cellar/kafka/2.4.0/libexec/bin/../libs/zstd-jni-1.4.3-1.jar (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,411] INFO Client environment:java.library.path=/Users/yangweijie/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:. (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:java.io.tmpdir=/var/folders/cp/p4lwr_6n66s065dhcw80dzd80000gn/T/ (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:java.compiler=&lt;NA&gt; (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.name=Mac OS X (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.arch=x86_64 (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.version=10.15.4 (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:user.name=yangweijie (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:user.home=/Users/yangweijie (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:user.dir=/usr/local/etc/kafka/tmp (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.memory.free=978MB (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.memory.max=1024MB (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,412] INFO Client environment:os.memory.total=1024MB (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,414] INFO Initiating client connection, connectString=localhost:2181 sessionTimeout=6000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@7722c3c3 (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,417] INFO Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation (org.apache.zookeeper.common.X509Util)</span><br><span class="line">[2020-04-24 23:16:59,422] INFO jute.maxbuffer value is 4194304 Bytes (org.apache.zookeeper.ClientCnxnSocket)</span><br><span class="line">[2020-04-24 23:16:59,426] INFO zookeeper.request.timeout value is 0. feature enabled= (org.apache.zookeeper.ClientCnxn)</span><br><span class="line">[2020-04-24 23:16:59,428] INFO [ZooKeeperClient Kafka server] Waiting until connected. (kafka.zookeeper.ZooKeeperClient)</span><br><span class="line">[2020-04-24 23:16:59,430] INFO Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181. Will not attempt to authenticate using SASL (unknown error) (org.apache.zookeeper.ClientCnxn)</span><br><span class="line">[2020-04-24 23:16:59,440] INFO Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:51131, server: localhost/0:0:0:0:0:0:0:1:2181 (org.apache.zookeeper.ClientCnxn)</span><br><span class="line">[2020-04-24 23:16:59,444] INFO Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, sessionid = 0x10000053312004f, negotiated timeout = 6000 (org.apache.zookeeper.ClientCnxn)</span><br><span class="line">[2020-04-24 23:16:59,447] INFO [ZooKeeperClient Kafka server] Connected. (kafka.zookeeper.ZooKeeperClient)</span><br><span class="line">[2020-04-24 23:16:59,612] INFO Cluster ID = I5sBHS6MSMG4MmUddyviFQ (kafka.server.KafkaServer)</span><br><span class="line">[2020-04-24 23:16:59,621] ERROR Fatal error during KafkaServer startup. Prepare to shutdown (kafka.server.KafkaServer)</span><br><span class="line">kafka.common.InconsistentClusterIdException: The Cluster ID I5sBHS6MSMG4MmUddyviFQ doesn't match stored clusterId Some(Lz_cYIXrTryPr_06DLt6hQ) in meta.properties. The broker is trying to join the wrong cluster. Configured zookeeper.connect may be wrong.</span><br><span class="line">	at kafka.server.KafkaServer.startup(KafkaServer.scala:220)</span><br><span class="line">	at kafka.server.KafkaServerStartable.startup(KafkaServerStartable.scala:44)</span><br><span class="line">	at kafka.Kafka$.main(Kafka.scala:84)</span><br><span class="line">	at kafka.Kafka.main(Kafka.scala)</span><br><span class="line">[2020-04-24 23:16:59,623] INFO shutting down (kafka.server.KafkaServer)</span><br><span class="line">[2020-04-24 23:16:59,625] INFO [ZooKeeperClient Kafka server] Closing. (kafka.zookeeper.ZooKeeperClient)</span><br><span class="line">[2020-04-24 23:16:59,732] INFO Session: 0x10000053312004f closed (org.apache.zookeeper.ZooKeeper)</span><br><span class="line">[2020-04-24 23:16:59,732] INFO EventThread shut down for session: 0x10000053312004f (org.apache.zookeeper.ClientCnxn)</span><br><span class="line">[2020-04-24 23:16:59,734] INFO [ZooKeeperClient Kafka server] Closed. (kafka.zookeeper.ZooKeeperClient)</span><br><span class="line">[2020-04-24 23:16:59,737] INFO shut down completed (kafka.server.KafkaServer)</span><br><span class="line">[2020-04-24 23:16:59,737] ERROR Exiting Kafka. (kafka.server.KafkaServerStartable)</span><br><span class="line">[2020-04-24 23:16:59,739] INFO shutting down (kafka.server.KafkaServer)</span><br></pre></td></tr></table></figure>
+<p>通过 “jps -l” 的结果看，的确是没有启动起来。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yangweijieMacBook-Pro:tmp yangweijie$ jps -l</span><br><span class="line">640 org.apache.zookeeper.server.quorum.QuorumPeerMain</span><br><span class="line">30653 sun.tools.jps.Jps</span><br></pre></td></tr></table></figure>
+<p>然后我就去洗澡了.. 回来 “jps -l”，我擦，kafka 起来了，自己起来了？？？我的妈，受不了了…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yangweijieMacBook-Pro:~ yangweijie$ jps  -l</span><br><span class="line">26240 sun.tools.jps.Jps</span><br><span class="line">25920 kafka.Kafka</span><br><span class="line">640 org.apache.zookeeper.server.quorum.QuorumPeerMain</span><br></pre></td></tr></table></figure>
+<p>然后我不信，我就试着去生产一个消息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-producer --broker-list localhost:9092 --topic test</span><br></pre></td></tr></table></figure>
+<p>的确，报错了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARN [Producer clientId=console-producer] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Broker may not be available. (org.apache.kafka.clients.NetworkClient)</span><br></pre></td></tr></table></figure>
+<p>这我就想不通了… 这个 kafka.Kafka 难道不能代表 kafka 服务端活着？</p>
+<p>然后我又去尝试的 “jps -l” ，妈的，那个进程又死了…</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yangweijieMacBook-Pro:~ yangweijie$ jps -l</span><br><span class="line">640 org.apache.zookeeper.server.quorum.QuorumPeerMain</span><br><span class="line">32381 sun.tools.jps.Jps</span><br></pre></td></tr></table></figure>
+<p>为了证明我眼睛没花，我又尝试的一遍，妈的，又出现了一个新的 kafka 进程。。。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yangweijieMacBook-Pro:~ yangweijie$ jps -l</span><br><span class="line">32704 sun.tools.jps.Jps</span><br><span class="line">640 org.apache.zookeeper.server.quorum.QuorumPeerMain</span><br><span class="line">32384 kafka.Kafka</span><br></pre></td></tr></table></figure>
+<p>然后我又试了一遍，kafka 进程又没了…</p>
+<p>然后我接着试了很多遍，kafka进程一直没有… 这次，我决定再次启动一下 kafka 试试… 还是启动不了…</p>
+<p>然后我无聊的测试下 “jsp -l” 这个命令，发现其执行 5-6 次就会有一次 “kafka.Kafka” 的进程产生，然后又会自己消失… 玄学？？？？？？崩了…</p>
+<h4 id="尝试解决方案-2"><a href="#尝试解决方案-2" class="headerlink" title="尝试解决方案"></a>尝试解决方案</h4><blockquote>
+<p>参考：<a href="https://blog.csdn.net/Sakitaf/article/details/104954268" target="_blank" rel="noopener">https://blog.csdn.net/Sakitaf/article/details/104954268</a></p>
+</blockquote>
+<p>我们回到第三个最初的问题，也就是一直启动不了 kafka，也就是上面的报错：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka.common.InconsistentClusterIdException: The Cluster ID I5sBHS6MSMG4MmUddyviFQ doesn't match stored clusterId Some(Lz_cYIXrTryPr_06DLt6hQ) in meta.properties. The broker is trying to join the wrong cluster. Configured zookeeper.connect may be wrong.</span><br></pre></td></tr></table></figure>
+<p>于是，我就尝试去找 meta.properties，原来这个 meta.properties 在<code>/usr/local/etc/kafka/tmp/kafka-logs/</code>，然后将其里面的 meta.properties 中的 Cluster ID 改为报错中需要的。这应该就是 2.4.0 的bug了，在我上次暴力关闭 kafka 时，不会主动的与新的zk实例建立连接。</p>
+<font color="red">结果：已解决！！！！</font>
+
+<h2 id="Kafka-在-java-中使用"><a href="#Kafka-在-java-中使用" class="headerlink" title="Kafka 在 java 中使用"></a>Kafka 在 java 中使用</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="maven-依赖"><a href="#maven-依赖" class="headerlink" title="maven 依赖"></a>maven 依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.kafka<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>kafka-clients<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.28<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-nop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="生产者客户端"><a href="#生产者客户端" class="headerlink" title="生产者客户端"></a>生产者客户端</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Kafka.Demo1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.KafkaProducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.ProducerRecord;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerFastStart</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerList = <span class="string">"localhost:9092"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String topic = <span class="string">"topic-demo"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.put(<span class="string">"key.serializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringSerializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"value.serializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringSerializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"bootstrap.servers"</span>,brokerList);</span><br><span class="line">        KafkaProducer&lt;String,String&gt; producer = <span class="keyword">new</span> KafkaProducer&lt;String, String&gt;(properties);</span><br><span class="line">        <span class="comment">// 构造要发送的消息</span></span><br><span class="line">        ProducerRecord&lt;String, String&gt; record = <span class="keyword">new</span> ProducerRecord&lt;&gt;(topic,<span class="string">"hello,I am jerome_memory"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发送消息</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            producer.send(record);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        producer.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="消费者客户端"><a href="#消费者客户端" class="headerlink" title="消费者客户端"></a>消费者客户端</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Kafka.Demo1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.ConsumerRecord;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.ConsumerRecords;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.KafkaConsumer;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.common.protocol.types.Field;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.Duration;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerFastStart</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerList = <span class="string">"localhost:9092"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String topic = <span class="string">"topic-demo"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String groupId = <span class="string">"group.demo"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.put(<span class="string">"key.deserializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"value.deserializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"bootstrap.servers"</span>,brokerList);</span><br><span class="line">        properties.put(<span class="string">"group.id"</span>,groupId);</span><br><span class="line">        KafkaConsumer&lt;String,String&gt; consumer = <span class="keyword">new</span> KafkaConsumer&lt;String, String&gt;(properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 订阅主题</span></span><br><span class="line">        consumer.subscribe(Collections.singletonList(topic));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环读取消息</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            ConsumerRecords&lt;String,String&gt; records = consumer.poll(Duration.ZERO);</span><br><span class="line">            <span class="keyword">for</span>(ConsumerRecord&lt;String,String&gt; records1 : records)&#123;</span><br><span class="line">                System.out.println(records1.value());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的问题-1"><a href="#遇到的问题-1" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>在启动生产者和消费者后，报错如下：「但是程序可以正常运行…」</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".</span><br><span class="line">SLF4J: Defaulting to no-operation (NOP) logger implementation</span><br><span class="line">SLF4J: See http:<span class="comment">//www.slf4j.org/codes.html#StaticLoggerBinder for further details.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>采用 其提示的 url 中的解决方案进行解决，失败。。。还是会有上面的错误…</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span> org.apache.cassandra<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cassandra-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><blockquote>
+<p>参考：<a href="https://www.cnblogs.com/felixzh/p/12487644.html" target="_blank" rel="noopener">https://www.cnblogs.com/felixzh/p/12487644.html</a></p>
+<p>直接上slf4j官网找到相应的maven包添加到pom.xml</p>
+<p>网址：<a href="https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12/1.8.0-alpha2" target="_blank" rel="noopener">https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12/1.8.0-alpha2</a></p>
+</blockquote>
+<p>好吧… 依旧不好使</p>
+</li>
+<li><font color="red">最终得以解决，以下是最终解决方案：</font>
+
+</li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://www.shuzhiduo.com/A/pRdBO486zn/" target="_blank" rel="noopener">https://www.shuzhiduo.com/A/pRdBO486zn/</a></p>
+<p>在添加了以下依赖,还是会报错…「这里的版本我是通过查询 cd /usr/local/Cellar/kafka/2.4.0/libexec/lib/ 得到的 slf4j 和 log4j 的版本」</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;         <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.28<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">&gt;         <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;         <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">&gt;             <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">&gt;         <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>之后，看到了上面的参考文章，再次添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">&gt;        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-nop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">&gt;        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.7.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">&gt;   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>得以解决该问题…</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/W3tDf1V2sT5LoOi.png" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/Od5DSGJ316toUkw.jpg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html" title="深入理解 kafka">http://jeromememory.github.io/2020/04/23/深入理解 kafka.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kafka/" rel="tag"><i class="fa fa-tag"></i> kafka</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/15/实习吐槽帖.html" rel="next" title="实习吐槽">
+                <i class="fa fa-chevron-left"></i> 实习吐槽
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=0&id=2588481240&auto=0&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-初识-kafka"><span class="nav-number">2.</span> <span class="nav-text">第一章 初识 kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">2.1.1.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要的概念"><span class="nav-number">2.1.2.</span> <span class="nav-text">重要的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Topic-和-Partition"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">Topic 和 Partition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多副本机制"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">多副本机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装和配置"><span class="nav-number">2.2.</span> <span class="nav-text">安装和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-的安装和配置"><span class="nav-number">2.2.1.</span> <span class="nav-text">JDK 的安装和配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Zookeeper-的安装和配置"><span class="nav-number">2.2.2.</span> <span class="nav-text">Zookeeper 的安装和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载-Zookeeper"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">下载 Zookeeper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配环境"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">配环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-Zookeeper-配置文件"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">修改 Zookeeper 配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-Zookeeper"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">启动 Zookeeper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-的安装和配置"><span class="nav-number">2.2.3.</span> <span class="nav-text">Kafka 的安装和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载-kafka"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">下载 kafka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配环境-1"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">配环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-Kafka-配置文件"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">修改 Kafka 配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-Kafka"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">启动 Kafka</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1"><span class="nav-number">2.3.1.</span> <span class="nav-text">Q1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试解决方案"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">尝试解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q2"><span class="nav-number">2.3.2.</span> <span class="nav-text">Q2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题-1"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试解决方案-1"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">尝试解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q3"><span class="nav-number">2.3.3.</span> <span class="nav-text">Q3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题-2"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试解决方案-2"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">尝试解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka-在-java-中使用"><span class="nav-number">2.4.</span> <span class="nav-text">Kafka 在 java 中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.4.1.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#maven-依赖"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">maven 依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者客户端"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">生产者客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者客户端"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">消费者客户端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">1m</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/04/23/深入理解 kafka.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
