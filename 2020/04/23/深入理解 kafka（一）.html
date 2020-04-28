@@ -149,18 +149,18 @@
 
 
 
-  <meta name="description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+  <meta name="description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的">
 <meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解 kafka">
-<meta property="og:url" content="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html">
+<meta property="og:title" content="深入理解 kafka（一）">
+<meta property="og:url" content="http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+<meta property="og:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-25T11:44:45.508Z">
+<meta property="og:updated_time" content="2020-04-25T12:30:36.339Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解 kafka">
-<meta name="twitter:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个分布式流式处理平台，它以高吞">
+<meta name="twitter:title" content="深入理解 kafka（一）">
+<meta name="twitter:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的">
 
 
 
@@ -170,7 +170,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka">
+  <link rel="canonical" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）">
 
 
 
@@ -180,7 +180,7 @@
   };
 </script>
 
-  <title>深入理解 kafka | jeromememory</title>
+  <title>深入理解 kafka（一） | jeromememory</title>
   
 
 
@@ -452,7 +452,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -469,7 +469,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入理解 kafka
+          <h1 class="post-title" itemprop="name headline">深入理解 kafka（一）
 
               
             
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-25 19:44:45" itemprop="dateModified" datetime="2020-04-25T19:44:45+08:00">2020-04-25</time>
+                <time title="修改时间：2020-04-25 20:30:36" itemprop="dateModified" datetime="2020-04-25T20:30:36+08:00">2020-04-25</time>
               
             
           </span>
@@ -531,6 +531,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/kafka-系列/" itemprop="url" rel="index"><span itemprop="name">kafka 系列</span></a></span>
 
                 
                 
@@ -580,7 +587,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">24 分钟</span>
+                <span title="阅读时长">25 分钟</span>
               
             </div>
           
@@ -603,6 +610,7 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>项目最近 kafka 又崩了… </p>
 <p>心态炸了…</p>
 <p>总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了…</p>
+<p>由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些…</p>
 <h1 id="第一章-初识-kafka"><a href="#第一章-初识-kafka" class="headerlink" title="第一章 初识 kafka"></a>第一章 初识 kafka</h1><p>Kafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的分布式消息系统，现已被捐献给Apache基金会。目前Kafka已经定位为一个<strong><em>分布式流式处理平台</em></strong>，它以<strong>高吞吐、可持久化、可水平扩展、支持流数据处理</strong>等多种特性而被广泛使用。</p>
 <p>Kafka主要扮演三大角色：</p>
 <ol>
@@ -881,7 +889,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2020/04/23/深入理解 kafka.html" title="深入理解 kafka">http://jeromememory.github.io/2020/04/23/深入理解 kafka.html</a>
+    <a href="http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）.html" title="深入理解 kafka（一）">http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -925,6 +933,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/25/深入理解 kafka（二）.html" rel="prev" title="深入理解 kafka（二）">
+                深入理解 kafka（二） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -1000,7 +1012,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1039,7 +1051,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1309,7 +1323,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1m</span>
+    <span title="站点总字数">1.1m</span>
   
   
 </div>
@@ -1497,7 +1511,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2020/04/23/深入理解 kafka.html'
+    refer: '2020/04/23/深入理解 kafka（一）.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

@@ -149,18 +149,22 @@
 
 
 
-  <meta name="description" content="问题记录hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined发布文章时出现问题，同时报的错还有：xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="第二章 生产者客户端开发12345678910111213141516171819202122232425262728293031323334353637383940package Kafka.Demo1;import org.apache.kafka.clients.Metadata;import org.apache.kafka.clients.producer.KafkaProducer;i">
+<meta name="keywords" content="kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo提交文章出现问题">
-<meta property="og:url" content="http://jeromememory.github.io/2019/10/09/解决hexo无法git上的问题.html">
+<meta property="og:title" content="深入理解 kafka（二）">
+<meta property="og:url" content="http://jeromememory.github.io/2020/04/25/深入理解 kafka（二）.html">
 <meta property="og:site_name" content="jeromememory">
-<meta property="og:description" content="问题记录hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined发布文章时出现问题，同时报的错还有：xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing">
+<meta property="og:description" content="第二章 生产者客户端开发12345678910111213141516171819202122232425262728293031323334353637383940package Kafka.Demo1;import org.apache.kafka.clients.Metadata;import org.apache.kafka.clients.producer.KafkaProducer;i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-09T08:27:05.755Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg">
+<meta property="og:updated_time" content="2020-04-28T07:54:36.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo提交文章出现问题">
-<meta name="twitter:description" content="问题记录hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined发布文章时出现问题，同时报的错还有：xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing">
+<meta name="twitter:title" content="深入理解 kafka（二）">
+<meta name="twitter:description" content="第二章 生产者客户端开发12345678910111213141516171819202122232425262728293031323334353637383940package Kafka.Demo1;import org.apache.kafka.clients.Metadata;import org.apache.kafka.clients.producer.KafkaProducer;i">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
 
 
 
@@ -170,7 +174,7 @@
 
   
   
-  <link rel="canonical" href="http://jeromememory.github.io/2019/10/09/解决hexo无法git上的问题">
+  <link rel="canonical" href="http://jeromememory.github.io/2020/04/25/深入理解 kafka（二）">
 
 
 
@@ -180,7 +184,7 @@
   };
 </script>
 
-  <title>hexo提交文章出现问题 | jeromememory</title>
+  <title>深入理解 kafka（二） | jeromememory</title>
   
 
 
@@ -452,7 +456,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2019/10/09/解决hexo无法git上的问题.html">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/04/25/深入理解 kafka（二）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jerome">
@@ -469,7 +473,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo提交文章出现问题
+          <h1 class="post-title" itemprop="name headline">深入理解 kafka（二）
 
               
             
@@ -496,12 +500,24 @@
                 
               
 
-              <time title="创建时间：2019-10-09 16:02:01 / 修改时间：16:27:05" itemprop="dateCreated datePublished" datetime="2019-10-09T16:02:01+08:00">2019-10-09</time>
+              <time title="创建时间：2020-04-25 20:30:38" itemprop="dateCreated datePublished" datetime="2020-04-25T20:30:38+08:00">2020-04-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-28 15:54:36" itemprop="dateModified" datetime="2020-04-28T15:54:36+08:00">2020-04-28</time>
               
             
           </span>
@@ -519,6 +535,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/kafka-系列/" itemprop="url" rel="index"><span itemprop="name">kafka 系列</span></a></span>
 
                 
                 
@@ -554,7 +577,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">431</span>
+                <span title="本文字数">10k</span>
               
 
               
@@ -568,7 +591,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">9 分钟</span>
               
             </div>
           
@@ -588,15 +611,123 @@
       
 
       
-        <h1 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h1><h2 id="hexo发布文章报错记录：Unhandled-rejection-TypeError-Cannot-set-property-‘lastIndex’-of-undefined"><a href="#hexo发布文章报错记录：Unhandled-rejection-TypeError-Cannot-set-property-‘lastIndex’-of-undefined" class="headerlink" title="hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined"></a>hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined</h2><p>发布文章时出现问题，同时报的错还有：<strong>xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</strong></p>
-<h2 id="解决措施"><a href="#解决措施" class="headerlink" title="解决措施"></a>解决措施</h2><p>发现是git出现问题！！！</p>
-<p>控制端输入：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
-<p>在xcode-select指令安装好之后，再命令检查一下git指令的帮助信息：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git -h</span><br></pre></td></tr></table></figure>
-<p>可以正确输出相应的帮助信息，意味着git已经被修复好了。</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>更新了Catalina导致的，新系统辣鸡哈哈哈哈哈哈</p>
+        <h1 id="第二章-生产者"><a href="#第二章-生产者" class="headerlink" title="第二章 生产者"></a>第二章 生产者</h1><h2 id="客户端开发"><a href="#客户端开发" class="headerlink" title="客户端开发"></a>客户端开发</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Kafka.Demo1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.Metadata;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.KafkaProducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.ProducerConfig;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.ProducerRecord;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.producer.RecordMetadata;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.common.serialization.StringSerializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Future;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerFastStart</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerList = <span class="string">"localhost:9092"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String topic = <span class="string">"topic-demo"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line"><span class="comment">//        properties.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");</span></span><br><span class="line">        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());</span><br><span class="line"><span class="comment">//        properties.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");</span></span><br><span class="line">        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());</span><br><span class="line">        properties.put(<span class="string">"bootstrap.servers"</span>,brokerList);</span><br><span class="line">        KafkaProducer&lt;String,String&gt; producer = <span class="keyword">new</span> KafkaProducer&lt;String, String&gt;(properties);</span><br><span class="line">        <span class="comment">// 构造要发送的消息</span></span><br><span class="line">        ProducerRecord&lt;String, String&gt; record = <span class="keyword">new</span> ProducerRecord&lt;&gt;(topic,<span class="string">"hello,baby"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发送消息</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Future&lt;RecordMetadata&gt; future = producer.send(record);</span><br><span class="line">            RecordMetadata recordMetadata = future.get();</span><br><span class="line">            System.out.println(recordMetadata.topic() + <span class="string">"-"</span> + recordMetadata.partition() + <span class="string">"-"</span> + recordMetadata.offset());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        producer.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由上述代码可知，在生产者客户端，一个正常的生产逻辑需要具备以下几个步骤：</p>
+<ol>
+<li>配置生产者客户端参数及创建相应的生产者实例。</li>
+<li>构建待发送的消息。</li>
+<li>发送消息。</li>
+<li>关闭生产者实例。</li>
+</ol>
+<h3 id="配置生产者客户端参数及创建生产者实例"><a href="#配置生产者客户端参数及创建生产者实例" class="headerlink" title="配置生产者客户端参数及创建生产者实例"></a>配置生产者客户端参数及创建生产者实例</h3><p>首先是有三个必须配置的参数，分别是 <code>bootstrap.servers</code>、<code>key.serializer</code>、<code>value.serializer</code>。</p>
+<ul>
+<li><p>Bootstrap.servers</p>
+<p>该参数用来指定生产者客户端连接Kafka集群所需的broker地址清单。注意这里并非需要所有的broker地址，因为生产者会从给定的broker里查找到其他broker的信息。不过建议至少要设置两个以上的broker 地址信息，当其中任意一个宕机时，生产者仍然可以连接到 Kafka集群上。</p>
+</li>
+<li><p>key.serializer &amp; value.serializer</p>
+<p>broker 端接收的消息必须以字节数组（byte[]）的形式存在。在发往broker之前需要将消息中对应的key和value做相应的序列化操作来转换成字节数组。key.serializer和value.serializer这两个参数分别用来指定key和value序列化操作的序列化器，这两个参数无默认值。<strong>注意这里必须填写序列化器的全限定名</strong>。</p>
+</li>
+</ul>
+<p>配置完参数之后，直接创建生产者实例就可以了，注意这里的 KafkaProducer 是线程安全的，可以在多个线程中共享单个KafkaProducer实例，也可以将KafkaProducer实例进行池化来供其他线程调用。</p>
+<h3 id="消息的发送"><a href="#消息的发送" class="headerlink" title="消息的发送"></a>消息的发送</h3><p>消息的发送有三种方式：</p>
+<ol>
+<li>发后即忘。也就是直接显式调用 <code>producer.send(record)</code>，不关心消息是否正确到达服务器端；</li>
+<li>同步。<code>producer.send(record)</code> 的返回类型为 <code>Future&lt;RecordMetadata&gt;</code>，所以可以使用 future.get() 进行同步，RecordMetadata 对象包含了消息的一些元数据信息，比如当前消息的主题、分区号、分区中的偏移量、时间戳等等。</li>
+<li>异步。如下图所示，直接在 send() 中使用回调函数。</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg" alt="image-20200427211014168"></p>
+<p>消息在通过 send() 方法发往broker的过程中，有可能需要经过<strong>拦截器（Interceptor）、序列化器（Serializer）和分区器（Partitioner）</strong>的一系列作用之后才能被真正地发往 broker。生产者拦截器可以用来在消费消息钱做一些准备工作，然后消息经过序列化之后就需要确定它发往的分区，如果消息ProducerRecord中指定了partition字段，那么就不需要分区器的作用，因为partition代表的就是所要发往的分区号。</p>
+<p><strong>拦截器</strong>，一般不是必需的。<strong>生产者拦截器既可以用来在消息发送前做一些准备工作</strong>，比如按照某个规则过滤不符合要求的消息、修改消息的内容等，也可以用来在发送回调逻辑前做一些定制化的需求，比如统计类工作。KafkaProducer中不仅可以指定一个拦截器，还可以指定多个拦截器以形成拦截链。</p>
+<p><strong>生产者需要用序列化器（Serializer）把对象转换成字节数组才能通过网络发送给Kafka，这是必须的。</strong></p>
+<p><strong>分区器的作用就是为消息分配分区</strong>。如果消息ProducerRecord中没有指定partition字段，那么就需要依赖分区器，根据key这个字段来计算partition的值。如果key为null，那么消息将会以轮询的方式发往主题内的各个可用分区。</p>
+<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p>在前面的章节中，我们已经了解了KafkaProducer的具体使用方法，而本节的内容主要是<strong>对Kafka 生产者客户端的内部原理进行分析</strong>，通过了解生产者客户端的整体脉络可以让我们更好地使用它，避免因为一些理解上的偏差而造成使用上的错误。</p>
+<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg" alt="生产者客户端的整体架构"></p>
+<p>由前一小结可知，生产者客户端的send()是异步的，说明有两个线程在运行，也就是主线程和send线程。在主线程中由KafkaProducer创建消息，然后通过可能的拦截器、序列化器和分区器的作用之后缓存到<strong>消息累加器（RecordAccumulator，也称为消息收集器）</strong>中。Sender 线程负责从RecordAccumulator中获取消息并将其发送到Kafka中。RecordAccumulator 的内部为每个分区都维护了一个双端队列，队列中的内容就是ProducerBatch，ProducerBatch中可以包含一至多个 ProducerRecord。所以我们其实最终发送的消息是 ProducerBatch。</p>
+<h3 id="元数据的更新"><a href="#元数据的更新" class="headerlink" title="元数据的更新"></a>元数据的更新</h3><p>元数据是指Kafka集群的元数据，这些元数据具体记录了集群中有哪些主题，这些主题有哪些分区，每个分区的leader副本分配在哪个节点上，follower副本分配在哪些节点上，哪些副本在AR、ISR等集合中，集群中有哪些节点，控制器节点又是哪一个等信息。</p>
+<p>在上面的第 8 步之前，我们要挑出负载最小的 broker「每个Node在InFlightRequests中还未确认的请求数决定的，未确认的请求越多则认为负载越大」，这样就能够尽快的发出，<strong>因为在发出的时候，我们要先获得对应的 partition 在哪个 broker、broker 是哪个ip，所以在发出之前首先要进行元数据的更新</strong>，这里我们肯定是先挑选出leastLoadedNode，然后向这个Node发送MetadataRequest请求来获取具体的元数据信息。这个更新操作是由Sender线程发起的，在创建完MetadataRequest之后同样会存入InFlightRequests，之后的步骤就和发送消息时的类似。元数据虽然由Sender线程负责更新，但是主线程也需要读取这些信息，这里的数据同步通过<strong>synchronized和final关键字</strong>来保障。</p>
+<h2 id="重要的生产者参数"><a href="#重要的生产者参数" class="headerlink" title="重要的生产者参数"></a>重要的生产者参数</h2><ul>
+<li><p>acks。这个参数用来指定分区中必须要有多少个副本收到这条消息，之后生产者才会认为这条消息是成功写入的。</p>
+<ul>
+<li>acks = 1。生产者发送消息之后，只要分区的leader副本成功写入消息，那么它就会收到来自服务端的成功响应，是消息可靠性和吞吐量的折中方案。</li>
+<li>acks=0。生产者发送消息之后不需要等待任何服务端的响应，可以获取最大的吞吐量。</li>
+<li>acks=-1或acks=all。生产者在消息发送之后，需要等待ISR中的所有副本都成功写入消息之后才能够收到来自服务端的成功响应。但这并不意味着消息就一定可靠，因为ISR中可能只有leader副本，这样就退化成了acks=1的情况。</li>
+</ul>
+<p>注意哦，这里的 acks 参数配置的值是一个字符串，而不是整数型。</p>
+</li>
+<li><p>Max.request.size。这个参数用来限制生产者客户端能发送的消息的最大值，默认值为 1048576B，即 1MB。</p>
+</li>
+<li><p>retries和retry.backoff.ms。retries参数用来<strong>配置生产者重试的次数</strong>，默认值为0，即在发生异常的时候不进行任何重试动作。retry.backoff.ms参数用来设定两次重试之间的时间间隔。</p>
+</li>
+<li><p>compression.type。默认为 “none”，压缩可以减少网络传输量，降低网络I/O。</p>
+</li>
+<li><p>request.timeout.ms。这个参数用来配置Producer等待请求响应的最长时间，默认值为30000（ms）。请求超时之后可以选择进行重试。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本章主要讲述了生产者客户端的具体用法及其整体架构，主要内容包括配置参数的详解、消息的发送方式、序列化器、分区器、拦截器等。</p>
+<p><strong>对于KafkaProducer而言，它是线程安全的，我们可以在多线程的环境中复用它，而对于下一章的消费者客户端KafkaConsumer而言，它是非线程安全的，因为它具备了状态。</strong></p>
+<h1 id="第三章-消费者"><a href="#第三章-消费者" class="headerlink" title="第三章 消费者"></a>第三章 消费者</h1><h2 id="消费者和消费者组的概念"><a href="#消费者和消费者组的概念" class="headerlink" title="消费者和消费者组的概念"></a>消费者和消费者组的概念</h2><p>消费者（Consumer）负责订阅Kafka中的主题（Topic），并且从订阅的主题上拉取消息。与其他一些消息中间件不同的是：在Kafka的消费理念中还有一层消费组（Consumer Group）的概念，每个消费者都有一个对应的消费组。<strong>当消息发布到主题后，只会被投递给订阅它的每个消费组中的一个消费者。</strong></p>
+<p>对于消息中间件而言，一般有两种消息投递模式：点对点（P2P，Point-to-Point）模式和发布/订阅（Pub/Sub）模式。</p>
+<ul>
+<li>如果所有的消费者都隶属于同一个消费组，那么所有的消息都会被均衡地投递给每一个消费者，即每条消息只会被一个消费者处理，这就相当于点对点模式的应用。</li>
+<li>如果所有的消费者都隶属于不同的消费组，那么所有的消息都会被广播给所有的消费者，即每条消息会被所有的消费者处理，这就相当于发布/订阅模式的应用。</li>
+</ul>
+<h2 id="客户端开发-1"><a href="#客户端开发-1" class="headerlink" title="客户端开发"></a>客户端开发</h2><p>一个正常的消费逻辑需要具备以下几个步骤：</p>
+<ol>
+<li>配置消费者客户端参数及创建相应的消费者实例。</li>
+<li>订阅主题。</li>
+<li>拉取消息并消费。</li>
+<li>提交消费位移。</li>
+<li>关闭消费者实例。</li>
+</ol>
+<p>Demo:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Kafka.Chapter1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.ConsumerRecord;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.ConsumerRecords;</span><br><span class="line"><span class="keyword">import</span> org.apache.kafka.clients.consumer.KafkaConsumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.time.Duration;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsumerFastStart</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerList = <span class="string">"localhost:9092"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String topic = <span class="string">"topic-demo"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String groupId = <span class="string">"group.demo"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.put(<span class="string">"key.deserializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"value.deserializer"</span>,<span class="string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);</span><br><span class="line">        properties.put(<span class="string">"bootstrap.servers"</span>,brokerList);</span><br><span class="line">        properties.put(<span class="string">"group.id"</span>,groupId);</span><br><span class="line">        KafkaConsumer&lt;String,String&gt; consumer = <span class="keyword">new</span> KafkaConsumer&lt;String, String&gt;(properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 订阅主题</span></span><br><span class="line">        consumer.subscribe(Collections.singletonList(topic));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环读取消息</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            ConsumerRecords&lt;String,String&gt; records = consumer.poll(Duration.ZERO);</span><br><span class="line">            <span class="keyword">for</span>(ConsumerRecord&lt;String,String&gt; records1 : records)&#123;</span><br><span class="line">                System.out.println(records1.value());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="配置消费者客户端参数及创建相应的消费者实例"><a href="#配置消费者客户端参数及创建相应的消费者实例" class="headerlink" title="配置消费者客户端参数及创建相应的消费者实例"></a>配置消费者客户端参数及创建相应的消费者实例</h3><p>跟生产者客户端参数差不多，这里多了一个 <code>group.id</code>。</p>
+<ul>
+<li>bootstrap.servers。</li>
+<li>group.id：消费者隶属的消费组的名称，默认值为“”。如果设置为空，则会报出异常：Exception in thread “main” org.apache.kafka.common.errors.InvalidGroupIdException：The configured groupId is invalid。一般而言，这个参数需要设置成具有一定的业务意义的名称。</li>
+<li>key.deserializer 和 value.deserializer。<strong>消费者从broker端获取的消息格式都是字节数组（byte[]）类型，所以需要执行相应的反序列化操作才能还原成原有的对象格式</strong>。这两个参数分别用来指定消息中key和value所需反序列化操作的反序列化器，这两个参数无默认值。注意这里必须填写反序列化器类的全限定名，比如示例中的org.apache.kafka.common.serialization.StringDeserializer，单单指定StringDeserializer是错误的。</li>
+</ul>
+<h3 id="消息的消费"><a href="#消息的消费" class="headerlink" title="消息的消费"></a>消息的消费</h3><h4 id="订阅主题"><a href="#订阅主题" class="headerlink" title="订阅主题"></a>订阅主题</h4><p>配置完参数、创建完消费者实例之后，就是<strong>选择订阅主题</strong>了。集合订阅的方式subscribe（Collection）、正则表达式订阅的方式subscribe（Pattern）和指定分区的订阅方式 assign（Collection）分表代表了三种不同的订阅状态：AUTO_TOPICS、AUTO_PATTERN和USER_ASSIGNED（<strong>如果没有订阅，那么订阅状态为NONE</strong>）。</p>
+<ol>
+<li>集合订阅的方式subscribe（Collection）、正则表达式订阅的方式subscribe（Pattern）和指定分区的订阅方式 assign（Collection）分表代表了三种不同的订阅状态：AUTO_TOPICS、AUTO_PATTERN和USER_ASSIGNED（如果没有订阅，那么订阅状态为NONE）。</li>
+<li>通过 assign() 方法订阅分区时，是不具备消费者自动均衡的功能的，因为其指定了 TopicPartition。</li>
+</ol>
+<h4 id="拉取消息"><a href="#拉取消息" class="headerlink" title="拉取消息"></a>拉取消息</h4><p>订阅完主题之后，就要开始<strong>拉取消息</strong>了。<strong>Kafka中的消费是基于拉模式的</strong>。消息的消费一般有两种模式：推模式和拉模式。推模式是服务端主动将消息推送给消费者，而拉模式是消费者主动向服务端发起请求来拉取消息。一般就是采用 poll() 进行消息的消费，该方法涉及消费位移、消费者协调器、组协调器、消费者的选举、分区分配的分发、再均衡的逻辑、心跳等内容，后续章节会详细介绍。</p>
+<h4 id="修改偏移量"><a href="#修改偏移量" class="headerlink" title="修改偏移量"></a>修改偏移量</h4><p>消费完消息之后，就需要<strong>修改偏移量</strong>了。在每次调用poll（）方法时，它返回的是还没有被消费过的消息集，要做到这一点，就需要记录上一次消费时的消费位移。消费位移存储在Kafka内部的主题__consumer_offsets中。</p>
+<p>在 Kafka 中，有 <strong>自动提交偏移量</strong> 和 <strong>手动提交偏移量</strong>，默认的是自动提交偏移量，<strong><em>，好处就是免去了复杂的位移提交逻辑，坏处就是偏移量的修改交由服务器自身去处理的话会导致重复消费和消息丢失的情况</em></strong>，自动位移提交的动作是在poll（）方法的逻辑里完成的，在每次真正向服务端发起拉取请求之前会检查是否可以进行位移提交，如果可以，那么就会提交上一次轮询的位移。</p>
+<p>所以，有的时候，我们需要手动控制位移提交，开启手动提交功能的前提是消费者客户端参数 <code>enable.auto.commit</code> 配置为 <code>false</code>。手动提交可以细分为同步提交和异步提交，对应于 KafkaConsumer 中的 commitSync（）和commitAsync（）两种类型的方法。同步提交会阻塞消费者线程直到位移提交完成，异步提交不会阻塞，但是很可能导致重复消费的问题，所以一般采用以下的方式：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg" alt="image-20200428150922171"></p>
+<h3 id="指定位移消费"><a href="#指定位移消费" class="headerlink" title="指定位移消费"></a>指定位移消费</h3><p><strong>在 Kafka 中每当消费者查找不到所记录的消费位移时，就会根据消费者客户端参数auto.offset.reset的配置来决定从何处开始进行消费，这个参数的默认值为“latest”</strong>，表示从分区末尾开始消费消息。还有一个对应的值是”earliest“。</p>
+<p>auto.offset.reset参数还有一个可配置的值—“none”，配置为此值就意味着出现查到不到消费位移的时候，既不从最新的消息位置处开始消费，也不从最早的消息位置处开始消费，此时会报出NoOffsetForPartitionException异常。</p>
+<p>到目前为止，我们一直都是使用 poll() 中的逻辑来进行数据的拉取，比如自动修改偏移量、使用 auto.offset.reset 来决定从末尾开始消费，但是我们只能粗粒度的从开头或者末尾进行消费，那有没有一个更细粒度的方法呢？当然有，那就是KafkaConsumer 中的 seek（）方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seek</span><span class="params">(TopicPartition partition,<span class="keyword">long</span> offset)</span></span></span><br></pre></td></tr></table></figure>
+<p>seek（）方法中的参数partition表示分区，而offset参数用来指定从分区的哪个位置开始消费。<strong>seek（）方法只能重置消费者分配到的分区的消费位置，而分区的分配是在 poll（）方法的调用过程中实现的。也就是说，在执行seek（）方法之前需要先执行一次poll（）方法，等到分配到分区之后才可以重置消费位置。</strong></p>
+<p>seek（）方法为我们提供了从特定位置读取消息的能力，我们可以通过这个方法来向前跳过若干消息，也可以通过这个方法来向后回溯若干消息，这样为消息的消费提供了很大的灵活性。seek（）方法也为我们提供了将消费位移保存在外部存储介质中的能力，还可以配合再均衡监听器来提供更加精准的消费能力。</p>
+<h3 id="多线程实现消费者客户端"><a href="#多线程实现消费者客户端" class="headerlink" title="多线程实现消费者客户端"></a>多线程实现消费者客户端</h3><p>KafkaProducer是线程安全的，然而KafkaConsumer却是非线程安全的。</p>
+<p>KafkaConsumer 非线程安全并不意味着我们在消费消息的时候只能以单线程的方式执行。如果生产者发送消息的速度大于消费者处理消息的速度，那么就会有越来越多的消息得不到及时的消费，造成了一定的延迟。</p>
+<p>消息堆积问题的解决措施，简而言之就是使用多线程，具体来说，可以采用三种方式：</p>
+<ol>
+<li>每一个线程对应一个 KafkaConsumer，每一个 KafkaConsumer 对应 topic 中的一个 partition，这些 KafkaConsumer 隶属于同一个消费组，这样能保证同一条消息不被多个 Consumer 消费。好处就是可以不用处理偏移量和顺序控制，因为 partition 内部使按序的，缺点也很明显，就是该多线程的能力受限于分区数，如果需求是所有消息都必须按序，也就是说所有消息都在一个 partition 内，此时，该方法失效；</li>
+<li>为了解决上述问题，也就是在只有一个分区的情况下，如何解决消息堆积。这个就必须通过手动控制offset了，通过 assign()、seek() 等方法解决。好处就是打破了原有的消费线程的个数受分区数的限制，坏处就是这种实现方式对于位移提交和顺序控制的处理会变得十分复杂，实际应用基本不会涉及。</li>
+<li>上述两种方法都是从提高拉取消息的速率考虑的，但是在实际情况中，poll() 拉取消息的速度是相当快的，整体的消费性能瓶颈并不在于此，而是在于处理消息这一块。所以，我们可以在处理消息模块改成多线程的实现方式，但是这样同样会遇到一个问题，就是消息的顺序问题，因为多线程处理消息，原本 partition 的消息是按序拉取的，但是多线程处理完之后可能就不是按顺序的了，所以我们需要进一步进行处理，作者在该书中提出了滑动窗口的解决思路，即如果按序拉取后的正在处理的消息处理完成，将其放到窗口缓存，当全部完成之后窗口才向后滑动，类似于 TCP 中的 GBN 协议和 SR 协议。</li>
+</ol>
+<p>##　重要的消费者参数</p>
+<ul>
+<li><p>fetch.min.bytes</p>
+<p>该参数用来配置Consumer在一次拉取请求（调用poll（）方法）中能从Kafka中拉取的最小数据量，默认值为1（B）。</p>
+</li>
+<li><p>fetch.max.bytes</p>
+<p>与上述对应，默认值为 50 MB。</p>
+</li>
+<li><p>Max.poll.records</p>
+<p>这个参数用来配置Consumer在一次拉取请求中拉取的最大消息数，默认值为500（条）。</p>
+</li>
+<li><p>connections.max.idle.ms</p>
+<p>这个参数用来指定在多久之后关闭限制的连接，默认值是540000（ms），即9分钟。</p>
+</li>
+<li><p>metadata.max.age.ms<br>这个参数用来配置元数据的过期时间，默认值为300000（ms），即5分钟。如果元数据在此参数所限定的时间范围内没有进行更新，则会被强制更新，即使没有任何分区变化或有新的broker加入。</p>
+</li>
+</ul>
 
       
     </div>
@@ -664,7 +795,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="http://jeromememory.github.io/2019/10/09/解决hexo无法git上的问题.html" title="hexo提交文章出现问题">http://jeromememory.github.io/2019/10/09/解决hexo无法git上的问题.html</a>
+    <a href="http://jeromememory.github.io/2020/04/25/深入理解 kafka（二）.html" title="深入理解 kafka（二）">http://jeromememory.github.io/2020/04/25/深入理解 kafka（二）.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -686,7 +817,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+            <a href="/tags/kafka/" rel="tag"><i class="fa fa-tag"></i> kafka</a>
           
         </div>
       
@@ -699,8 +830,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/09/喜大普奔.html" rel="next" title="喜大普奔">
-                <i class="fa fa-chevron-left"></i> 喜大普奔
+              <a href="/2020/04/23/深入理解 kafka（一）.html" rel="next" title="深入理解 kafka（一）">
+                <i class="fa fa-chevron-left"></i> 深入理解 kafka（一）
               </a>
             
           </div>
@@ -708,10 +839,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/12/leetcode热题100.html" rel="prev" title="Leetcode学习">
-                Leetcode学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1058,7 +1185,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题记录"><span class="nav-number">1.</span> <span class="nav-text">问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo发布文章报错记录：Unhandled-rejection-TypeError-Cannot-set-property-‘lastIndex’-of-undefined"><span class="nav-number">1.1.</span> <span class="nav-text">hexo发布文章报错记录：Unhandled rejection TypeError: Cannot set property ‘lastIndex’ of undefined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决措施"><span class="nav-number">1.2.</span> <span class="nav-text">解决措施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原因"><span class="nav-number">1.3.</span> <span class="nav-text">原因</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-生产者"><span class="nav-number">1.</span> <span class="nav-text">第二章 生产者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端开发"><span class="nav-number">1.1.</span> <span class="nav-text">客户端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置生产者客户端参数及创建生产者实例"><span class="nav-number">1.1.1.</span> <span class="nav-text">配置生产者客户端参数及创建生产者实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息的发送"><span class="nav-number">1.1.2.</span> <span class="nav-text">消息的发送</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理分析"><span class="nav-number">1.2.</span> <span class="nav-text">原理分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-number">1.2.1.</span> <span class="nav-text">整体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据的更新"><span class="nav-number">1.2.2.</span> <span class="nav-text">元数据的更新</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要的生产者参数"><span class="nav-number">1.3.</span> <span class="nav-text">重要的生产者参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-消费者"><span class="nav-number">2.</span> <span class="nav-text">第三章 消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消费者和消费者组的概念"><span class="nav-number">2.1.</span> <span class="nav-text">消费者和消费者组的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端开发-1"><span class="nav-number">2.2.</span> <span class="nav-text">客户端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置消费者客户端参数及创建相应的消费者实例"><span class="nav-number">2.2.1.</span> <span class="nav-text">配置消费者客户端参数及创建相应的消费者实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息的消费"><span class="nav-number">2.2.2.</span> <span class="nav-text">消息的消费</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#订阅主题"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">订阅主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拉取消息"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">拉取消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改偏移量"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">修改偏移量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定位移消费"><span class="nav-number">2.2.3.</span> <span class="nav-text">指定位移消费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程实现消费者客户端"><span class="nav-number">2.2.4.</span> <span class="nav-text">多线程实现消费者客户端</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1286,7 +1413,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/10/09/解决hexo无法git上的问题.html'
+    refer: '2020/04/25/深入理解 kafka（二）.html'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
