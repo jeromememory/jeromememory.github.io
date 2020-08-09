@@ -463,7 +463,6 @@
     <url>%2F2019%2F10%2F16%2Fjava%E5%AE%9E%E7%8E%B0%E5%8D%95%E9%93%BE%E8%A1%A8.html</url>
     <content type="text"><![CDATA[Java实现单向链表基本功能先说一下，参考借鉴的博客有： Java实现单向链表基本功能 Java单链表反转 详细过程 从链表中删除重复数据（三种方法) 补充写的没人家好，这部分主要是对第一个博客的补充，其单向链表中的链表反转和从链表中删除重复数据解释的不够清晰，后面两个博客是扩展这两个知识点的，在看这个知识点的同时，发现用到了部分HashTable的知识，过段时间需要把这个知识点也完善一下。]]></content>
       <categories>
-        <category>数据结构</category>
         <category>算法</category>
       </categories>
       <tags>
