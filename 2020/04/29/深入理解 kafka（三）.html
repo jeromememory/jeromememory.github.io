@@ -150,7 +150,7 @@
 
 
   <meta name="description" content="第四章 主题和分区从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。 主题的管理主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 kafka 提供的 kafka-topics.sh 脚本或者 Kafka">
-<meta name="keywords" content="kafka">
+<meta name="keywords" content="kafka,topic,partition">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解 kafka（三）">
 <meta property="og:url" content="http://jeromememory.github.io/2020/04/29/深入理解 kafka（三）.html">
@@ -160,7 +160,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1jggwcrj316v02utac.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1vcubc7j30go0cgq7e.jpg">
-<meta property="og:updated_time" content="2020-04-29T15:48:08.101Z">
+<meta property="og:updated_time" content="2020-08-09T02:15:55.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 kafka（三）">
 <meta name="twitter:description" content="第四章 主题和分区从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。 主题的管理主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 kafka 提供的 kafka-topics.sh 脚本或者 Kafka">
@@ -500,12 +500,24 @@
                 
               
 
-              <time title="创建时间：2020-04-29 19:40:13 / 修改时间：23:48:08" itemprop="dateCreated datePublished" datetime="2020-04-29T19:40:13+08:00">2020-04-29</time>
+              <time title="创建时间：2020-04-29 19:40:13" itemprop="dateCreated datePublished" datetime="2020-04-29T19:40:13+08:00">2020-04-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-08-09 10:15:55" itemprop="dateModified" datetime="2020-08-09T10:15:55+08:00">2020-08-09</time>
               
             
           </span>
@@ -522,14 +534,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/" itemprop="url" rel="index"><span itemprop="name">程序猿</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序猿/kafka-系列/" itemprop="url" rel="index"><span itemprop="name">kafka 系列</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件系列/" itemprop="url" rel="index"><span itemprop="name">中间件系列</span></a></span>
 
                 
                 
@@ -706,6 +711,10 @@
           
             <a href="/tags/kafka/" rel="tag"><i class="fa fa-tag"></i> kafka</a>
           
+            <a href="/tags/topic/" rel="tag"><i class="fa fa-tag"></i> topic</a>
+          
+            <a href="/tags/partition/" rel="tag"><i class="fa fa-tag"></i> partition</a>
+          
         </div>
       
 
@@ -805,7 +814,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -846,7 +855,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -979,7 +1004,143 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1049,23 +1210,23 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
                   </li>
                 
               </ul>

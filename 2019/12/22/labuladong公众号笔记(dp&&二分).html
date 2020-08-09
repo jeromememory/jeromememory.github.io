@@ -150,14 +150,14 @@
 
 
   <meta name="description" content="动态规划：不同的定义产生不同的解法文章链接键盘组合问题 收获对状态机的定义不同，得到的状态转移方程就完全不同 经典面试题：最长回文子串（LeetCode第5题）文章链接经典面试题：最长回文子串 收获回文子串有两个做法，一个是从中间展开的算法，一个是两侧向中间靠齐的dp 单调栈文章链接单调栈 Monotonic Stack 的使用 收获 单调栈算法过程 处理Next Greater Number，从">
-<meta name="keywords" content="java,LeetCode,dp,二分">
+<meta name="keywords" content="dp,单调栈,子序列问题,LeetCode,二分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="labuladong公众号笔记">
 <meta property="og:url" content="http://jeromememory.github.io/2019/12/22/labuladong公众号笔记(dp&&二分).html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="动态规划：不同的定义产生不同的解法文章链接键盘组合问题 收获对状态机的定义不同，得到的状态转移方程就完全不同 经典面试题：最长回文子串（LeetCode第5题）文章链接经典面试题：最长回文子串 收获回文子串有两个做法，一个是从中间展开的算法，一个是两侧向中间靠齐的dp 单调栈文章链接单调栈 Monotonic Stack 的使用 收获 单调栈算法过程 处理Next Greater Number，从">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-26T06:13:55.785Z">
+<meta property="og:updated_time" content="2020-08-09T02:27:02.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="labuladong公众号笔记">
 <meta name="twitter:description" content="动态规划：不同的定义产生不同的解法文章链接键盘组合问题 收获对状态机的定义不同，得到的状态转移方程就完全不同 经典面试题：最长回文子串（LeetCode第5题）文章链接经典面试题：最长回文子串 收获回文子串有两个做法，一个是从中间展开的算法，一个是两侧向中间靠齐的dp 单调栈文章链接单调栈 Monotonic Stack 的使用 收获 单调栈算法过程 处理Next Greater Number，从">
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-26 14:13:55" itemprop="dateModified" datetime="2020-03-26T14:13:55+08:00">2020-03-26</time>
+                <time title="修改时间：2020-08-09 10:27:02" itemprop="dateModified" datetime="2020-08-09T10:27:02+08:00">2020-08-09</time>
               
             
           </span>
@@ -530,7 +530,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/程序员/" itemprop="url" rel="index"><span itemprop="name">程序员</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
 
                 
                 
@@ -850,11 +850,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+          
+            <a href="/tags/单调栈/" rel="tag"><i class="fa fa-tag"></i> 单调栈</a>
+          
+            <a href="/tags/子序列问题/" rel="tag"><i class="fa fa-tag"></i> 子序列问题</a>
           
             <a href="/tags/LeetCode/" rel="tag"><i class="fa fa-tag"></i> LeetCode</a>
-          
-            <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
           
             <a href="/tags/二分/" rel="tag"><i class="fa fa-tag"></i> 二分</a>
           
@@ -869,8 +871,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/20/想学的东西.html" rel="next" title="想学的东西">
-                <i class="fa fa-chevron-left"></i> 想学的东西
+              <a href="/2019/12/13/SpringCloud笔记.html" rel="next" title="SpringCloud 微服务笔记">
+                <i class="fa fa-chevron-left"></i> SpringCloud 微服务笔记
               </a>
             
           </div>
@@ -957,7 +959,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -998,7 +1000,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1131,7 +1149,143 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1201,23 +1355,23 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
                   </li>
                 
               </ul>

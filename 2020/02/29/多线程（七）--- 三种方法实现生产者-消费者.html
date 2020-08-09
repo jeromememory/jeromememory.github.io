@@ -150,7 +150,7 @@
 
 
   <meta name="description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
-<meta name="keywords" content="生产者-消费者模式">
+<meta name="keywords" content="BlockingQueue,生产者-消费者模式,wait&#x2F;notify,await&#x2F;signal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（七）--- 三种方式实现生产者-消费者">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html">
@@ -165,7 +165,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg">
-<meta property="og:updated_time" content="2020-03-26T09:28:48.057Z">
+<meta property="og:updated_time" content="2020-08-09T02:03:36.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（七）--- 三种方式实现生产者-消费者">
 <meta name="twitter:description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
@@ -526,7 +526,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-26 17:28:48" itemprop="dateModified" datetime="2020-03-26T17:28:48+08:00">2020-03-26</time>
+                <time title="修改时间：2020-08-09 10:03:36" itemprop="dateModified" datetime="2020-08-09T10:03:36+08:00">2020-08-09</time>
               
             
           </span>
@@ -786,7 +786,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/BlockingQueue/" rel="tag"><i class="fa fa-tag"></i> BlockingQueue</a>
+          
             <a href="/tags/生产者-消费者模式/" rel="tag"><i class="fa fa-tag"></i> 生产者-消费者模式</a>
+          
+            <a href="/tags/wait-notify/" rel="tag"><i class="fa fa-tag"></i> wait/notify</a>
+          
+            <a href="/tags/await-signal/" rel="tag"><i class="fa fa-tag"></i> await/signal</a>
           
         </div>
       
@@ -887,7 +893,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -928,7 +934,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1061,7 +1083,143 @@
                     
                       
                     
-                    <span class="site-state-item-count">57</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1131,23 +1289,23 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://www.ttlsa.com/" title="http://www.ttlsa.com/" rel="noopener" target="_blank">运维生存时间</a>
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.iyunw.cn" title="https://www.iyunw.cn" rel="noopener" target="_blank">爱运维</a>
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://nginxconfig.io/" title="https://nginxconfig.io/" rel="noopener" target="_blank">Nginxconfig</a>
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://linux.51yip.com/" title="http://linux.51yip.com/" rel="noopener" target="_blank">Linux命令手册</a>
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://echarts.baidu.com/index.html" title="https://echarts.baidu.com/index.html" rel="noopener" target="_blank">echarts可视化库</a>
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
                   </li>
                 
               </ul>
