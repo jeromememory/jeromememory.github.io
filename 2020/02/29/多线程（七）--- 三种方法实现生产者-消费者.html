@@ -150,7 +150,7 @@
 
 
   <meta name="description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
-<meta name="keywords" content="生产者-消费者模式,wait&#x2F;notify,await&#x2F;signal,BlockingQueue">
+<meta name="keywords" content="BlockingQueue,生产者-消费者模式,wait&#x2F;notify,await&#x2F;signal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（七）--- 三种方式实现生产者-消费者">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html">
@@ -579,7 +579,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">25k</span>
+                <span title="本文字数">19k</span>
               
 
               
@@ -593,7 +593,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">23 分钟</span>
+                <span title="阅读时长">17 分钟</span>
               
             </div>
           
@@ -786,13 +786,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/BlockingQueue/" rel="tag"><i class="fa fa-tag"></i> BlockingQueue</a>
+          
             <a href="/tags/生产者-消费者模式/" rel="tag"><i class="fa fa-tag"></i> 生产者-消费者模式</a>
           
             <a href="/tags/wait-notify/" rel="tag"><i class="fa fa-tag"></i> wait/notify</a>
           
             <a href="/tags/await-signal/" rel="tag"><i class="fa fa-tag"></i> await/signal</a>
-          
-            <a href="/tags/BlockingQueue/" rel="tag"><i class="fa fa-tag"></i> BlockingQueue</a>
           
         </div>
       
@@ -893,7 +893,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -952,7 +952,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1227,7 +1229,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">128</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1378,7 +1388,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1.3m</span>
+    <span title="站点总字数">1.1m</span>
   
   
 </div>

@@ -178,7 +178,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gfvkiqpwnqj30p00o01c2.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd21kesoq2j30fa07e74s.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd21nuua6rj31900duwhy.jpg">
-<meta property="og:updated_time" content="2020-08-09T02:13:38.674Z">
+<meta property="og:updated_time" content="2020-08-11T09:15:34.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅入浅出 NIO">
 <meta name="twitter:description" content="引子本文从最基本的 IO 出发，引出零拷贝技术，继而发散到用到零拷贝技术的 NIO，谈及 NIO，就必须谈一谈著名的网络通信框架 Netty 了，而 Netty 又是 metaQ、HSF等熟知技术栈的基础，本文旨在以 NIO 为核心，辐射到其相关的知识点。 Zero Copy 这一部分基本上参考：深入剖析Linux IO原理和几种零拷贝机制的实现  预读知识物理内存和虚拟内存物理内存物理内存指通过">
@@ -539,7 +539,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:13:38" itemprop="dateModified" datetime="2020-08-09T10:13:38+08:00">2020-08-09</time>
+                <time title="修改时间：2020-08-11 17:15:34" itemprop="dateModified" datetime="2020-08-11T17:15:34+08:00">2020-08-11</time>
               
             
           </span>
@@ -592,7 +592,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">39k</span>
+                <span title="本文字数">35k</span>
               
 
               
@@ -606,7 +606,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">36 分钟</span>
+                <span title="阅读时长">32 分钟</span>
               
             </div>
           
@@ -1107,8 +1107,8 @@
 <p>Reactor 实现了一个<strong>被动</strong>的事件分离和分发模型，服务等待请求事件的到来，再通过不受间断的同步处理事件，从而做出反应，适用于同时接收多个服务请求，并且依次同步的处理它们的事件驱动程序；</p>
 <p>Proactor 实现了一个<strong>主动</strong>的事件分离和分发模型；这种设计允许多个任务并发的执行，从而提高吞吐量；并可执行耗时长的任务（各个任务间互不影响），异步接收和同时处理多个服务请求的事件驱动程序。</p>
 <p><strong>Proactor 实现起来比较复杂，因为需要内核的深度参与，同时缓冲区在读或写操作的时间段内必须保持住，可能造成持续的不确定性，并且每个并发操作都要求有独立的缓存，相比Reactor模型，在Socket已经准备好读或写前，是不要求开辟缓存的。现在高并发网络编程基本上还是都采用 Reactor 模型。</strong></p>
-<h1 id="从-Netty-看-HSF-Dubbo"><a href="#从-Netty-看-HSF-Dubbo" class="headerlink" title="从 Netty 看 HSF/Dubbo"></a>从 Netty 看 HSF/Dubbo</h1><p>有了 Netty，我们就可以自己去实现一个 rpc 框架了，其实最为著名的就是 HSF、Dubbo了，二者都是采用了 Netty + Hession。</p>
-<p>HSF 框架中采用如今流行的网络通信框架 Netty 加上 Hession 数据序列化协议实现 HSF 服务间的交互，主要考虑点是在大并发量时，服务交互性能达到最佳。<strong>这类 RPC 协议采用多路复用的 TCP 长连接方式，在服务提供者和调用者间有多个服务请求同时调用时会共用同一个长连接，即一个连接交替传输不同请求的字节块。它既避免了反复建立连接开销，也避免了连接的等待闲置从而减少了系统连接总数，同时还避免了 TCP 顺序传输中的线头阻塞（head-of-line blocking）问题</strong>。</p>
+<h1 id="从-Netty-看-HSF-Dubbo"><a href="#从-Netty-看-HSF-Dubbo" class="headerlink" title="从 Netty 看 HSF/Dubbo"></a>从 Netty 看 HSF/Dubbo</h1><p>有了 Netty，我们就可以自己去实现一个 rpc 框架了，其实最为著名的就是 HSF、Dubbo了，二者都是采用了 Netty + Hessian。</p>
+<p>HSF 框架中采用如今流行的网络通信框架 Netty 加上 Hessian 数据序列化协议实现 HSF 服务间的交互，主要考虑点是在大并发量时，服务交互性能达到最佳。<strong>这类 RPC 协议采用多路复用的 TCP 长连接方式，在服务提供者和调用者间有多个服务请求同时调用时会共用同一个长连接，即一个连接交替传输不同请求的字节块。它既避免了反复建立连接开销，也避免了连接的等待闲置从而减少了系统连接总数，同时还避免了 TCP 顺序传输中的线头阻塞（head-of-line blocking）问题</strong>。</p>
 <p>Hessian 是 HSF 框架中默认使用的数据序列化协议，在数据量较小时性能表现出众，Hessian 的优点是精简高效，同时可以跨语言使用，目前支持 Java, C++, .net, Python, ruby 等语言。另外 Hessian 可以充分利用 Web 容器的成熟功能，在处理大量用户访问时很有优势，在资源分配、线程排队、异常处理等方面都可以由 Web 容器保证。</p>
 <p>HSF 框架同时也支持切换使用 Java 序列化，Hession 相比 JDK 标准的序列化方式（即基于 Serializable 接口的标准序列化），在典型场景中，其序列化时间开销可能缩短 20 倍。虽然 Hessian 不是最快的序列化协议，但它对于复杂业务对象的序列化正确率、准确性相较于最稳定的 Java 序列化并不逊色太多。</p>
 <p>业界还有一些比 Hessian 更快的序列化协议，但它们相对于 Hessian 在复杂场景下的处理能力还是会差一些，<strong>所以 Hessian 是在性能和稳定性同时考虑下最优的序列化协议。</strong></p>
@@ -1399,7 +1399,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1458,7 +1458,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1733,7 +1735,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">128</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1884,7 +1894,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1.3m</span>
+    <span title="站点总字数">1.1m</span>
   
   
 </div>

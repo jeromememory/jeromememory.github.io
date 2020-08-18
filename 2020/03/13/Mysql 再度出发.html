@@ -576,7 +576,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">26k</span>
+                <span title="本文字数">24k</span>
               
 
               
@@ -590,7 +590,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">23 分钟</span>
+                <span title="阅读时长">22 分钟</span>
               
             </div>
           
@@ -755,7 +755,7 @@
 <blockquote>
 <p>今日思考题：备份一般都会在备库上执行，你在用–single-transaction方法做逻辑备份的过程中，如果主库上的一个小表做了一个DDL，比如给一个表上加了一列。这时候，从备库上会看到什么现象呢？</p>
 <p>假设这个DDL是针对表t1的， 这里我把备份过程中几个关键的语句列出来：</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;Q1:SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ<span class="comment">;</span></span><br><span class="line">&gt;Q2:START TRANSACTION  WITH CONSISTENT SNAPSHOT；</span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;Q3:SAVEPOINT <span class="built_in">sp</span><span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 1 */</span></span><br><span class="line">&gt;Q4:<span class="keyword">show </span>create table `<span class="built_in">t1</span>`<span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 2 */</span></span><br><span class="line">&gt;Q5:SELECT * FROM `<span class="built_in">t1</span>`<span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 3 */</span></span><br><span class="line">&gt;Q6:ROLLBACK TO SAVEPOINT <span class="built_in">sp</span><span class="comment">;</span></span><br><span class="line">&gt;<span class="comment">/* 时刻 4 */</span></span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;Q1:<span class="keyword">SET</span> <span class="keyword">SESSION</span> <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> <span class="keyword">REPEATABLE</span> <span class="keyword">READ</span>;</span><br><span class="line">&gt;Q2:<span class="keyword">START</span> <span class="keyword">TRANSACTION</span>  <span class="keyword">WITH</span> CONSISTENT <span class="keyword">SNAPSHOT</span>；</span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;Q3:<span class="keyword">SAVEPOINT</span> sp;</span><br><span class="line">&gt;<span class="comment">/* 时刻 1 */</span></span><br><span class="line">&gt;Q4:<span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> `t1`;</span><br><span class="line">&gt;<span class="comment">/* 时刻 2 */</span></span><br><span class="line">&gt;Q5:<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> `t1`;</span><br><span class="line">&gt;<span class="comment">/* 时刻 3 */</span></span><br><span class="line">&gt;Q6:<span class="keyword">ROLLBACK</span> <span class="keyword">TO</span> <span class="keyword">SAVEPOINT</span> sp;</span><br><span class="line">&gt;<span class="comment">/* 时刻 4 */</span></span><br><span class="line">&gt;<span class="comment">/* other tables */</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>在备份开始的时候，为了确保RR（可重复读）隔离级别，再设置一次RR隔离级别(Q1);</p>
@@ -1545,7 +1545,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1604,7 +1604,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1879,7 +1881,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">128</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2030,7 +2040,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1.3m</span>
+    <span title="站点总字数">1.1m</span>
   
   
 </div>

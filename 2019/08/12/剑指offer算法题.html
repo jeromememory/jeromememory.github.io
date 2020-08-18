@@ -569,7 +569,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">12k</span>
+                <span title="本文字数">9.5k</span>
               
 
               
@@ -583,7 +583,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">11 分钟</span>
+                <span title="阅读时长">9 分钟</span>
               
             </div>
           
@@ -648,7 +648,7 @@
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pre</span> = cur<span class="comment">;</span></span><br><span class="line"><span class="attribute">cur</span> = null<span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <p>这两步的目的都是为了在下一轮遍历中不再访问自己，<code>cur = null</code>很好理解，因为我们必须在一轮结束后改变cur的值，以添加下一个节点，所以它和<code>cur = cur.right</code>一样，目的都是指向下一个待遍历的节点，只是在这里，右节点已经访问过了，则以当前节点为根节点的整个子树都已经访问过了，接下来应该回退到当前节点的父节点，而当前节点的父节点已经在栈里了，所以我们并没有新的节点要添加，直接将<code>cur</code>设为null即可。</p>
 <p><code>pre = cur</code> 的目的有点类似于将当前节点标记为已访问，它是和if条件中的<code>cur.right == pre</code>配合使用的。注意这里的两个<code>cur</code>指的不是同一个节点。我们假设当前节点为<code>C</code>，当前节点的父节点为<code>A</code>，而C是A的右孩子，则当前cur是C，但在一轮中，cur将变成A，则：</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  A </span><br><span class="line"> / \</span><br><span class="line"><span class="keyword">B </span>  C (pre)</span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="attr">A</span> <span class="string"></span></span><br><span class="line"> <span class="meta">/</span> <span class="string">\</span></span><br><span class="line"><span class="attr">B</span>   <span class="string">C (pre)</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>pre = cur</code> 就是 <code>pre = C</code></li>
 <li><code>if (cur.right == null || cur.right == pre)</code> 就是 <code>if (A.right == null || A.right == pre)</code></li>
@@ -845,7 +845,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -904,7 +904,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1179,7 +1181,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">128</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">132</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1330,7 +1340,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1.3m</span>
+    <span title="站点总字数">1.1m</span>
   
   
 </div>
