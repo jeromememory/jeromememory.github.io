@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2020-08-18T06:44:22.073Z</updated>
+  <updated>2020-08-19T07:55:35.426Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://jeromememory.github.io/2020/08/18/%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html"/>
     <id>http://jeromememory.github.io/2020/08/18/地址栏输入url后发生了什么.html</id>
     <published>2020-08-18T01:54:06.291Z</published>
-    <updated>2020-08-18T06:44:22.073Z</updated>
+    <updated>2020-08-19T07:55:35.426Z</updated>
     
     <summary type="html">
     
@@ -44,7 +44,9 @@
     
       <category term="HTTPS" scheme="http://jeromememory.github.io/tags/HTTPS/"/>
     
-      <category term="IP" scheme="http://jeromememory.github.io/tags/IP/"/>
+      <category term="TCP" scheme="http://jeromememory.github.io/tags/TCP/"/>
+    
+      <category term="LVS" scheme="http://jeromememory.github.io/tags/LVS/"/>
     
   </entry>
   
@@ -618,13 +620,13 @@
       <category term="算法" scheme="http://jeromememory.github.io/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="链表" scheme="http://jeromememory.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
       <category term="dp" scheme="http://jeromememory.github.io/tags/dp/"/>
     
       <category term="背包九讲" scheme="http://jeromememory.github.io/tags/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/"/>
     
       <category term="二叉树" scheme="http://jeromememory.github.io/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="链表" scheme="http://jeromememory.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
     
       <category term="LeetCode 相关题型" scheme="http://jeromememory.github.io/tags/LeetCode-%E7%9B%B8%E5%85%B3%E9%A2%98%E5%9E%8B/"/>
     
