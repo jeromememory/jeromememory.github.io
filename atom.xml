@@ -83,6 +83,40 @@
   </entry>
   
   <entry>
+    <title>秋招经历</title>
+    <link href="http://jeromememory.github.io/2020/07/29/%E7%A7%8B%E6%8B%9B%E7%BB%8F%E5%8E%86.html"/>
+    <id>http://jeromememory.github.io/2020/07/29/秋招经历.html</id>
+    <published>2020-07-29T14:35:26.690Z</published>
+    <updated>2020-09-08T06:49:32.815Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="面经" scheme="http://jeromememory.github.io/categories/%E9%9D%A2%E7%BB%8F/"/>
+    
+    
+      <category term="面经" scheme="http://jeromememory.github.io/tags/%E9%9D%A2%E7%BB%8F/"/>
+    
+      <category term="腾讯" scheme="http://jeromememory.github.io/tags/%E8%85%BE%E8%AE%AF/"/>
+    
+      <category term="字节跳动" scheme="http://jeromememory.github.io/tags/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/"/>
+    
+      <category term="快手" scheme="http://jeromememory.github.io/tags/%E5%BF%AB%E6%89%8B/"/>
+    
+      <category term="百度" scheme="http://jeromememory.github.io/tags/%E7%99%BE%E5%BA%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>重构项目代码</title>
     <link href="http://jeromememory.github.io/2020/05/05/%E4%BA%94%E4%B8%80%E5%81%87%E6%9C%9F%E4%B9%8B%E9%87%8D%E6%9E%84%E9%A1%B9%E7%9B%AE.html"/>
     <id>http://jeromememory.github.io/2020/05/05/五一假期之重构项目.html</id>
@@ -171,7 +205,7 @@
     <link href="http://jeromememory.github.io/2020/04/23/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%20kafka%EF%BC%88%E4%B8%80%EF%BC%89.html"/>
     <id>http://jeromememory.github.io/2020/04/23/深入理解 kafka（一）.html</id>
     <published>2020-04-23T03:09:05.078Z</published>
-    <updated>2020-08-09T02:16:24.284Z</updated>
+    <updated>2020-08-28T03:45:15.572Z</updated>
     
     <summary type="html">
     
@@ -595,38 +629,6 @@
       <category term="代理模式" scheme="http://jeromememory.github.io/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="动态代理" scheme="http://jeromememory.github.io/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>背包九讲 &amp; 链表</title>
-    <link href="http://jeromememory.github.io/2020/02/10/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2%20&amp;%20%E9%93%BE%E8%A1%A8.html"/>
-    <id>http://jeromememory.github.io/2020/02/10/背包九讲 &amp; 链表.html</id>
-    <published>2020-02-10T02:34:28.018Z</published>
-    <updated>2020-08-24T08:58:49.742Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="算法" scheme="http://jeromememory.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="链表" scheme="http://jeromememory.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-      <category term="dp" scheme="http://jeromememory.github.io/tags/dp/"/>
-    
-      <category term="背包九讲" scheme="http://jeromememory.github.io/tags/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2/"/>
-    
-      <category term="LeetCode 相关题型" scheme="http://jeromememory.github.io/tags/LeetCode-%E7%9B%B8%E5%85%B3%E9%A2%98%E5%9E%8B/"/>
     
   </entry>
   

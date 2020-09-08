@@ -157,7 +157,7 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-09T02:16:24.284Z">
+<meta property="og:updated_time" content="2020-08-28T03:45:15.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 kafka（一）">
 <meta name="twitter:description" content="前言项目最近 kafka 又崩了…  心态炸了… 总是 nobroker，自己也总是没有彻底解决这个问题，所以，受不了了，我要开始深入理解一下 kafka 了… 由于之前一篇文章都是几万字，导致可读性比较拉胯，所以从现在开始，我每一章出一篇文章…这样可读性强一些… 第一章 初识 kafkaKafka起初是由LinkedIn公司采用Scala语言开发的一个多分区、多副本且基于ZooKeeper协调的">
@@ -513,7 +513,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:16:24" itemprop="dateModified" datetime="2020-08-09T10:16:24+08:00">2020-08-09</time>
+                <time title="修改时间：2020-08-28 11:45:15" itemprop="dateModified" datetime="2020-08-28T11:45:15+08:00">2020-08-28</time>
               
             
           </span>
@@ -622,7 +622,7 @@
 <h4 id="多副本机制"><a href="#多副本机制" class="headerlink" title="多副本机制"></a>多副本机制</h4><p>Kafka 为分区引入了多副本机制，保证高可用。在这里和 Mysql 一样，同样是一主多从，所以关键就是主从同步的问题，同时还会涉及到主备切换、主从延迟等通用问题。</p>
 <p>分区中所有副本统称为 AR(Assigned Replicas)，AR = ISR(In-Sync Replicas) + OSR(Out-of-Sync Replicas)，当 leader副本发生故障时，只有在 ISR 中的 副本才有资格被选取为新的 leader。</p>
 <p>在读取 offset 的过程中，也引入了 HW(高水位) 和 LEO(Log End Offset)的概念，在 Mysql 中实现 mvcc 中，也同样采用了 高水位的概念，不过在那里是在事务的视图中出现的。这里的 HW 和 LEO 同样让我想到了 NIO 中的 buffer 也是拥有同样的概念的。</p>
-<font color="red">Kafka 的复制机制既不是完全的同步复制，也不是单纯的异步复制。这里我们可以类比事务处理。同步意味着所有都完成才提交事务「即要求所有 follower 副本全部复制完才可以进行读取消息」，而异步则意味着只要leader读入成功则直接提交事务「Mysql 是异步复制」。前者影响效率，后者则存在不可靠性，因为一旦leader宕机而follower没有同步完成，数据就会出现问题。所以这里采用折中的方案，每同步完一个消息，就进行一次事务提交「即每全部同步完一条消息就提交一次事务」。</font>
+<font color="red">Kafka 的复制机制既不是完全的同步复制，也不是单纯的异步复制。这里我们可以类比事务处理。同步意味着所有都完成才提交事务「即要求所有 follower 副本全部复制完才可以进行读取消息」，而异步则意味着只要leader读入成功则直接提交事务「Mysql 是异步复制」。前者影响效率，后者则存在不可靠性，因为一旦leader宕机而follower没有同步完成，数据就会出现问题。所以这里采用折中的方案，只要同步完 ISR 集合中的副本就提交事务。</font>
 
 <h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><p>博主使用的 macOS 系统，所以接下来对在 macOS 下如何安装运行 kafka 做一个详细的叙述。</p>
 <h3 id="JDK-的安装和配置"><a href="#JDK-的安装和配置" class="headerlink" title="JDK 的安装和配置"></a>JDK 的安装和配置</h3><p>Kafka是建立在 jvm 之上的，所以需要先安装 jvm，这个很简单啦…</p>
@@ -1030,7 +1030,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">55</span>
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1374,7 +1374,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">132</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">136</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1525,7 +1533,7 @@
       <i class="fa fa-area-chart"> 站点字数合计:</i>
     </span>
     
-    <span title="站点总字数">1.1m</span>
+    <span title="站点总字数">1.2m</span>
   
   
 </div>

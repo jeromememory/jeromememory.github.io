@@ -1,0 +1,3011 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="本篇文章主要用来记录一下秋招的过程，不仅限于面经，主要是自己用来发发感慨！ 其中关于项目的问题全部都隐去了！！！ 7.12 17:00 - 18:00 字节 Data 一面这面纯粹就是送一血，压根没做任何准备就直接上了，还是有点过于自信啦，先大概回忆问了些啥吧。  自我介绍，对阿里实习展开叙述； 主要是对阿里的项目进行挖掘，问了问 kafka （消息堆积如何解决、如何定位到 partition 中">
+<meta name="keywords" content="面经,腾讯,字节跳动,快手,百度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="秋招经历">
+<meta property="og:url" content="http://jeromememory.github.io/2020/07/29/秋招经历.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="本篇文章主要用来记录一下秋招的过程，不仅限于面经，主要是自己用来发发感慨！ 其中关于项目的问题全部都隐去了！！！ 7.12 17:00 - 18:00 字节 Data 一面这面纯粹就是送一血，压根没做任何准备就直接上了，还是有点过于自信啦，先大概回忆问了些啥吧。  自我介绍，对阿里实习展开叙述； 主要是对阿里的项目进行挖掘，问了问 kafka （消息堆积如何解决、如何定位到 partition 中">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa5h5rszj30u00hsgn3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa93tqdpj30pi0gk75v.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa9kr1mkj30oa0hwjsu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gia96jbrc3j31hc0u0qna.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gia1v9vcuhj30j50byjrx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gia1vtcbmpj30j50by74q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gi95sd4ds9j31pe0ni0wn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuncaj4rvj31jn0u0hdu.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1ghune5jdfxj31920u0kjm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gi28f4436vj30xs0fcq4k.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gi28fns0ovj30zs05amy1.jpg">
+<meta property="og:updated_time" content="2020-09-08T06:49:32.815Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="秋招经历">
+<meta name="twitter:description" content="本篇文章主要用来记录一下秋招的过程，不仅限于面经，主要是自己用来发发感慨！ 其中关于项目的问题全部都隐去了！！！ 7.12 17:00 - 18:00 字节 Data 一面这面纯粹就是送一血，压根没做任何准备就直接上了，还是有点过于自信啦，先大概回忆问了些啥吧。  自我介绍，对阿里实习展开叙述； 主要是对阿里的项目进行挖掘，问了问 kafka （消息堆积如何解决、如何定位到 partition 中">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa5h5rszj30u00hsgn3.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2020/07/29/秋招经历">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>秋招经历 | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/07/29/秋招经历.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">秋招经历
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-29 22:35:26" itemprop="dateCreated datePublished" datetime="2020-07-29T22:35:26+08:00">2020-07-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-09-08 14:49:32" itemprop="dateModified" datetime="2020-09-08T14:49:32+08:00">2020-09-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面经/" itemprop="url" rel="index"><span itemprop="name">面经</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">43k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">39 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇文章主要用来记录一下秋招的过程，不仅限于面经，主要是自己用来发发感慨！</p>
+<p><strong>其中关于项目的问题全部都隐去了！！！</strong></p>
+<h2 id="7-12-17-00-18-00-字节-Data-一面"><a href="#7-12-17-00-18-00-字节-Data-一面" class="headerlink" title="7.12 17:00 - 18:00 字节 Data 一面"></a>7.12 17:00 - 18:00 字节 Data 一面</h2><p>这面纯粹就是送一血，压根没做任何准备就直接上了，还是有点过于自信啦，先大概回忆问了些啥吧。</p>
+<ol>
+<li>自我介绍，对阿里实习展开叙述；</li>
+<li>主要是对阿里的项目进行挖掘，问了问 kafka （消息堆积如何解决、如何定位到 partition 中的具体位置… 剩下的忘掉了）；</li>
+<li>然后对统一域名的方案和工作流相关进行一些探讨；</li>
+<li>直接写代码，第一题求根号 n，第二题写归并排序…</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 练手算法;</span><br><span class="line"><span class="keyword">import</span> java.text.DecimalFormat;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">sqrt</span><span class="params">(<span class="keyword">double</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> high = num / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">double</span> precision = <span class="number">0.000001</span>;</span><br><span class="line">        <span class="comment">//格式化，保证输出位数</span></span><br><span class="line">        DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">"#.00"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span> res = high;</span><br><span class="line">        <span class="keyword">while</span> (Math.abs(num - (res * res)) &gt; precision) &#123;</span><br><span class="line">            <span class="keyword">if</span> (high * high &gt; num) &#123;</span><br><span class="line">                <span class="keyword">double</span> n = high - (high - low) / <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (n * n &gt; num) &#123;</span><br><span class="line">                    high = n;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (n * n &lt; num) &#123;</span><br><span class="line">                    low = n;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> Double.valueOf(df.format(n));</span><br><span class="line">                &#125;</span><br><span class="line">                res = n;</span><br><span class="line"></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (high * high &lt; num) &#123;</span><br><span class="line">                <span class="keyword">double</span> m = high + (high - low) / <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span> (m * m &gt; num) &#123;</span><br><span class="line">                    low = high;</span><br><span class="line">                    high = m;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (m * m &lt; num) &#123;</span><br><span class="line">                    low = high;</span><br><span class="line">                    high = m;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> Double.valueOf(df.format(m));</span><br><span class="line">                &#125;</span><br><span class="line">                res = m;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> Double.valueOf(df.format(high));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Double.valueOf(df.format(res));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(sqrt(<span class="number">16</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 归并排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mergeSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">        mergeSort(nums,<span class="number">0</span>,nums.length-<span class="number">1</span>);</span><br><span class="line">        System.out.println(Arrays.toString(nums));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(left &lt; right)&#123;</span><br><span class="line">            mergeSort(nums,left,mid);</span><br><span class="line">            mergeSort(nums,mid+<span class="number">1</span>,right);</span><br><span class="line">            mergeTwo(nums,left,mid,right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeTwo</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> mid, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 用一个数组来存储合并后的数组，然后复制给原数组</span></span><br><span class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[right-left+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = left;</span><br><span class="line">        <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt; nums[j])&#123;</span><br><span class="line">                temp[k++] = nums[i++];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                temp[k++] = nums[j++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid)&#123;</span><br><span class="line">            temp[k++] = nums[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= right)&#123;</span><br><span class="line">            temp[k++] = nums[j++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">0</span>;t &lt; temp.length;t++)&#123;</span><br><span class="line">            nums[left+t] = temp[t];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一面过了，感觉还行，于是接着5分钟后进行了二面。「话说一面面试官是个小姐姐，可太棒了…」</p>
+<h2 id="7-12-18-00-19-00-字节-Data-二面「已挂」"><a href="#7-12-18-00-19-00-字节-Data-二面「已挂」" class="headerlink" title="7.12 18:00 - 19:00 字节 Data 二面「已挂」"></a>7.12 18:00 - 19:00 字节 Data 二面「已挂」</h2><p>这面上来我就不喜欢这面试官。</p>
+<blockquote>
+<p>我：“哇，字节面试官都好年轻吖！”</p>
+<p>面试官：“谢谢你的阿谀奉承。”</p>
+</blockquote>
+<p>这话说完我瞬间就不想面了，所以整个面试我都不太舒服，感觉跟面试官完全不在一个节奏上，面到一半我说：“时间太长了能结束吗哈哈哈哈”，所以这面，自然就给我挂掉了，“so what，I don‘t care.”</p>
+<p>这轮面试问的问题特别的杂，面试官明显是在一边看题库一边问问题，真的毫无面试体验，问题跳跃性太强并且一问一答式的节奏让人很不舒服，还是回忆一下问题：</p>
+<ol>
+<li><p>什么是虚拟内存；</p>
+</li>
+<li><p>讲讲 reactor 模型；</p>
+</li>
+<li><p>cache 和 buffer 区别；</p>
+</li>
+</ol>
+<blockquote>
+<p>1、<strong>Buffer</strong>（缓冲区）是系统两端处理<strong>速度平衡</strong>（从长时间尺度上看）时使用的。它的引入是为了减小短期内突发I/O的影响，起到<strong>流量整形</strong>的作用。比如生产者——消费者问题，他们产生和消耗资源的速度大体接近，加一个buffer可以抵消掉资源刚产生/消耗时的突然变化。<br>2、<strong>Cache</strong>（缓存）则是系统两端处理<strong>速度不匹配</strong>时的一种<strong>折衷策略</strong>。因为CPU和memory之间的速度差异越来越大，所以人们充分利用数据的局部性（locality）特征，通过使用存储系统分级（memory hierarchy）的策略来减小这种差异带来的影响。<br>3、假定以后存储器访问变得跟CPU做计算一样快，cache就可以消失，但是buffer依然存在。比如从网络上下载东西，瞬时速率可能会有较大变化，但从长期来看却是稳定的，这样就能通过引入一个buffer使得OS接收数据的速率更稳定，进一步减少对磁盘的伤害。</p>
+<p>作者：Towser<br>链接：<a href="https://www.zhihu.com/question/26190832/answer/32387918" target="_blank" rel="noopener">https://www.zhihu.com/question/26190832/answer/32387918</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<ol start="4">
+<li>分布式中如何检测机器是否挂掉；</li>
+</ol>
+<blockquote>
+<p>心跳，顾名思义，就是以固定的频率向其他节点汇报当前节点状态的方式。收到心跳，一般可以认为一个节点和现在的网络拓扑是良好的。当然，心跳汇报时，一般也会携带一些附加的状态、元数据信息，以便管理。故障检测是任何一个拥有容错性的分布式系统的基本功能,而实际上所有的故障检测协议都基于心跳通讯机制，原理很简单，被监控的组件定期发送心跳信息给监控进程（或者由监控进程轮询被监控组件），如果有一段时间没有收到心跳信息就被认为失效了。</p>
+<p><a href="http://www.distorage.com/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%8A%80%E6%9C%AF%E7%B3%BB%E5%88%97-%E5%BF%83%E8%B7%B3%EF%BC%88heartbeat%EF%BC%89/" target="_blank" rel="noopener">传送门</a></p>
+</blockquote>
+<ol start="5">
+<li>Mysql 的 ACID 讲一下，说说自己在项目中如何巧妙的使用过 mysql，使得项目得到大的改善的？</li>
+</ol>
+<blockquote>
+<p><strong>唯一索引改为普通索引，changeBuffer 造成的</strong>。</p>
+</blockquote>
+<ol start="6">
+<li>写算法题：给一个十进制数，请转换成 16 进制；有序数组找到第K大的数。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hex</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">"Enter a decimal number:"</span>);</span><br><span class="line">        <span class="keyword">int</span> decimal = input.nextInt();</span><br><span class="line"></span><br><span class="line">        String hex = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (decimal != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> hexValue = decimal % <span class="number">16</span>;</span><br><span class="line">            <span class="keyword">char</span> hexDigit = (hexValue &lt;= <span class="number">9</span> &amp;&amp; hexValue &gt;= <span class="number">0</span>) ? (<span class="keyword">char</span>) (hexValue + <span class="string">'0'</span>) : (<span class="keyword">char</span>) (hexValue - <span class="number">10</span> + <span class="string">'A'</span>);</span><br><span class="line">            hex = hexDigit + hex;</span><br><span class="line">            decimal = decimal / <span class="number">16</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"The hex number is "</span> + hex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 先利用前 k 个节点构建一个堆, nums[0] 是小顶堆的堆顶元素</span></span><br><span class="line">        buildHeap(nums, k);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; nums[<span class="number">0</span>]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(nums,i,<span class="number">0</span>);</span><br><span class="line">            heapify(nums, k, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k / <span class="number">2</span> - <span class="number">1</span>; i &gt;= <span class="number">0</span> ; i--) &#123;</span><br><span class="line">            heapify(nums, k, i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">heapify</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 最小值的索引</span></span><br><span class="line">        <span class="keyword">int</span> minPos = i;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> right = i * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">            <span class="comment">// 左子树比根小，将最小值的位置记录为左子树</span></span><br><span class="line">            <span class="keyword">if</span> (left &lt; k &amp;&amp; nums[left] &lt; nums[minPos]) &#123;</span><br><span class="line">                minPos = left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (right &lt; k &amp;&amp; nums[right] &lt; nums[minPos]) &#123;</span><br><span class="line">                minPos = right;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (minPos == i) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 交换最小值和根节点，继续进行调整</span></span><br><span class="line">            swap(nums, minPos, i);</span><br><span class="line">            i = minPos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>剩下的不记得了，反正整个面试体验极差，所以对细节回忆不起来了，总的来说就是瞎问然后就开始做算法了。</p>
+<h2 id="7-29-20-00-21-00-百度-基础架构部-一面"><a href="#7-29-20-00-21-00-百度-基础架构部-一面" class="headerlink" title="7.29 20:00 - 21:00 百度 基础架构部 一面"></a>7.29 20:00 - 21:00 百度 基础架构部 一面</h2><p>今天刚面完，所以记忆比较深刻，待会会写的详细点，至于为何这么久才开始面其他公司，是因为天杀的我们有5门考试，准备了个把星期考试，所以这次面试又是基本没怎么准备…</p>
+<p>问题如下：</p>
+<ol>
+<li>直接开始做算法题：第一题是写一个变种的二分查找，也就是写寻找最左侧边界的二分搜索，第二题是 LeetCode 第 81 题：搜索旋转排序数组 II；<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 返回的是比target小的数量，同时也是最左target的下标</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> nums</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> target</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">binarySearchLeft</span><span class="params">(<span class="keyword">int</span> nums[],<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">int</span> right = nums.length;</span><br><span class="line">     <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">         <span class="comment">//防止计算mid时溢出</span></span><br><span class="line">         <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">         <span class="keyword">if</span>(nums[mid] == target)</span><br><span class="line">             right = mid;</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &lt; target)</span><br><span class="line">             left = mid + <span class="number">1</span>;</span><br><span class="line">         <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; target)</span><br><span class="line">             right = mid;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//要时刻注意处理边界，如果整个数组都没有这个target，则left会到nums.length</span></span><br><span class="line">     <span class="comment">//left的取值是[0,nums.length]</span></span><br><span class="line">     <span class="comment">// target 比所有数都大</span></span><br><span class="line">     <span class="keyword">if</span> (left == nums.length) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">     <span class="comment">// 类似之前算法的处理方式</span></span><br><span class="line">     <span class="keyword">return</span> nums[left] == target ? left : -<span class="number">1</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[start] == nums[mid]) &#123;</span><br><span class="line">                start++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//前半部分有序</span></span><br><span class="line">            <span class="keyword">if</span> (nums[start] &lt;= nums[mid]) &#123;</span><br><span class="line">                <span class="comment">//target在前半部分</span></span><br><span class="line">                <span class="keyword">if</span> (nums[mid] &gt; target &amp;&amp; nums[start] &lt;= target) &#123;</span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  <span class="comment">//否则，去后半部分找</span></span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//后半部分有序</span></span><br><span class="line">                <span class="comment">//target在后半部分</span></span><br><span class="line">                <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; nums[end] &gt;= target) &#123;</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  <span class="comment">//否则，去后半部分找</span></span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//一直没找到，返回false</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>对套接字编程的详细过程进行描述，讲解 tcp 三次握手四次挥手过程中客户端服务器端的状态，分析服务器端 close_wait 的进程太多的原因是什么；</li>
+</ol>
+<blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa5h5rszj30u00hsgn3.jpg" alt="套接字编程流程"></p>
+<p>一个简易的 Server 的流程如下：</p>
+<ul>
+<li>1.建立连接，接受一个客户端连接。</li>
+<li>2.接受请求，从网络中读取一条 HTTP 请求报文。</li>
+<li>3.处理请求，访问资源。</li>
+<li>4.构建响应，创建带有 header 的 HTTP 响应报文。</li>
+<li>5.发送响应，传给客户端。</li>
+</ul>
+<p>省略流程 3，大体的程序与调用的函数逻辑如下：</p>
+<ul>
+<li>socket() 创建套接字</li>
+<li>bind() 分配套接字地址</li>
+<li>listen() 等待连接请求</li>
+<li>accept() 允许连接请求</li>
+<li>read()/write() 数据交换</li>
+<li>close() 关闭连接</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa93tqdpj30pi0gk75v.jpg" alt="三次握手"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1giaa9kr1mkj30oa0hwjsu.jpg" alt="四次挥手"></p>
+</blockquote>
+<blockquote>
+<p>close_wait 太多，一般的原因就是服务器端没有主动调用 close()。</p>
+</blockquote>
+<ol start="3">
+<li>进程间通信 IPC 的方式有哪些，然后问哪个是最快的『共享内存』；<blockquote>
+<p>通信方式：「来自于：<a href="https://mp.weixin.qq.com/s/mblyh6XrLj1bCwL0Evs-Vg」" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mblyh6XrLj1bCwL0Evs-Vg」</a></p>
+<ol>
+<li>管道</li>
+<li>消息队列</li>
+<li>共享内存</li>
+<li>信号量</li>
+<li>信号</li>
+<li>Socket</li>
+</ol>
+<p>由于每个进程的用户空间都是独立的，不能相互访问，这时就需要借助内核空间来实现进程间通信，原因很简单，每个进程都是共享一个内核空间。</p>
+<p>Linux 内核提供了不少进程间通信的方式，其中最简单的方式就是管道，管道分为「匿名管道」和「命名管道」。</p>
+<p><strong>匿名管道</strong>顾名思义，它没有名字标识，匿名管道是特殊文件只存在于内存，没有存在于文件系统中，shell 命令中的「<code>|</code>」竖线就是匿名管道，通信的数据是<strong>无格式的流并且大小受限</strong>，通信的方式是<strong>单向</strong>的，数据只能在一个方向上流动，如果要双向通信，需要创建两个管道，再来<strong>匿名管道是只能用于存在父子关系的进程间通信</strong>，匿名管道的生命周期随着进程创建而建立，随着进程终止而消失。</p>
+<p><strong>命名管道</strong>突破了匿名管道只能在亲缘关系进程间的通信限制，因为使用命名管道的前提，需要在文件系统创建一个类型为 p 的设备文件，那么毫无关系的进程就可以通过这个设备文件进行通信。另外，不管是匿名管道还是命名管道，进程写入的数据都是<strong>缓存在内核</strong>中，另一个进程读取数据时候自然也是从内核中获取，同时通信数据都遵循<strong>先进先出</strong>原则，不支持 lseek 之类的文件定位操作。</p>
+<p><strong>消息队列</strong>克服了管道通信的数据是无格式的字节流的问题，消息队列实际上是保存在内核的「消息链表」，消息队列的消息体是可以用户自定义的数据类型，发送数据时，会被分成一个一个独立的消息体，当然接收数据时，也要与发送方发送的消息体的数据类型保持一致，这样才能保证读取的数据是正确的。消息队列通信的速度不是最及时的，毕竟<strong>每次数据的写入和读取都需要经过用户态与内核态之间的拷贝过程。</strong></p>
+<p><strong>共享内存</strong>可以解决消息队列通信中用户态与内核态之间数据拷贝过程带来的开销，<strong>它直接分配一个共享空间，每个进程都可以直接访问</strong>，就像访问进程自己的空间一样快捷方便，不需要陷入内核态或者系统调用，大大提高了通信的速度，享有<strong>最快</strong>的进程间通信方式之名。但是便捷高效的共享内存通信，<strong>带来新的问题，多进程竞争同个共享资源会造成数据的错乱。</strong></p>
+<p>那么，就需要<strong>信号量</strong>来保护共享资源，以确保任何时刻只能有一个进程访问共享资源，这种方式就是互斥访问。<strong>信号量不仅可以实现访问的互斥性，还可以实现进程间的同步</strong>，信号量其实是一个计数器，表示的是资源个数，其值可以通过两个原子操作来控制，分别是 <strong>P 操作和 V 操作</strong>。</p>
+<p>与信号量名字很相似的叫<strong>信号</strong>，它俩名字虽然相似，但功能一点儿都不一样。信号是进程间通信机制中<strong>唯一的异步通信机制</strong>，信号可以在应用进程和内核之间直接交互，内核也可以利用信号来通知用户空间的进程发生了哪些系统事件，信号事件的来源主要有硬件来源（如键盘 Cltr+C ）和软件来源（如 kill 命令），一旦有信号发生，<strong>进程有三种方式响应信号 1. 执行默认操作、2. 捕捉信号、3. 忽略信号</strong>。有两个信号是应用进程无法捕捉和忽略的，即 <code>SIGKILL</code> 和 <code>SEGSTOP</code>，这是为了方便我们能在任何时候结束或停止某个进程。</p>
+<p>前面说到的通信机制，都是工作于同一台主机，如果<strong>要与不同主机的进程间通信，那么就需要 Socket 通信了</strong>。Socket 实际上不仅用于不同的主机进程间通信，还可以用于本地主机进程间通信，可根据创建 Socket 的类型不同，分为三种常见的通信方式，一个是基于 TCP 协议的通信方式，一个是基于 UDP 协议的通信方式，一个是本地进程间通信方式。</p>
+</blockquote>
+</li>
+</ol>
+<ol start="4">
+<li>然后讲到共享内存，就提到了内存映射，自然就问了 mmap，为什么 mmap 快？<blockquote>
+<p>快的原因就是减少了数据从内核态到用户态的拷贝，直接将内核空间和用户空间映射。</p>
+</blockquote>
+</li>
+<li>共享内存有哪些危害，如何避免？<blockquote>
+<p>共享内存后，不同进程间可以相互修改变量，容易造成不安全的现象，需要通过一些同步手段实现进程间的数据安全问题。</p>
+</blockquote>
+</li>
+<li>虚拟内存和物理内存区别，操作系统如何控制，如何使用；</li>
+</ol>
+<blockquote>
+<p>物理内存地址是主存真实的地址，而虚拟内存则是作为一个抽象层，成为了进程和物理内存的桥梁。</p>
+<p>虚拟内存和物理内存是通过 MMU(Memory Management Unit，内存管理单元) 来进行转换和映射的，内存管理单元中最重要的数据结构就是<strong>页表</strong>，在页表中，虚拟地址有三种状态：未被使用、未被缓存、已缓存：</p>
+<ol>
+<li>如果是未被使用，则该虚拟地址并不存在于磁盘或者主存中；</li>
+<li>如果是未被缓存的状态，说明虚拟地址此时对应的真实地址为磁盘地址，如果此时进程去访问未被缓存的虚拟地址，会触发<strong>缺页中断</strong>，操作系统会将磁盘上未被缓存的虚拟页加载到主存中，然后更新页表；</li>
+<li>如果是已缓存的状态，说明虚拟地址此时对应的地址就是物理内存，也就是我们的主存。</li>
+</ol>
+</blockquote>
+<p>总的来说，面试体验还是 Okay，面试官比较 nice，没有刻意刁难，提的问题也比较有探讨的感觉，让人感觉很不错，等一波二面啦，后面继续更新！</p>
+<h2 id="8-3-19-00-21-30-百度-基础架构部二三面「已offer」"><a href="#8-3-19-00-21-30-百度-基础架构部二三面「已offer」" class="headerlink" title="8.3 19:00 - 21:30 百度 基础架构部二三面「已offer」"></a>8.3 19:00 - 21:30 百度 基础架构部二三面「已offer」</h2><p>两面接着，感觉还是有点累的，二面主要问项目，三面则主要问一些发散性思维的问题以及聊聊生活工作，整体的面试过程非常 nice，offer 应该是没问题辽，就看是 sp 还是 ssp 啦，顺利拿下秋招一血啦！</p>
+<p>二面问的问题由浅入深，循循善诱，感觉面试官非常的专业，总结一下：</p>
+<ol>
+<li><p>自我介绍；</p>
+</li>
+<li><p>讲一下自己了解的微服务，我说我用的HSF比较多，然后话题就此展开；</p>
+</li>
+<li><p>先讲了讲 HSF 底层用的 Netty 和 Hessian，讲讲 Netty 为啥这么快；</p>
+</li>
+<li><p>Netty 中的 NIO 的模型，以及为何这么快，自己是否试验过 NIO 和 BIO 速度的差别；</p>
+<blockquote>
+<p>比较简单… 略</p>
+</blockquote>
+</li>
+<li><p>Hessian序列化为何这么快，内部的逻辑实现了解吗？</p>
+<blockquote>
+<p>衡量一个序列化框架，主要有以下几个指标：</p>
+<ul>
+<li>性能。包括时间开销方面的性能和空间开销方面的性能。时间开销，是指序列化反序列化解析的时间，空间开销，则是指相同的对象在序列化后所占的字节数。</li>
+<li>通用性。是否支持跨平台，跨语言。</li>
+<li>可扩展性、兼容性。如果序列化协议具有良好的可扩展性，支持自动增加新的业务字段，而不影响老的服务，这将大大提供系统的灵活度。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gia96jbrc3j31hc0u0qna.jpg" alt="序列化框架总结"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gia1v9vcuhj30j50byjrx.jpg" alt="时间开销比较"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gia1vtcbmpj30j50by74q.jpg" alt="空间开销比较"></p>
+</blockquote>
+</li>
+<li><p>讲讲自己用的消息中间件，kafka 的用途有什么，为什么项目中要用 kafka？</p>
+</li>
+</ol>
+<blockquote>
+<p>主要就两个作用：</p>
+<ol>
+<li>异步，生产者和消费者速率不同步；</li>
+<li>解耦，主要规定好输入输出的消息格式，就可以对系统进行解耦。</li>
+</ol>
+</blockquote>
+<ol start="7">
+<li><p>了解 k8s，Docker，多线程的落地实现吗？</p>
+<blockquote>
+<p>多线程的实现… 略难，这里不详细说了。</p>
+</blockquote>
+</li>
+<li><p>API 网关的用途，为何要用这个东西？</p>
+</li>
+</ol>
+<blockquote>
+<p>对于服务数量众多、复杂度比较高、规模比较大的业务来说，引入 API 网关有一系列的好处：</p>
+<ul>
+<li>聚合接口使得服务对调用者透明，客户端与后端的耦合度降低</li>
+<li>聚合后台服务，节省流量，提高性能，提升用户体验</li>
+<li>提供安全、流控、过滤、缓存、计费、监控等 API 管理功能</li>
+</ul>
+</blockquote>
+<ol start="9">
+<li>长连接和短连接的区别？微服务中主要使用哪种连接？为什么？</li>
+</ol>
+<blockquote>
+<ul>
+<li><p>短连接：每次通信时，创建 Socket；一次通信结束，调用 socket.close()。这就是一般意义上的短连接，短连接的好处是管理起来比较简单，存在的连接都是可用的连接，不需要额外的控制手段。</p>
+</li>
+<li><p>长连接：每次通信完毕后，不会关闭连接，这样就可以做到连接的复用。<strong>长连接的好处便是省去了创建连接的耗时。</strong></p>
+</li>
+</ul>
+<p>短连接和长连接的优势，分别是对方的劣势。想要图简单，不追求高性能，使用短连接合适，这样我们就不需要操心连接状态的管理；想要追求性能，使用长连接，我们就需要担心各种问题：比如<strong>端对端连接的维护，连接的保活「 TCP 中的 KeepAlive 机制 + 应用层心跳」</strong>。</p>
+<p>微服务中主要使用长连接，因为追求性能。</p>
+</blockquote>
+<ol start="10">
+<li>如何实现调用微服务中链路的记录？</li>
+</ol>
+<blockquote>
+<p>可以使用字节码增强技术，动态代理，改造 Request，在Request中记录一些 trace，然后带到下一个调用者中。</p>
+</blockquote>
+<ol start="11">
+<li>进程和线程区别，进程间通信方式，讲讲 mmap？</li>
+</ol>
+<blockquote>
+<p>进程是操作系统分配资源的最小单位，线程是CPU调度的最小单位。</p>
+<p>进程间通信方式：管道、共享内存、信号量、信号、消息队列、Socket。</p>
+<p>mmap，称为内存地址映射，将内核缓冲区的地址映射到用户缓冲区。</p>
+</blockquote>
+<ol start="12">
+<li>讲讲进程fork多个子进程和使用多线程的区别？</li>
+</ol>
+<blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gi95sd4ds9j31pe0ni0wn.jpg" alt="多进程 vs 多线程"></p>
+</blockquote>
+<p>差不多就这些，还有很多回忆不起来了，问的都是项目中用到的一些东西，然后主要是看广度，深度不是很深，大概问了50多分钟，然后开始做题：</p>
+<ol>
+<li><p>给定一些数(1,0)，(2,1)，(3,1)，(4,2)，(5,2)，(6,2)，前面是节点位置，后面是其父亲节点，构造出这样的一颗多叉树出来；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 秋招百度二面;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Second</span> </span>&#123;</span><br><span class="line">    <span class="comment">//    (1,0)，(2,1)，(3,1)，(4,2)，(5,2)，(6,2)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] input = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;, &#123;<span class="number">3</span>, <span class="number">1</span>&#125;, &#123;<span class="number">4</span>, <span class="number">2</span>&#125;, &#123;<span class="number">5</span>, <span class="number">3</span>&#125;, &#123;<span class="number">6</span>, <span class="number">2</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建根节点，其中的 Set 集合 first 是下面 BFS 前确定 root 要用到的</span></span><br><span class="line">        Set&lt;Integer&gt; first = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        Set&lt;Integer&gt; roots = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length; i++) &#123;</span><br><span class="line">            roots.add(input[i][<span class="number">1</span>]);</span><br><span class="line">            first.add(input[i][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Integer, Node&gt; rootNodes = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Integer index : roots) &#123;</span><br><span class="line">            Node node = <span class="keyword">new</span> Node(index);</span><br><span class="line">            List&lt;Node&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            node.children = list;</span><br><span class="line">            rootNodes.put(index, node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建叶子节点</span></span><br><span class="line">        Set&lt;Integer&gt; leaf = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!roots.contains(input[i][<span class="number">0</span>])) &#123;</span><br><span class="line">                leaf.add(input[i][<span class="number">0</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Map&lt;Integer, Node&gt; leafNodes = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (Integer index : leaf) &#123;</span><br><span class="line">            Node node = <span class="keyword">new</span> Node(index);</span><br><span class="line">            node.children = <span class="keyword">null</span>;</span><br><span class="line">            leafNodes.put(index, node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建关系</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (rootNodes.containsKey(input[i][<span class="number">1</span>])) &#123;</span><br><span class="line">                Node node = rootNodes.get(input[i][<span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">if</span> (rootNodes.containsKey(input[i][<span class="number">0</span>])) &#123;</span><br><span class="line">                    node.children.add(rootNodes.get(input[i][<span class="number">0</span>]));</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    node.children.add(leafNodes.get(input[i][<span class="number">0</span>]));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 层序遍历，打印出结果</span></span><br><span class="line">        <span class="comment">// 首先需要找到根节点</span></span><br><span class="line">        Node root = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, Node&gt; node : rootNodes.entrySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!first.contains(node.getKey())) &#123;</span><br><span class="line">                root = node.getValue();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 层序遍历打印结果</span></span><br><span class="line">        BFS(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">BFS</span><span class="params">(Node root)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Queue&lt;Node&gt; queue = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        Node cur = root;</span><br><span class="line">        queue.add(cur);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            cur = queue.poll();</span><br><span class="line">            arrayList.add(cur.val);</span><br><span class="line">            <span class="keyword">if</span> (cur.children != <span class="keyword">null</span> &amp;&amp; cur.children.size() != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (Node node : cur.children) &#123;</span><br><span class="line">                    queue.add(node);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(arrayList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">public</span> List&lt;Node&gt; children;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>二叉树翻转，写出树的数据结构，并且写前序遍历递归输出树。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> TreeNode1 <span class="title">invertTree</span><span class="params">(TreeNode1 root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        TreeNode1 left = invertTree(root.left);</span><br><span class="line">        TreeNode1 right = invertTree(root.right);</span><br><span class="line">        root.left = right;</span><br><span class="line">        root.right = left;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title">preOrder</span><span class="params">(TreeNode1 root)</span></span>&#123;</span><br><span class="line">        List&lt;Integer&gt; result = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        proOrderHelper(root,result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">proOrderHelper</span><span class="params">(TreeNode1 root, List&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        result.add(root.val);</span><br><span class="line">        proOrderHelper(root.left,result);</span><br><span class="line">        proOrderHelper(root.right,result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">public</span> TreeNode1 left;</span><br><span class="line">    <span class="keyword">public</span> TreeNode1 right;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TreeNode1</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123; val = x; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>三面是工大的师兄，所以整体非常愉快，基本上就是聊天，面试流程如下：</p>
+<ol>
+<li><p>自我介绍；</p>
+</li>
+<li><p>聊一聊工大的一些事，这里略过；</p>
+</li>
+<li><p>聊聊最近的阿里做的项目，针对项目提了很多问题；</p>
+</li>
+<li><p>主要是一些发散性的问题，例如如果让你下线老应用，如何劝说用户转到新应用呢？</p>
+<blockquote>
+<p>既然是要转到新应用，说明老应用可能在维护上或者使用上有很大的问题，亟需解决，所以需要抓住那些影响很大的用户，让他们进行新应用的灰度，解决他们的痛点，然后将这些用户转到新应用后的提效数据可视化，再去劝说其他用户。</p>
+</blockquote>
+</li>
+<li><p>对工作流、统一接入层问了一些相关的问题，整体难度不大。</p>
+</li>
+<li><p>项目中最大的难点是什么？最大的收获是什么？大学期间最难忘的一件事是什么？</p>
+</li>
+<li><p>自己在那件事上有什么收获呢？为什么会这么难忘？</p>
+</li>
+<li><p>最后做了个逻辑题，6个赛道，36匹马，需要几次能得到前三名？</p>
+</li>
+<li><p>剩下就是反问环节啦，没了。</p>
+</li>
+</ol>
+<h2 id="8-5-20-00-21-00-快手-快-star-提前批一面"><a href="#8-5-20-00-21-00-快手-快-star-提前批一面" class="headerlink" title="8.5 20:00 - 21:00 快手 快 star 提前批一面"></a>8.5 20:00 - 21:00 快手 快 star 提前批一面</h2><p>啊，挂掉了，难受死了，今天面试基本上都是问的 Java 基础，我都给忘得差不多了，全是我博客里面写的内容，可惜实习期间没啥时间复习这个，啊啊啊难受死了，这要是3月份面试，简直就是信手拈来，哎，大概总结一下吧：</p>
+<p>HashMap 和 HashTable 的区别？</p>
+<blockquote>
+<ul>
+<li><p><strong>实现方式不一样</strong></p>
+<p>Hashtable继承自 <em>Dictionary</em> 类，而 <em>HashMap</em> 继承自 <em>AbstractMap</em> 类。但二者都实现了 <em>Map</em> 接口。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;   copypublic <span class="keyword">class</span> <span class="symbol">Hashtable</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt; <span class="symbol">extends</span> <span class="symbol">Dictionary</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt;  </span><br><span class="line">&gt;   <span class="symbol">implements</span> <span class="symbol">Map</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt;, <span class="symbol">Cloneable, <span class="symbol">Serializable</span></span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+  <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;   copypublic <span class="keyword">class</span> <span class="symbol">HashMap</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt; <span class="symbol">extends</span> <span class="symbol">AbstractMap</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt;  </span><br><span class="line">&gt;   <span class="symbol">implements</span> <span class="symbol">Map</span>&lt;<span class="symbol">K,<span class="symbol">V</span></span>&gt;, <span class="symbol">Cloneable, <span class="symbol">Serializable</span></span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<ul>
+<li><p><strong>线程安全性不同</strong></p>
+<p>Hashtable 中的方法是Synchronize的，而HashMap中的方法在缺省情况下是非Synchronize的。</p>
+</li>
+<li><p><strong>是否提供contains方法</strong><br>HashMap把Hashtable的contains方法去掉了，改成containsValue和containsKey，因为contains方法容易让人引起误解。<br>Hashtable则保留了contains，containsValue和containsKey三个方法，其中contains和containsValue功能相同。</p>
+</li>
+<li><p><strong>key和value是否允许null值</strong> 【重点！！！可以引申到 fail-fast 和 fail-safe 机制，进而引发到多线程上】</p>
+</li>
+<li><p><strong>迭代器不同</strong></p>
+<p>HashMap 中的 Iterator 迭代器是 fail-fast 的，而 Hashtable 的 Enumerator 不是 fail-fast 的。</p>
+<p>所以，当其他线程改变了HashMap 的结构，如：增删，将会抛出ConcurrentModificationException 异常，而 Hashtable 则不会。[fail-fast 和 fail-safe]</p>
+</li>
+<li><p><strong>扩容机制不同</strong></p>
+<p>当现有容量大于总容量 * 负载因子时，HashMap 扩容规则为<strong>当前容量翻倍</strong>，Hashtable 扩容规则为<strong>当前容量翻倍 + 1</strong>。</p>
+</li>
+<li><p><strong>初始化容量不同</strong></p>
+<p>HashMap 的初始容量为：16，Hashtable 初始容量为：11，两者的负载因子默认都是：0.75。</p>
+</li>
+<li><p><strong>Hash值获取不一样</strong></p>
+<p><code>HashMap</code> 内部使用<code>hash(Object key)</code>扰动函数对 key 的 <code>hashCode</code> 进行扰动后作为 <code>hash</code> 值。<code>HashTable</code> 是直接使用 key 的 <code>hashCode()</code> 返回值作为 hash 值。</p>
+</li>
+</ul>
+</blockquote>
+<p>ConcurrenthashMap 1.8以上的实现方式是什么?</p>
+<blockquote>
+<p><strong>1.8 版本舍弃了 segment，并且大量使用了 synchronized，以及 CAS 无锁操作以保证 ConcurrentHashMap 操作的线程安全性</strong>。</p>
+</blockquote>
+<p>数据库的事务隔离级别有哪些，mysql 默认的隔离级别是哪个，幻读和不可重复读的区别？</p>
+<blockquote>
+<p>数据库的事务隔离级别有：</p>
+<ol>
+<li>读未提交；</li>
+<li>不可重复读；</li>
+<li>可重复读；</li>
+<li>串行化</li>
+</ol>
+<p>mysql 默认的隔离级别是 可重复度，通过 mvcc 实现。</p>
+</blockquote>
+<blockquote>
+<p>幻读是指<strong>当事务不是独立执行时</strong>的一种现象，<strong>一个事务在前后两次查询同一个范围的时候，后一次查询看到了前一次查询没有看到的行。</strong></p>
+<p>事务A读取与搜索条件相匹配的若干行。事务B以插入或删除行等方式来修改事务A的结果集，然后再提交。</p>
+<p>幻读是指当事务不是独立执行时发生的一种现象，例如第一个事务对一个表中的数据进行了修改，比如这种修改涉及到表中的“全部数据行”。同时，第二个事务也修改这个表中的数据，这种修改是向表中插入“一行新数据”。那么，以后就会发生操作第一个事务的用户发现表中还存在没有修改的数据行，就好象发生了幻觉一样.一般解决幻读的方法是增加范围锁RangeS，锁定检索范围为只读，这样就避免了幻读。</p>
+<p>不可重复读：一个事务读取同一条记录2次，得到的结果不一致。</p>
+<p>总结一下：<strong>不可重复读的重点是修改</strong> ，<strong>幻读的重点在于新增或者删除</strong>。</p>
+<p>Mysql 借助 mvcc，解决了不可重复读的问题，但是在 update or insert 的时候，会强制去当前读，此时多版本并发控制是失效的，所以还是会产生幻读。</p>
+<p>产生幻读的原因是，行锁只能锁住行，但是新插入记录这个动作，要更新的是记录之间的“间隙”。因此，为了解决幻读问题，InnoDB只好引入新的锁，也就是间隙锁(Gap Lock)。</p>
+<p>间隙锁和行锁合称next-key lock，每个next-key lock是前开后闭区间。</p>
+<p><strong>间隙锁和next-key lock的引入，帮我们解决了幻读的问题，但同时也带来了一些“困扰”。</strong></p>
+<p><strong>间隙锁的引入，可能会导致同样的语句锁住更大的范围，这其实是影响了并发度的</strong>。</p>
+</blockquote>
+<p>volatile 的特性有哪些？</p>
+<blockquote>
+<ol>
+<li>可见性，利用缓存一致性；</li>
+<li>内存屏障，防止指令重排序。</li>
+</ol>
+</blockquote>
+<p>ThreadLocal 介绍一下？</p>
+<blockquote>
+<ol>
+<li><p>作用：线程间隔离，线程内共享；</p>
+</li>
+<li><p>内部实现是 Thread 去维护 ThreadLocal 与实例的映射Map，也就是说，是一个线程维护一个 map，key 为 ThreadLocal 的变量名，value 为 ThreadLocal 变量的值，并不是一个 ThreadLocal 维护一个 map。</p>
+</li>
+<li><p>ThreadLocalMap 中的 key 对 ThreadLocal 是弱引用！！！</p>
+<p>Q：这里的key对ThreadLocal为弱引用的作用，为何不使用传统的强引用呢？</p>
+<p>A：这里的 key 对 ThreadLocal 采用弱引用，是为了减少内存泄漏的发生。当 ThreadLocal 强引用全部消失时，Entry 中的 key 会变为 null，但此时 value 还是被 map 持有强引用，此时 entry 就是可能会造成内存泄漏，不可用但是可达，无法 gc，针对这个问题，ThreadLocalMap中可以调用 set()、get()、remove()等方法都会触发 expungeStaleEntry机制，将脏 entry清除掉防止内存泄漏。如果像以前使用了强引用，那么当对象使用完 ThreadLocal 变量，ThreadLocal由于一直被 key 持有强引用，无法回收，并且该 Entry 也过期了，导致更大的内存泄漏，并且此时无法通过 expungeStaleEntry 机制解决该问题。<strong>至于造成内存泄漏的原因，根本在于 ThreadLocalMap 和 Thread 拥有同样长的生命周期。</strong></p>
+<p>重要的事情说三遍！用完ThreadLocal最后一定要 remove()、remove()、remove()。</p>
+</li>
+</ol>
+</blockquote>
+<p>ThreadLocal 和 Synchronized 区别？</p>
+<blockquote>
+<p><code>ThreadLocal</code>和<code>synchronized</code>关键字都用于处理多线程并发访问变量的问题，只是二者处理问题的角度和思路不同。</p>
+<ol>
+<li><code>ThreadLocal</code>是一个 Java 类,通过<strong>对当前线程中的局部变量的操作来解决不同线程的变量访问的冲突问题</strong>。所以，<code>ThreadLocal</code>提供了线程安全的共享对象机制，每个线程都拥有其副本。</li>
+<li>Java中的<code>synchronized</code>是一个保留字，它依靠 JVM 的锁机制来实现临界区的函数或者变量的访问中的原子性。在<strong>同步机制</strong>中，通过对象的锁机制保证同一时间只有一个线程访问变量。此时，被用作“锁机制”的变量时多个线程共享的。</li>
+<li>同步机制(<code>synchronized</code>关键字)采用了以“<strong>时间换空间</strong>”的方式，提供一份变量，让不同的线程排队访问。而<code>ThreadLocal</code>采用了“<strong>以空间换时间</strong>”的方式，为每一个线程都提供一份变量的副本，从而实现同时访问而互不影响。</li>
+</ol>
+</blockquote>
+<p>如何会引起 full gc？</p>
+<blockquote>
+<p>老年代的内存满了…</p>
+</blockquote>
+<p>讲一下 cms or g1 在哪个步骤会 stop the world，在 minor gc 时会 stop the world 吗？</p>
+<blockquote>
+<p>在初始标记和最终标记阶段都会 stop the world，在并发标记并没有 stop the world。</p>
+<p>Minor gc 当然会 stop the world，因为它需要标记对象的状态，只是minor gc 只标记新生代中的对象，新生代的空间要远远小于老年代，所以时间很短而已。</p>
+</blockquote>
+<p>讲一下归并排序的过程；</p>
+<blockquote>
+<p>分治思想，分而治之，先单个排序，然后二个排序，然后四个…以此类推。</p>
+</blockquote>
+<p>30 亿的数据，最大不超过 70 亿，每个最多只出现一次，内存 4g 如何处理？</p>
+<blockquote>
+<ol>
+<li>外排</li>
+<li>bitmap，出现的位置标为1，直接读这个数即可。</li>
+</ol>
+</blockquote>
+<p>算法题，剪绳子问题，写出 dp 递推式 和 dp 表；</p>
+<blockquote>
+<p>略</p>
+</blockquote>
+<p>算法题，一个dag，求每个节点到根的最大距离，以及到叶子节点的最大距离。</p>
+<blockquote>
+<p>略</p>
+</blockquote>
+<h2 id="8-9-18-00-19-00-字节-教育团队一面"><a href="#8-9-18-00-19-00-字节-教育团队一面" class="headerlink" title="8.9 18:00 - 19:00 字节 教育团队一面"></a>8.9 18:00 - 19:00 字节 教育团队一面</h2><p>面试开始前出了点小插曲，说话一直有回音，然后处理了几分钟才搞定，这次面试感觉很简单啊… 问的问题非常基础：</p>
+<p>mysql 和 mongodb，然后问了下 MyISAM、Innodb、索引的B+树、事务隔离级别？</p>
+<blockquote>
+<p>MyISAM VS InnoDB</p>
+<p>不同点：</p>
+<ol>
+<li>存储方式。MyISAM 的索引文件（.MYI）和数据文件（.MYD）分开放，而 InnoDB 存放在一起。</li>
+<li>事务支持。MyISAM 不支持事务，但操作具备原子性，InnoDB 支持事务。</li>
+<li>MyISAM 只支持表级锁，InnoDB 支持行锁，锁粒度细化，因此可以支持写并发。</li>
+<li>是否有外键。MyISAM 没有外键，InnoDB 有外键。</li>
+<li>索引类型。MyISAM 采用的是非聚集索引，而 InnoDB 采用了聚集索引。MyISAM 叶节点保存的是指向数据文件的指针，而 InnoDB 保存的就是数据本身。 「 <a href="https://www.cnblogs.com/rgever/p/9736374.html」" target="_blank" rel="noopener">https://www.cnblogs.com/rgever/p/9736374.html」</a></li>
+<li>存储总行数。MyISAM 直接存储总行数，而 InnoDB一个个必须遍历。</li>
+<li>对于AUTO_INCREMENT类型的字段，在MyISAM表中，可以和其他字段一起建立联合索引。而InnoDB中必须包含只有该字段的索引。</li>
+<li>全文索引。MyISAM 支持 fulltext 全文索引，而 InnoDB 不支持。</li>
+<li>由于索引类型的区别，所以在是否必须要有主键上也有差距。<ul>
+<li>MyISAM：允许没有任何索引和主键的表存在，索引都是保存行的地址。</li>
+<li>InnoDB：如果没有设定主键或者非空唯一索引，<strong>就会自动生成一个6字节的主键(用户不可见)</strong>，数据是主索引的一部分，附加索引保存的是主索引的值。</li>
+</ul>
+</li>
+</ol>
+<p>适用场景：</p>
+<p>采用MyISAM引擎</p>
+<ul>
+<li>R/W &gt; 100:1 且update相对较少</li>
+<li>并发不高</li>
+<li>表数据量小</li>
+<li>硬件资源有限</li>
+</ul>
+<p>采用InnoDB引擎</p>
+<ul>
+<li>R/W比较小，频繁更新大字段</li>
+<li>表数据量超过1000万，并发高</li>
+<li>安全性和可用性要求高</li>
+</ul>
+<p>采用Memory引擎</p>
+<ul>
+<li>有足够的内存</li>
+<li>对数据一致性要求不高，如在线人数和session等应用</li>
+<li>需要定期归档数据</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>其他问题比较简单，不过多叙述。</p>
+</blockquote>
+<p>计算机网络 5 层模型，网络层干啥的，传输层干啥的，tcp 和 udp 区别，流量控制如何控制的，tcp 连接的三次握手和四次挥手，https 过程 ？</p>
+<blockquote>
+<p>见 <a href="https://jeromememory.github.io/2020/08/18/%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5url%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html">地址栏输入 url 后发生了什么</a></p>
+</blockquote>
+<p>进程间通信方式？</p>
+<blockquote>
+<p>进程间通信方式：「来自于：<a href="https://mp.weixin.qq.com/s/mblyh6XrLj1bCwL0Evs-Vg」" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mblyh6XrLj1bCwL0Evs-Vg」</a></p>
+<ol>
+<li>管道</li>
+<li>消息队列</li>
+<li>共享内存</li>
+<li>信号量</li>
+<li>信号</li>
+<li>Socket</li>
+</ol>
+<p>由于每个进程的用户空间都是独立的，不能相互访问，这时就需要借助内核空间来实现进程间通信，原因很简单，每个进程都是共享一个内核空间。</p>
+<p>Linux 内核提供了不少进程间通信的方式，其中最简单的方式就是管道，管道分为「匿名管道」和「命名管道」。</p>
+<p><strong>匿名管道</strong>顾名思义，它没有名字标识，匿名管道是特殊文件只存在于内存，没有存在于文件系统中，shell 命令中的「<code>|</code>」竖线就是匿名管道，通信的数据是<strong>无格式的流并且大小受限</strong>，通信的方式是<strong>单向</strong>的，数据只能在一个方向上流动，如果要双向通信，需要创建两个管道，再来<strong>匿名管道是只能用于存在父子关系的进程间通信</strong>，匿名管道的生命周期随着进程创建而建立，随着进程终止而消失。</p>
+<p><strong>命名管道</strong>突破了匿名管道只能在亲缘关系进程间的通信限制，因为使用命名管道的前提，需要在文件系统创建一个类型为 p 的设备文件，那么毫无关系的进程就可以通过这个设备文件进行通信。另外，不管是匿名管道还是命名管道，进程写入的数据都是<strong>缓存在内核</strong>中，另一个进程读取数据时候自然也是从内核中获取，同时通信数据都遵循<strong>先进先出</strong>原则，不支持 lseek 之类的文件定位操作。</p>
+<p><strong>消息队列</strong>克服了管道通信的数据是无格式的字节流的问题，消息队列实际上是保存在内核的「消息链表」，消息队列的消息体是可以用户自定义的数据类型，发送数据时，会被分成一个一个独立的消息体，当然接收数据时，也要与发送方发送的消息体的数据类型保持一致，这样才能保证读取的数据是正确的。消息队列通信的速度不是最及时的，毕竟<strong>每次数据的写入和读取都需要经过用户态与内核态之间的拷贝过程。</strong></p>
+<p><strong>共享内存</strong>可以解决消息队列通信中用户态与内核态之间数据拷贝过程带来的开销，<strong>它直接分配一个共享空间，每个进程都可以直接访问</strong>，就像访问进程自己的空间一样快捷方便，不需要陷入内核态或者系统调用，大大提高了通信的速度，享有<strong>最快</strong>的进程间通信方式之名。但是便捷高效的共享内存通信，<strong>带来新的问题，多进程竞争同个共享资源会造成数据的错乱。</strong></p>
+<p>那么，就需要<strong>信号量</strong>来保护共享资源，以确保任何时刻只能有一个进程访问共享资源，这种方式就是互斥访问。<strong>信号量不仅可以实现访问的互斥性，还可以实现进程间的同步</strong>，信号量其实是一个计数器，表示的是资源个数，其值可以通过两个原子操作来控制，分别是 <strong>P 操作和 V 操作</strong>。</p>
+<p>与信号量名字很相似的叫<strong>信号</strong>，它俩名字虽然相似，但功能一点儿都不一样。信号是进程间通信机制中<strong>唯一的异步通信机制</strong>，信号可以在应用进程和内核之间直接交互，内核也可以利用信号来通知用户空间的进程发生了哪些系统事件，信号事件的来源主要有硬件来源（如键盘 Cltr+C ）和软件来源（如 kill 命令），一旦有信号发生，<strong>进程有三种方式响应信号 1. 执行默认操作、2. 捕捉信号、3. 忽略信号</strong>。有两个信号是应用进程无法捕捉和忽略的，即 <code>SIGKILL</code> 和 <code>SEGSTOP</code>，这是为了方便我们能在任何时候结束或停止某个进程。</p>
+<p>前面说到的通信机制，都是工作于同一台主机，如果<strong>要与不同主机的进程间通信，那么就需要 Socket 通信了</strong>。Socket 实际上不仅用于不同的主机进程间通信，还可以用于本地主机进程间通信，可根据创建 Socket 的类型不同，分为三种常见的通信方式，一个是基于 TCP 协议的通信方式，一个是基于 UDP 协议的通信方式，一个是本地进程间通信方式。</p>
+</blockquote>
+<p>什么是死锁？</p>
+<blockquote>
+<ol>
+<li>互斥条件：一个资源每次只能被一个进程使用。</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li>不剥夺条件:进程已获得的资源，在末使用完之前，不能强行剥夺。</li>
+<li>循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+<p>这四个条件是死锁的必要条件，只要系统发生死锁，这些条件必然成立，而只要上述条件之一不满足，就不会发生死锁。</p>
+<p>如何避免死锁：</p>
+<ol>
+<li>银行家算法：分配资源前先评估风险，会不会在分配后导致死锁。</li>
+<li>顺序加锁，这样能防止死锁现象。</li>
+</ol>
+</blockquote>
+<p>链表和数组的区别是什么？</p>
+<blockquote>
+<p><strong>数组优点</strong></p>
+<ul>
+<li>随机访问性强</li>
+<li>查找速度快</li>
+</ul>
+<p><strong>数组的缺点</strong></p>
+<ul>
+<li>插入和删除效率低</li>
+<li>可能浪费内存</li>
+<li>内存空间要求高，必须有足够的连续内存空间</li>
+<li>扩容麻烦</li>
+</ul>
+<p><strong>链表优点</strong></p>
+<ul>
+<li>插入删除速度快</li>
+<li>内存利用率高，不会浪费内存</li>
+<li>大小没有固定，拓展很灵活。</li>
+</ul>
+<p><strong>链表缺点</strong></p>
+<ul>
+<li>不能随机查找，必须从第一个开始遍历，查找效率低</li>
+</ul>
+</blockquote>
+<p>算法题：</p>
+<p>给定 一堆负数 + 一堆 0 + 一堆正数，求最后出现的负数和最早出现的正数的位置；</p>
+<blockquote>
+<p>二分，代码略…</p>
+</blockquote>
+<p>岛屿问题，求最大的岛屿的面积。</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&gt; 		<span class="keyword">public</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">&gt;     <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">isLands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span></span>&#123;</span><br><span class="line">&gt;         <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">&gt;         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; grid.length;i++)&#123;</span><br><span class="line">&gt;             <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j &lt; grid[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">&gt;                 <span class="keyword">if</span>(grid[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">&gt;                     dfs(grid,i,j);</span><br><span class="line">&gt;                     max = Math.max(max,count);</span><br><span class="line">&gt;                     count = <span class="number">0</span>;</span><br><span class="line">&gt;                 &#125;</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;         &#125;</span><br><span class="line">&gt;         <span class="keyword">return</span> max;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;     </span><br><span class="line">&gt;     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">char</span>[][] grid,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">&gt;         <span class="keyword">if</span>(i &lt; <span class="number">0</span> || j &lt; <span class="number">0</span> || i &gt;= grid.length || j &gt;= grid[<span class="number">0</span>].length || grid[i][j]) <span class="keyword">return</span>;</span><br><span class="line">&gt;         grid[i][j] = <span class="string">'0'</span>;</span><br><span class="line">&gt;         count++;</span><br><span class="line">&gt;         dfs(grid,i+<span class="number">1</span>,j);</span><br><span class="line">&gt;         dfs(grid,i,j+<span class="number">1</span>);</span><br><span class="line">&gt;         dfs(grid,i-<span class="number">1</span>,j);</span><br><span class="line">&gt;         dfs(grid,i,j-<span class="number">1</span>);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<h2 id="8-13-阿里-CFO-产品技术部实习转正答辩-「已-offer」"><a href="#8-13-阿里-CFO-产品技术部实习转正答辩-「已-offer」" class="headerlink" title="8.13 阿里 CFO 产品技术部实习转正答辩 「已 offer」"></a>8.13 阿里 CFO 产品技术部实习转正答辩 「已 offer」</h2><p>入职两个半月，转正答辩主要就是讲一下两个半月的收获，然后 hr 和同部门 P9 问一些 ppt 相关的问题，整体比较顺利，具体问题就略过了。</p>
+<h2 id="8-17-20-00-21-00-字节-教育团队二面"><a href="#8-17-20-00-21-00-字节-教育团队二面" class="headerlink" title="8.17 20:00 - 21:00 字节 教育团队二面"></a>8.17 20:00 - 21:00 字节 教育团队二面</h2><p>感觉字节的面试都很无聊啊… 完全不挖掘面试者的潜力，这次面试体现的尤为明显，上来问一下阿里实习的项目，问了几分钟就不问了，并且都没给自我介绍的机会，然后就开始问些常规的面经题目「传说中的背诵题」，可惜我压根没怎么复习，答得不是很好，最后就是写算法，这次还好bug free了，还要求必须能跑通，真的严格，也可能是我前面发挥的太差了，所以最后要求这么严格了吧。</p>
+<p>面完之后，我决定还是这周实习离职了，再这样不好好复习，估计一个offer都拿不到了…</p>
+<p>记录一下除项目外的一些问题：</p>
+<ol start="2">
+<li>tcp 关闭连接 time_wait 为什么是 2 msl，如果有大量的 time_wait 会造成什么现象，如何避免呢？「没说清楚」</li>
+</ol>
+<blockquote>
+<p>我们来先解释一下为什么需要 time_wait 这个状态：</p>
+<ul>
+<li>1.允许老的重复报文分组在网络中消逝。</li>
+<li>2.保证TCP全双工连接的正确关闭。</li>
+</ul>
+<p>第一个理由是假如我们在<code>192.168.1.1:5000</code>和<code>39.106.170.184:6000</code>建立一个TCP连接，一段时间后我们关闭这个连接，再基于相同插口建立一个新的TCP连接，这个新的连接称为前一个连接的化身。老的报文很有可能由于某些原因迟到了，那么新的TCP连接很有可能会将这个迟到的报文认为是新的连接的报文，而导致数据错乱。<strong>为了防止这种情况的发生TCP连接必须让TIME_WAIT状态持续<code>2MSL</code>，在此期间将不能基于这个插口建立新的化身</strong>，让它有足够的时间使迟到的报文段被丢弃。</p>
+<p>第二个理由是因为如果主动关闭方最终的<code>ACK</code>丢失，那么服务器将会重新发送那个<code>FIN</code>,以允许主动关闭方重新发送那个<code>ACK</code>。要是主动关闭方不维护<code>2MSL</code>状态，那么主动关闭将会不得不响应一个<code>RST</code>报文段，而服务器将会把它解释为一个错误，导致TCP连接没有办法完成全双工的关闭，而进入半关闭状态。</p>
+<p>第一个理由的确 1 MSL 就可以了，但是第二个理由是需要 2 MSL，因为首先服务器要通过 1 MSL判断客户端的 close 是否正确到达，如果没有正确到达，需要重传，那此时客户端也是需要 1 MSL 获得重传的 FIN 包的，所以需要 2MSL。</p>
+</blockquote>
+<blockquote>
+<p>如果存在大量的 time_wait，说明客户端的连接太多了，2MSL 也就是 60 s，其实 time_wait 状态下的 tcp 连接对于系统消耗影响很小，真正对系统产生影响的有：</p>
+<ol>
+<li>源端口的数量</li>
+<li>文件描述符的数量</li>
+</ol>
+<p>解决方案：</p>
+<ul>
+<li>方案一：使用 TCP 长连接替代短连接</li>
+<li>方案二：增加端口数量、使用 <code>net.ipv4.tcp_tw_reuse</code> 选项，通过 TCP 的时间戳选项允许内核重用处于 <code>TIME_WAIT</code> 状态的 TCP 连接；</li>
+<li>方案三：<strong>开启tw回收： net.ipv4.tcp_tw_recycle = 1</strong>，直接回收。</li>
+</ul>
+</blockquote>
+<p>DNS解析的过程？「没说清楚」CNAME 是什么？权威域名服务器有什么用？</p>
+<blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghuncaj4rvj31jn0u0hdu.jpg" alt="image-20200818081245128"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghune5jdfxj31920u0kjm.jpg" alt="image-20200818081429783"></p>
+</blockquote>
+<blockquote>
+<p>CNAME 可以理解成域名的别名，最大的好处就是当域名和对应的ip发生变化时，对用户来说是无感和透明化的，不需要改变域名依然可以访问。</p>
+<p>权威域名服务器就存储着我们需要的域名指向的ip地址。</p>
+</blockquote>
+<p>操作系统方面，虚拟内存和物理内存的区别，虚拟内存和物理内存如何映射的，底层如何实现的，我们在程序中拿到变量的地址是指虚拟地址还是物理地址呢？</p>
+<blockquote>
+<p>物理内存地址是主存真实的地址，而虚拟内存则是作为一个抽象层，成为了进程和物理内存的桥梁。</p>
+<p>虚拟内存和物理内存是通过 MMU(Memory Management Unit，内存管理单元) 来进行转换和映射的，内存管理单元中最重要的数据结构就是<strong>页表</strong>，在页表中，虚拟地址有三种状态：未被使用、未被缓存、已缓存：</p>
+<ol>
+<li>如果是未被使用，则该虚拟地址并不存在于磁盘或者主存中；</li>
+<li>如果是未被缓存的状态，说明虚拟地址此时对应的真实地址为磁盘地址，如果此时进程去访问未被缓存的虚拟地址，会触发<strong>缺页中断</strong>，操作系统会将磁盘上未被缓存的虚拟页加载到主存中，然后更新页表；</li>
+<li>如果是已缓存的状态，说明虚拟地址此时对应的地址就是物理内存，也就是我们的主存。</li>
+</ol>
+<p>总而言之，虚拟地址的好处有：</p>
+<ul>
+<li>整合了磁盘和主存的优势，为进程提供了足够快且容量大的内存空间；</li>
+<li>是连续的地址空间；</li>
+<li>可以懒加载，只有在被访问时，才将磁盘中的页加载到主存中，同时可以在内存吃紧的情况下，将主存中的物理内存页驱逐到磁盘中，进行<strong>页面替换</strong>；</li>
+<li>更好的共享内存，直接复制页表即可；</li>
+<li>安全性更好，可以控制进程对物理内存的访问，隔离不同进程的访问权限，提高系统的安全性。</li>
+</ul>
+<p>我们在程序中拿到变量的地址当然就是指虚拟内存的地址！</p>
+</blockquote>
+<p>为什么需要线程同步机制，同步机制有哪些，synchronized 和 ReentrantLock 的区别是什么？各自的使用场景有哪些？读写锁是什么？读写锁适合什么场景？读写锁的锁降级过程讲一下？写少读多造成写饥饿的问题如何解决？</p>
+<blockquote>
+<p>没有线程同步机制，在访问共享资源时就很可能造成线程不安全的问题，Java 中最常用的同步机制就是互斥同步「synchronized」和非阻塞同步「cas」，当然还有一种保证线程安全的方法就是 ThreadLocal。</p>
+<p>synchronized 和 ReentrantLock 的区别：</p>
+<ol>
+<li>synchronized 只支持非公平锁，ReentrantLock同时支持非公平锁和公平锁；</li>
+<li>synchronized是jvm层面的实现，ReentrantLock 是 jdk 层面的实现；</li>
+<li>synchronized 不支持中断，ReentrantLock 支持；</li>
+<li>synchronized 没有条件队列，而 ReentrantLock 是有多个条件队列的。</li>
+</ol>
+<p>synchronized 适用于不需要以上功能的锁同步，因为其是 jvm 支持的，使用起来更加方便，并且现在也有 无锁- 偏向锁 - 轻量级锁 - 重量级锁 的锁升级过程，引入了 CAS，性能上与 ReentrantLock 基本差不多了。</p>
+<p>读写锁，ReentrantReadWriteLock，读锁为共享锁，写锁为独占锁，通过 state 的值来控制同步，同时有 4 个状态：</p>
+<ol>
+<li>Cancelled：由于超时或中断，节点已被取消；</li>
+<li>Signal：表示下一个节点是通过park阻塞的，需要通过unpark唤醒；</li>
+<li>Condition：表示线程在等待条件变量（先获取锁，加入到条件等待队列，然后释放锁，等待条件变量满足条件；只有重新获取锁之后才能返回）；</li>
+<li>Propagate：表示后续结点会传播唤醒的操作，共享模式下起作用。</li>
+</ol>
+<p>读写锁适合读多写少的场景，读写锁中的锁降级是指可以将写锁降级为读锁，其实现方式是：先获取写入锁，然后获取读取锁，最后释放写入锁。</p>
+<p>读多写少造成写饥饿问题可以通过 StampedLock 解决，将读锁变为乐观读锁，也就是 cas 的方式，这样就可以解决写饥饿问题。</p>
+</blockquote>
+<p>数据结构，HashMap底层是什么，数组、链表、红黑树分别什么作用，一个数是如何存入hashMap中的，扩容的过程讲一下？</p>
+<blockquote>
+<p>底层数据结构：红黑树+链表+数组；</p>
+<p>值存入 HashMap 的步骤为：计算 hashcode，扰动函数处理后找到对应的 hash 桶，如果冲突，则去找相应的链表 or 红黑树节点；</p>
+<p>扩容的过程：<strong>1. 寻找扩容后数组的大小以及新的扩容阈值，2. 将原有哈希表拷贝到新的哈希表中</strong>。</p>
+</blockquote>
+<p>写一道算法题，有序数组，求target值的个数，要求二分。</p>
+<blockquote>
+<p>二分变形</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] searchRange(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;searchLeft(nums,target),searchRight(nums,target)&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchLeft</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="comment">// 防止溢出</span></span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt;= target) right = mid - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> pos = (left == nums.length) ? nums.length - <span class="number">1</span> : left;</span><br><span class="line">        <span class="keyword">if</span>(nums[pos] != target) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> left;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchRight</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="comment">// 防止溢出</span></span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt;= target) left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 同上分析</span></span><br><span class="line">        <span class="comment">// 最左和最右只有一个区别，就是 left 换成了 right ，nums.length 换成了 -1</span></span><br><span class="line">        <span class="keyword">int</span> pos = (right == -<span class="number">1</span>)? <span class="number">0</span> : right;</span><br><span class="line">        <span class="keyword">if</span>(nums[pos] != target) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-19-20-00-21-00-快手-Kcode-直通一面"><a href="#8-19-20-00-21-00-快手-Kcode-直通一面" class="headerlink" title="8.19 20:00 - 21:00 快手 Kcode 直通一面"></a>8.19 20:00 - 21:00 快手 Kcode 直通一面</h2><p>这轮面试，全程在探测学习的广度，跟以往的面试有点不同，主要问题如下：</p>
+<p>聊一下 Java 基础，集合类有哪些，全部说一遍</p>
+<blockquote>
+<p>四大类吧，分别是List、Queue、Set、Map</p>
+<ul>
+<li>List：常见的有 ArrayList、LinkedList、Vector、CopyOnWriteArrayList</li>
+<li>Queue：常见的有 ArrayDeque、LinkedList、PriorityQueue、ArrayBlockingQueue、LinkedBlockingQueue、DelayBlockingQueue等等</li>
+<li>Map：HashMap、LinkedHashMap、TreeMap、ConcurrentHashMap等等</li>
+<li>Set：HashSet、LinkedHashSet、TreeSet等等</li>
+</ul>
+</blockquote>
+<p>场景题，给一个数n，提供一个能够计算其阶乘的微服务，说一下会遇到的问题，以及如何解决，如何落地实现？</p>
+<blockquote>
+<p>我说了几点：</p>
+<ul>
+<li>数字过大，可以分组计算；</li>
+<li>计算慢，可以采用多线程；</li>
+<li>可以使用 currentHashMap，存储已经算好的数据，key为值，value为答案。</li>
+</ul>
+</blockquote>
+<p>详细讲一下 kafka，说一下阿里的 rocketmq 内部是如何实现的，如何保证更稳定？</p>
+<blockquote>
+<p>与 <strong>Kafka</strong> 的不同 <a href="https://juejin.im/post/5d5b9e90f265da03e4676198" target="_blank" rel="noopener">https://juejin.im/post/5d5b9e90f265da03e4676198</a></p>
+<ul>
+<li><p>存储形式</p>
+<ul>
+<li><p>Kafka采用 partition，每个 topic 的每个 partition 对应一个文件。顺序写入，定时刷盘。但一旦单个 broker 的 partition 过多，则顺序写将退化为随机写，Page Cache 脏⻚过多，频繁触发缺⻚中断， 性能大幅下降。 </p>
+</li>
+<li><p>RocketMQ 采用 CommitLog + ConsumeQueue，单个 broker 所有 topic 在 CommitLog 中顺序写， Page Cache 只需保持最新的⻚面即可。同时每个 topic 下的每个 queue 都有一个对应的 ConsumeQueue 文件作为索引。ConsumeQueue 占用 Page Cache 极少，刷盘影响较小。 </p>
+</li>
+</ul>
+</li>
+<li><p>存储可靠性    </p>
+<ul>
+<li>RocketMQ支持异步刷盘，同步刷盘，同步Replication，异步Replication。 </li>
+<li>Kafka使用异步刷盘，异步Replication。</li>
+</ul>
+</li>
+<li><p>顺序消息</p>
+<ul>
+<li>Kafka和RocketMQ都仅支持单topic分区有序。</li>
+<li>RocketMQ官方虽宣称支持严格有序，但方式为使用单个分区。</li>
+</ul>
+</li>
+<li><p>延时消息</p>
+<ul>
+<li><p>RocketMQ支持固定延时等级的延时消息，等级可配置。 </p>
+</li>
+<li><p>kafka 没有完全支持延时消息，但是有延时操作「延时生产、延时拉取、延时数据删除」，可以自己实现延时消息，下文我有介绍两个方法来实现。</p>
+<p>补充：</p>
+<ol>
+<li>延时拉取：Kafka在处理拉取请求时，会先读取一次日志文件，如果收集不到足够多（由参数fetch.min.bytes配置，默认值为1）的消息，那么就会创建一个延时拉取操作以等待拉取到足够数量的消息。当延时拉取操作执行时，会再读取一次日志文件，然后将拉取结果返回给 follower 副本，如果没有延时消费，那么当 leader 副本没有新消息时，follower 副本一直拉取，是很浪费资源的。</li>
+<li>延时生产：在使用生产者客户端发送消息的时候将 acks 参数设置为-1，那么就意味着需要等待ISR集合中的所有副本都确认收到消息之后才能正确地收到响应的结果，或者捕获超时异常。这部分就是延时生产操作。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>消息过滤</p>
+<ul>
+<li>RocketMQ执行过滤是在Broker端，支持tag过滤及自定义过滤逻辑。 </li>
+<li>Kafka不支持Broker端的消息过滤，需要在消费端自定义实现。</li>
+</ul>
+</li>
+<li><p>消息失败重试</p>
+<ul>
+<li>RocketMQ支持定时重试，每次重试间隔逐渐增加。 </li>
+<li>Kafka不支持重试。</li>
+</ul>
+</li>
+<li><p>消息投递实时性</p>
+<ul>
+<li>RocketMQ 使用长轮询。</li>
+<li>Kafka 使用短轮询。</li>
+</ul>
+</li>
+<li><p><strong>DLQ</strong>(<strong>dead letter queue</strong>) </p>
+<ul>
+<li><p>RocketMQ通过DLQ来记录所有消费失败的消息。</p>
+</li>
+<li><p>Kafka无DLQ。Spring等第三方工具有实现，方式为将失败消息写入一个专⻔的topic。 </p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>回溯消费</p>
+<ul>
+<li>RocketMQ支持按照时间回溯消费，实现原理与Kafka相同。 </li>
+<li>Kafka需要先根据时间戳找到offset，然后从offset开始消费。</li>
+</ul>
+</li>
+<li><p>事务</p>
+<ul>
+<li>RocketMQ支持事务消息，采用二阶段提交+ broker 定时回查。但也只能保证生产者与broker的一 致性，broker与消费者之间只能单向重试。即保证的是最终一致性。</li>
+<li>Kafka从0.11版本开始支持事务消息，除支持最终一致性外，还实现了消息Exactly Once语义(单个 partition)。</li>
+</ul>
+</li>
+<li><p>服务发现</p>
+<ul>
+<li>RocketMQ自己实现了namesrv。 </li>
+<li>Kafka使用ZooKeeper。</li>
+</ul>
+</li>
+<li><p>高可用</p>
+<ul>
+<li>RocketMQ在高可用设计上粒度只控制在Broker。其保证高可用是通过master-slave主从复制来解决的。</li>
+<li>Kafka控制高可用的粒度是放在分区上。每个topic的leader分区和replica分区都可以在所有broker 上负载均衡的存储。</li>
+</ul>
+<p>Kafka的这种设计相比RocketMQ这种主从复制的设计有以下好处:</p>
+<p>Kafka中不需要设置从broker，所有的broker都可以收发消息。负载均衡也做的更好。 Kafka的分区选举是自动做的，RocketMQ需要自己指定主从关系。 Kafka分区的复制份数指定为N，则可以容忍N-1个节点的故障。发生故障只需要分区leader 选举下即可，效率很高。</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>所以说，rocketmq 在对消息失败重试、消息过滤、延时消息等方面做得更好，相比 kafka 来说可靠性更强一点。</p>
+</blockquote>
+<p>kafka 中延迟队列和事务的处理是如何做的？</p>
+<blockquote>
+<p>kafka 中实现延时的两个方案「eg：用户下单一小时后自动推送需要评价的消息」</p>
+<ol>
+<li><p>在发送延时消息的时候并不是先投递到要发送的真实主题中，而是先投递到 kafka 的内部主题（如 delay_topic 中），然后这些内部主题对用户不可见，通过一个自定义的服务拉取这些内部主题中的消息「可以使用 DelayQueue 」，并将满足条件的消息投递到真实主题中去。</p>
+<p>这个方案的难点是内部主题如何分类，可以根据不同的延时等级来进行分类，比如设定5s、10s、1min、2min这种延时递增的延时等级，根据延时等级投递到不同的主题中去，但是这个会牺牲掉一定的延时误差。</p>
+</li>
+<li><p>第二个方案就是采用时间轮，将延时消息放置到文件中，然后使用懒加载机制，加载时间格附近的文件。</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>kafka事务处理原理：</p>
+<p><a href="https://www.cnblogs.com/wangzhuxing/p/10125437.html" target="_blank" rel="noopener">https://www.cnblogs.com/wangzhuxing/p/10125437.html</a></p>
+<p><a href="https://zhmin.github.io/2019/05/20/kafka-transaction/" target="_blank" rel="noopener">https://zhmin.github.io/2019/05/20/kafka-transaction/</a></p>
+<p>典型的分布式事务处理，kafka 采用的是两阶段提交，引入了一个中间角色：Transaction Coordinator 来专门处理事务。</p>
+</blockquote>
+<p>最近有看什么书吗？自己是如何学习的？</p>
+<blockquote>
+<p>略</p>
+</blockquote>
+<p>两道算法题：</p>
+<ul>
+<li>计算数组的小和，要求时间复杂度为O(nlogn)，空间复杂度为O(n)「归并变形」</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 快手秋招;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">First</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] res;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        <span class="keyword">int</span> n = Integer.parseInt(br.readLine());</span><br><span class="line">        String[] s = br.readLine().trim().split(<span class="string">" "</span>);</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n ;i++)&#123;</span><br><span class="line">            nums[i] = Integer.parseInt(s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">        sort(nums,<span class="number">0</span>,nums.length - <span class="number">1</span>);</span><br><span class="line">        System.out.println(sum);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start,<span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(start &gt;= end)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = start + ((end - start) / <span class="number">2</span>);</span><br><span class="line">        sort(nums,start,mid);</span><br><span class="line">        sort(nums,mid + <span class="number">1</span>,end);</span><br><span class="line">        merge(nums,start,mid,end);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> low,<span class="keyword">int</span> mid,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = low,j = mid + <span class="number">1</span>,k = low;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p = low;p &lt;= high; p++)&#123;</span><br><span class="line">            res[p] = nums[p];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= mid &amp;&amp; j &lt;= high)&#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i] &lt;= res[j])&#123;</span><br><span class="line">                sum += (high - j + <span class="number">1</span>) * res[i];</span><br><span class="line">            &#125;</span><br><span class="line">            nums[k++] = res[i] &gt; res[j] ? res[j++] : res[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= mid)&#123;</span><br><span class="line">            nums[k++] = res[i++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(j &lt;= high)&#123;</span><br><span class="line">            nums[k++] = res[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>给定一个数组，数组中正整数乱序，调整数组中数字顺序，使得任一奇数在所有偶数前，任一偶数在所有奇数后。「双指针」</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">First</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> q = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(p &lt;= q)&#123;</span><br><span class="line">            <span class="keyword">while</span>(p &lt;= q &amp;&amp; nums[p] % <span class="number">2</span> != <span class="number">0</span> )&#123;</span><br><span class="line">                p++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(p &lt;= q &amp;&amp; nums[q] % <span class="number">2</span> == <span class="number">0</span>)&#123;</span><br><span class="line">                q--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p &lt;= q)&#123;</span><br><span class="line">                swap(nums,p,q);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">        nums[i] = nums[j];</span><br><span class="line">        nums[j] = temp;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-20-20-00-20-44-拼多多-精英计划一面「已挂」"><a href="#8-20-20-00-20-44-拼多多-精英计划一面「已挂」" class="headerlink" title="8.20 20:00 - 20:44 拼多多 精英计划一面「已挂」"></a>8.20 20:00 - 20:44 拼多多 精英计划一面「已挂」</h2><p>这一轮面试，是秋招以来面的最短的，聊天大概只聊了20分钟左右，然后一道图论的算法题没写出来，应该是凉了：</p>
+<p>聊了聊网络方面的知识，tcp为什么可靠，和udp的区别，序号的作用除了可靠性还有什么？</p>
+<blockquote>
+<p>TCP的可靠机制主要通过以下几个方法实现：</p>
+<ol>
+<li><strong>校验</strong>「通过校验和字段确认」、</li>
+<li><strong>序号</strong>「每个报文段（segment）都会有一个序号，供上层的应用层检验」、</li>
+<li><strong>确认</strong>「tcp的首部的确认号是希望对方传的下一个报文段的第一个字节的序号」</li>
+<li><strong>重传</strong>机制「超时以及冗余ack，超时很好理解，冗余 ack 在拥塞控制中也有用到，也就是快速重传机制」。</li>
+</ol>
+<p>当然，TCP面向连接、流量控制、拥塞控制同样使得其具有可靠性。</p>
+</blockquote>
+<blockquote>
+<p>tcp 和 udp 的区别：</p>
+<p>tcp：面向连接的传输控制协议，提供了一条全双工的可靠传输信道，主要解决传输可靠、有序、无丢失和不重复的问题，主要特点有：</p>
+<ol>
+<li>面向连接；</li>
+<li>每一条 tcp 连接都是点对点；</li>
+<li>提供可靠的交付服务，保证传送数据的无差错、不丢失、不重复且有序；</li>
+<li>提供全双工通信，两端都设有接收缓存和发送缓存；</li>
+<li>面向字节流。</li>
+</ol>
+<p>udp：无连接的非可靠的传输控制协议，在 IP 层上提供两个附加功能：多路复用和对数据的错误检查。主要特点：</p>
+<ol>
+<li>无连接；</li>
+<li>提供最大努力交付，但是不提供可靠的交付服务，没有流量控制、拥塞控制，也是点对点的；</li>
+<li>分组首部开销小，tcp 有 20 个字节的首部开销，但是 udp 只有 8 个；</li>
+<li>面向报文（datagram）。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>序号除了在可靠机制中起到作用，在流量控制中，使用滑动窗口算法时也是通过序号来进行窗口的移动。</p>
+</blockquote>
+<p>中台的概念?</p>
+<blockquote>
+<p>个人理解，中台就是通过沉淀、迭代和组件化地输出服务于不同业务场景的通用能力，作为前台业务运营和提供专业能力的共享平台。建设中台的原则，我认为需要有几下几点:</p>
+<ol>
+<li>通用性。标准统一，实现数据是打通的，可用的；</li>
+<li>组件化。以组件化的形式让前台业务可以直接使用，需要针对共用服务进行抽象设计。通过抽象出的组件化服务提供，前台业务端可以以组合挑选的方式“按需取件”，减少重复建设得以实现；</li>
+<li>可复用。可以面向多个业务；</li>
+<li>可共享。可以向多个部⻔提供服务；</li>
+<li>灵活扩展。在业务量激增时，可以扛住高并发。</li>
+</ol>
+</blockquote>
+<p>然后就是 Java 基础的一些知识点了，比如为什么需要垃圾回收，垃圾回收的策略有哪些，具体讲讲；</p>
+<blockquote>
+<p>首先是为何需要垃圾回收？</p>
+<p>在 jvm 中，有堆、虚拟机栈、本地方法栈、程序计数器、方法区这 5 块，其中虚拟机栈、本地方法栈、程序计数器是随着线程而生，随着线程而死的，是不需要我们过多考虑垃圾回收的，而对于堆、方法区这些公共区域来说，如果不进行垃圾回收，那很多无用的对象、无用的类和常量就会占满堆和方法区的内存空间，所以需要垃圾回收。</p>
+</blockquote>
+<blockquote>
+<p>垃圾回收算法：</p>
+<ol>
+<li>标记清除。先标记后清除，标记的过程就是遍历 oopMap，找到 gc roots相关的引用链对应的对象，确定对象的状态，然后进行清除，容易产生内存碎片；</li>
+<li>复制算法。主要是处理朝生夕死的新生代，将新生代的内存分为一个 Eden 区和两个 Survivor 区，标记之后不需要一个个清除，直接把还存活的对象复制到 Survivor 区，然后统一把剩下的对象全部清除，没有内存碎片问题；</li>
+<li>标记整理。先标记后整理，在回收的时候会适当的进行对象移动，减少空间碎片。</li>
+<li>分代算法，标记整理算法和复制算法结合。</li>
+</ol>
+</blockquote>
+<p>然后就是做题了，这次是个图论题，感觉自己很虚，哎，总想着出原题，导致自己不是非常专心的想问题，有舍就有得吧… </p>
+<p>题目是：给定一些汇率的转换公式，比如 USA = ７CHN，等等，让你求任意两个币种之间的汇率。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 拼多多秋招.面试;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.tools.javac.util.Pair;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Conversion</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String fromCurrency;</span><br><span class="line">    <span class="keyword">public</span> String toCurrency;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span> rate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Conversion</span><span class="params">(String fromCurrency, String toCurrency, <span class="keyword">double</span> rate)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.fromCurrency = fromCurrency;</span><br><span class="line">        <span class="keyword">this</span>.toCurrency = toCurrency;</span><br><span class="line">        <span class="keyword">this</span>.rate = rate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, Map&lt;String, Double&gt;&gt; nodes = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 转换输入</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> conversions 输入数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fromInput</span><span class="params">(List&lt;Conversion&gt; conversions)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Conversion conversion : conversions) &#123;</span><br><span class="line">            String fromCurrency = conversion.fromCurrency;</span><br><span class="line">            String toCurrency = conversion.toCurrency;</span><br><span class="line">            <span class="keyword">double</span> rate = conversion.rate;</span><br><span class="line"></span><br><span class="line">            Map&lt;String, Double&gt; map1 = nodes.getOrDefault(fromCurrency, <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">            map1.put(toCurrency, rate);</span><br><span class="line">            nodes.put(fromCurrency, map1);</span><br><span class="line"></span><br><span class="line">            Map&lt;String, Double&gt; map2 = nodes.getOrDefault(toCurrency, <span class="keyword">new</span> HashMap&lt;&gt;());</span><br><span class="line">            map2.put(fromCurrency, <span class="number">1</span> / rate);</span><br><span class="line">            nodes.put(toCurrency, map2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * BFS 遍历</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> fromCurrency 币种一</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> toCurrency   币种二</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 汇率</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Double <span class="title">getRate</span><span class="params">(String fromCurrency, String toCurrency)</span> </span>&#123;</span><br><span class="line">        Queue&lt;Pair&lt;String, Double&gt;&gt; queue = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line">        Set&lt;String&gt; visited = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        visited.add(fromCurrency);</span><br><span class="line"></span><br><span class="line">        queue.offer(<span class="keyword">new</span> Pair&lt;&gt;(fromCurrency, <span class="number">1.00</span>));</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> sz = queue.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; i++) &#123;</span><br><span class="line">                Pair cur = queue.poll();</span><br><span class="line">                Double newRate = (Double) cur.snd;</span><br><span class="line">                <span class="keyword">if</span> (cur.fst == toCurrency) &#123;</span><br><span class="line">                    <span class="keyword">return</span> newRate;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (nodes.containsKey(cur.fst)) &#123;</span><br><span class="line">                    Map&lt;String, Double&gt; stringDoubleMap = nodes.get(cur.fst);</span><br><span class="line">                    <span class="keyword">for</span> (Map.Entry&lt;String, Double&gt; entry : stringDoubleMap.entrySet()) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (visited.contains(entry.getKey())) &#123;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        queue.add(<span class="keyword">new</span> Pair(entry.getKey(), entry.getValue() * newRate));</span><br><span class="line">                    &#125;</span><br><span class="line">                    visited.add(fromCurrency);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1.00</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String USD = <span class="string">"usd"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CAD = <span class="string">"cad"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String EUR = <span class="string">"eur"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String CNH = <span class="string">"cnh"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String GBP = <span class="string">"gbp"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String AUD = <span class="string">"aud"</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String MUR = <span class="string">"mur"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Conversion&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        list.add(<span class="keyword">new</span> Conversion(USD, EUR, <span class="number">0.84</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Conversion(CAD, CNH, <span class="number">5.23</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Conversion(GBP, EUR, <span class="number">1.11</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Conversion(AUD, USD, <span class="number">0.72</span>));</span><br><span class="line">        list.add(<span class="keyword">new</span> Conversion(CNH, MUR, <span class="number">5.59</span>));</span><br><span class="line"></span><br><span class="line">        Conversion.fromInput(list);</span><br><span class="line">        System.out.println(Conversion.getRate(EUR, GBP));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="8-24-19-30-21-20-腾讯-cdg-广告团队一面"><a href="#8-24-19-30-21-20-腾讯-cdg-广告团队一面" class="headerlink" title="8.24 19:30 - 21:20 腾讯 cdg 广告团队一面"></a>8.24 19:30 - 21:20 腾讯 cdg 广告团队一面</h2><p>今天身体很不舒服，本来打算跟面试官说一下改时间的，结果直接没先打电话，而是发了一个笔试链接，没办法，只能硬做…</p>
+<p>笔试给了40分钟，两道题：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gi28f4436vj30xs0fcq4k.jpg" alt="笔试题-1"></p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">//    ASCII 码</span></span><br><span class="line">&gt; <span class="comment">//    a-z：97-122</span></span><br><span class="line">&gt; <span class="comment">//</span></span><br><span class="line">&gt; <span class="comment">//    A-Z：65-90</span></span><br><span class="line">&gt; <span class="comment">//</span></span><br><span class="line">&gt; <span class="comment">//    0-9：48-57</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">compare</span><span class="params">(<span class="keyword">char</span> a, <span class="keyword">char</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt;= <span class="string">'0'</span> &amp;&amp; a &lt;= <span class="string">'9'</span> &amp;&amp; b &gt;= <span class="string">'A'</span> &amp;&amp; b &lt;= <span class="string">'z'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (b &gt;= <span class="string">'0'</span> &amp;&amp; b &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &gt;= <span class="string">'a'</span> &amp;&amp; a &lt;= <span class="string">'z'</span> &amp;&amp; b &gt;= <span class="string">'A'</span> &amp;&amp; b &lt;= <span class="string">'Z'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用直接插入，满足稳定性</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">easyInsert</span><span class="params">(<span class="keyword">char</span>[] chars)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; chars.length; i++) &#123;</span><br><span class="line">        <span class="keyword">char</span> temp = chars[i];</span><br><span class="line">        <span class="keyword">int</span> j = i;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; compare(chars[j - <span class="number">1</span>], temp)) &#123;</span><br><span class="line">            chars[j] = chars[j - <span class="number">1</span>];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        chars[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gi28fns0ovj30zs05amy1.jpg" alt="笔试题-2"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 中序遍历变形，取第5大，则可以右-根-左遍历，第5个弹出的元素即我们需要的</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">inOrder</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">    Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    TreeNode cur = root;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(cur != <span class="keyword">null</span> || !stack.isEmpty())&#123;</span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="keyword">null</span>)&#123;</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.right;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = stack.pop();</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> cur.val;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = cur.left; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是电话面试，1小时，这一面没有问项目，全部是基础，后悔没有录音…</p>
+<ol>
+<li>自我介绍</li>
+<li>讲一下自己笔试的思路…第一题没写完，第二题写的差不多</li>
+<li>感觉问的问题很多，很繁杂，第一个问题我就不太会，反射的原理是什么，虽然我以前很了解，但是好久没问过，突然就懵了…</li>
+</ol>
+<blockquote>
+<p>因为类加载器会将类的 class 文件加载为二进制流，然后放在方法区的数据结构中，同时会在堆中 创建一个对应的类的对象，作为方法区的入口，所以我们就可以拿到类的所有属性和方法。</p>
+</blockquote>
+<ol start="4">
+<li>反射有什么作用，在什么场景下有经常用反射</li>
+</ol>
+<blockquote>
+<p>Java 反射机制可以让我们在编译期(Compile Time)之外的运行期(Runtime)检查类，接口，变量以及方法的信息。反射还可以让我们在运行期实例化对象，调用方法，通过调用 get/set 方法获取变量的值。</p>
+<p>反射的运用场景有很多，我们可以拿到类的基本上所有信息，常见的有字节码增强技术，AOP，动态代理都有使用到反射。</p>
+</blockquote>
+<ol start="5">
+<li>jvm，有哪些垃圾回收算法，为什么垃圾回收需要 stop the world，是如何进行回收的，如何加快 stop the world 的速度？</li>
+</ol>
+<blockquote>
+<p>垃圾回收算法：</p>
+<ol>
+<li>标记清除。先标记后清除，标记的过程就是遍历 oopMap，找到 gc roots相关的引用链对应的对象，确定对象的状态，然后进行清除，容易产生内存碎片；</li>
+<li>复制算法。主要是处理朝生夕死的新生代，将新生代的内存分为一个 Eden 区和两个 Survivor 区，标记之后不需要一个个清除，直接把还存活的对象复制到 Survivor 区，然后统一把剩下的对象全部清除，没有内存碎片问题；</li>
+<li>标记整理。先标记后整理，在回收的时候会适当的进行对象移动，减少空间碎片。</li>
+<li>分代算法，标记整理算法和复制算法结合。</li>
+</ol>
+<p>垃圾回收阶段，需要 stop the world 的原因是因为我们需判断对象的状态「通过根搜索算法」，如果不停止用户程序，无法准确的判断对象的状态，所以需要 stop the world，当然其实更多的还是为了吞吐量考虑，也可以选择降低运行速度但是可以并发执行的收集算法。</p>
+<p>这里以 cms 收集器为代表来描述一下回收的整个过程：</p>
+<p>初始标记：先去判断对象的可达性，如果不可达，标记为 dead，然后看是否有继承 finalize 方法，没有的话直接标记为需要 gc，如果继承了看是否是第一次执行，是第一次执行把其标记为 alive，否则标记为 dead。「这里需要 stop the world」</p>
+<p>并发标记：safepoint到达之后，一边继续标记还可以一边让用户并行；「不需要 stop the world」</p>
+<p>最终标记：在让用户程序并行的过程中，还会产生 gc 的对象，所以还需要再标记一下；「需要 stop the world」</p>
+<p>并发清除：多线程清除。</p>
+<p>要加快 stop the world 的时间，就是要尽量减少标记的时间，我们知道是通过根搜索算法去标记的，那首要的任务就是找到 GC roots，jvm 是将这些 gc roots 存储在一种叫 oopmap 的数据结构中，直接通过 oopmap 在 safepoint 处进行可达性分析，标记各个对象的状态。</p>
+</blockquote>
+<ol start="6">
+<li>多线程的一些知识，老生常谈，如何解决生产者 or 消费者速率不一样的问题？</li>
+</ol>
+<blockquote>
+<p>生产者-消费者模式就是用来解决两者速率不一致的问题，在 Java 中实现生产者-消费者模式，一般就三种方式：</p>
+<ol>
+<li><p>使用 Object 的 wait/notify 的消息通知机制；</p>
+</li>
+<li><p>使用 Lock 体系的 Condition 的 await/signal 的消息通知机制；</p>
+</li>
+<li><p>使用 BlockingQueue 实现。</p>
+</li>
+</ol>
+<p>为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数据，就不再需要关心生产者的行为。但是，这个共享数据区域中应该具备这样的线程间并发协作的功能：</p>
+<ol>
+<li>如果共享数据区已满的话，阻塞生产者继续生产数据放置入内；</li>
+<li>如果共享数据区为空的话，阻塞消费者继续消费数据；</li>
+</ol>
+<p>所以的话其实就是解决这两个问题，最好的解决方案就是使用 LinkedBlockingQueue，对生产者和消费者分别进行加锁处理资源竞争问题。</p>
+</blockquote>
+<ol start="7">
+<li>在同步的过程中，一个线程占有了共享资源，但是在占有的过程中，突然挂了，如何做处理？</li>
+</ol>
+<blockquote>
+<p>这种情况的确可能发生，还有一种常见情况是读写锁，写锁在加锁写数据时，如果此时的读线程，被中断唤醒，会不断自旋去获取资源，会导致 cpu 打满，这里的处理方案是设置自旋的次数，到了一定次数就不再自旋，而是放弃获取锁。</p>
+<p>回到上面这个问题，线程占有了资源却挂了，此时最好对共享资源的占有时间做一个上限限制，超过时间自动将该线程移除。</p>
+</blockquote>
+<ol start="8">
+<li>mongo 为何要用 B 树，不用 B+ 树，相比来说有什么好处？</li>
+</ol>
+<blockquote>
+<p>当然是与 B 树和 B+ 树的结构有关，B 树的非叶子节点也是有存储 data 数据的，所以在查找单个数据的时候更快，可以有更少的 IO 磁盘读写次数，因为 mongo 是非关系型数据库，所以范围查询的要求没那么高，所以没有使用 B+ 树，同时，因为还是要有一定的范围查询的能力，所以没有使用哈希数组作为底层数据结构。</p>
+</blockquote>
+<ol start="9">
+<li>kafka 的高可用机制？</li>
+</ol>
+<blockquote>
+<p>kafka 通过多副本机制来实现高可用，其中所有的副本的集合称为 AR（Assigned Replicas），AR = ISR（In-Sync Replicas）+ OSR（Out-of-Sync Replicas），其中 ISR 是指与 leader 副本保持一定程度的同步「可忍受的滞后范围」的 follower 副本的集合，当 leader 副本出现问题时，会在 ISR 集合中选举出一个新的 leader 来保证集群可用。</p>
+<p>其中，ISR 中的一定程度的同步的数值，是可以设置的，滞后范围是通过 HW(高水位) 和 LEO(日志结束偏移量) 来确定的，HW 即当前 ISR 中已同步的偏移量，客户端只能获取到HW及之前的偏移量的消息，LEO 即当前日志下一条待写入消息的 offset。</p>
+<p>最后，值得一提的是，kafka 的主从间的复制机制，并不是完全的同步机制（所有的 follower 同步完 leader 的消息之后才确认为已成功提交，性能很低），也不是完全的异步机制（leader 副本写入就认为已经成功提交，leader 一旦突然宕机就会造成数据丢失），而是使用这种 ISR 的方式，有效的权衡了数据可靠性和性能之间的关系。</p>
+</blockquote>
+<ol start="10">
+<li>在使用 mmap 时，如何保证各个进程间数据的正确性？</li>
+</ol>
+<blockquote>
+<p>使用信号量来控制进程之间对共享内存的安全问题。</p>
+</blockquote>
+<ol start="11">
+<li>虚拟内存和物理内存是如何映射起来的，具体实现细节，进程间是如何隔离这些内存空间的？</li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://draveness.me/whys-the-design-os-virtual-memory/" target="_blank" rel="noopener">https://draveness.me/whys-the-design-os-virtual-memory/</a></p>
+<p>虚拟内存和物理内存是通过 MMU(Memory Management Unit，内存管理单元) 来进行转换和映射的，内存管理单元中最重要的数据结构就是页表，在页表中，虚拟地址有三种状态：未被使用、未被缓存、已缓存：</p>
+<ol>
+<li>如果是未被使用，则该虚拟地址并不存在于磁盘或者主存中；</li>
+<li>如果是未被缓存的状态，说明虚拟地址此时对应的真实地址为磁盘地址，如果此时进程去访问未被缓存的虚拟地址，会触发<strong>缺页中断</strong>，操作系统会将磁盘上未被缓存的虚拟页加载到主存中，然后更新页表；</li>
+<li>如果是已缓存的状态，说明虚拟地址此时对应的地址就是物理内存，也就是我们的主存。</li>
+</ol>
+<p>总而言之，虚拟地址的好处有：</p>
+<ul>
+<li>整合了磁盘和主存的优势，为进程提供了足够快且容量大的内存空间；</li>
+<li>是连续的地址空间；</li>
+<li>可以懒加载，只有在被访问时，才将磁盘中的页加载到主存中，同时可以在内存吃紧的情况下，将主存中的物理内存页驱逐到磁盘中，进行<strong>页面替换</strong>；</li>
+<li>更好的共享内存，直接复制页表即可；</li>
+<li>安全性更好，可以控制进程对物理内存的访问，隔离不同进程的访问权限，提高系统的安全性。</li>
+</ul>
+<p>进程间是如何做到互不影响的：</p>
+<p>内存管理单元可以决定当前进程是否有权限访问目标的物理内存，这样我们就最终将权限管理的功能全部收敛到虚拟内存系统中，减少了可能出现风险的代码路径。</p>
+</blockquote>
+<ol start="12">
+<li>kafka 或者说 mysql 如何解决主从延迟问题？</li>
+</ol>
+<blockquote>
+<p>主从延迟的情况不可避免，因为 cap 理论的存在，要保证可用性和分区容错性，就必须牺牲一致性，而造成主从延迟的原因有很多，主要包括「这里以 mysql 的 binlog 同步为例」：</p>
+<ol>
+<li>从库性能差；</li>
+<li>从库压力大；</li>
+<li>大事务；</li>
+<li>从库并行复制能力差。</li>
+</ol>
+<p>一般面对主从延迟，有两种策略：</p>
+<ol>
+<li>可靠性优先策略，具体步骤是等延迟小于某个数时，例如 5 秒，将主库 A 改成只读状态，然后再看主从延迟「seconds_behind_master」，等其变为 0 后，将备库 B 改成可读写状态，然后把业务切换到备库 B 上，这个策略的好处就是能保证主从的完全一致性，但是会有少量时间导致系统处于不可写的状态，不过影响不大，这也是最常用的策略；</li>
+<li>可用性优先策略。不等主备数据同步，直接把连接切到备库B，并且让备库B可以读写，那么系统几乎就没有不可用时间了。好处就是没有不可用时间，但是容易导致数据逻辑出现问题。</li>
+</ol>
+</blockquote>
+<ol start="13">
+<li>Kafka 的延时队列和死信队列介绍一下？</li>
+</ol>
+<blockquote>
+<p>kafka 中实现延时的两个方案「eg：用户下单一小时后自动推送需要评价的消息」</p>
+<ol>
+<li><p>在发送延时消息的时候并不是先投递到要发送的真实主题中，而是先投递到 kafka 的内部主题（如 delay_topic 中），然后这些内部主题对用户不可见，通过一个自定义的服务拉取这些内部主题中的消息「可以使用 DelayQueue 」，并将满足条件的消息投递到真实主题中去。</p>
+<p>这个方案的难点是内部主题如何分类，可以根据不同的延时等级来进行分类，比如设定5s、10s、1min、2min这种延时递增的延时等级，根据延时等级投递到不同的主题中去，但是这个会牺牲掉一定的延时误差。</p>
+</li>
+<li><p>第二个方案就是采用时间轮，将延时消息放置到文件中，然后使用懒加载机制，加载时间格附近的文件。</p>
+</li>
+</ol>
+<p>死信队列：</p>
+<p>由于某些原因消息无法被正确消费，为了确保消息不被无故丢弃，一般将其置为一个特殊角色的队列，称为死信队列。</p>
+</blockquote>
+<ol start="14">
+<li>RSA 算法具体实现？使用了什么函数？</li>
+</ol>
+<blockquote>
+<p>非对称加密算法，欧拉函数和费马小定理。</p>
+</blockquote>
+<ol start="15">
+<li>红黑树和 AVL 树的区别？各自适用于什么场景？</li>
+</ol>
+<blockquote>
+<p>红黑树满足其特殊的5条性质，AVL 各个节点的左右子树的高度的绝对值小于等于1。</p>
+<p>红黑树更适合插入和删除比较多的场景，AVL因为更加平衡，适用于查询较多的场景。</p>
+</blockquote>
+<ol start="16">
+<li>如果出现很多长时间不用的 tcp 连接，如何关闭？</li>
+</ol>
+<blockquote>
+<ol>
+<li><strong>开启tw回收： net.ipv4.tcp_tw_recycle = 1</strong>，直接回收。</li>
+<li>增加端口数量、使用 <code>net.ipv4.tcp_tw_reuse</code> 选项，通过 TCP 的时间戳选项允许内核重用处于 <code>TIME_WAIT</code> 状态的 TCP 连接；</li>
+</ol>
+</blockquote>
+<ol start="17">
+<li>几十亿数据，分库分表后如何保证范围查询？</li>
+</ol>
+<blockquote>
+<p><a href="https://www.cnblogs.com/butterfly100/p/9034281.html" target="_blank" rel="noopener">https://www.cnblogs.com/butterfly100/p/9034281.html</a></p>
+<p>上文对分库分表的常用手段以及优劣都介绍的非常清楚，分库分表如果要保证范围查询，尤其是水平分库分表，那么建议最好是根据数值范围进行切分，这样也利于后期扩容和范围查询。</p>
+</blockquote>
+<ol start="18">
+<li>智力题，200瓶药水，8个试纸，如何找出其中唯一的一瓶毒药？「二分，刚好 8 次」</li>
+</ol>
+<blockquote>
+<p>二分法。</p>
+</blockquote>
+<h2 id="8-25-15-00-16-00-快手-Kcode-直通二面"><a href="#8-25-15-00-16-00-快手-Kcode-直通二面" class="headerlink" title="8.25 15:00 - 16:00 快手 Kcode 直通二面"></a>8.25 15:00 - 16:00 快手 Kcode 直通二面</h2><p>这一面主要讲项目，但是我的简历竟然没有更新，所以一直问我一年前的项目，我都给差不多给忘记了…</p>
+<p>不会的点：</p>
+<ol>
+<li>慢查询是如何导致的，如何解决？「这么简单的题目我都没答上来…」</li>
+</ol>
+<blockquote>
+<p>引发慢查询的情况有三种：</p>
+<ol>
+<li>索引没有设计好；</li>
+<li>SQL 语句没有写好；</li>
+<li>MYSQL 选错了索引。</li>
+</ol>
+<p><strong>导致慢查询的第一种可能是，索引没有设计好。</strong>这种场景一般就是通过紧急创建索引来解决。</p>
+<p><strong>导致慢查询的第二种可能是，语句没写好。</strong>这时，我们可以通过改写SQL语句来处理。</p>
+<p><strong>导致慢查询的第三种可能，就是MySQL选错了索引。</strong>这时候，应急方案就是给这个语句加上force index。之所以为什么会选错索引，是因为优化器选择索引的最优方案主要是看<strong>扫描行数</strong>「通过取样去判断，所以这块可能会造成误差」。</p>
+</blockquote>
+<ol start="2">
+<li>如何避免慢查询导致的性能问题？</li>
+</ol>
+<blockquote>
+<p>由慢查询导致性能问题的三种可能情况，实际上出现最多的是前两种，即：索引没设计好和语句没写好。而这两种情况，恰恰是完全可以避免的。比如，通过下面这个过程，我们就可以预先发现问题。</p>
+<ol>
+<li>上线前，在测试环境，把慢查询日志（slow log）打开，并且把long_query_time设置成0，确保每个语句都会被记录入慢查询日志；</li>
+<li>在测试表里插入模拟线上的数据，做一遍回归测试；</li>
+<li>观察慢查询日志里每类语句的输出，特别留意Rows_examined字段是否与预期一致。</li>
+</ol>
+<p>不要吝啬这段花在上线前的“额外”时间，因为这会帮你省下很多故障复盘的时间。</p>
+</blockquote>
+<ol start="3">
+<li>HTTP 1.0 ，1.1，2.0 区别？</li>
+</ol>
+<blockquote>
+<p>HTTP1.0，无状态的非持久连接，每一个网页元素都需要建议一次 TCP 连接；</p>
+<p>HTTP1.1，无状态的持久化连接。</p>
+<p>HTTP2.0，2015 年提出，速度快了很多，有几个大的改进：</p>
+<ul>
+<li>基于二进制，不再是基于文本的方式传输数据；</li>
+<li>多路复用，也就没有了 HTTP1.1 的线头阻塞问题；</li>
+<li>header压缩，使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小；</li>
+<li>服务器端push，客户端进行某些请求后，服务器端可以主动推送其他资源。</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li>HTTP2.0的多路复用和HTTP1.X中的长连接复用有什么区别？</li>
+</ol>
+<blockquote>
+<ul>
+<li>HTTP/1.0： 一次请求-响应，建立一个连接，用完关闭；每一个请求都要建立一个连接；</li>
+<li>HTTP/1.1：Pipeling解决方式为，若干个请求排队串行化单线程处理，后面的请求等待前面请求的返回才能获得执行机会，一旦有某请求超时等，后续请求只能被阻塞，毫无办法，也就是人们常说的线头阻塞；</li>
+<li>HTTP/2：多个请求可同时在一个连接上并行执行。某个请求任务耗时严重，不会影响到其它连接的正常执行。</li>
+</ul>
+</blockquote>
+<p>算法题：</p>
+<blockquote>
+<p>[1,2,3]</p>
+<p>[4,5,6]</p>
+<p>[7,8,9]</p>
+<p>打印 1 2 4 3 5 7 6 8 9</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;Integer&gt; <span class="title">first</span><span class="params">(<span class="keyword">int</span>[][] nums)</span></span>&#123;</span><br><span class="line">&gt;         List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">&gt;         <span class="keyword">for</span>(<span class="keyword">int</span> count = <span class="number">2</span>;count &lt;= <span class="number">2</span> * nums.length;count++)&#123;</span><br><span class="line">&gt;             <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= nums.length;i++)&#123;</span><br><span class="line">&gt;                 <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= nums[<span class="number">0</span>].length;j++)&#123;</span><br><span class="line">&gt;                     <span class="keyword">if</span>(i + j == count)&#123;</span><br><span class="line">&gt;                         res.add(nums[i-<span class="number">1</span>][j-<span class="number">1</span>]); </span><br><span class="line">&gt;                     &#125;</span><br><span class="line">&gt;                 &#125;</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;         &#125;  </span><br><span class="line">&gt;         <span class="keyword">return</span> res;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="8-26-14-00-15-00-字节-教育团队三面-「已offer」"><a href="#8-26-14-00-15-00-字节-教育团队三面-「已offer」" class="headerlink" title="8.26 14:00 - 15:00 字节 教育团队三面 「已offer」"></a>8.26 14:00 - 15:00 字节 教育团队三面 「已offer」</h2><p>两个智力题。一个是有 random(5) 如何得到 random(7)，一个是 64 匹马，有 8 个赛道，需要得到前四名，需要比赛几次「11」</p>
+<blockquote>
+<p>第一题：</p>
+<ol>
+<li>第一种方式，random(5)，如果是1 2 3 4 5 的话，那么 random(7) 就是 1 2 3 4 5 6 7，就是用 (random(5) - 1) * 5 + random(5)，这样可以等概率的取到1 - 25，然后大于21的数全部放弃，剩下的数就是 n % 7 + 1；</li>
+<li>第二种方式，random(5)，如果是 0 1 2 3 4 5 的话，那么 random(7) 就是 0 1 2 3 4 5 6 7，此时如果要等概率的话，就得是 random(5) * 6 + random(5)，可以等概率取到 0 - 35 之间的数，我们需要 0 -7 的数，那么如果数大于 32 的话，我们就全部舍弃，剩下的数直接 n % 8 即可。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>第二题：</p>
+<p>64匹马，只有 8 个赛道。</p>
+<ol>
+<li>先将 64 匹马分成 8 个组，先让每组跑一次，决出每个组的第一名，这样就是  8 次；</li>
+<li>然后把 8 个组的第一都聚集起来，跑一次，这样就能拿到这 8 个第一的前四名，1次；</li>
+<li>此时可能的前四名，只可能存在于上一次的第一对应的那个组中的前四匹马，第二对应的那个组中的前三匹马「因为有一个已经确定是最快的了」，第三对应的那个组中的前两匹马「因为已经确定有两匹马比它快了」，第四对应的这个组中的第一匹马，也就是剩下了 4 + 3 + 2 + 1，这 10 匹马中才可能存在前四名，并且第一名已经确定，就是上一次的第一名，所以只剩下 9 匹马去竞争第 2- 4 名，所以此时我们可以让 8 匹马跑一次，决出前三名，1次；</li>
+<li>然后再让这个前三名和单独的那匹马比赛，决出前三名，1次；</li>
+<li>这样的话总共 8 + 1 + 1 + 1  = 11次。</li>
+</ol>
+<p>如果是决出前三名，那其实就只要 8 + 1 + 1 = 10 次，因为第 10 次只剩下 3 + 2 + 1 去竞争了，并且其中的第一还是确定的，所以其实也就是 2 + 2 + 1，总共 5 匹马竞争第 2 名和第 3 名。</p>
+</blockquote>
+<p>传输一个比较大的文件，如何实现进度条的功能？</p>
+<blockquote>
+<p>拿到HttpResponse后读取 content-length 头，<br>读取InputStream的时候根据已经读取到的byte数，算出百分比就行了。<br>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readAndPrintProgress</span><span class="params">(InputStream is, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function">&gt;             <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">&gt;         <span class="keyword">int</span> sizeRead = <span class="number">0</span>;</span><br><span class="line">&gt;         <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">&gt; </span><br><span class="line">&gt;         <span class="keyword">int</span> tmpSize = <span class="number">0</span>;</span><br><span class="line">&gt;         <span class="keyword">do</span> &#123;</span><br><span class="line">&gt;             sizeRead += tmpSize;</span><br><span class="line">&gt;             System.out.println((sizeRead * <span class="number">100</span> / len) );</span><br><span class="line">&gt;             tmpSize = is.read(buffer);</span><br><span class="line">&gt;         &#125; <span class="keyword">while</span> (tmpSize &gt; <span class="number">0</span>);</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+</blockquote>
+<p>mysql 添加数据的时候，索引是如何更新的，具体是如何合并和分裂的？</p>
+<blockquote>
+<p>类似于 B 数的分裂和合并，因为在添加数据时可能会导致某个节点的数据太多，所以可能需要发生分裂和合并，分裂和合并的规则与 B 树对子树的个数和其具体的规则有关。</p>
+</blockquote>
+<p>为什么需要服务注册和服务发现？服务注册和服务发现如何实现的？</p>
+<blockquote>
+<ol>
+<li>需要服务发现和服务注册，最大的一个好处就是可以解耦各服务之间的调用关系，类似于 spring 的依赖注入一样；</li>
+<li>除了服务注册和服务发现，其实更为重要的是服务治理，有了类似于 Eureka、etcd 的组件，我们可以对服务进行优雅上线「服务是否上线可以通过查看端口是否处于监听状态即可」、下线「将该服务的权重置为0，让上游系统不再调用」，</li>
+</ol>
+</blockquote>
+<p>如何实现高可用，有哪些策略？</p>
+<blockquote>
+<p>（1）多副本，防止单点问题。例如 MYSQL 的 master-slave。</p>
+<p>（2）隔离，将系统资源分隔开，在系统发生故障时可以限定影响范围，不会出现雪球效应。</p>
+<p>（3）限流，例如限制并发数，如数据库连接池；或者直接业务层面限流，秒杀限制人数。</p>
+<p>（4）熔断，当出现问题需要有自动熔断的机制，比如根据请求响应时间或者请求失败率。</p>
+<p>（5）降级，在核心业务压力很大时，可以对非核心业务进行降级。</p>
+<p>（6）灰度发布与回滚。</p>
+<p>（7）监控体系，对资源监控、对系统监控，例如接口调用的时间、次数是否正常。</p>
+<p>（8）日志报警，帮助我们快速定位到问题。</p>
+</blockquote>
+<p>CAP 分别指什么？为什么不能同时存在呢？</p>
+<blockquote>
+<p>C：Consistency (一致性)</p>
+<p>“all nodes see the same data at the same time”,<strong>即更新操作成功并返回客户端后，所有节点在同一时间的数据完全一致，这就是分布式的一致性</strong>。一致性的问题在并发系统中不可避免，对于客户端来说，一致性指的是并发访问时更新过的数据如何获取的问题。从服务端来看，则是更新如何复制分布到整个系统，以保证数据最终一致。</p>
+<p>A：Availability (可用性)</p>
+<p>“Reads and writes always succeed”，即服务一直可用，而且是正常响应时间。好的可用性主要是指系统能够很好的为用户服务，不出现用户操作失败或者访问超时等用户体验不好的情况。</p>
+<p>P：Partition Tolerance (分区容错性)</p>
+<p><strong>即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性或可用性的服务</strong>。分区容错性要求能够使应用虽然是一个分布式系统，而看上去却好像是在一个可以运转正常的整体。比如现在的分布式系统中有某一个或者几个机器宕掉了，其他剩下的机器还能够正常运转满足系统需求，对于用户而言并没有什么体验上的影响。</p>
+<p>CAP抽象：不同空间的数据，在同一时间，状态一致。</p>
+<p>C：代表状态一致<br>A：代表同一时间<br>P：代表不同空间<br>CP：不同空间中的数据，如果要求他们所有状态一致，则必然不在同一时间。<br>AP：不同空间中，如果要求同一时间都可以从任意的空间拿到数据，则必然数据的状态不一致。<br>CA：不同空间的数据，如果要求任意时间都可以从任意空间拿到状态一致的数据，则空间数必然为1。</p>
+</blockquote>
+<blockquote>
+<p>CA：单点应用满足一致性和可用性。例如 Consul。</p>
+<p>CP：满足分区容错性和一致性。例如 zookeeper，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新进行leader选举，在重新选举 leader 时，会造成短暂的不可用。</p>
+<p>AP：满足可用性和分区容错性。例如 Eureka，每个节点都是平等的，不保证强一致性。</p>
+</blockquote>
+<h2 id="8-27-16-00-17-00-腾讯-cdg-广告团队二面「已挂」"><a href="#8-27-16-00-17-00-腾讯-cdg-广告团队二面「已挂」" class="headerlink" title="8.27 16:00 - 17:00 腾讯 cdg 广告团队二面「已挂」"></a>8.27 16:00 - 17:00 腾讯 cdg 广告团队二面「已挂」</h2><p>这一轮没有问基础知识，都是直接问场景题和智力题。</p>
+<p>场景题1：写多读少的场景下，如何处理？如果这是一个 7 * 24 h 的服务，写会花费 10 分钟的时间，如何让写这段时间也可以对外提供服务？</p>
+<p>场景题2：微博如何得到关注的人中的最近的100条动态，设计数据库表，为什么这么设计？</p>
+<p>智力题：在地球上，向南走100米，向东走100米，再向北走100米，请问地球上这样的点存在吗？存在的话，有多少个？</p>
+<blockquote>
+<p>Tip: 由于都是非常主观的问题，我这里就不过多赘述。</p>
+</blockquote>
+<p>这一轮竟然给我挂了，太奇怪了… 这感觉是整个秋招发挥的最好的一轮了，hr说面试官给的面评反馈很不错，建议其他部门考虑….</p>
+<h2 id="9-5-15-00-15-40-快手-Kcode-三面-hr-面「已-offer」"><a href="#9-5-15-00-15-40-快手-Kcode-三面-hr-面「已-offer」" class="headerlink" title="9.5 15:00 - 15:40 快手 Kcode 三面 + hr 面「已 offer」"></a>9.5 15:00 - 15:40 快手 Kcode 三面 + hr 面「已 offer」</h2><p>这轮面试很简单，是平台研发部老大面试，主要就问了几个问题：</p>
+<ol>
+<li>对一二面印象最深刻的问题是什么？</li>
+<li>自己最大的优势是什么？</li>
+<li>给一个数，然后我们自己去猜，只能告知是大了还是小了，需要多少次？</li>
+<li>证明自己的次数是正确的。「数学归纳法即可」</li>
+</ol>
+<p>然后是 hr 面，讨论了一下我去迪士尼的旅游，然后问了下手头有几个offer，就口头oc了，应该没啥问题。</p>
+<h2 id="9-9-21-00-22-00-腾讯云-一面"><a href="#9-9-21-00-22-00-腾讯云-一面" class="headerlink" title="9.9 21:00 - 22:00 腾讯云 一面"></a>9.9 21:00 - 22:00 腾讯云 一面</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/W3tDf1V2sT5LoOi.png" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/Od5DSGJ316toUkw.jpg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2020/07/29/秋招经历.html" title="秋招经历">http://jeromememory.github.io/2020/07/29/秋招经历.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面经/" rel="tag"><i class="fa fa-tag"></i> 面经</a>
+          
+            <a href="/tags/腾讯/" rel="tag"><i class="fa fa-tag"></i> 腾讯</a>
+          
+            <a href="/tags/字节跳动/" rel="tag"><i class="fa fa-tag"></i> 字节跳动</a>
+          
+            <a href="/tags/快手/" rel="tag"><i class="fa fa-tag"></i> 快手</a>
+          
+            <a href="/tags/百度/" rel="tag"><i class="fa fa-tag"></i> 百度</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/05/五一假期之重构项目.html" rel="next" title="重构项目代码">
+                <i class="fa fa-chevron-left"></i> 重构项目代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/02/排序模板 & 二叉树遍历模板 & 二分模板.html" rel="prev" title="排序模板 & 二叉树遍历模板 & 二分模板">
+                排序模板 & 二叉树遍历模板 & 二分模板 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">56</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">136</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=2&id=479598964&auto=0&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-12-17-00-18-00-字节-Data-一面"><span class="nav-number">1.</span> <span class="nav-text">7.12 17:00 - 18:00 字节 Data 一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-12-18-00-19-00-字节-Data-二面「已挂」"><span class="nav-number">2.</span> <span class="nav-text">7.12 18:00 - 19:00 字节 Data 二面「已挂」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-29-20-00-21-00-百度-基础架构部-一面"><span class="nav-number">3.</span> <span class="nav-text">7.29 20:00 - 21:00 百度 基础架构部 一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-19-00-21-30-百度-基础架构部二三面「已offer」"><span class="nav-number">4.</span> <span class="nav-text">8.3 19:00 - 21:30 百度 基础架构部二三面「已offer」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-20-00-21-00-快手-快-star-提前批一面"><span class="nav-number">5.</span> <span class="nav-text">8.5 20:00 - 21:00 快手 快 star 提前批一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-9-18-00-19-00-字节-教育团队一面"><span class="nav-number">6.</span> <span class="nav-text">8.9 18:00 - 19:00 字节 教育团队一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-13-阿里-CFO-产品技术部实习转正答辩-「已-offer」"><span class="nav-number">7.</span> <span class="nav-text">8.13 阿里 CFO 产品技术部实习转正答辩 「已 offer」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-17-20-00-21-00-字节-教育团队二面"><span class="nav-number">8.</span> <span class="nav-text">8.17 20:00 - 21:00 字节 教育团队二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-19-20-00-21-00-快手-Kcode-直通一面"><span class="nav-number">9.</span> <span class="nav-text">8.19 20:00 - 21:00 快手 Kcode 直通一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-20-20-00-20-44-拼多多-精英计划一面「已挂」"><span class="nav-number">10.</span> <span class="nav-text">8.20 20:00 - 20:44 拼多多 精英计划一面「已挂」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-24-19-30-21-20-腾讯-cdg-广告团队一面"><span class="nav-number">11.</span> <span class="nav-text">8.24 19:30 - 21:20 腾讯 cdg 广告团队一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-25-15-00-16-00-快手-Kcode-直通二面"><span class="nav-number">12.</span> <span class="nav-text">8.25 15:00 - 16:00 快手 Kcode 直通二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-26-14-00-15-00-字节-教育团队三面-「已offer」"><span class="nav-number">13.</span> <span class="nav-text">8.26 14:00 - 15:00 字节 教育团队三面 「已offer」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-27-16-00-17-00-腾讯-cdg-广告团队二面「已挂」"><span class="nav-number">14.</span> <span class="nav-text">8.27 16:00 - 17:00 腾讯 cdg 广告团队二面「已挂」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-15-00-15-40-快手-Kcode-三面-hr-面「已-offer」"><span class="nav-number">15.</span> <span class="nav-text">9.5 15:00 - 15:40 快手 Kcode 三面 + hr 面「已 offer」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-9-21-00-22-00-腾讯云-一面"><span class="nav-number">16.</span> <span class="nav-text">9.9 21:00 - 22:00 腾讯云 一面</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">1.2m</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/07/29/秋招经历.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
