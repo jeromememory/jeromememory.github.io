@@ -150,7 +150,7 @@
 
 
   <meta name="description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
-<meta name="keywords" content="源码分析,ThreadLocal,内存泄漏,弱引用">
+<meta name="keywords" content="ThreadLocal,内存泄漏,弱引用,源码分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（二）--- ThreadLocal">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html">
@@ -901,13 +901,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/源码分析/" rel="tag"><i class="fa fa-tag"></i> 源码分析</a>
-          
             <a href="/tags/ThreadLocal/" rel="tag"><i class="fa fa-tag"></i> ThreadLocal</a>
           
             <a href="/tags/内存泄漏/" rel="tag"><i class="fa fa-tag"></i> 内存泄漏</a>
           
             <a href="/tags/弱引用/" rel="tag"><i class="fa fa-tag"></i> 弱引用</a>
+          
+            <a href="/tags/源码分析/" rel="tag"><i class="fa fa-tag"></i> 源码分析</a>
           
         </div>
       
