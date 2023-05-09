@@ -1,0 +1,4183 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="近来要做流程项目了，由于在实习的时候接触过BPMN，现在重新入手Activiti，此文先将Activiti6相关的服务接口及相关表略做记录，方便以后查看。 7大服务介绍   服务名称 描述     RepositoryService Activiti 中每一个不同版本的业务流程的定义都需要使用一些定义文件，部署文件和支持数据 ( 例如 BPMN2.0 XML 文件，表单定义文件，流程定义图像文件等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作流引擎">
+<meta property="og:url" content="http://jeromememory.github.io/2020/10/15/工作流相关.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="近来要做流程项目了，由于在实习的时候接触过BPMN，现在重新入手Activiti，此文先将Activiti6相关的服务接口及相关表略做记录，方便以后查看。 7大服务介绍   服务名称 描述     RepositoryService Activiti 中每一个不同版本的业务流程的定义都需要使用一些定义文件，部署文件和支持数据 ( 例如 BPMN2.0 XML 文件，表单定义文件，流程定义图像文件等">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-02T02:26:10.917Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作流引擎">
+<meta name="twitter:description" content="近来要做流程项目了，由于在实习的时候接触过BPMN，现在重新入手Activiti，此文先将Activiti6相关的服务接口及相关表略做记录，方便以后查看。 7大服务介绍   服务名称 描述     RepositoryService Activiti 中每一个不同版本的业务流程的定义都需要使用一些定义文件，部署文件和支持数据 ( 例如 BPMN2.0 XML 文件，表单定义文件，流程定义图像文件等">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2020/10/15/工作流相关">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>工作流引擎 | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2020/10/15/工作流相关.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">工作流引擎
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-10-15 20:02:45" itemprop="dateCreated datePublished" datetime="2020-10-15T20:02:45+08:00">2020-10-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-11-02 10:26:10" itemprop="dateModified" datetime="2020-11-02T10:26:10+08:00">2020-11-02</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近来要做流程项目了，由于在实习的时候接触过BPMN，现在重新入手Activiti，此文先将Activiti6相关的服务接口及相关表略做记录，方便以后查看。</p>
+<h3 id="7大服务介绍"><a href="#7大服务介绍" class="headerlink" title="7大服务介绍"></a>7大服务介绍</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">服务名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">RepositoryService</td>
+<td style="text-align:left">Activiti 中每一个不同版本的业务流程的定义都需要使用一些定义文件，部署文件和支持数据 ( 例如 BPMN2.0 XML 文件，表单定义文件，流程定义图像文件等 )，这些文件都存储在 Activiti 内建的 Repository 中。Repository Service 提供了对 repository 的存取服务。</td>
+</tr>
+<tr>
+<td style="text-align:left">RuntimeService</td>
+<td style="text-align:left">在 Activiti 中，每当一个流程定义被启动一次之后，都会生成一个相应的流程对象实例。Runtime Service 提供了启动流程、查询流程实例、设置获取流程实例变量等功能。此外它还提供了对流程部署，流程定义和流程实例的存取服务。</td>
+</tr>
+<tr>
+<td style="text-align:left">TaskService</td>
+<td style="text-align:left">在 Activiti 中业务流程定义中的每一个执行节点被称为一个 Task，对流程中的数据存取，状态变更等操作均需要在 Task 中完成。Task Service 提供了对用户 Task 和 Form 相关的操作。它提供了运行时任务查询、领取、完成、删除以及变量设置等功能。</td>
+</tr>
+<tr>
+<td style="text-align:left">IdentityService</td>
+<td style="text-align:left">Activiti 中内置了用户以及组管理的功能，必须使用这些用户和组的信息才能获取到相应的 Task。Identity Service 提供了对 Activiti 系统中的用户和组的管理功能。</td>
+</tr>
+<tr>
+<td style="text-align:left">ManagementService</td>
+<td style="text-align:left">Management Service 提供了对 Activiti 流程引擎的管理和维护功能，这些功能不在工作流驱动的应用程序中使用，主要用于 Activiti 系统的日常维护。</td>
+</tr>
+<tr>
+<td style="text-align:left">HistoryService</td>
+<td style="text-align:left">History Service 用于获取正在运行或已经完成的流程实例的信息，与 Runtime Service 中获取的流程信息不同，历史信息包含已经持久化存储的永久信息，并已经被针对查询优化。</td>
+</tr>
+<tr>
+<td style="text-align:left">FormService</td>
+<td style="text-align:left">Activiti 中的流程和状态 Task 均可以关联业务相关的数据。通过使用 Form Service 可以存取启动和完成任务所需的表单数据并且根据需要来渲染表单。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23张表概览"><a href="#23张表概览" class="headerlink" title="23张表概览"></a>23张表概览</h3><p>Activiti使用到的表都是ACT_开头的。</p>
+<ul>
+<li><p>ACT_RE_*:</p>
+<p>’RE’表示repository(存储)，RepositoryService接口所操作的表。带此前缀的表包含的是静态信息，如，流程定义，流程的资源（图片，规则等）。</p>
+</li>
+<li><p>ACT_RU_*:</p>
+<p>‘RU’表示runtime，运行时表-RuntimeService。这是运行时的表存储着流程变量，用户任务，变量，职责（job）等运行时的数据。Activiti只存储实例执行期间的运行时数据，当流程实例结束时，将删除这些记录。这就保证了这些运行时的表小且快。</p>
+</li>
+<li><p>ACT_ID_*:</p>
+<p>’ID’表示identity (组织机构)，IdentityService接口所操作的表。用户记录，流程中使用到的用户和组。这些表包含标识的信息，如用户，用户组，等等。</p>
+</li>
+<li><p>ACT_HI_*:</p>
+<p>’HI’表示history，历史数据表，HistoryService。就是这些表包含着流程执行的历史相关数据，如结束的流程实例，变量，任务，等等</p>
+</li>
+<li><p>ACT_GE_*:</p>
+<p>全局通用数据及设置(general)，各种情况都使用的数据。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:left">表名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">act_ge_bytearray</td>
+<td style="text-align:left">二进制数据表</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">act_ge_property</td>
+<td style="text-align:left">属性数据表存储整个流程引擎级别的数据,初始化表结构时，会默认插入三条记录，</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">act_hi_actinst</td>
+<td style="text-align:left">历史节点表</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">act_hi_attachment</td>
+<td style="text-align:left">历史附件表</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">act_hi_comment</td>
+<td style="text-align:left">历史意见表</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">act_hi_identitylink</td>
+<td style="text-align:left">历史流程人员表</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">act_hi_detail</td>
+<td style="text-align:left">历史详情表，提供历史变量的查询</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">act_hi_procinst</td>
+<td style="text-align:left">历史流程实例表</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">act_hi_taskinst</td>
+<td style="text-align:left">历史任务实例表</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">act_hi_varinst</td>
+<td style="text-align:left">历史变量表</td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left">act_id_group</td>
+<td style="text-align:left">用户组信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">act_id_info</td>
+<td style="text-align:left">用户扩展信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">13</td>
+<td style="text-align:left">act_id_membership</td>
+<td style="text-align:left">用户与用户组对应信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">14</td>
+<td style="text-align:left">act_id_user</td>
+<td style="text-align:left">用户信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">15</td>
+<td style="text-align:left">act_re_deployment</td>
+<td style="text-align:left">部署信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">16</td>
+<td style="text-align:left">act_re_model</td>
+<td style="text-align:left">流程设计模型部署表</td>
+</tr>
+<tr>
+<td style="text-align:left">17</td>
+<td style="text-align:left">act_re_procdef</td>
+<td style="text-align:left">流程定义数据表</td>
+</tr>
+<tr>
+<td style="text-align:left">18</td>
+<td style="text-align:left">act_ru_event_subscr</td>
+<td style="text-align:left">throwEvent、catchEvent时间监听信息表</td>
+</tr>
+<tr>
+<td style="text-align:left">19</td>
+<td style="text-align:left">act_ru_execution</td>
+<td style="text-align:left">运行时流程执行实例表</td>
+</tr>
+<tr>
+<td style="text-align:left">20</td>
+<td style="text-align:left">act_ru_identitylink</td>
+<td style="text-align:left">运行时流程人员表，主要存储任务节点与参与者的相关信息</td>
+</tr>
+<tr>
+<td style="text-align:left">21</td>
+<td style="text-align:left">act_ru_job</td>
+<td style="text-align:left">运行时定时任务数据表</td>
+</tr>
+<tr>
+<td style="text-align:left">22</td>
+<td style="text-align:left">act_ru_task</td>
+<td style="text-align:left">运行时任务节点表</td>
+</tr>
+<tr>
+<td style="text-align:left">23</td>
+<td style="text-align:left">act_ru_variable</td>
+<td style="text-align:left">运行时流程变量数据表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23张表详解"><a href="#23张表详解" class="headerlink" title="23张表详解"></a>23张表详解</h3><h4 id="二进制数据表（act-ge-bytearray）"><a href="#二进制数据表（act-ge-bytearray）" class="headerlink" title="二进制数据表（act_ge_bytearray）"></a>二进制数据表（act_ge_bytearray）</h4><p>保存流程定义图片和xml、Serializable(序列化)的变量,即保存所有二进制数据，特别注意类路径部署时候，不要把svn等隐藏文件或者其他与流程无关的文件也一起部署到该表中，会造成一些错误（可能导致流程定义无法删除）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">Version(版本)</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">部署的文件名称，如：leave.bpmn.png,leave.bpmn20.xml</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOYMENT_ID_</td>
+<td style="text-align:left">部署ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">部署表ID</td>
+</tr>
+<tr>
+<td style="text-align:left">BYTES_</td>
+<td style="text-align:left">字节</td>
+<td style="text-align:left">varbinary(max)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">部署文件</td>
+</tr>
+<tr>
+<td style="text-align:left">GENERATED_</td>
+<td style="text-align:left">是否是引擎生成</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Y</td>
+<td style="text-align:left">0为用户生成，1为activiti生成</td>
+</tr>
+</tbody>
+</table>
+<h4 id="属性数据表-act-ge-property"><a href="#属性数据表-act-ge-property" class="headerlink" title="属性数据表(act_ge_property)"></a>属性数据表(act_ge_property)</h4><p>属性数据表。存储整个流程引擎级别的数据。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">schema.versionschema.historynext.dbid</td>
+</tr>
+<tr>
+<td style="text-align:left">VALUE_</td>
+<td style="text-align:left">值</td>
+<td style="text-align:left">nvarchar(300)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">5.<em>create(5.</em>)</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">version</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史节点表（act-hi-actinst）"><a href="#历史节点表（act-hi-actinst）" class="headerlink" title="历史节点表（act_hi_actinst）"></a>历史节点表（act_hi_actinst）</h4><p>历史活动信息。这里记录流程流转过的所有节点，与HI_TASKINST不同的是，taskinst只记录usertask内容</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">ACT_ID_</td>
+<td style="text-align:left">节点ID</td>
+<td style="text-align:left">nvarchar(225)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">节点定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">任务实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">任务实例ID 其他节点类型实例ID在这里为空</td>
+</tr>
+<tr>
+<td style="text-align:left">CALL_PROC_INST_ID_</td>
+<td style="text-align:left">调用外部的流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">调用外部流程的流程实例ID’</td>
+</tr>
+<tr>
+<td style="text-align:left">ACT_NAME_</td>
+<td style="text-align:left">节点名称</td>
+<td style="text-align:left">nvarchar(225)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点定义名称</td>
+</tr>
+<tr>
+<td style="text-align:left">ACT_TYPE_</td>
+<td style="text-align:left">节点类型</td>
+<td style="text-align:left">nvarchar(225)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">如startEvent、userTask</td>
+</tr>
+<tr>
+<td style="text-align:left">ASSIGNEE_</td>
+<td style="text-align:left">签收人</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点签收人</td>
+</tr>
+<tr>
+<td style="text-align:left">START_TIME_</td>
+<td style="text-align:left">开始时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">2013-09-15 11:30:00</td>
+</tr>
+<tr>
+<td style="text-align:left">END_TIME_</td>
+<td style="text-align:left">结束时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">2013-09-15 11:30:00</td>
+</tr>
+<tr>
+<td style="text-align:left">DURATION_</td>
+<td style="text-align:left">耗时</td>
+<td style="text-align:left">numeric(19,0)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">毫秒值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史附件表-act-hi-attachment"><a href="#历史附件表-act-hi-attachment" class="headerlink" title="历史附件表( act_hi_attachment )"></a>历史附件表( act_hi_attachment )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">integer</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">Version</td>
+</tr>
+<tr>
+<td style="text-align:left">USER_ID_</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">用户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">附件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">DESCRIPTION_</td>
+<td style="text-align:left">描述</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">描述</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">附件类型</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">任务实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">URL_</td>
+<td style="text-align:left">URL_</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">附件地址</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTENT_ID_</td>
+<td style="text-align:left">字节表的ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">ACT_GE_BYTEARRAY的ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史意见表-act-hi-comment"><a href="#历史意见表-act-hi-comment" class="headerlink" title="历史意见表( act_hi_comment )"></a>历史意见表( act_hi_comment )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">类型：event（事件）comment（意见）</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME_</td>
+<td style="text-align:left">时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">填写时间’</td>
+</tr>
+<tr>
+<td style="text-align:left">USER_ID_</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">填写人</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">节点任务ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">ACTION_</td>
+<td style="text-align:left">行为类型</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">见备注1</td>
+</tr>
+<tr>
+<td style="text-align:left">MESSAGE_</td>
+<td style="text-align:left">基本内容</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">用于存放流程产生的信息，比如审批意见</td>
+</tr>
+<tr>
+<td style="text-align:left">FULL_MSG_</td>
+<td style="text-align:left">全部内容</td>
+<td style="text-align:left">varbinary(max)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">附件地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史详情表-act-hi-detail"><a href="#历史详情表-act-hi-detail" class="headerlink" title="历史详情表( act_hi_detail )"></a>历史详情表( act_hi_detail )</h4><p>流程中产生的变量详细，包括控制流程流转的变量，业务表单中填写的流程需要用到的变量等。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">见备注2</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">任务实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">任务实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">ACT_INST_ID_</td>
+<td style="text-align:left">节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">ACT_HI_ACTINST表的ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">名称</td>
+</tr>
+<tr>
+<td style="text-align:left">VAR_TYPE_</td>
+<td style="text-align:left">参数类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">见备注3</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">Version</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME_</td>
+<td style="text-align:left">时间戳</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">创建时间</td>
+</tr>
+<tr>
+<td style="text-align:left">BYTEARRAY_ID_</td>
+<td style="text-align:left">字节表ID</td>
+<td style="text-align:left">nvarchar</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">ACT_GE_BYTEARRAY表的ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">double precision</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储变量类型为Double</td>
+</tr>
+<tr>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">numeric</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储变量类型为long</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">nvarchar</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储变量值类型为String</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">nvarchar</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">此处存储的是JPA持久化对象时，才会有值。此值为对象ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史流程人员表-act-ru-identitylink"><a href="#历史流程人员表-act-ru-identitylink" class="headerlink" title="历史流程人员表( act_ru_identitylink )"></a>历史流程人员表( act_ru_identitylink )</h4><p>任务参与者数据表。主要存储历史节点参与者的信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">GROUP_ID_</td>
+<td style="text-align:left">组ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">组ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">备注4</td>
+</tr>
+<tr>
+<td style="text-align:left">USER_ID_</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">用户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史流程实例表（act-hi-procinst）"><a href="#历史流程实例表（act-hi-procinst）" class="headerlink" title="历史流程实例表（act_hi_procinst）"></a>历史流程实例表（act_hi_procinst）</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">BUSINESS_KEY_</td>
+<td style="text-align:left">业务主键</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">业务主键，业务表单的ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">START_TIME_</td>
+<td style="text-align:left">开始时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">开始时间</td>
+</tr>
+<tr>
+<td style="text-align:left">END_TIME_</td>
+<td style="text-align:left">结束时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">结束时间</td>
+</tr>
+<tr>
+<td style="text-align:left">DURATION_</td>
+<td style="text-align:left">耗时</td>
+<td style="text-align:left">Numeric(19)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">耗时</td>
+</tr>
+<tr>
+<td style="text-align:left">START_USER_ID_</td>
+<td style="text-align:left">起草人</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">起草人</td>
+</tr>
+<tr>
+<td style="text-align:left">START_ACT_ID_</td>
+<td style="text-align:left">开始节点ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">起草环节ID</td>
+</tr>
+<tr>
+<td style="text-align:left">END_ACT_ID_</td>
+<td style="text-align:left">结束节点ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">结束环节ID</td>
+</tr>
+<tr>
+<td style="text-align:left">SUPER_PROCESS_INSTANCE_ID_</td>
+<td style="text-align:left">父流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">父流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE_REASON_</td>
+<td style="text-align:left">删除原因</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">删除原因</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史任务实例表-act-hi-taskinst"><a href="#历史任务实例表-act-hi-taskinst" class="headerlink" title="历史任务实例表( act_hi_taskinst )"></a>历史任务实例表( act_hi_taskinst )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_DEF_KEY_</td>
+<td style="text-align:left">节点定义ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">varchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">名称</td>
+</tr>
+<tr>
+<td style="text-align:left">PARENT_TASK_ID_</td>
+<td style="text-align:left">父节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">父节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DESCRIPTION_</td>
+<td style="text-align:left">描述</td>
+<td style="text-align:left">nvarchar(400)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">描述</td>
+</tr>
+<tr>
+<td style="text-align:left">OWNER_</td>
+<td style="text-align:left">实际签收人 任务的拥有者</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">签收人（默认为空，只有在委托时才有值）</td>
+</tr>
+<tr>
+<td style="text-align:left">ASSIGNEE_</td>
+<td style="text-align:left">签收人或被委托</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">签收人或被委托</td>
+</tr>
+<tr>
+<td style="text-align:left">START_TIME_</td>
+<td style="text-align:left">开始时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">开始时间</td>
+</tr>
+<tr>
+<td style="text-align:left">CLAIM_TIME_</td>
+<td style="text-align:left">提醒时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">提醒时间</td>
+</tr>
+<tr>
+<td style="text-align:left">END_TIME_</td>
+<td style="text-align:left">结束时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">结束时间</td>
+</tr>
+<tr>
+<td style="text-align:left">DURATION_</td>
+<td style="text-align:left">耗时</td>
+<td style="text-align:left">numeric(19)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">耗时</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE_REASON_</td>
+<td style="text-align:left">删除原因</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">删除原因(completed,deleted)</td>
+</tr>
+<tr>
+<td style="text-align:left">PRIORITY_</td>
+<td style="text-align:left">优先级别</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">优先级别</td>
+</tr>
+<tr>
+<td style="text-align:left">DUE_DATE_</td>
+<td style="text-align:left">过期时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">过期时间，表明任务应在多长时间内完成</td>
+</tr>
+<tr>
+<td style="text-align:left">FORM_KEY_</td>
+<td style="text-align:left">节点定义的formkey</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">desinger节点定义的form_key属性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="历史变量表-act-hi-varinst"><a href="#历史变量表-act-hi-varinst" class="headerlink" title="历史变量表( act_hi_varinst )"></a>历史变量表( act_hi_varinst )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">任务实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">任务实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">参数名称(英文)</td>
+</tr>
+<tr>
+<td style="text-align:left">VAR_TYPE_</td>
+<td style="text-align:left">参数类型</td>
+<td style="text-align:left">varchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">备注5</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁 Version</td>
+</tr>
+<tr>
+<td style="text-align:left">BYTEARRAY_ID_</td>
+<td style="text-align:left">字节表ID</td>
+<td style="text-align:left">nvarchar(400)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">ACT_GE_BYTEARRAY表的主键</td>
+</tr>
+<tr>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储DoubleType类型的数据</td>
+</tr>
+<tr>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储LongType类型的数据</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">备注6</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">此处存储的是JPA持久化对象时，才会有值。此值为对象ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用户组信息表-act-id-group"><a href="#用户组信息表-act-id-group" class="headerlink" title="用户组信息表( act_id_group )"></a>用户组信息表( act_id_group )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁Version</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">组名称</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">类型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用户扩展信息表-act-id-info"><a href="#用户扩展信息表-act-id-info" class="headerlink" title="用户扩展信息表( act_id_info )"></a>用户扩展信息表( act_id_info )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁Version</td>
+</tr>
+<tr>
+<td style="text-align:left">USER_ID_</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">KEY_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">VALUE_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PASSWORD_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Image</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PARENT_ID_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用户与分组对应信息表-act-id-membership"><a href="#用户与分组对应信息表-act-id-membership" class="headerlink" title="用户与分组对应信息表( act_id_membership )"></a>用户与分组对应信息表( act_id_membership )</h4><p>用来保存用户的分组信息。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">USER_ID</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">GROUP_ID</td>
+<td style="text-align:left">用户组ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="用户信息表-act-id-user"><a href="#用户信息表-act-id-user" class="headerlink" title="用户信息表( act_id_user )"></a>用户信息表( act_id_user )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁Version</td>
+</tr>
+<tr>
+<td style="text-align:left">FIRST_</td>
+<td style="text-align:left">姓</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">LAST_</td>
+<td style="text-align:left">名</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">EMAIL_</td>
+<td style="text-align:left">EMAIL_</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PWD_</td>
+<td style="text-align:left">密码</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">PICTURE_ID_</td>
+<td style="text-align:left">图片ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+</tr>
+</tbody>
+</table>
+<h4 id="部署信息表-act-re-deployment"><a href="#部署信息表-act-re-deployment" class="headerlink" title="部署信息表( act_re_deployment )"></a>部署信息表( act_re_deployment )</h4><p>部署流程定义时需要被持久化保存下来的信息。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">部署名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">部署文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">CATEGORY_</td>
+<td style="text-align:left">分类</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">类别</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOY_TIME_</td>
+<td style="text-align:left">部署时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">部署时间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="流程设计模型部署表-act-re-model"><a href="#流程设计模型部署表-act-re-model" class="headerlink" title="流程设计模型部署表( act_re_model )"></a>流程设计模型部署表( act_re_model )</h4><p>流程设计器设计流程后，保存数据到该表。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">名称</td>
+</tr>
+<tr>
+<td style="text-align:left">KEY_</td>
+<td style="text-align:left">KEY_</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">分类，例如：<a href="http://www.mossle.com/docs/activiti/" target="_blank" rel="noopener">http://www.mossle.com/docs/activiti/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">CATEGORY_</td>
+<td style="text-align:left">分类</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">分类</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE_TIME_</td>
+<td style="text-align:left">创建时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">创建时间</td>
+</tr>
+<tr>
+<td style="text-align:left">LAST_UPDATE_TIME_</td>
+<td style="text-align:left">最新修改时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">最新修改时间</td>
+</tr>
+<tr>
+<td style="text-align:left">VERSION_</td>
+<td style="text-align:left">版本</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">META_INFO_</td>
+<td style="text-align:left">META_INFO_</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">以json格式保存流程定义的信息</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOYMENT_ID_</td>
+<td style="text-align:left">部署ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">部署ID</td>
+</tr>
+<tr>
+<td style="text-align:left">EDITOR_SOURCE_VALUE_ID_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">EDITOR_SOURCE_EXTRA_VALUE_ID_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+</tr>
+</tbody>
+</table>
+<h4 id="流程定义数据表-act-re-procdef"><a href="#流程定义数据表-act-re-procdef" class="headerlink" title="流程定义数据表( act_re_procdef )"></a>流程定义数据表( act_re_procdef )</h4><p>业务流程定义数据表。此表和ACT_RE_DEPLOYMENT是多对一的关系，即，一个部署的bar包里可能包含多个流程定义文件，每个流程定义文件都会有一条记录在ACT_REPROCDEF表内，每个流程定义的数据，都会对于ACT_GE_BYTEARRAY表内的一个资源文件和PNG图片文件。和ACT_GE_BYTEARRAY的关联是通过程序用ACT_GE_BYTEARRAY.NAME与ACT_RE_PROCDEF.NAME_完成的，在数据库表结构中没有体现。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">CATEGORY_</td>
+<td style="text-align:left">分类</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义的Namespace就是类别</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">名称</td>
+</tr>
+<tr>
+<td style="text-align:left">KEY_</td>
+<td style="text-align:left">定义的KEY</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">VERSION_</td>
+<td style="text-align:left">版本</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">DEPLOYMENT_ID_</td>
+<td style="text-align:left">部署表ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">部署表ID</td>
+</tr>
+<tr>
+<td style="text-align:left">RESOURCE_NAME_</td>
+<td style="text-align:left">bpmn文件名称</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程bpmn文件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">DGRM_RESOURCE_NAME_</td>
+<td style="text-align:left">png图片名称</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程图片名称</td>
+</tr>
+<tr>
+<td style="text-align:left">DESCRIPTION_</td>
+<td style="text-align:left">描述</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">描述</td>
+</tr>
+<tr>
+<td style="text-align:left">HAS_START_FORM_KEY_</td>
+<td style="text-align:left">是否存在开始节点formKey</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">start节点是否存在formKey 0否 1是</td>
+</tr>
+<tr>
+<td style="text-align:left">SUSPENSION_STATE_</td>
+<td style="text-align:left">是否挂起</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">1 激活 2挂起</td>
+</tr>
+</tbody>
+</table>
+<h4 id="act-ru-event-subscr"><a href="#act-ru-event-subscr" class="headerlink" title="act_ru_event_subscr"></a>act_ru_event_subscr</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">事件ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">事件ID</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">版本</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁Version</td>
+</tr>
+<tr>
+<td style="text-align:left">EVENT_TYPE_</td>
+<td style="text-align:left">事件类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">事件类型</td>
+</tr>
+<tr>
+<td style="text-align:left">EVENT_NAME_</td>
+<td style="text-align:left">事件名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">事件名称</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">ACTIVITY_ID_</td>
+<td style="text-align:left">活动实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">活动实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">CONFIGURATION_</td>
+<td style="text-align:left">配置</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">配置</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATED_</td>
+<td style="text-align:left">是否创建</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">默认值 当前系统时间戳CURRENT_TIMESTAMP</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行时流程执行实例表-act-ru-execution"><a href="#运行时流程执行实例表-act-ru-execution" class="headerlink" title="运行时流程执行实例表( act_ru_execution )"></a>运行时流程执行实例表( act_ru_execution )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">BUSINESS_KEY_</td>
+<td style="text-align:left">业务主键ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">业务主键ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PARENT_ID_</td>
+<td style="text-align:left">父节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">父节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">SUPER_EXEC_</td>
+<td style="text-align:left">SUPER_EXEC_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">SUPER_EXEC_</td>
+</tr>
+<tr>
+<td style="text-align:left">ACT_ID_</td>
+<td style="text-align:left">节点实例ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID即ACT_HI_ACTINST中ID</td>
+</tr>
+<tr>
+<td style="text-align:left">IS_ACTIVE_</td>
+<td style="text-align:left">是否存活</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">是否存活</td>
+</tr>
+<tr>
+<td style="text-align:left">IS_CONCURRENT_</td>
+<td style="text-align:left">是否并行</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">是否为并行(true/false）</td>
+</tr>
+<tr>
+<td style="text-align:left">IS_SCOPE_</td>
+<td style="text-align:left">IS_SCOPE_</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">IS_SCOPE_</td>
+</tr>
+<tr>
+<td style="text-align:left">IS_EVENT_SCOPE_</td>
+<td style="text-align:left">IS_EVENT_SCOPE_</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">IS_EVENT_SCOPE_</td>
+</tr>
+<tr>
+<td style="text-align:left">SUSPENSION_STATE_</td>
+<td style="text-align:left">是否挂起</td>
+<td style="text-align:left">tinyint</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">挂起状态 1激活 2挂起</td>
+</tr>
+<tr>
+<td style="text-align:left">CACHED_ENT_STATE_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行时流程人员表-act-ru-identitylink"><a href="#运行时流程人员表-act-ru-identitylink" class="headerlink" title="运行时流程人员表( act_ru_identitylink )"></a>运行时流程人员表( act_ru_identitylink )</h4><p>任务参与者数据表。主要存储当前节点参与者的信息。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">GROUP_ID_</td>
+<td style="text-align:left">组ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">组ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">备注7</td>
+</tr>
+<tr>
+<td style="text-align:left">USER_ID_</td>
+<td style="text-align:left">用户ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">用户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行时定时任务数据表-act-ru-job"><a href="#运行时定时任务数据表-act-ru-job" class="headerlink" title="运行时定时任务数据表( act_ru_job )"></a>运行时定时任务数据表( act_ru_job )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">标识</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">标识</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">版本</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">版本</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">类型</td>
+</tr>
+<tr>
+<td style="text-align:left">LOCK_EXP_TIME_</td>
+<td style="text-align:left">锁定释放时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">锁定释放时间</td>
+</tr>
+<tr>
+<td style="text-align:left">LOCK_OWNER_</td>
+<td style="text-align:left">挂起者</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">挂起者</td>
+</tr>
+<tr>
+<td style="text-align:left">EXCLUSIVE_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">bit</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROCESS_INSTANCE_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">RETRIES_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">EXCEPTION_STACK_ID_</td>
+<td style="text-align:left">异常信息ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">异常信息ID</td>
+</tr>
+<tr>
+<td style="text-align:left">EXCEPTION_MSG_</td>
+<td style="text-align:left">异常信息</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">异常信息</td>
+</tr>
+<tr>
+<td style="text-align:left">DUEDATE_</td>
+<td style="text-align:left">到期时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">到期时间</td>
+</tr>
+<tr>
+<td style="text-align:left">REPEAT_</td>
+<td style="text-align:left">重复</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">重复</td>
+</tr>
+<tr>
+<td style="text-align:left">HANDLER_TYPE_</td>
+<td style="text-align:left">处理类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">处理类型</td>
+</tr>
+<tr>
+<td style="text-align:left">HANDLER_CFG_</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">标识</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行时任务节点表-act-ru-task"><a href="#运行时任务节点表-act-ru-task" class="headerlink" title="运行时任务节点表( act_ru_task )"></a>运行时任务节点表( act_ru_task )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ID_</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_DEF_ID_</td>
+<td style="text-align:left">流程定义ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程定义ID</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">节点定义名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点定义名称</td>
+</tr>
+<tr>
+<td style="text-align:left">PARENT_TASK_ID_</td>
+<td style="text-align:left">父节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">父节点实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DESCRIPTION_</td>
+<td style="text-align:left">节点定义描述</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点定义描述</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_DEF_KEY_</td>
+<td style="text-align:left">节点定义的KEY</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">任务定义的ID</td>
+</tr>
+<tr>
+<td style="text-align:left">OWNER_</td>
+<td style="text-align:left">实际签收人</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">拥有者（一般情况下为空，只有在委托时才有值）</td>
+</tr>
+<tr>
+<td style="text-align:left">ASSIGNEE_</td>
+<td style="text-align:left">签收人或委托人</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">签收人或委托人</td>
+</tr>
+<tr>
+<td style="text-align:left">DELEGATION_</td>
+<td style="text-align:left">委托类型</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">备注8</td>
+</tr>
+<tr>
+<td style="text-align:left">PRIORITY_</td>
+<td style="text-align:left">优先级别</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">优先级别，默认为：50</td>
+</tr>
+<tr>
+<td style="text-align:left">CREATE_TIME_</td>
+<td style="text-align:left">创建时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">创建时间</td>
+</tr>
+<tr>
+<td style="text-align:left">DUE_DATE_</td>
+<td style="text-align:left">过期时间</td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">耗时</td>
+</tr>
+<tr>
+<td style="text-align:left">SUSPENSION_STATE_</td>
+<td style="text-align:left">是否挂起</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">1代表激活 2代表挂起</td>
+</tr>
+</tbody>
+</table>
+<h4 id="运行时流程变量数据表-act-ru-variable"><a href="#运行时流程变量数据表-act-ru-variable" class="headerlink" title="运行时流程变量数据表( act_ru_variable )"></a>运行时流程变量数据表( act_ru_variable )</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">字段名称</th>
+<th style="text-align:left">字段描述</th>
+<th style="text-align:left">数据类型</th>
+<th style="text-align:left">主键</th>
+<th style="text-align:left">为空</th>
+<th style="text-align:left">取值说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">ID_</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left">√</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">主键标识</td>
+</tr>
+<tr>
+<td style="text-align:left">REV_</td>
+<td style="text-align:left">乐观锁</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">乐观锁</td>
+</tr>
+<tr>
+<td style="text-align:left">TYPE_</td>
+<td style="text-align:left">类型</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">备注9</td>
+</tr>
+<tr>
+<td style="text-align:left">NAME_</td>
+<td style="text-align:left">名称</td>
+<td style="text-align:left">nvarchar(255)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left">变量名称</td>
+</tr>
+<tr>
+<td style="text-align:left">EXECUTION_ID_</td>
+<td style="text-align:left">执行实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">执行的ID</td>
+</tr>
+<tr>
+<td style="text-align:left">PROC_INST_ID_</td>
+<td style="text-align:left">流程实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">流程实例ID</td>
+</tr>
+<tr>
+<td style="text-align:left">TASK_ID_</td>
+<td style="text-align:left">节点实例ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">节点实例ID(Local）</td>
+</tr>
+<tr>
+<td style="text-align:left">BYTEARRAY_ID_</td>
+<td style="text-align:left">字节表ID</td>
+<td style="text-align:left">nvarchar(64)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">字节表的ID（ACT_GE_BYTEARRAY）</td>
+</tr>
+<tr>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">DOUBLE_</td>
+<td style="text-align:left">float</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储变量类型为Double</td>
+</tr>
+<tr>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">LONG_</td>
+<td style="text-align:left">numeric(19)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">存储变量类型为long</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">TEXT_</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">‘存储变量值类型为String 如此处存储持久化对象时，值jpa对象的class</td>
+</tr>
+<tr>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">TEXT2_</td>
+<td style="text-align:left">nvarchar(4000)</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">√</td>
+<td style="text-align:left">此处存储的是JPA持久化对象时，才会有值。此值为对象ID</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/W3tDf1V2sT5LoOi.png" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/Od5DSGJ316toUkw.jpg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2020/10/15/工作流相关.html" title="工作流引擎">http://jeromememory.github.io/2020/10/15/工作流相关.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/18/地址栏输入url后发生了什么.html" rel="next" title="地址栏输入 url 后发生了什么">
+                <i class="fa fa-chevron-left"></i> 地址栏输入 url 后发生了什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/09/nacos.html" rel="prev" title="nacos使用遇到的一些问题总结">
+                nacos使用遇到的一些问题总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">134</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=2&id=479598964&auto=0&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#7大服务介绍"><span class="nav-number">1.</span> <span class="nav-text">7大服务介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23张表概览"><span class="nav-number">2.</span> <span class="nav-text">23张表概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23张表详解"><span class="nav-number">3.</span> <span class="nav-text">23张表详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制数据表（act-ge-bytearray）"><span class="nav-number">3.1.</span> <span class="nav-text">二进制数据表（act_ge_bytearray）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性数据表-act-ge-property"><span class="nav-number">3.2.</span> <span class="nav-text">属性数据表(act_ge_property)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史节点表（act-hi-actinst）"><span class="nav-number">3.3.</span> <span class="nav-text">历史节点表（act_hi_actinst）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史附件表-act-hi-attachment"><span class="nav-number">3.4.</span> <span class="nav-text">历史附件表( act_hi_attachment )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史意见表-act-hi-comment"><span class="nav-number">3.5.</span> <span class="nav-text">历史意见表( act_hi_comment )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史详情表-act-hi-detail"><span class="nav-number">3.6.</span> <span class="nav-text">历史详情表( act_hi_detail )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史流程人员表-act-ru-identitylink"><span class="nav-number">3.7.</span> <span class="nav-text">历史流程人员表( act_ru_identitylink )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史流程实例表（act-hi-procinst）"><span class="nav-number">3.8.</span> <span class="nav-text">历史流程实例表（act_hi_procinst）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史任务实例表-act-hi-taskinst"><span class="nav-number">3.9.</span> <span class="nav-text">历史任务实例表( act_hi_taskinst )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#历史变量表-act-hi-varinst"><span class="nav-number">3.10.</span> <span class="nav-text">历史变量表( act_hi_varinst )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户组信息表-act-id-group"><span class="nav-number">3.11.</span> <span class="nav-text">用户组信息表( act_id_group )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户扩展信息表-act-id-info"><span class="nav-number">3.12.</span> <span class="nav-text">用户扩展信息表( act_id_info )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户与分组对应信息表-act-id-membership"><span class="nav-number">3.13.</span> <span class="nav-text">用户与分组对应信息表( act_id_membership )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户信息表-act-id-user"><span class="nav-number">3.14.</span> <span class="nav-text">用户信息表( act_id_user )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署信息表-act-re-deployment"><span class="nav-number">3.15.</span> <span class="nav-text">部署信息表( act_re_deployment )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程设计模型部署表-act-re-model"><span class="nav-number">3.16.</span> <span class="nav-text">流程设计模型部署表( act_re_model )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程定义数据表-act-re-procdef"><span class="nav-number">3.17.</span> <span class="nav-text">流程定义数据表( act_re_procdef )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#act-ru-event-subscr"><span class="nav-number">3.18.</span> <span class="nav-text">act_ru_event_subscr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时流程执行实例表-act-ru-execution"><span class="nav-number">3.19.</span> <span class="nav-text">运行时流程执行实例表( act_ru_execution )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时流程人员表-act-ru-identitylink"><span class="nav-number">3.20.</span> <span class="nav-text">运行时流程人员表( act_ru_identitylink )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时定时任务数据表-act-ru-job"><span class="nav-number">3.21.</span> <span class="nav-text">运行时定时任务数据表( act_ru_job )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时任务节点表-act-ru-task"><span class="nav-number">3.22.</span> <span class="nav-text">运行时任务节点表( act_ru_task )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时流程变量数据表-act-ru-variable"><span class="nav-number">3.23.</span> <span class="nav-text">运行时流程变量数据表( act_ru_variable )</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; 2019 – <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">1.2m</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2020/10/15/工作流相关.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>

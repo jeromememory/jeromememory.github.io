@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2020-08-19T07:55:35.426Z</updated>
+  <updated>2021-03-25T08:57:12.782Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -15,6 +15,138 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://jeromememory.github.io/2020/12/24/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E4%B8%80%E4%B9%A6%E7%AC%94%E8%AE%B0.html"/>
+    <id>http://jeromememory.github.io/2020/12/24/知识图谱一书笔记.html</id>
+    <published>2020-12-24T06:07:27.483Z</published>
+    <updated>2021-03-25T08:57:12.782Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>知识图谱</title>
+    <link href="http://jeromememory.github.io/2020/12/22/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1.html"/>
+    <id>http://jeromememory.github.io/2020/12/22/知识图谱.html</id>
+    <published>2020-12-22T12:25:21.350Z</published>
+    <updated>2020-12-22T12:29:03.356Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>实体识别和关键字判别</title>
+    <link href="http://jeromememory.github.io/2020/12/18/%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97%E5%88%A4%E5%88%AB.html"/>
+    <id>http://jeromememory.github.io/2020/12/18/实体识别和关键字判别.html</id>
+    <published>2020-12-18T14:36:30.647Z</published>
+    <updated>2020-12-22T12:25:17.535Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>项目相关事宜</title>
+    <link href="http://jeromememory.github.io/2020/11/26/%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html"/>
+    <id>http://jeromememory.github.io/2020/11/26/项目目录结构.html</id>
+    <published>2020-11-26T02:51:43.605Z</published>
+    <updated>2020-11-30T07:25:12.616Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>nacos使用遇到的一些问题总结</title>
+    <link href="http://jeromememory.github.io/2020/11/09/nacos.html"/>
+    <id>http://jeromememory.github.io/2020/11/09/nacos.html</id>
+    <published>2020-11-09T08:55:19.550Z</published>
+    <updated>2020-11-09T08:59:11.411Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>工作流引擎</title>
+    <link href="http://jeromememory.github.io/2020/10/15/%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9B%B8%E5%85%B3.html"/>
+    <id>http://jeromememory.github.io/2020/10/15/工作流相关.html</id>
+    <published>2020-10-15T12:02:45.802Z</published>
+    <updated>2020-11-02T02:26:10.917Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>地址栏输入 url 后发生了什么</title>
@@ -87,7 +219,7 @@
     <link href="http://jeromememory.github.io/2020/07/29/%E7%A7%8B%E6%8B%9B%E7%BB%8F%E5%8E%86.html"/>
     <id>http://jeromememory.github.io/2020/07/29/秋招经历.html</id>
     <published>2020-07-29T14:35:26.690Z</published>
-    <updated>2020-09-28T10:02:10.546Z</updated>
+    <updated>2020-11-05T11:23:41.986Z</updated>
     
     <summary type="html">
     
@@ -383,36 +515,6 @@
   </entry>
   
   <entry>
-    <title>多线程（八）--- 总结 &amp; 补充 &amp; api 使用</title>
-    <link href="http://jeromememory.github.io/2020/03/01/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89---%20%E6%80%BB%E7%BB%93%20&amp;%20api%20%E4%BD%BF%E7%94%A8%20&amp;%20%E8%A1%A5%E5%85%85.html"/>
-    <id>http://jeromememory.github.io/2020/03/01/多线程（八）--- 总结 &amp; api 使用 &amp; 补充.html</id>
-    <published>2020-03-01T13:28:06.000Z</published>
-    <updated>2020-08-09T02:01:56.198Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="BlockingQueue" scheme="http://jeromememory.github.io/tags/BlockingQueue/"/>
-    
-      <category term="StampedLock" scheme="http://jeromememory.github.io/tags/StampedLock/"/>
-    
-      <category term="ConcurrentLinkedQueue" scheme="http://jeromememory.github.io/tags/ConcurrentLinkedQueue/"/>
-    
-  </entry>
-  
-  <entry>
     <title>多线程（七）--- 三种方式实现生产者-消费者</title>
     <link href="http://jeromememory.github.io/2020/02/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%83%EF%BC%89---%20%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85.html"/>
     <id>http://jeromememory.github.io/2020/02/29/多线程（七）--- 三种方法实现生产者-消费者.html</id>
@@ -473,162 +575,6 @@
       <category term="Semaphore" scheme="http://jeromememory.github.io/tags/Semaphore/"/>
     
       <category term="Exchanger" scheme="http://jeromememory.github.io/tags/Exchanger/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（五）--- FutureTask</title>
-    <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89---%20FutureTask.html"/>
-    <id>http://jeromememory.github.io/2020/02/28/多线程（五）--- FutureTask.html</id>
-    <published>2020-02-28T11:48:06.000Z</published>
-    <updated>2020-08-09T02:53:45.485Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="源码分析" scheme="http://jeromememory.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="FutureTask" scheme="http://jeromememory.github.io/tags/FutureTask/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（四）--- 线程池</title>
-    <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89---%20%E7%BA%BF%E7%A8%8B%E6%B1%A0.html"/>
-    <id>http://jeromememory.github.io/2020/02/28/多线程（四）--- 线程池.html</id>
-    <published>2020-02-28T01:40:06.000Z</published>
-    <updated>2020-08-09T02:52:51.707Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="源码分析" scheme="http://jeromememory.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="线程池" scheme="http://jeromememory.github.io/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    
-      <category term="ThreadPoolExecutor" scheme="http://jeromememory.github.io/tags/ThreadPoolExecutor/"/>
-    
-      <category term="ScheduledThreadPoolExecutor" scheme="http://jeromememory.github.io/tags/ScheduledThreadPoolExecutor/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（三）--- 并发容器</title>
-    <link href="http://jeromememory.github.io/2020/02/27/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89----%20%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8.html"/>
-    <id>http://jeromememory.github.io/2020/02/27/多线程（三）---- 并发容器.html</id>
-    <published>2020-02-27T15:59:06.000Z</published>
-    <updated>2020-08-09T02:04:10.058Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="并发容器" scheme="http://jeromememory.github.io/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
-    
-      <category term="ConcurrentHashMap" scheme="http://jeromememory.github.io/tags/ConcurrentHashMap/"/>
-    
-      <category term="CopyOnWriteArrayList" scheme="http://jeromememory.github.io/tags/CopyOnWriteArrayList/"/>
-    
-      <category term="BlockingQueue" scheme="http://jeromememory.github.io/tags/BlockingQueue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（二）--- ThreadLocal</title>
-    <link href="http://jeromememory.github.io/2020/02/27/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89----%20ThreadLocal.html"/>
-    <id>http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html</id>
-    <published>2020-02-27T09:36:32.391Z</published>
-    <updated>2020-08-09T02:52:55.214Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="源码分析" scheme="http://jeromememory.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-    
-      <category term="ThreadLocal" scheme="http://jeromememory.github.io/tags/ThreadLocal/"/>
-    
-      <category term="内存泄漏" scheme="http://jeromememory.github.io/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
-    
-      <category term="弱引用" scheme="http://jeromememory.github.io/tags/%E5%BC%B1%E5%BC%95%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式</title>
-    <link href="http://jeromememory.github.io/2020/02/25/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html"/>
-    <id>http://jeromememory.github.io/2020/02/25/设计模式.html</id>
-    <published>2020-02-24T16:31:32.995Z</published>
-    <updated>2020-08-09T03:06:22.478Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="设计模式" scheme="http://jeromememory.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="单例模式" scheme="http://jeromememory.github.io/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-      <category term="模板方法模式" scheme="http://jeromememory.github.io/tags/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/"/>
-    
-      <category term="代理模式" scheme="http://jeromememory.github.io/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
-    
-      <category term="动态代理" scheme="http://jeromememory.github.io/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
     
   </entry>
   
