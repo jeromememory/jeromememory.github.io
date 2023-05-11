@@ -157,14 +157,14 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="第四章 主题和分区从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。 主题的管理主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 kafka 提供的 kafka-topics.sh 脚本或者 Kafka">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1jggwcrj316v02utac.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1vcubc7j30go0cgq7e.jpg">
-<meta property="og:updated_time" content="2020-08-09T02:15:55.796Z">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1jggwcrj316v02utac.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1vcubc7j30go0cgq7e.jpg">
+<meta property="og:updated_time" content="2023-05-11T15:20:45.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 kafka（三）">
 <meta name="twitter:description" content="第四章 主题和分区从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。 主题的管理主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 kafka 提供的 kafka-topics.sh 脚本或者 Kafka">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg">
+<meta name="twitter:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg">
 
 
 
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:15:55" itemprop="dateModified" datetime="2020-08-09T10:15:55+08:00">2020-08-09</time>
+                <time title="修改时间：2023-05-11 23:20:45" itemprop="dateModified" datetime="2023-05-11T23:20:45+08:00">2023-05-11</time>
               
             
           </span>
@@ -609,11 +609,11 @@
 <p><strong>这一小节，我们主要讲 kafka-topics.sh 的实现。</strong></p>
 <h3 id="创建主题"><a href="#创建主题" class="headerlink" title="创建主题"></a>创建主题</h3><p>首先建议先将broker端配置参数auto.create.topics.enable设置为false（默认值就是true），因为如果是默认值，当生产者或者消费者与一个不存在的主题有关系时会自动创建该 topic，这种自动创建主题的行为是非预期的，会增加主题的管理与维护的难度，所以在生产环境中最好不要这样。</p>
 <p>更加推荐的方式是通过 kafka-topics.sh 脚本来创建主题，如图所示：</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg" alt="image-20200429231103122"></p>
-<p>我们不仅可以通过日志文件的根目录来查看集群中各个broker的分区副本的分配情况，还可以通过ZooKeeper客户端来获取。当创建一个主题时会在ZooKeeper的/brokers/topics/目录下创建一个同名的实节点，该节点中记录了该主题的分区副本分配方案。示例如下：<br>￼<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1jggwcrj316v02utac.jpg" alt="image-20200429231146009"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1iqoua6j30go01kwew.jpg" alt="image-20200429231103122"></p>
+<p>我们不仅可以通过日志文件的根目录来查看集群中各个broker的分区副本的分配情况，还可以通过ZooKeeper客户端来获取。当创建一个主题时会在ZooKeeper的/brokers/topics/目录下创建一个同名的实节点，该节点中记录了该主题的分区副本分配方案。示例如下：<br>￼<img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1jggwcrj316v02utac.jpg" alt="image-20200429231146009"></p>
 <p>示例数据中的”2”：[1，2]表示分区 2 分配了 2 个副本，分别在 brokerId 为 1 和 2 的 broker节点中。</p>
 <p>到目前为止，创建主题时的分区副本都是按照既定的内部逻辑来进行分配的。 kafka-topics.sh 脚本中还提供了一个 replica-assignment 参数来手动指定分区副本的分配方案，如图所示：</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1vcubc7j30go0cgq7e.jpg" alt="image-20200429232312480"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1geb1vcubc7j30go0cgq7e.jpg" alt="image-20200429232312480"></p>
 <p>注意事项：</p>
 <p>主题的命名同样不推荐（虽然可以这样做）使用双下画线“<strong>”开头，因为以双下画线开头的主题一般看作Kafka的内部主题，比如</strong>consumer_offsets和__transaction_state。</p>
 <h3 id="分区副本的分配"><a href="#分区副本的分配" class="headerlink" title="分区副本的分配"></a>分区副本的分配</h3><p>这里的分区分配，跟前面的生产者和消费者的分区分配不一样。生产者的分区分配是指为<strong>每条消息指定其所要发往的分区</strong>，消费者中的分区分配是指为<strong>消费者指定其可以消费消息的分区</strong>，而这里的分区分配是指<strong><em>为集群制定创建主题时的分区副本分配方案</em></strong>，即在哪个broker中创建哪些分区的副本。</p>

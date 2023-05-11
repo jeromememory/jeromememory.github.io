@@ -150,22 +150,22 @@
 
 
   <meta name="description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
-<meta name="keywords" content="ThreadLocal,内存泄漏,弱引用,源码分析">
+<meta name="keywords" content="源码分析,ThreadLocal,内存泄漏,弱引用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（二）--- ThreadLocal">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/27/多线程（二）---- ThreadLocal.html">
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg">
-<meta property="og:updated_time" content="2020-08-09T02:52:55.214Z">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg">
+<meta property="og:updated_time" content="2023-05-11T15:18:37.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（二）--- ThreadLocal">
 <meta name="twitter:description" content="ThreadLocal这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。   主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了 初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了 ThreadLocal 简述 ThreadLocal 内存泄漏问题 Thread">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
+<meta name="twitter:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg">
 
 
 
@@ -522,7 +522,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:52:55" itemprop="dateModified" datetime="2020-08-09T10:52:55+08:00">2020-08-09</time>
+                <time title="修改时间：2023-05-11 23:18:37" itemprop="dateModified" datetime="2023-05-11T23:18:37+08:00">2023-05-11</time>
               
             
           </span>
@@ -610,7 +610,7 @@
 
       
         <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p>这个需要好好写一下，感觉是比较麻烦的。难点主要就在 Thread 和 ThreadLocal 之间的关系。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg" alt="image-20200228120533419"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcbzhij851j30u018zwly.jpg" alt="image-20200228120533419"></p>
 <blockquote>
 <p><a href="http://www.jasongj.com/java/threadlocal/" target="_blank" rel="noopener">主要参考了ThreadLocal的原理部分，就是这篇文章终于让我明白我想错了</a></p>
 <p><a href="https://my.oschina.net/clopopo/blog/149368" target="_blank" rel="noopener">初始化的时候，注意不要保存对象的引用，这样的话拷贝的副本也必然是对象的引用，最终都会改变对象，这样就不对了</a></p>
@@ -627,7 +627,7 @@
 </ul>
 <h2 id="ThreadLocal-原理"><a href="#ThreadLocal-原理" class="headerlink" title="ThreadLocal 原理"></a>ThreadLocal 原理</h2><p>看源码的时候，被 ThreadLocal、ThreadLocalMap、threadLocals 绕晕了，最后终于绕明白了…其实还是自己先入为主的去思考了 ThreadLocal 的实现，最重要的是，<strong>每一个线程都是拥有一个 ThreadLocalMap</strong> 的，为什么要用 Map 而不使用 Pair 呢？因为每个线程可能拥有非常多个 ThreadLocal 变量。再重复一遍，ThreadLocalMap 是从属于每个线程的，每个线程自己管理自己的 map，既然说到这，我就再详细的说一下。</p>
 <h3 id="我的想法—-ThreadLocal-维护线程与实例的映射"><a href="#我的想法—-ThreadLocal-维护线程与实例的映射" class="headerlink" title="我的想法—-ThreadLocal 维护线程与实例的映射"></a>我的想法—-ThreadLocal 维护线程与实例的映射</h3><p>因为我看 ThreadLocalMap 是 ThreadLocal 的 内部类，所以以为从属关系是 Map 从属于该变量，那一个可能的方案就是每一个 ThreadLocal 变量都维护一个 ThreadLocalMap，我们都知道，每个访问 ThreadLocal 变量的线程都有自己的一个“本地”实例副本。线程通过该 ThreadLocal 的 get() 方案获取实例时，只需要以线程为键，从 Map 中找出对应的实例即可。该方案如下图所示：</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg" alt="ThreadLocal side Map"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcc5uxgu0yj31740jmjua.jpg" alt="ThreadLocal side Map"></p>
 <p>该方案可满足上文提到的每个线程内一个独立备份的要求。每个新线程访问该 ThreadLocal 时，需要向 Map 中添加一个映射，而<strong>每个线程结束时，应该清除该映射</strong>。这里就有两个问题：</p>
 <ul>
 <li>增加线程与减少线程均需要写 Map，故需保证该 Map 线程安全。虽然有几种实现线程安全 Map 的方式，但它或多或少都需要锁来保证线程的安全性。</li>
@@ -635,7 +635,7 @@
 </ul>
 <p>其中锁的问题，应该是 JDK 未采用该方案的一个原因。</p>
 <h3 id="真正的实现—-Thread-维护ThreadLocal与实例的映射"><a href="#真正的实现—-Thread-维护ThreadLocal与实例的映射" class="headerlink" title="真正的实现—-Thread 维护ThreadLocal与实例的映射"></a>真正的实现—-Thread 维护ThreadLocal与实例的映射</h3><p>上述方案中，出现锁的问题，原因在于多线程访问同一个 Map。如果该 Map 由 Thread 维护，从而使得每个 Thread 只访问自己的 Map，那就不存在多线程写的问题，也就不需要锁。该方案如下图所示。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg" alt="ThreadLocal side Map"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcc5yy8ppuj312a0n8gov.jpg" alt="ThreadLocal side Map"></p>
 <p>该方案虽然没有锁的问题，但是由于每个线程访问某 ThreadLocal 变量后，都会在自己的 Map 内维护该 ThreadLocal 变量与具体实例的映射，如果不删除这些引用（映射），则这些 ThreadLocal 不能被回收，可能会造成内存泄漏。后文会介绍 JDK 如何解决该问题。</p>
 <h2 id="ThreadLocal-使用-Demo"><a href="#ThreadLocal-使用-Demo" class="headerlink" title="ThreadLocal 使用 Demo"></a>ThreadLocal 使用 Demo</h2><p>在这里，我们先来使用一下 ThreadLocal，再来分析其源码。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> 多线程;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ThreadLocal&lt;SimpleDateFormat&gt; sdf = <span class="keyword">new</span> ThreadLocal&lt;&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            executorService.submit(<span class="keyword">new</span> DateUtil(<span class="string">"2019-11-25 09:00:"</span> + i % <span class="number">60</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DateUtil</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String date;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DateUtil</span><span class="params">(String date)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.date = date;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (sdf.get() == <span class="keyword">null</span>) &#123;</span><br><span class="line">                sdf.set(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Date date = sdf.get().parse(<span class="keyword">this</span>.date);</span><br><span class="line">                    System.out.println(date);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -715,7 +715,7 @@
 <li>如果在搜索过程中遇到脏entryt通过expungeStaleEntry方法清理掉当前脏entry，并且该方法会返回下一个哈希桶(table[i])为null的索引位置为i。这时重新令搜索起点为索引位置i，n为哈希表的长度len，再次扩大搜索范围为log2(n)继续搜索。</li>
 </ol>
 <p>下面，以一个例子更清晰的来说一下，假设当前table数组的情况如下图。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg" alt="img"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcd21mceyyj30kh08cq34.jpg" alt="img"></p>
 <ol>
 <li><p>如图当前n等于hash表的size即n=10，i=1,在第一趟搜索过程中通过nextIndex,i指向了索引为2的位置，此时table[2]为null，说明第一趟未发现脏entry,则第一趟结束进行第二趟的搜索。</p>
 </li>
@@ -901,13 +901,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/源码分析/" rel="tag"><i class="fa fa-tag"></i> 源码分析</a>
+          
             <a href="/tags/ThreadLocal/" rel="tag"><i class="fa fa-tag"></i> ThreadLocal</a>
           
             <a href="/tags/内存泄漏/" rel="tag"><i class="fa fa-tag"></i> 内存泄漏</a>
           
             <a href="/tags/弱引用/" rel="tag"><i class="fa fa-tag"></i> 弱引用</a>
-          
-            <a href="/tags/源码分析/" rel="tag"><i class="fa fa-tag"></i> 源码分析</a>
           
         </div>
       

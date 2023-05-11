@@ -157,14 +157,14 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="第二章 生产者客户端开发12345678910111213141516171819202122232425262728293031323334353637383940package Kafka.Demo1;import org.apache.kafka.clients.Metadata;import org.apache.kafka.clients.producer.KafkaProducer;i">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg">
-<meta property="og:updated_time" content="2020-08-09T02:15:19.549Z">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg">
+<meta property="og:updated_time" content="2023-05-11T15:20:53.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 kafka（二）">
 <meta name="twitter:description" content="第二章 生产者客户端开发12345678910111213141516171819202122232425262728293031323334353637383940package Kafka.Demo1;import org.apache.kafka.clients.Metadata;import org.apache.kafka.clients.producer.KafkaProducer;i">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
+<meta name="twitter:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg">
 
 
 
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:15:19" itemprop="dateModified" datetime="2020-08-09T10:15:19+08:00">2020-08-09</time>
+                <time title="修改时间：2023-05-11 23:20:53" itemprop="dateModified" datetime="2023-05-11T23:20:53+08:00">2023-05-11</time>
               
             
           </span>
@@ -628,13 +628,13 @@
 <li>同步。<code>producer.send(record)</code> 的返回类型为 <code>Future&lt;RecordMetadata&gt;</code>，所以可以使用 future.get() 进行同步，RecordMetadata 对象包含了消息的一些元数据信息，比如当前消息的主题、分区号、分区中的偏移量、时间戳等等。</li>
 <li>异步。如下图所示，直接在 send() 中使用回调函数。</li>
 </ol>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg" alt="image-20200427211014168"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8msffab6j30go06pgmn.jpg" alt="image-20200427211014168"></p>
 <p>消息在通过 send() 方法发往broker的过程中，有可能需要经过<strong>拦截器（Interceptor）、序列化器（Serializer）和分区器（Partitioner）</strong>的一系列作用之后才能被真正地发往 broker。生产者拦截器可以用来在消费消息钱做一些准备工作，然后消息经过序列化之后就需要确定它发往的分区，如果消息ProducerRecord中指定了partition字段，那么就不需要分区器的作用，因为partition代表的就是所要发往的分区号。</p>
 <p><strong>拦截器</strong>，一般不是必需的。<strong>生产者拦截器既可以用来在消息发送前做一些准备工作</strong>，比如按照某个规则过滤不符合要求的消息、修改消息的内容等，也可以用来在发送回调逻辑前做一些定制化的需求，比如统计类工作。KafkaProducer中不仅可以指定一个拦截器，还可以指定多个拦截器以形成拦截链。</p>
 <p><strong>生产者需要用序列化器（Serializer）把对象转换成字节数组才能通过网络发送给Kafka，这是必须的。</strong></p>
 <p><strong>分区器的作用就是为消息分配分区</strong>。如果消息ProducerRecord中没有指定partition字段，那么就需要依赖分区器，根据key这个字段来计算partition的值。如果key为null，那么消息将会以轮询的方式发往主题内的各个可用分区。</p>
 <h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><p>在前面的章节中，我们已经了解了KafkaProducer的具体使用方法，而本节的内容主要是<strong>对Kafka 生产者客户端的内部原理进行分析</strong>，通过了解生产者客户端的整体脉络可以让我们更好地使用它，避免因为一些理解上的偏差而造成使用上的错误。</p>
-<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg" alt="生产者客户端的整体架构"></p>
+<h3 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h3><p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8rnbchnuj30go0e679k.jpg" alt="生产者客户端的整体架构"></p>
 <p>由前一小结可知，生产者客户端的send()是异步的，说明有两个线程在运行，也就是主线程和send线程。在主线程中由KafkaProducer创建消息，然后通过可能的拦截器、序列化器和分区器的作用之后缓存到<strong>消息累加器（RecordAccumulator，也称为消息收集器）</strong>中。Sender 线程负责从RecordAccumulator中获取消息并将其发送到Kafka中。RecordAccumulator 的内部为每个分区都维护了一个双端队列，队列中的内容就是ProducerBatch，ProducerBatch中可以包含一至多个 ProducerRecord。所以我们其实最终发送的消息是 ProducerBatch。</p>
 <h3 id="元数据的更新"><a href="#元数据的更新" class="headerlink" title="元数据的更新"></a>元数据的更新</h3><p>元数据是指Kafka集群的元数据，这些元数据具体记录了集群中有哪些主题，这些主题有哪些分区，每个分区的leader副本分配在哪个节点上，follower副本分配在哪些节点上，哪些副本在AR、ISR等集合中，集群中有哪些节点，控制器节点又是哪一个等信息。</p>
 <p>在上面的第 8 步之前，我们要挑出负载最小的 broker「每个Node在InFlightRequests中还未确认的请求数决定的，未确认的请求越多则认为负载越大」，这样就能够尽快的发出，<strong>因为在发出的时候，我们要先获得对应的 partition 在哪个 broker、broker 是哪个ip，所以在发出之前首先要进行元数据的更新</strong>，这里我们肯定是先挑选出leastLoadedNode，然后向这个Node发送MetadataRequest请求来获取具体的元数据信息。这个更新操作是由Sender线程发起的，在创建完MetadataRequest之后同样会存入InFlightRequests，之后的步骤就和发送消息时的类似。元数据虽然由Sender线程负责更新，但是主线程也需要读取这些信息，这里的数据同步通过<strong>synchronized和final关键字</strong>来保障。</p>
@@ -689,7 +689,7 @@
 <h4 id="修改偏移量"><a href="#修改偏移量" class="headerlink" title="修改偏移量"></a>修改偏移量</h4><p>消费完消息之后，就需要<strong>修改偏移量</strong>了。在每次调用poll（）方法时，它返回的是还没有被消费过的消息集，要做到这一点，就需要记录上一次消费时的消费位移。消费位移存储在Kafka内部的主题__consumer_offsets中。</p>
 <p>在 Kafka 中，有 <strong>自动提交偏移量</strong> 和 <strong>手动提交偏移量</strong>，默认的是自动提交偏移量，<strong><em>，好处就是免去了复杂的位移提交逻辑，坏处就是偏移量的修改交由服务器自身去处理的话会导致重复消费和消息丢失的情况</em></strong>，自动位移提交的动作是在poll（）方法的逻辑里完成的，在每次真正向服务端发起拉取请求之前会检查是否可以进行位移提交，如果可以，那么就会提交上一次轮询的位移。</p>
 <p>所以，有的时候，我们需要手动控制位移提交，开启手动提交功能的前提是消费者客户端参数 <code>enable.auto.commit</code> 配置为 <code>false</code>。手动提交可以细分为同步提交和异步提交，对应于 KafkaConsumer 中的 commitSync（）和commitAsync（）两种类型的方法。同步提交会阻塞消费者线程直到位移提交完成，异步提交不会阻塞，但是很可能导致重复消费的问题，所以一般采用以下的方式：</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg" alt="image-20200428150922171"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlgy1ge9hz95c8tj30go0a43zm.jpg" alt="image-20200428150922171"></p>
 <h3 id="指定位移消费"><a href="#指定位移消费" class="headerlink" title="指定位移消费"></a>指定位移消费</h3><p><strong>在 Kafka 中每当消费者查找不到所记录的消费位移时，就会根据消费者客户端参数auto.offset.reset的配置来决定从何处开始进行消费，这个参数的默认值为“latest”</strong>，表示从分区末尾开始消费消息。还有一个对应的值是”earliest“。</p>
 <p>auto.offset.reset参数还有一个可配置的值—“none”，配置为此值就意味着出现查到不到消费位移的时候，既不从最新的消息位置处开始消费，也不从最早的消息位置处开始消费，此时会报出NoOffsetForPartitionException异常。</p>
 <p>到目前为止，我们一直都是使用 poll() 中的逻辑来进行数据的拉取，比如自动修改偏移量、使用 auto.offset.reset 来决定从末尾开始消费，但是我们只能粗粒度的从开头或者末尾进行消费，那有没有一个更细粒度的方法呢？当然有，那就是KafkaConsumer 中的 seek（）方法。</p>

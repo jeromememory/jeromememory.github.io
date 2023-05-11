@@ -157,19 +157,19 @@
 <meta property="og:site_name" content="jeromememory">
 <meta property="og:description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqs8ch2sj31680u0n6q.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcer1ilizij30nu0a840o.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcer67vtugj311g0u013s.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcereehqinj30nq0a840n.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg">
-<meta property="og:updated_time" content="2020-08-09T02:03:36.346Z">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gceqs8ch2sj31680u0n6q.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcer1ilizij30nu0a840o.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcer67vtugj311g0u013s.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcereehqinj30nq0a840n.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg">
+<meta property="og:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg">
+<meta property="og:updated_time" content="2023-05-11T15:21:37.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程（七）--- 三种方式实现生产者-消费者">
 <meta name="twitter:description" content="生产者-消费者模式是一个十分经典的多线程并发协作的模式，弄懂生产者-消费者问题能够让我们对并发编程的理解加深。所谓生产者-消费者问题，实际上主要是包含了两类线程，一种是生产者线程用于生产数据，另一种是消费者线程用于消费数据，为了解耦生产者和消费者的关系，通常会采用共享的数据区域，就像是一个仓库，生产者生产数据之后直接放置在共享数据区中，并不需要关心消费者的行为；而消费者只需要从共享数据区中去获取数">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
+<meta name="twitter:image" content="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg">
 
 
 
@@ -526,7 +526,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-08-09 10:03:36" itemprop="dateModified" datetime="2020-08-09T10:03:36+08:00">2020-08-09</time>
+                <time title="修改时间：2023-05-11 23:21:37" itemprop="dateModified" datetime="2023-05-11T23:21:37+08:00">2023-05-11</time>
               
             
           </span>
@@ -646,34 +646,34 @@
 <p>如上，我们来分析一下为何要用 while，下面我把程序整个运行过程讲一遍。</p>
 <ol>
 <li>首先我们清楚 Thread-0 是 producer，Thread 1 、2、3 都是 consumer；</li>
-<li>在最开始， Thread-0 最先启动，所以它也理所当然的第一个抢到了锁<br><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg" alt="image-20200301211615114"></li>
+<li>在最开始， Thread-0 最先启动，所以它也理所当然的第一个抢到了锁<br><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gceqn4c304j30nm09cq4v.jpg" alt="image-20200301211615114"></li>
 </ol>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gceqs8ch2sj31680u0n6q.jpg" alt="image-20200301212112734"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gceqs8ch2sj31680u0n6q.jpg" alt="image-20200301212112734"></p>
 <p>从图中我们也可以看出，此时抢到锁的 exclusiveOwnerThread 为 Thread 0，从队列中我们可以看出剩下的三个 Thread 已经全部进入到同步队列，且顺序是 Thread 3 - Thread 1 - Thread 2（后面那个 5 是指优先级，不用管），为什么不可能进入到条件队列呢？因为 nextWaiter = null，且从 waitStatus = -1可知，三个线程都在同步队列中等待被唤醒。所以我们预测下一个抢到锁的一定是 Thread 3,他会去消费 Thread 0 刚刚生产出的消息，让我们接着看；</p>
 <ol start="3">
 <li>正如我们所料，真的是 Thread 3抢到了锁然后去消费了。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">producer-consumer 同一把锁</span><br><span class="line">-----------------</span><br><span class="line">Thread-<span class="number">0</span>:-------PRODUCER-------- <span class="number">1583068539426</span></span><br><span class="line">Thread-<span class="number">3</span>::-------CONSUMER--------  <span class="number">1583068539426</span></span><br></pre></td></tr></table></figure>
 <p>我们再通过 debug 的变量验证一下。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcer1ilizij30nu0a840o.jpg" alt="image-20200301213007786"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcer1ilizij30nu0a840o.jpg" alt="image-20200301213007786"></p>
 <p>看，真的 Thread 3 抢到锁了。不信，继续看下面更详细的信息：</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcer67vtugj311g0u013s.jpg" alt="image-20200301213437925"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcer67vtugj311g0u013s.jpg" alt="image-20200301213437925"></p>
 <p>如图我们可以看到，Thread 3 消费掉了消息，并且注意到同步队列现在变为了 Thread 1 - Thread 2 - Thread 0，开始是 3 - 1 - 2,现在就变成了 1 - 2 - 0，你还别说，这种同步真的速度有点慢，Thread 0 都休息完了 3 秒了，前面那两老哥还在等着呢，不过这里还有一个要注意的地方，就是 Thread 0 的 waitStatus = 0，这是为啥呢，凭啥别人都是 waitStatus = -1呢，回顾一下，watiStatus = -1意思就是等待被唤醒，waitStatus = 0 意思就是下个节点是 null，当然也可能是下个节点还没初始化完，但是这里是 null。</p>
 <p>这下总该肯定是 Thread 3 消费了吧，我们接着往下看。当然了，我们先预测一波，下面要抢锁的肯定是 1号老大哥，然后此时已经没有消息给他消费了，那他就只能掉入 Condition 的大坑了，只能从同步队列移到条件队列了，好苦逼啊，等了这么久，还得换个地方接着等！</p>
 <ol start="4">
 <li>我们来看看，结果是不是如我们预料的一样。</li>
 </ol>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcereehqinj30nq0a840n.jpg" alt="image-20200301214231056"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcereehqinj30nq0a840n.jpg" alt="image-20200301214231056"></p>
 <p>果然，接着就是 1 号老大哥在运行，不信我们看 debug 详细的参数：</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg" alt="image-20200301215139371"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gcernxgy1hj30vl0u0k3l.jpg" alt="image-20200301215139371"></p>
 <p>握草，我被打脸了…虽然此时的确是 Thread 1 在执行，但是！！！玛德条件队列竟然不是 1号老大哥，是刚刚消费消息的 3 号小老弟，它在搞什么？？？？？？仔细思考一下，我们得知道 jvm 默认开启了偏向锁，至于什么是偏向锁，那就回到多线程（一）去复习吧，<strong>3 号小老弟使用了外挂—偏向锁</strong><font color="red">「错了！！！！纠正一下，压根不是用的偏向锁，这里早就升级到了重量级锁，哪里来的偏向锁，真正插队的原因是这里是非公平锁！！！！！」</font>，于是它很恶心的插队了，本来按道理来说，应该是 1号老哥抢到锁，然后因为没有消息可以消费，所以它从同步队列移入到条件队列中等到被 signal，然后同步队列理应就剩下 2 - 0，然后可能 3 号执行完了接在后面。但是现实是什么呢？那就是 3 号小老弟使用外挂偏向锁，直接插队，率先获取锁，由于没有消息可以消费，所以它从同步队列移入到了条件队列，开始等待，我们也可以看到，图中 consumer_condition的队列中只有一个 Thread，那就是 3 号小老弟，3号小老弟在条件队列中等待之后，暂时放弃了锁，于是终于尼玛轮到我 1 号老大哥了，我们可以看到，此时的确是 1号开始运行，然后同步队列中是 2 - 0 - null，即两个队列，这的确是符合我们现在的想法。</p>
 <p>虽然刚才预测错了，但是那是因为 3 号使用了外挂，所以我还是接着预测吧，毕竟我预测的其实还是挺准的。此时因为没有消息可以消费，所以 1 号老大哥很可怜，跟 3 号小弟一样的下场，从同步队列转移到条件队列队尾继续等待，按道理来说 1 号将要在条件队列中，也就是 3 - 1，然后他让出锁，等待被唤醒，此时同步队列中队首应该是 2 号老哥了，终于轮到人家了…当然它应该也是很不幸的，只能跟 3 - 1一样的下场，回到条件队列队尾继续待着…预测完了，我们来看看真实情况。</p>
 <ol start="5">
 <li>看结果的确是 2 号老哥在运行着：</li>
 </ol>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg" alt="image-20200301220439196"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gces1fqar4j30nw0aqjtl.jpg" alt="image-20200301220439196"></p>
 <p>我们来看一下具体的参数，验证一下：</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg" alt="image-20200301220935496"></p>
+<p><img src="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/00831rSTgy1gces6kfp2wj30y70u0qel.jpg" alt="image-20200301220935496"></p>
 <p>完美，预测的一模一样。2 号抢到锁之后，同步队列就只剩下了 0 号，并且 waitStatus = 0，说明这是队尾了，再提醒一下哈，当前节点的 waitStatus 的值是表示下一节点的状态，比如说 waitStatus = -1说明的是该节点的下一个节点已经准备好被唤醒了。然后我们再看一下条件队列的情况，情况和我们思考的是一样的，条件队列中现在就 2 个 Thread，分别是 3 - 1，当然了，马上 2 就要加入他们了，因为此时还是没有消息可以消费，我们接着往下看。</p>
 <ol start="6">
 <li>啊啊啊啊，不知道为啥，可能是我点错了，突然就出现了这样的结果。 并且条件队列为空。</li>
