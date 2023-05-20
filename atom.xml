@@ -536,13 +536,13 @@
       <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
     
+      <category term="BlockingQueue" scheme="http://jeromememory.github.io/tags/BlockingQueue/"/>
+    
       <category term="生产者-消费者模式" scheme="http://jeromememory.github.io/tags/%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="wait/notify" scheme="http://jeromememory.github.io/tags/wait-notify/"/>
     
       <category term="await/signal" scheme="http://jeromememory.github.io/tags/await-signal/"/>
-    
-      <category term="BlockingQueue" scheme="http://jeromememory.github.io/tags/BlockingQueue/"/>
     
   </entry>
   
