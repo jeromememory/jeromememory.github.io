@@ -150,7 +150,7 @@
 
 
   <meta name="description" content="ConcurrentHashMap这个我在 Map &amp;amp; Set 源码分析 中已经非常详细的讲过了，这里就直接略过了… CopyOnWriteArrayList https://juejin.im/post/5aeeae756fb9a07ab11112af  吖！这个更简单哈哈哈，其实也就是读不加锁，写加个锁，写的时候由于是先复制一遍，然后再写回到原数组，所以存在读写的弱一致性，也就是说读到">
-<meta name="keywords" content="BlockingQueue,并发容器,ConcurrentHashMap,CopyOnWriteArrayList">
+<meta name="keywords" content="并发容器,ConcurrentHashMap,CopyOnWriteArrayList,BlockingQueue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多线程（三）--- 并发容器">
 <meta property="og:url" content="http://jeromememory.github.io/2020/02/27/多线程（三）---- 并发容器.html">
@@ -706,13 +706,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/BlockingQueue/" rel="tag"><i class="fa fa-tag"></i> BlockingQueue</a>
-          
             <a href="/tags/并发容器/" rel="tag"><i class="fa fa-tag"></i> 并发容器</a>
           
             <a href="/tags/ConcurrentHashMap/" rel="tag"><i class="fa fa-tag"></i> ConcurrentHashMap</a>
           
             <a href="/tags/CopyOnWriteArrayList/" rel="tag"><i class="fa fa-tag"></i> CopyOnWriteArrayList</a>
+          
+            <a href="/tags/BlockingQueue/" rel="tag"><i class="fa fa-tag"></i> BlockingQueue</a>
           
         </div>
       
