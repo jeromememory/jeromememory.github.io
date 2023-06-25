@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://jeromememory.github.io/"/>
-  <updated>2021-03-25T08:57:12.782Z</updated>
+  <updated>2023-06-20T16:29:18.671Z</updated>
   <id>http://jeromememory.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重温中间件</title>
+    <link href="http://jeromememory.github.io/2023/06/19/%E9%87%8D%E6%B8%A9%E4%B8%AD%E9%97%B4%E4%BB%B6.html"/>
+    <id>http://jeromememory.github.io/2023/06/19/重温中间件.html</id>
+    <published>2023-06-19T12:45:26.057Z</published>
+    <updated>2023-06-20T16:29:18.671Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="中间件" scheme="http://jeromememory.github.io/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+    
+      <category term="kafka" scheme="http://jeromememory.github.io/tags/kafka/"/>
+    
+      <category term="metaQ - Dubbo - HSF" scheme="http://jeromememory.github.io/tags/metaQ-Dubbo-HSF/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -543,38 +571,6 @@
       <category term="wait/notify" scheme="http://jeromememory.github.io/tags/wait-notify/"/>
     
       <category term="await/signal" scheme="http://jeromememory.github.io/tags/await-signal/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程（六）--- 并发工具包</title>
-    <link href="http://jeromememory.github.io/2020/02/28/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%85%AD%EF%BC%89---%20%E5%B9%B6%E5%8F%91%E5%B7%A5%E5%85%B7%E5%8C%85.html"/>
-    <id>http://jeromememory.github.io/2020/02/28/多线程（六）--- 并发工具包.html</id>
-    <published>2020-02-28T15:48:06.000Z</published>
-    <updated>2023-05-11T15:21:49.384Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="多线程" scheme="http://jeromememory.github.io/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-      <category term="CountDownLatch" scheme="http://jeromememory.github.io/tags/CountDownLatch/"/>
-    
-      <category term="CyclicBarrier" scheme="http://jeromememory.github.io/tags/CyclicBarrier/"/>
-    
-      <category term="Semaphore" scheme="http://jeromememory.github.io/tags/Semaphore/"/>
-    
-      <category term="Exchanger" scheme="http://jeromememory.github.io/tags/Exchanger/"/>
     
   </entry>
   

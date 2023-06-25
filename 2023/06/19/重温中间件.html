@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/happy.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":true,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: true,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"shrinkIn","post_header":"slideLeftIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+
+  <meta name="description" content="消息中间件Q1: 为什么使用消息中间件从项目的业务场景看：  解耦。分属于两个平台的业务，一个平台需要监听另外一个平台数据的变动，前提是要求解耦 异步。我们这一侧在监听到变动后有一系列的业务逻辑处理，速率不一样。 削峰。如上所说，生产和消费速率不一致  缺点如下：  系统可用性降低，增加了依赖 系统复杂度提高，需要保证消息不被重复消费，需要处理消息丢失的情况，需要处理重新消费的问题，需要保证消息的">
+<meta name="keywords" content="kafka,metaQ - Dubbo - HSF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重温中间件">
+<meta property="og:url" content="http://jeromememory.github.io/2023/06/19/重温中间件.html">
+<meta property="og:site_name" content="jeromememory">
+<meta property="og:description" content="消息中间件Q1: 为什么使用消息中间件从项目的业务场景看：  解耦。分属于两个平台的业务，一个平台需要监听另外一个平台数据的变动，前提是要求解耦 异步。我们这一侧在监听到变动后有一系列的业务逻辑处理，速率不一样。 削峰。如上所说，生产和消费速率不一致  缺点如下：  系统可用性降低，增加了依赖 系统复杂度提高，需要保证消息不被重复消费，需要处理消息丢失的情况，需要处理重新消费的问题，需要保证消息的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jeromememory-ipic.oss-cn-beijing.aliyuncs.com/162208.jpg">
+<meta property="og:updated_time" content="2023-06-20T16:29:18.671Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重温中间件">
+<meta name="twitter:description" content="消息中间件Q1: 为什么使用消息中间件从项目的业务场景看：  解耦。分属于两个平台的业务，一个平台需要监听另外一个平台数据的变动，前提是要求解耦 异步。我们这一侧在监听到变动后有一系列的业务逻辑处理，速率不一样。 削峰。如上所说，生产和消费速率不一致  缺点如下：  系统可用性降低，增加了依赖 系统复杂度提高，需要保证消息不被重复消费，需要处理消息丢失的情况，需要处理重新消费的问题，需要保证消息的">
+<meta name="twitter:image" content="https://jeromememory-ipic.oss-cn-beijing.aliyuncs.com/162208.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jeromememory" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://jeromememory.github.io/2023/06/19/重温中间件">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>重温中间件 | jeromememory</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5b603f3e8ef364f6e89d9e698962ba05";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+ 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jeromememory</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-bookmark"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-互动">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/guestbook/" rel="section"><i class="menu-item-icon fa fa-fw fa-comments"></i> <br>互动</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jeromememory.github.io/2023/06/19/重温中间件.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jerome">
+      <meta itemprop="description" content="生活总是充满了惊喜">
+      <meta itemprop="image" content="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jeromememory">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">重温中间件
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-06-19 20:45:26" itemprop="dateCreated datePublished" datetime="2023-06-19T20:45:26+08:00">2023-06-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-06-21 00:29:18" itemprop="dateModified" datetime="2023-06-21T00:29:18+08:00">2023-06-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/中间件/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">7.4k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">7 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h1><h2 id="Q1-为什么使用消息中间件"><a href="#Q1-为什么使用消息中间件" class="headerlink" title="Q1: 为什么使用消息中间件"></a>Q1: 为什么使用消息中间件</h2><p>从项目的业务场景看：</p>
+<ol>
+<li>解耦。分属于两个平台的业务，一个平台需要监听另外一个平台数据的变动，前提是要求解耦</li>
+<li>异步。我们这一侧在监听到变动后有一系列的业务逻辑处理，速率不一样。</li>
+<li>削峰。如上所说，生产和消费速率不一致</li>
+</ol>
+<p>缺点如下：</p>
+<ol>
+<li>系统可用性降低，增加了依赖</li>
+<li>系统复杂度提高，需要保证消息不被重复消费，需要处理消息丢失的情况，需要处理重新消费的问题，需要保证消息的顺序性</li>
+<li>一致性问题</li>
+</ol>
+<h2 id="Q2-Kafka-和-MetaQ-区别"><a href="#Q2-Kafka-和-MetaQ-区别" class="headerlink" title="Q2: Kafka 和 MetaQ 区别"></a>Q2: Kafka 和 MetaQ 区别</h2><ul>
+<li><p>存储形式</p>
+<ul>
+<li>Kafka采用 partition，每个 topic 的每个 partition 对应一个文件。顺序写入，定时刷盘。但一旦单个 broker 的 partition 过多，则顺序写将退化为随机写，Page Cache 脏⻚过多，频繁触发缺⻚中断， 性能大幅下降。</li>
+<li>RocketMQ 采用 CommitLog + ConsumeQueue，单个 broker 所有 topic 在 CommitLog 中顺序写， Page Cache 只需保持最新的⻚面即可。同时每个 topic 下的每个 queue 都有一个对应的 ConsumeQueue 文件作为索引。ConsumeQueue 占用 Page Cache 极少，刷盘影响较小。</li>
+</ul>
+</li>
+<li><p>存储可靠性</p>
+<ul>
+<li>RocketMQ支持异步刷盘，同步刷盘，同步Replication，异步Replication。</li>
+<li>Kafka使用异步刷盘，异步Replication。</li>
+</ul>
+</li>
+<li><p>顺序消息</p>
+<ul>
+<li>Kafka和RocketMQ都仅支持单topic分区有序。</li>
+<li>RocketMQ官方虽宣称支持严格有序，但方式为使用单个分区。</li>
+</ul>
+</li>
+<li><p>延时消息</p>
+<ul>
+<li><p>RocketMQ支持固定延时等级的延时消息，等级可配置。</p>
+</li>
+<li><p>kafka 没有完全支持延时消息，但是有延时操作「延时生产、延时拉取、延时数据删除」，可以自己实现延时消息，下文我有介绍两个方法来实现。</p>
+<p>补充：</p>
+<ol>
+<li>延时拉取：Kafka在处理拉取请求时，会先读取一次日志文件，如果收集不到足够多（由参数fetch.min.bytes配置，默认值为1）的消息，那么就会创建一个延时拉取操作以等待拉取到足够数量的消息。当延时拉取操作执行时，会再读取一次日志文件，然后将拉取结果返回给 follower 副本，如果没有延时消费，那么当 leader 副本没有新消息时，follower 副本一直拉取，是很浪费资源的。</li>
+<li>延时生产：在使用生产者客户端发送消息的时候将 acks 参数设置为-1，那么就意味着需要等待ISR集合中的所有副本都确认收到消息之后才能正确地收到响应的结果，或者捕获超时异常。这部分就是延时生产操作。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>消息过滤</p>
+<ul>
+<li>RocketMQ执行过滤是在Broker端，支持tag过滤及自定义过滤逻辑。</li>
+<li>Kafka不支持Broker端的消息过滤，需要在消费端自定义实现。</li>
+</ul>
+</li>
+<li><p>消息失败重试</p>
+<ul>
+<li>RocketMQ支持定时重试，每次重试间隔逐渐增加。</li>
+<li>Kafka不支持重试。</li>
+</ul>
+</li>
+<li><p>消息投递实时性</p>
+<ul>
+<li>RocketMQ 使用长轮询。</li>
+<li>Kafka 使用短轮询。</li>
+</ul>
+</li>
+<li><p><strong>DLQ</strong>(<strong>dead letter queue</strong>) 死信队列</p>
+<ul>
+<li>RocketMQ通过DLQ来记录所有消费失败的消息。</li>
+<li>Kafka无DLQ。Spring等第三方工具有实现，方式为将失败消息写入一个专⻔的topic。</li>
+</ul>
+</li>
+<li><p>回溯消费</p>
+<ul>
+<li>RocketMQ支持按照时间回溯消费，实现原理与Kafka相同。</li>
+<li>Kafka需要先根据时间戳找到offset，然后从offset开始消费。</li>
+</ul>
+</li>
+<li><p>事务</p>
+<ul>
+<li>RocketMQ支持事务消息，采用二阶段提交+ broker 定时回查。但也只能保证生产者与broker的一 致性，broker与消费者之间只能单向重试。即保证的是最终一致性。</li>
+<li>Kafka从0.11版本开始支持事务消息，除支持最终一致性外，还实现了消息Exactly Once语义(单个 partition)。</li>
+</ul>
+</li>
+<li><p>服务发现</p>
+<ul>
+<li>RocketMQ自己实现了namesrv。</li>
+<li>Kafka使用ZooKeeper。</li>
+</ul>
+</li>
+<li><p>高可用</p>
+<ul>
+<li>RocketMQ在高可用设计上粒度只控制在Broker。其保证高可用是通过master-slave主从复制来解决的。</li>
+<li>Kafka控制高可用的粒度是放在分区上。每个topic的leader分区和replica分区都可以在所有broker 上负载均衡的存储。</li>
+</ul>
+<p>Kafka的这种设计相比RocketMQ这种主从复制的设计有以下好处:</p>
+<p>Kafka中不需要设置从broker，所有的broker都可以收发消息。负载均衡也做的更好。 Kafka的分区选举是自动做的，RocketMQ需要自己指定主从关系。 Kafka分区的复制份数指定为N，则可以容忍N-1个节点的故障。发生故障只需要分区leader 选举下即可，效率很高。</p>
+</li>
+</ul>
+<h2 id="Q3：如何保证高可用"><a href="#Q3：如何保证高可用" class="headerlink" title="Q3：如何保证高可用"></a>Q3：如何保证高可用</h2><p>kafka 通过多副本机制来实现高可用，其中所有的副本的集合称为 AR（Assigned Replicas），AR = ISR（In-Sync Replicas）+ OSR（Out-of-Sync Replicas），其中 ISR 是指与 leader 副本保持一定程度的同步「可忍受的滞后范围」的 follower 副本的集合，当 leader 副本出现问题时，会在 ISR 集合中选举出一个新的 leader 来保证集群可用。</p>
+<p>其中，ISR 中的一定程度的同步的数值，是可以设置的，滞后范围是通过 HW(高水位) 和 LEO(日志结束偏移量) 来确定的，HW 即当前 ISR 中已同步的偏移量，客户端只能获取到HW及之前的偏移量的消息，LEO 即当前日志下一条待写入消息的 offset。</p>
+<p>最后，值得一提的是，kafka 的主从间的复制机制，并不是完全的同步机制（所有的 follower 同步完 leader 的消息之后才确认为已成功提交，性能很低），也不是完全的异步机制（leader 副本写入就认为已经成功提交，leader 一旦突然宕机就会造成数据丢失），而是使用这种 ISR 的方式，有效的权衡了数据可靠性和性能之间的关系。</p>
+<h2 id="Q4：如何保证消息不被重复消费"><a href="#Q4：如何保证消息不被重复消费" class="headerlink" title="Q4：如何保证消息不被重复消费"></a>Q4：如何保证消息不被重复消费</h2><ul>
+<li>通过Mysql的唯一键约束，例如新增场景下，可以先查询数据库判断是否有该条数据</li>
+<li>加个唯一标识，在内存中记录下来</li>
+</ul>
+<h2 id="Q5：如何保证消息的可靠性传输，不丢失"><a href="#Q5：如何保证消息的可靠性传输，不丢失" class="headerlink" title="Q5：如何保证消息的可靠性传输，不丢失"></a>Q5：如何保证消息的可靠性传输，不丢失</h2><ul>
+<li>生产消息丢失：解决方案为生产者生产消息可以通过comfirm配置ack=all解决，只有当 到达 broker ，并且所有副本都落库数据，才返回 ack = all</li>
+<li>Broker同步过程中leader宕机可以通过配置ISR副本+重试解决</li>
+<li>消费者丢失可以关闭自动提交offset功能，系统处理完成时提交offset</li>
+</ul>
+<h2 id="Q6：如何保证消息的顺序性"><a href="#Q6：如何保证消息的顺序性" class="headerlink" title="Q6：如何保证消息的顺序性"></a>Q6：如何保证消息的顺序性</h2><ul>
+<li><p>单 topic，单partition，单 consumer，单线程消费，吞吐量低，不推荐</p>
+</li>
+<li><p>如只需保证单 key 有序，为每个key申请单独内存 queue，每个线程分别消费一个内存 queue 即可，这样就能保</p>
+<p>证单key(例如用户id、活动id)顺序性，还是使用 kafka 中对于 分区 partition 是有序的功能。</p>
+</li>
+</ul>
+<h2 id="Q7：如何解决消息堆积问题"><a href="#Q7：如何解决消息堆积问题" class="headerlink" title="Q7：如何解决消息堆积问题"></a>Q7：如何解决消息堆积问题</h2><p>解决消费者速率跟不上生产者速率的问题：</p>
+<ul>
+<li>如果是poll太慢，可以定义消费者组，一个消费者组的消费者可以并发消费数据</li>
+<li>如果是消费者的业务逻辑导致速率过慢，可以学习NIO中的 Reactor模型，一个消费者负责监听消息，另其其他线程去进行 work</li>
+</ul>
+<h2 id="Q8：如何解决消息延时消费问题"><a href="#Q8：如何解决消息延时消费问题" class="headerlink" title="Q8：如何解决消息延时消费问题"></a>Q8：如何解决消息延时消费问题</h2><p>一般这种情况下都是消费者消费出现了问题导致消息延时，消息堆积严重，遇到这种特殊 case，直接扩容，将topic 下的partition进行扩容，然后使用消费者组进行多线程消费，恢复后，<strong>恢复原先部署的架构</strong>，<strong>重新</strong>用原先的 consumer 机器来消费消息</p>
+<p>如何做到延时：</p>
+<p>kafka支持延时操作「延时生产、延时拉取、延时数据删除」，有延时队列 DelayQueue</p>
+<h2 id="Q9：开放性问题，自己如果要设计一个消息队列，如何设计"><a href="#Q9：开放性问题，自己如果要设计一个消息队列，如何设计" class="headerlink" title="Q9：开放性问题，自己如果要设计一个消息队列，如何设计"></a>Q9：开放性问题，自己如果要设计一个消息队列，如何设计</h2><ul>
+<li>需要支持快速水平扩容，broker+partition，partition放不同的机器上，增加机器时将数据根据topic做迁移，</li>
+<li>分布式: 需要考虑一致性、可用性、分区容错性</li>
+<li>一致性: 生产者的消息确认、消费者的幂等性、Broker的数据同步</li>
+<li>可用性: 数据如何保证不丢不重、数据如何持久化、持久化时如何读写 </li>
+<li>分区容错: 采用何种选举机制、如何进行多副本同步</li>
+<li>海量数据: 如何解决消息积压、海量Topic性能下降，性能上，可以借鉴时间轮、零拷贝、IO多路复用、顺序读写、压缩批处理</li>
+</ul>
+<h2 id="Q10：metaQ-是否保证消息不重复"><a href="#Q10：metaQ-是否保证消息不重复" class="headerlink" title="Q10：metaQ 是否保证消息不重复"></a>Q10：metaQ 是否保证消息不重复</h2><p>不保证，不支持 “Exactly Only one”特性，原因如下：</p>
+<ul>
+<li>发送消息阶段，会存在分布式环境下典型的超时问题，即发送消息阶段不能保证消息不重复</li>
+<li>订阅消息阶段，由于涉及集群订阅，多个订阅者需要 Rebalance 方式订阅，在 Rebalance 短暂不一致时，会导致消息重复</li>
+<li>订阅者意外宕机，消息进度未及时存储，也会产生消息重复</li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>应用方收到消息后，可通过 Tair、DB去重</li>
+<li>应用方可通过主动拉的方式保证消息绝不重复</li>
+</ul>
+<h1 id="Dubbo-HSF"><a href="#Dubbo-HSF" class="headerlink" title="Dubbo/HSF"></a>Dubbo/HSF</h1><h2 id="Q1：请简要介绍Dubbo的核心概念和组件"><a href="#Q1：请简要介绍Dubbo的核心概念和组件" class="headerlink" title="Q1：请简要介绍Dubbo的核心概念和组件"></a>Q1：请简要介绍Dubbo的核心概念和组件</h2><p>Dubbo的核心概念包括提供者（Provider）、消费者（Consumer）、注册中心（Registry）和监控中心（Monitor）。Dubbo的组件包括服务接口（Service Interface）、服务提供者（Service Provider）、服务消费者（Service Consumer）、注册中心（Registry Center）、监控中心（Monitor Center）和远程调用（Remote Invocation）。</p>
+<h2 id="Q2：Dubbo支持的负载均衡策略有哪些"><a href="#Q2：Dubbo支持的负载均衡策略有哪些" class="headerlink" title="Q2：Dubbo支持的负载均衡策略有哪些"></a>Q2：Dubbo支持的负载均衡策略有哪些</h2><p>Dubbo支持的负载均衡策略包括随机（Random）、轮询（Round Robin）、最少活跃调用数（Least Active）、一致性哈希（Consistent Hashing）和权重（Weighted）。每种策略的特点如下：</p>
+<ul>
+<li>随机：随机选择一个可用的服务提供者进行调用。</li>
+<li>轮询：按照顺序依次选择可用的服务提供者进行调用。</li>
+<li>最少活跃调用数：选择活跃调用数最小的服务提供者进行调用，适用于并发较高的场景。</li>
+<li>一致性哈希：根据请求的键值进行哈希计算，选择哈希值最接近的服务提供者进行调用，适用于需要保持稳定调用关系的场景。</li>
+<li>权重：根据服务提供者的权重值进行选择，权重越高的服务提供者被选择的概率越大。</li>
+</ul>
+<h2 id="Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用"><a href="#Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用" class="headerlink" title="Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用"></a>Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用</h2><ul>
+<li>服务注册与发现：通过注册中心实现服务的注册与发现，使得服务消费者能够动态获取可用的服务列表。</li>
+<li>负载均衡：通过负载均衡策略选择合适的服务提供者，平衡请求的分布，提高系统的稳定性和性能。</li>
+<li>集群容错：通过集群容错机制处理服务提供者的故障，保证系统的可靠性和可用性。</li>
+<li>服务路由：根据路由规则将请求路由到指定的服务提供者，实现灰度发布、A/B测试等功能。</li>
+<li>服务降级：在高并发或故障情况下，根据配置降低服务的负载或返回默认值，保护核心业务的可用性。</li>
+<li>服务限流：对服务进行流量控制，防止恶意请求或异常情况导致系统过载。</li>
+<li>监控与统计：对服务的调用进行监控和统计，包括调用次数、响应时间等指标，帮助分析和优化系统性能。</li>
+</ul>
+<h2 id="Q4：Dubbo的服务注册与发现机制是如何实现的？"><a href="#Q4：Dubbo的服务注册与发现机制是如何实现的？" class="headerlink" title="Q4：Dubbo的服务注册与发现机制是如何实现的？"></a>Q4：Dubbo的服务注册与发现机制是如何实现的？</h2><p>Dubbo的服务注册与发现机制是通过注册中心来实现的。在Dubbo中，服务提供者在启动时会将自己提供的服务信息注册到注册中心，包括服务接口、IP地址、端口等。而服务消费者在调用服务时会向注册中心查询可用的服务列表，然后根据负载均衡策略选择一个服务提供者进行调用。注册中心负责管理服务提供者的注册信息，维护可用服务列表，并提供相应的查询接口供服务消费者使用。</p>
+<p>Dubbo支持多种注册中心，如ZooKeeper、Consul、Etcd等。这些注册中心提供了高可用、分布式的服务注册与发现能力，可以在集群环境中保证服务的可用性和弹性。</p>
+<h2 id="Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？"><a href="#Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？" class="headerlink" title="Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？"></a>Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？</h2><p>Dubbo支持多种序列化方式，包括Hessian、Java原生序列化、JSON、Protobuf等。不同的序列化方式具有不同的特点和适用场景。</p>
+<ul>
+<li>Hessian：Hessian是一种基于二进制的高性能序列化方式，支持跨语言调用。它在性能和序列化体积方面都有较好的表现，适合在Java环境中使用。</li>
+<li>Java原生序列化：Java原生序列化是Java标准库提供的序列化方式。它简单易用，但在性能和序列化体积方面不如其他序列化方式高效，通常不推荐在生产环境中使用。</li>
+<li>JSON：JSON是一种文本格式的序列化方式，具有良好的可读性和跨语言支持。它适用于与非Java语言进行通信或在Web环境中使用。</li>
+<li>Protobuf：Protobuf是Google开发的一种高效的二进制序列化方式。它具有很高的性能和较小的序列化体积，适合在高性能、大规模数据传输的场景中使用。</li>
+</ul>
+<p>选择适合的序列化方式需要考虑性能、序列化体积、跨语言支持和可读性等因素，并根据具体的业务需求和环境进行评估和选择。</p>
+<blockquote>
+<p>衡量一个序列化框架，主要有以下几个指标：</p>
+<ul>
+<li>性能。包括时间开销方面的性能和空间开销方面的性能。时间开销，是指序列化反序列化解析的时间，空间开销，则是指相同的对象在序列化后所占的字节数。</li>
+<li>通用性。是否支持跨平台，跨语言。</li>
+<li>可扩展性、兼容性。如果序列化协议具有良好的可扩展性，支持自动增加新的业务字段，而不影响老的服务，这将大大提供系统的灵活度。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><a href="https://image.baidu.com/search/down?url=https://tva1.sinaimg.cn/large/007S8ZIlly1gia96jbrc3j31hc0u0qna.jpg" target="_blank" rel="noopener"><img src="https://jeromememory-ipic.oss-cn-beijing.aliyuncs.com/162208.jpg" alt="序列化框架总结"></a></p>
+</blockquote>
+<h2 id="Q6：Dubbo的集群容错机制是如何处理服务提供者的故障"><a href="#Q6：Dubbo的集群容错机制是如何处理服务提供者的故障" class="headerlink" title="Q6：Dubbo的集群容错机制是如何处理服务提供者的故障"></a>Q6：Dubbo的集群容错机制是如何处理服务提供者的故障</h2><p>Dubbo提供了多种集群容错机制来处理服务提供者的故障，确保系统的可靠性和可用性。</p>
+<ul>
+<li>失败自动切换（Failover）：当调用失败时，Dubbo自动切换到其他可用的服务提供者进行重试，直到调用成功或达到最大重试次数。适用于对服务的可用性要求较高的关键业务场景。</li>
+<li>快速失败（Failfast）：快速失败机制在发生错误时立即返回失败结果，不进行重试。适用于对响应时间敏感的非关键业务场景，如页面渲染等。</li>
+<li>失败安全（Failsafe）：失败安全机制会忽略调用的错误，直接返回默认值，保证调用的安全性和稳定性。适用于监控、统计等对结果实时性要求不高的场景。</li>
+<li>失败定位（Failback）：失败定位机制会记录失败的请求，并在后台定时重发，尝试恢复失败的调用。适用于需要保证调用可靠性的场景。</li>
+<li>广播（Broadcast）：广播机制会将请求发送给所有提供者并收集结果，通常用于通知所有提供者更新缓存等场景。</li>
+</ul>
+<h2 id="Q7：dubbo-工作原理"><a href="#Q7：dubbo-工作原理" class="headerlink" title="Q7：dubbo 工作原理"></a>Q7：dubbo 工作原理</h2><ul>
+<li>第一层：service 层，接口层，给服务提供者和消费者来实现的</li>
+<li>第二层：config 层，配置层，主要是对 dubbo 进行各种配置的</li>
+<li>第三层：proxy 层，服务代理层，无论是 consumer 还是 provider，dubbo 都会给你生成代理，代理之间进行网络通信</li>
+<li>第四层：registry 层，服务注册层，负责服务的注册与发现</li>
+<li>第五层：cluster 层，集群层，封装多个服务提供者的路由以及负载均衡，将多个实例组合成一个服务</li>
+<li>第六层：monitor 层，监控层，对 rpc 接口的调用次数和调用时间进行监控</li>
+<li>第七层：protocal 层，远程调用层，封装 rpc 调用</li>
+<li>第八层：exchange 层，信息交换层，封装请求响应模式，同步转异步</li>
+<li>第九层：transport 层，网络传输层，抽象 mina 和 netty 为统一接口</li>
+<li>第十层：serialize 层，数据序列化层</li>
+</ul>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ul>
+<li>第一步：provider 向注册中心去注册</li>
+<li>第二步：consumer 从注册中心订阅服务，注册中心会通知 consumer 注册好的服务</li>
+<li>第三步：consumer 调用 provider</li>
+<li>第四步：consumer 和 provider 都异步通知监控中心</li>
+</ul>
+<h2 id="Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？"><a href="#Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？" class="headerlink" title="Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？"></a>Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？</h2><p>其实保证幂等性主要是三点：</p>
+<ul>
+<li>对于每个请求必须有一个唯一的标识，举个栗子：订单支付请求，肯定得包含订单 id，一个订单 id 最多支付一次，对吧。</li>
+<li>每次处理完请求之后，必须有一个记录标识这个请求处理过了。常见的方案是在 mysql 中记录个状态啥的，比如支付之前记录一条这个订单的支付流水。</li>
+<li>每次接收请求需要进行判断，判断之前是否处理过。比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId 已经存在了，唯一键约束生效，报错插入不进去的。然后你就不用再扣款了。</li>
+</ul>
+<h2 id="Q9：分布式服务接口请求的顺序性如何保证？"><a href="#Q9：分布式服务接口请求的顺序性如何保证？" class="headerlink" title="Q9：分布式服务接口请求的顺序性如何保证？"></a>Q9：分布式服务接口请求的顺序性如何保证？</h2><p>首先，一般来说，个人建议是，你们从业务逻辑上设计的这个系统最好是不需要这种顺序性的保证，因为一旦引入顺序性保障，比如使用<strong>分布式锁</strong>，会<strong>导致系统复杂度上升</strong>，而且会带来<strong>效率低下</strong>，热点数据压力过大等问题。</p>
+<p>下面我给个我们用过的方案吧，简单来说，首先你得用 dubbo 的一致性 hash 负载均衡策略，将比如某一个订单 id 对应的请求都给分发到某个机器上去，接着就是在那个机器上，因为可能还是多线程并发执行的，你可能得立即将某个订单 id 对应的请求扔一个<strong>内存队列</strong>里去，强制排队，这样来确保他们的顺序性。</p>
+<h2 id="Q10：如何设计一个类似-Dubbo-的-RPC-框架"><a href="#Q10：如何设计一个类似-Dubbo-的-RPC-框架" class="headerlink" title="Q10：如何设计一个类似 Dubbo 的 RPC 框架"></a>Q10：如何设计一个类似 Dubbo 的 RPC 框架</h2><ol>
+<li>通信协议：选择合适的通信协议用于服务提供者和服务消费者之间的通信。常见的选择包括基于TCP的自定义协议、HTTP协议或WebSocket等。协议的选择应考虑性能、可靠性、跨语言支持等因素。</li>
+<li>服务注册与发现：设计一个注册中心用于服务提供者注册服务信息，并提供服务发现功能供服务消费者查询可用的服务列表。可以考虑使用类似于ZooKeeper、Etcd或Consul等的分布式协调服务作为注册中心。</li>
+<li>序列化与反序列化：实现对象的序列化与反序列化，将方法调用的请求和响应进行编码和解码。常用的序列化方式有JSON、XML、Protobuf等，选择合适的序列化方式可以考虑性能、序列化体积、跨语言支持等因素。</li>
+<li>负载均衡：实现负载均衡策略，选择合适的服务提供者进行请求的路由和分发。常见的负载均衡策略包括随机、轮询、最少活跃调用数等。</li>
+<li>容错机制：设计容错机制来处理服务提供者的故障和异常情况。常见的容错策略有失败自动切换、快速失败、失败安全、失败定位等。</li>
+<li>线程池和并发控制：管理请求的线程池，控制并发请求的数量，避免系统过载和资源浪费。</li>
+<li>监控与统计：收集和统计服务的调用次数、响应时间等指标，提供可视化的监控界面和报告。</li>
+<li>安全机制：考虑服务的安全性，包括身份验证、权限控制和数据加密等。</li>
+<li>扩展机制：提供可扩展的插件机制，允许用户根据自己的需求扩展框架的功能。</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Thank you for your accept. mua！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/W3tDf1V2sT5LoOi.png" alt="Jerome 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="https://i.loli.net/2020/04/21/Od5DSGJ316toUkw.jpg" alt="Jerome 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Jerome</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://jeromememory.github.io/2023/06/19/重温中间件.html" title="重温中间件">http://jeromememory.github.io/2023/06/19/重温中间件.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:16px;">-------------本文结束<i class="fa fa-heart"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/kafka/" rel="tag"><i class="fa fa-tag"></i> kafka</a>
+          
+            <a href="/tags/metaQ-Dubbo-HSF/" rel="tag"><i class="fa fa-tag"></i> metaQ - Dubbo - HSF</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/24/知识图谱一书笔记.html" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80NjAyMS8yMjUzMg=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2019/09/25/Dqk7oaQtwAHINWT.png" alt="Jerome">
+            
+              <p class="site-author-name" itemprop="name">Jerome</p>
+              <div class="site-description motion-element" itemprop="description">生活总是充满了惊喜</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">135</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jeromememory" title="GitHub &rarr; https://github.com/jeromememory" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="tencent://message/?uin=1337911608&Site=&menu=yes" title="QQ &rarr; tencent://message/?uin=1337911608&Site=&menu=yes" rel="noopener" target="_blank"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://stackoverflow.com/users/11879978/hysterical" title="StackOverflow &rarr; https://stackoverflow.com/users/11879978/hysterical" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-book"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html" title="https://jeromememory.github.io/2020/03/15/%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA%20NIO.html">浅入浅出NIO</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html" title="https://jeromememory.github.io/2019/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AC%94%E8%AE%B0.html">jvm总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html" title="https://jeromememory.github.io/2019/10/12/leetcode%E7%83%AD%E9%A2%98100.html">LeetCode总结</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html" title="https://jeromememory.github.io/2020/03/17/%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C.html">面经</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html" title="https://jeromememory.github.io/2020/01/29/%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89----%20%E9%94%81%20&%20%E5%85%B3%E9%94%AE%E5%AD%97%20.html">多线程</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="110" src="//music.163.com/outchain/player?type=2&id=479598964&auto=0&height=90"></iframe>
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#消息中间件"><span class="nav-number">1.</span> <span class="nav-text">消息中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Q1-为什么使用消息中间件"><span class="nav-number">1.1.</span> <span class="nav-text">Q1: 为什么使用消息中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q2-Kafka-和-MetaQ-区别"><span class="nav-number">1.2.</span> <span class="nav-text">Q2: Kafka 和 MetaQ 区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q3：如何保证高可用"><span class="nav-number">1.3.</span> <span class="nav-text">Q3：如何保证高可用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q4：如何保证消息不被重复消费"><span class="nav-number">1.4.</span> <span class="nav-text">Q4：如何保证消息不被重复消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q5：如何保证消息的可靠性传输，不丢失"><span class="nav-number">1.5.</span> <span class="nav-text">Q5：如何保证消息的可靠性传输，不丢失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q6：如何保证消息的顺序性"><span class="nav-number">1.6.</span> <span class="nav-text">Q6：如何保证消息的顺序性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q7：如何解决消息堆积问题"><span class="nav-number">1.7.</span> <span class="nav-text">Q7：如何解决消息堆积问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q8：如何解决消息延时消费问题"><span class="nav-number">1.8.</span> <span class="nav-text">Q8：如何解决消息延时消费问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q9：开放性问题，自己如果要设计一个消息队列，如何设计"><span class="nav-number">1.9.</span> <span class="nav-text">Q9：开放性问题，自己如果要设计一个消息队列，如何设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q10：metaQ-是否保证消息不重复"><span class="nav-number">1.10.</span> <span class="nav-text">Q10：metaQ 是否保证消息不重复</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dubbo-HSF"><span class="nav-number">2.</span> <span class="nav-text">Dubbo/HSF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Q1：请简要介绍Dubbo的核心概念和组件"><span class="nav-number">2.1.</span> <span class="nav-text">Q1：请简要介绍Dubbo的核心概念和组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q2：Dubbo支持的负载均衡策略有哪些"><span class="nav-number">2.2.</span> <span class="nav-text">Q2：Dubbo支持的负载均衡策略有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用"><span class="nav-number">2.3.</span> <span class="nav-text">Q3：Dubbo的服务治理包括哪些方面？请简要说明每个方面的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q4：Dubbo的服务注册与发现机制是如何实现的？"><span class="nav-number">2.4.</span> <span class="nav-text">Q4：Dubbo的服务注册与发现机制是如何实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？"><span class="nav-number">2.5.</span> <span class="nav-text">Q5：Dubbo的序列化支持哪些方式？如何选择适合的序列化方式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q6：Dubbo的集群容错机制是如何处理服务提供者的故障"><span class="nav-number">2.6.</span> <span class="nav-text">Q6：Dubbo的集群容错机制是如何处理服务提供者的故障</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q7：dubbo-工作原理"><span class="nav-number">2.7.</span> <span class="nav-text">Q7：dubbo 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作流程"><span class="nav-number">2.7.1.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？"><span class="nav-number">2.8.</span> <span class="nav-text">Q8：分布式服务接口的幂等性如何设计（比如不能重复扣款）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q9：分布式服务接口请求的顺序性如何保证？"><span class="nav-number">2.9.</span> <span class="nav-text">Q9：分布式服务接口请求的顺序性如何保证？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q10：如何设计一个类似-Dubbo-的-RPC-框架"><span class="nav-number">2.10.</span> <span class="nav-text">Q10：如何设计一个类似 Dubbo 的 RPC 框架</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" style=" text-align:center;">&copy; 2019 – <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jerome</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"> 站点字数合计:</i>
+    </span>
+    
+    <span title="站点总字数">1.2m</span>
+  
+  
+</div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+<div class="run_time" style=" text-align:center;">
+  <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+  <script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("08/06/2019 19:00:00");//此处修改你的建站时间或者网站上线时间 
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+    setInterval("createtime()",250);
+  </script>
+</div>
+        
+<div class="busuanzi-count" style=" text-align:center;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> 人
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span> 次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  
+  
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2023/06/19/重温中间件.html'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+
+  
+<script type="text/javascript">
+    //微信二维码点击背景关闭
+    $('body').delegate('.-mob-share-weixin-qrcode-bg','click', function(){
+         $(".-mob-share-weixin-qrcode-close").trigger("click");
+    }); 
+</script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":1,"width":250,"height":300,"position":"left"},"mobile":{"show":false},"react":{"opacityDefault":0.9,"opacityOnHover":0.5},"log":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+<!-- 代码块复制功能 -->
+<script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+<script type="text/javascript" src="/js/src/clipboard-use.js"></script>
